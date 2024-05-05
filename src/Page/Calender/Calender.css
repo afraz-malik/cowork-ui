@@ -1,0 +1,405 @@
+.eventList {
+  width: 30%;
+  background-color: rgb(255, 255, 255);
+}
+
+.addEvent {
+  width: 100%;
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
+  padding: 23px;
+}
+
+.addEvent button {
+  background: rgba(99, 102, 241, 1);
+  color: white;
+  width: 100%;
+  border: none;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 0px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.addEvent button svg {
+  margin-right: 7px;
+}
+
+.eventUpcoming {
+  padding: 24px;
+}
+
+.eventHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.eventHeading p {
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(29, 41, 57, 1);
+  margin-bottom: 0px;
+}
+
+.eventHeading button {
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(99, 102, 241, 1);
+  background-color: transparent;
+  border: none;
+}
+
+.eventDetails {
+  margin-top: 15px;
+  background: rgba(244, 247, 248, 1);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.eventDetails img {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+}
+
+.eventInfo p {
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  margin-bottom: 2px;
+}
+
+.eventCategory {
+  align-items: center;
+  display: flex;
+}
+
+.eventCategory button {
+  padding: 2px 8px;
+  border: none;
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(61, 63, 161, 1);
+  background: rgba(239, 240, 254, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.eventCategory span {
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: rgba(52, 64, 84, 1);
+  display: flex;
+  align-items: center;
+}
+
+.eventCategory svg {
+  background: rgba(247, 144, 9, 1);
+  color: rgba(247, 144, 9, 1);
+  font-size: 10px;
+  margin-right: 4px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.eventFilters{
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+.eventFilters h1 {
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+}
+
+.filterCheck ul {
+  padding-left: 0px;
+}
+
+.filterCheck ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.filterCheck ul li div {
+  display: flex;
+  align-items: center;
+}
+
+.filterCheck ul li div p {
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 0px;
+}
+
+.filterCheck ul li .filterColor {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+
+.filterCheck ul li .filterBlack {
+  background: rgba(102, 112, 133, 1);
+}
+
+.filterCheck ul li .filterBlue {
+  background: rgba(46, 144, 250, 1);
+}
+
+.filterCheck ul li .filterGreen {
+  background: rgba(99, 102, 241, 1);
+}
+
+.filterCheck ul li .filterRed {
+  background: rgba(240, 68, 56, 1);
+
+}
+
+.filterCheckBox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border: 1px solid #a8aeb9;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+
+.filterCheckBox .checkmark::after {
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid #6366F1;
+  border-top-width: medium;
+  border-right-width: medium;
+  border-bottom-width: medium;
+  border-left-width: medium;
+  border-top-width: medium;
+  border-right-width: medium;
+  border-bottom-width: medium;
+  border-left-width: medium;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.fc-toolbar-chunk div {
+  display: flex;
+  align-items: center;
+}
+
+.fc-toolbar-chunk div .fc-prev-button,
+.fc-toolbar-chunk div .fc-next-button {
+  background-color: transparent;
+  color: rgba(102, 112, 133, 1);
+  text-transform: capitalize;
+  border: none;
+}
+
+.fc-toolbar-chunk div h2 {
+  font-family: "Inter";
+  font-size: 16px !important;
+  font-weight: 600;
+  line-height: 26px;
+  text-transform: capitalize;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(29, 41, 57, 1);
+}
+
+.fc-toolbar-chunk .fc-today-button,
+.fc-button-group .fc-dayGridDay-button,
+.fc-button-group .fc-dayGridWeek-button,
+.fc-button-group .fc-dayGridMonth-button {
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1) !important;
+  border: 1px solid rgba(208, 213, 221, 1);
+  text-transform: capitalize;
+  background-color: transparent !important;
+  padding: 12px 16px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.fc-scrollgrid-sync-inner a {
+  text-decoration: none;
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(102, 112, 133, 1);
+  text-transform: uppercase;
+}
+
+.fc-header-toolbar {
+  padding: 24px;
+}
+
+.fc .fc-daygrid-day-top {
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.fc-direction-ltr .fc-daygrid-event.fc-event-end,
+.fc-direction-rtl .fc-daygrid-event.fc-event-start {
+  margin-right: 7px !important;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.fc-direction-ltr .fc-daygrid-event.fc-event-start,
+.fc-direction-rtl .fc-daygrid-event.fc-event-end {
+  margin-left: 7px !important;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  margin-bottom: 0em;
+  border-left: 1px solid rgba(234, 236, 240, 1);
+}
+
+.fullCalenderBox .fc-col-header thead {
+  height: 60px;
+}
+
+.fc-theme-standard th {
+  vertical-align: middle;
+}
+
+.fc-direction-ltr {
+  height: 100%;
+}
+
+.monthView {
+  height: 350px;
+}
+
+.monthView .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+  min-height: 2em;
+  position: relative;
+  display: none;
+}
+
+.monthView .fc .fc-scroller-liquid-absolute {
+  inset: 0px;
+  position: absolute;
+  /* overflow: hidden !important; */
+}
+
+.monthView .fc-theme-standard td,
+.monthView .fc-theme-standard th {
+  border: none;
+}
+
+.monthView .fc-theme-standard .fc-scrollgrid {
+  border: none;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: transparent !important;
+}
+
+.monthView .fc .fc-daygrid-day.fc-day-today a {
+  background: rgba(99, 102, 241, 1) !important;
+  color: white !important;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  background: rgba(99, 102, 241, 1) !important;
+  color: white !important;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}

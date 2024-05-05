@@ -1,0 +1,246 @@
+.mainTaskContent {
+    background: #F7F8FA;
+    padding: 32px 32px 33px 32px;
+    width: 100%;
+    height: calc(100vh - 72px);
+    overflow-y: auto;
+}
+
+.taskTopHeading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.taskTopHeading p {
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 1px;
+    text-align: left;
+    color: rgba(152, 162, 179, 1);
+    margin-bottom: 0px;
+}
+
+.taskTopHeading svg {
+    color: rgba(152, 162, 179, 1);
+    margin-right: 3px;
+}
+
+.allTaskFilter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.allTaskFilter p {
+    font-family: "Inter";
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(29, 41, 57, 1);
+}
+
+.allTaskFilter .filterBtn {
+    display: flex;
+
+}
+
+.allTaskFilter .filterBtn button {
+    padding: 10px 18px;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    background-color: #fff;
+    border: 1px solid rgba(208, 213, 221, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: rgba(52, 64, 84, 1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 153px;
+    margin-left: 10px;
+}
+
+.addTask button {
+    margin-top: 24px;
+    background-color: rgba(99, 102, 241, 1);
+    width: 100%;
+    padding: 18px 24px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    border: none;
+}
+
+.pendingList {
+    margin-top: 24px;
+    background: rgba(240, 244, 246, 1);
+    padding: 24px 20px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.taskCard {
+    background-color: #fff;
+    margin-top: 24px;
+    padding: 24px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.taskHeading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.taskHeading p {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(29, 41, 57, 1);
+}
+
+.taskImg {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.taskImg img {
+    object-fit: cover;
+    width: 100%;
+    height: 140px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.taskDate {
+    margin-top: 15px;
+}
+
+.taskDate p {
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    width: fit-content;
+    padding: 2px 10px;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+
+.taskDate p svg {
+    margin-right: 5px;
+    font-weight: 800;
+}
+
+.taskDate .dueDate {
+    background: rgba(255, 250, 235, 1);
+    color: rgba(181, 71, 8, 1);
+}
+
+.taskDate .futureDate {
+    background: rgba(242, 244, 247, 1);
+    color: rgba(52, 64, 84, 1);
+}
+
+.taskDate .pastDate {
+    background: rgba(254, 243, 242, 1);
+    color: rgba(180, 35, 24, 1);
+}
+
+.taskMember {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.taskMember img {
+    width: 32px;
+    height: 32px;
+    margin-left: -4px;
+    overflow: hidden;
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 2px solid rgba(255, 171, 0, 1);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.taskIcon .dropdown-toggle::after {
+    display: none;
+}
+
+.taskIcon button,
+.taskIcon button:hover {
+    padding: 0px 5px;
+    background-color: #fff;
+    border: none;
+    color: #1d2939;
+}
+
+.taskIcon .btn.show {
+    background-color: #fff !important;
+    border: none !important;
+    color: #1d2939 !important;
+}
+
+.taskIcon .dropdown-menu {
+    min-width: 50px !important;
+}
+
+.taskDropdown .filterBtn {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(52, 64, 84, 1);
+    border: 1px solid rgba(208, 213, 221, 1);
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+.taskDropdown .filterBtn svg{
+    margin: 0px 15px;
+}
