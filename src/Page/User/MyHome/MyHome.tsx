@@ -1,12 +1,148 @@
-import React from 'react'
-import Layout from '../../../Component/Layout/Layout'
+import React, { useEffect, useState } from 'react'
+import Layout from '../../../Component/Layout/Layout';
+import "./MyHome.css";
+import assetsIcon from "../../../Assets/Images/icon/assignmentIcon.png";
+import ticketIcon from "../../../Assets/Images/icon/ticketIcon.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpLong, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Table } from 'react-bootstrap';
+import moment from 'moment';
+import { getInvoicesList } from '../../../api/invoice';
+import { DESKIE_API as API } from '../../../config';
+import memberAvatar from "../../../Assets/Images/icon/memberAvatar.png";
+import spaceAvatar from "../../../Assets/Images/icon/spaceAvatar.png";
+import invoiceIcon from "../../../Assets/Images/icon/receipt.png";
+import arrowIcon from "../../../Assets/Images/icon/arrow-up-right.png";
+import wifiIcon from "../../../Assets/Images/icon/wifi.png";
+import wifiQr from "../../../Assets/Images/icon/wifiScan.png";
+import spacesIcon from "../../../Assets/Images/icon/spacesImage.png";
 
 const MyHome = () => {
+  const [invoiceList, setInvoiceList] = useState<any>([]);
+  useEffect(() => {
+    getInvoicesList(100, 1, "all").then((data) => {
+      console.log('invoice', data);
+
+      if (data.statusCode !== 200) {
+
+      }
+      else {
+        setInvoiceList(data.invoices);
+      }
+    })
+  }, []);
   return (
     <Layout>
-          <div className='mainContent'>
-            <h1>aas</h1>
+      <div className='mainContent'>
+        <div className="memberHome">
+          <h5>Welcome Back, <span>Sarah Kline</span></h5>
+          <div className="memberDashboard">
+            <div className="memberLeft">
+              <div className="assetsTicket">
+                <div className="ticketItem">
+                  <p><img src={assetsIcon} alt="assets" />Book an Asset</p>
+                  <button><FontAwesomeIcon icon={faPlus} /></button>
+                </div>
+                <div className="ticketItem">
+                  <p><img src={ticketIcon} alt="ticket" />Submit a Ticket</p>
+                  <button><FontAwesomeIcon icon={faPlus} /></button>
+                </div>
+              </div>
+              <div className="latestInvoice">
+                <div className="latestInvoiceHeading">
+                  <h5><img src={invoiceIcon} alt="assets" />Latest Invoice</h5>
+                  <button>See More <img src={arrowIcon} alt="arrow" /> </button>
+                </div>
+                <div className="invoiceBillingList">
+                  <Table responsive hover>
+                    <thead>
+                      <tr>
+                        <th>ID <FontAwesomeIcon icon={faArrowUpLong} /></th>
+                        <th>Member <FontAwesomeIcon icon={faArrowUpLong} /></th>
+                        <th>Assignment <FontAwesomeIcon icon={faArrowUpLong} /></th>
+                        <th>Date <FontAwesomeIcon icon={faArrowUpLong} /></th>
+                        <th>Status <FontAwesomeIcon icon={faArrowUpLong} /></th>
+                        <th>Amount <FontAwesomeIcon icon={faArrowUpLong} /></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {invoiceList && invoiceList.map((invoice: any) => <tr>
+                        <td>#INV{invoice.invoice_id}</td>
+                        <td>
+                          {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
+                            : <img src={memberAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
+                          }
+                          {invoice.member_first_name} {invoice.member_last_name}
+                        </td>
+                        <td>
+                          {invoice.space_image ? <img src={`${API}/${invoice.space_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
+                            : <img src={spaceAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
+                          }
+                          {invoice.spaces_name}</td>
+                        <td>{moment(invoice.renewal_date).format("MMMM DD, YYYY")}</td>
+                        <td className='status'>
+                          <span className='unpaid'>Unpaid</span>
+                          {/* {invoice.amount ? <span className='paid'>Paid</span>
+                                         : <span className='unpaid'>Unpaid</span>} */}
+                        </td>
+                        <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
+                      </tr>)}
+
+                    </tbody>
+                  </Table>
+                  {/* <div className='paginationBox'>
+                                <div className="tableNumber">
+                                    <Dropdown className="paginationDropdown" onSelect={handleSelect}>
+                                        <Dropdown.Toggle id="pageDropDown">
+                                            {selectedValue}
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu role="menu" aria-labelledby="pageDropDown">
+                                            {numbers.map((number) => (
+                                                <Dropdown.Item key={number} eventKey={number.toString()}>
+                                                    {number}
+                                                </Dropdown.Item>
+                                            ))}
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                    <p>Showing 10 of 100 members</p>
+                                </div>
+                                <div className="paginationNumber">
+                                    <button><FontAwesomeIcon icon={faArrowLeft} /> Previous</button>
+                                    <button>1</button>
+                                    <button>2</button>
+                                    <button>3</button>
+                                    <button>...</button>
+                                    <button>8</button>
+                                    <button>9</button>
+                                    <button>10</button>
+                                    <button>Next <FontAwesomeIcon icon={faArrowRight} /></button>
+                                </div>
+                            </div> */}
+                </div>
+              </div>
+            </div>
+            <div className="memberRight">
+              <div className="upcomingBook">
+                <h5><img src={assetsIcon} alt="assets" />Upcoming Bookings</h5>
+                <div className="bookingList">
+                  <img src={spacesIcon} alt="member" />
+                  <div className="spacesInfo">
+                    <h6>sadasd</h6>
+                    <p>asa</p>
+                  </div>
+                </div>
+              </div>
+              <div className="wifiQr mt-3">
+                <h5><img src={wifiIcon} alt="assets" />Wifi Access</h5>
+                <div className='qr'>
+                  <img src={wifiQr} alt="wifi" />
+                  <p>Scan <span>QR code</span> to log-in Wifi</p>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
     </Layout>
   )
 }

@@ -28,8 +28,8 @@ const SignUp = () => {
             <section className="signUpSection">
                 {userTab ? <div className="signUpBox">
                     <div className="logo">
-                        {profile && profile.company_logo ?
-                            <img src={`${API}/${profile.company_logo}`} alt="logo" />
+                        {profile && profile.company_logo_light ?
+                            <img src={`${API}/${profile.company_logo_light}`} alt="logo" />
                             : <img src={logo} alt="logo" />
                         }
                     </div>

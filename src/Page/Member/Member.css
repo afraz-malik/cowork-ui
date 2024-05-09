@@ -436,6 +436,461 @@
     border: none !important;
 }
 
+.memberName {
+    display: flex;
+    align-items: center;
+}
+
+.memberName img {
+    margin-right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.memberName h6 {
+    font-family: "Inter";
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+    color: rgba(29, 41, 57, 1);
+    margin-bottom: 0px;
+}
+
+.memberName h5 svg {
+    margin-right: 20px;
+}
+
+.memberName p {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    text-align: left;
+    color: rgba(52, 64, 84, 1);
+    margin-bottom: 0px;
+}
+
+.membersDetails {
+    background-color: #fff;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.membersDetails .topLine .editBtn {
+    display: flex;
+}
+
+.membersDetails .topLine .editBtn .edit {
+    border: 1px solid rgba(99, 102, 241, 1) !important;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05) !important;
+    font-family: "Inter";
+    font-size: 12px !important;
+    font-weight: 600;
+    line-height: 16px !important;
+    text-align: left;
+    color: rgba(99, 102, 241, 1) !important;
+    background-color: #fff !important;
+}
+
+.membersDetails .topLine .editBtn .invite {
+    margin-right: 10px;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    color: rgba(52, 64, 84, 1);
+    background: rgba(242, 244, 247, 1);
+    padding: 2px 10px;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+
+.memberInfo {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.memberInfo .memberInfoBox {
+    width: 33.3%;
+    padding: 20px;
+    border-bottom: 1px solid rgba(234, 236, 240, 1);
+}
+
+.memberInfo .memberInfoBox h6 {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+
+.memberInfo .memberInfoBox p {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+
+.invoiceHistory {
+    margin-top: 20px;
+    border: 1px solid rgba(234, 236, 240, 1);
+    padding: 20px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.invoiceHistory h6,
+.memberAssign h6,
+.memberBooking h6,
+.memberNotes h6 {
+    font-family: "Inter";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    text-align: left;
+    color: rgba(29, 41, 57, 1);
+}
+
+.invoiceHistory .invoiceBox {
+    margin-top: 15px;
+    border: 1px solid rgba(234, 236, 240, 1);
+    padding: 24px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.invoiceHistory .invoiceHeading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(234, 236, 240, 1);
+    padding-bottom: 20px;
+}
+
+.invoiceHistory .invoiceBox .invoiceName {
+    display: flex;
+    align-items: center;
+}
+
+.invoiceHistory .invoiceBox .invoiceName h6 {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(16, 24, 40, 1);
+    margin-right: 15px;
+    margin-bottom: 0px;
+}
+
+.invoiceHistory .invoiceBox .invoiceName p {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(16, 24, 40, 1);
+    margin-bottom: 0px;
+}
+
+.invoiceHistory .invoiceBox .invoiceName p img {
+    margin-right: 15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.invoiceHistory .invoiceBox .invoiceName p span {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+
+}
+
+.invoiceHistory .invoiceHeading .invoicePrice {
+    display: flex;
+    align-items: center;
+}
+
+.invoiceHistory .invoiceHeading .invoicePrice p {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+    margin-bottom: 0px;
+    margin-right: 20px;
+    padding-right: 18px;
+    border-right: 1px solid rgba(234, 236, 240, 1);
+}
+
+.invoiceHistory .invoiceHeading .invoicePrice p span {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 38px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+
+.invoiceBox .invoiceDetails {
+    display: flex;
+    justify-content: space-between;
+}
+
+.invoiceBox .invoiceDetails .assign img {
+    margin-right: 15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.invoiceBox .invoiceDetails .assign h6 {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+    margin-bottom: 15px;
+}
+
+.invoiceBox .invoiceDetails .assign p {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+
+.invoiceBox .invoiceDetails .assign .status span {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    width: auto;
+    padding: 5px 10px;
+    margin-bottom: 0px;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+
+.invoiceBox .invoiceDetails .assign .status .paid {
+    color: rgba(2, 122, 72, 1);
+    background: rgba(236, 253, 243, 1);
+}
+
+.invoiceBox .invoiceDetails .assign .status .unpaid {
+    color: #C01048;
+    background: #FFF1F3;
+}
+
+.invoiceBox .invoiceDetails .assign .status .draft {
+    color: rgba(52, 64, 84, 1);
+    background: rgba(242, 244, 247, 1);
+}
+
+.memberInvoice {
+    display: flex;
+    padding: 24px;
+}
+
+.memberInvoice .invoiceLeft {
+    width: 60%;
+}
+
+.memberInvoice .invoiceRight {
+    width: 40%;
+    padding: 0px 20px 20px 20px;
+}
+
+.memberAssign {
+    border: 1px solid rgba(234, 236, 240, 1);
+    padding: 24px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.memberAssign .invoiceHeading {
+    margin-top: 15px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(234, 236, 240, 1);
+    padding: 24px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.memberAssign .invoiceHeading .invoiceName {
+    display: flex;
+}
+
+.memberAssign .invoiceHeading .invoiceName img {
+    margin-right: 15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.memberAssign .invoiceHeading .invoiceName p {
+    margin-bottom: 0px;
+}
+
+.memberAssign .invoiceHeading .invoiceName p span {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(16, 24, 40, 1);
+    margin-right: 15px;
+    margin-bottom: 0px;
+}
+
+.memberAssign .invoiceHeading .invoicePrice {
+    display: flex;
+}
+
+.memberAssign .invoiceHeading .invoicePrice p {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+    margin-bottom: 0px;
+    margin-right: 20px;
+    padding-right: 18px;
+    border-right: 1px solid rgba(234, 236, 240, 1);
+    display: flex;
+    align-items: center;
+}
+
+.memberBooking .bookingList {
+  margin-top: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.memberBooking .bookingList img {
+    margin-right: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.memberBooking .bookingList .spacesInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    padding: 0px;
+}
+
+.memberBooking .bookingList .spacesInfo h6 {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(29, 41, 57, 1);
+    margin-bottom: 0px;
+}
+
+.memberBooking .bookingList .spacesInfo p {
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: left;
+    color: rgba(52, 64, 84, 1);
+    margin-bottom: 0px;
+}
+
+.invoiceRight .memberBooking {
+    padding: 20px;
+    border: 1px solid rgba(234, 236, 240, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+.invoiceRight .memberNotes{
+    margin-top: 20px;
+    border: 1px solid  rgba(234, 236, 240, 1);
+    padding: 24px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+.memberNotes p{
+font-family: "Inter";
+font-size: 14px;
+font-weight: 400;
+line-height: 24px;
+text-align: left;
+color: rgba(152, 162, 179, 1);
+
+}
 @media (max-width: 778px) {
     .searchInput input {
         min-width: 100%;

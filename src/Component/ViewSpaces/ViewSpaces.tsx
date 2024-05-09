@@ -3,118 +3,104 @@ import { ToastContainer } from 'react-toastify';
 import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap';
 import memberIcon from "../../Assets/Images/icon/member.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import blankUser from "../../Assets/Images/icon/blank-profile.jpg";
 import { singleSpaces } from '../../api/spaces';
 import { DESKIE_API as API } from '../../config';
-import spaceIcon from "../../Assets/Images/icon/spaceLargeIcon.png";
+import penIcon from "../../Assets/Images/icon/pencil-01.png";
+import spaceIcon from "../../Assets/Images/icon/spaceAvatar.png";
+import Layout from '../Layout/Layout';
+import { Link, useParams } from 'react-router-dom';
+import EditSpaces from './EditSpaces';
 
-interface ViewSpacesProps {
-    spacesId: string;
-    handleSpacesClose: () => void;
-    spacesShow: boolean;
-    setSpacesShow: (type: boolean) => void;
-}
 
-const ViewSpaces = ({ spacesId, spacesShow, setSpacesShow, handleSpacesClose }: ViewSpacesProps) => {
 
-    const [name, setName] = useState("");
-    const [notes, setNotes] = useState("");
-    const [rate, setRate] = useState("");
-    const [size, setSize] = useState("");
-    const [spaceImage, setSpaceImage] = useState("");
-    const [tag, setTag] = useState("");
+const ViewSpaces = () => {
+    const { id } = useParams();
+    const [spacesDetails, setSpacesDetails] = useState<any>({});
+    const [spacesId, setSpacesId] = useState('');
+    const [updateShow, setUpdateShow] = useState(false);
+    const handleUpdateClose = () => setUpdateShow(false);
 
     useEffect(() => {
-        singleSpaces(spacesId).then((data) => {
-            setName(data.data && data.data.name);
-            setNotes(data.data && data.data.notes);
-            setRate(data.data && data.data.rate);
-            setSize(data.data && data.data.size);
-            setSpaceImage(data.data && data.data.space_image);
-            setTag(data.data && data.data.tag);
-        })
-    }, [spacesId]);
+        if (id) {
+            singleSpaces(id).then((data) => {
+                setSpacesDetails(data.data && data.data);
+            })
+        }
+
+    }, []);
+
+    const spacesUpdate = (spacesId: string) => {
+        setSpacesId(spacesId);
+        setUpdateShow(true);
+    }
 
     return (
         <>
-            <Modal show={spacesShow} onHide={handleSpacesClose} centered size="lg">
-                <ToastContainer />
-
-                <div className="addMemberForm">
-                    <button className='closeModal' onClick={handleSpacesClose}>
-                        <FontAwesomeIcon icon={faXmark} />
-                    </button>
-                    <Container>
-                        <Row>
-                            <Col md={12}>
-                                <div className='addMemberHeading'>
-                                    <img src={memberIcon} alt="member" />
-                                    <p>Spaces Information</p>
+            <Layout>
+                <div className='mainContent'>
+                    <div className="invoiceHeading">
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb m-0 ms-2">
+                                <li className="breadcrumb-item"><Link to="/assets">Assets</Link></li>
+                                <li className="breadcrumb-item active" aria-current="page">{spacesDetails.name}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div className="spacesDetailsBox">
+                        <div className="topLine">
+                            <div className='tableHeading'>
+                                <h6><FontAwesomeIcon icon={faArrowLeft} /> {spacesDetails.name}</h6>
+                            </div>
+                            <div className="editBtn">
+                                <button onClick={() => spacesUpdate(spacesDetails.id)}><img src={penIcon} alt="edit" /> Edit Asset</button>
+                            </div>
+                        </div>
+                        <div className="spacesInfo">
+                            <div className="leftSpacesImage">
+                                {spacesDetails.space_image ?
+                                    <img src={`${API}/${spacesDetails.space_image}`} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                    : <img src={spaceIcon} width="100px" height="100px" alt="shop" />
+                                }
+                            </div>
+                            <div className="rightSpacesContent">
+                                <div className="spacesHeadingBox">
+                                    <h6>{spacesDetails.name}
+                                        <span className='deskType'>
+                                            {spacesDetails.tag === "private" ? <span className='private'>Private Office</span> : ""}
+                                            {spacesDetails.tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
+                                            {spacesDetails.tag === "flex" ? <span className='flex'>Flex</span> : ""}
+                                        </span>
+                                    </h6>
+                                    <h6>${spacesDetails.rate}</h6>
                                 </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md={2} className='inputFieldSidebar'>
-                                <div className="imageUpload">
-                                    <div className="upload">
-                                        {spaceImage ? <div style={{ width: "80px", height: "80px", overflow: "hidden", borderRadius: "50%" }}>
-                                            <img src={`${API}/${spaceImage}`} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                <div className="spacesDescription">
+                                    <div className='spacesMiddle'>
+                                        <div className="spacesSize">
+                                            <h6>Size</h6>
+                                            <p>{spacesDetails.size}</p>
                                         </div>
-                                            : <img src={spaceIcon} width="100px" height="100px" alt="shop" />
-                                        }
+                                        <div className="spacesType" style={{borderLeft: '1px solid rgba(234, 236, 240, 1)'}}>
+                                            <h6>Type</h6>
+                                            <span className='deskType'>
+                                            {spacesDetails.tag === "private" ? <span className='private'>Private Office</span> : ""}
+                                            {spacesDetails.tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
+                                            {spacesDetails.tag === "flex" ? <span className='flex'>Flex</span> : ""}
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div className="spacesNotes">
+                                        <h6>Notes</h6>
+                                        <p>{spacesDetails.notes}</p>
                                     </div>
                                 </div>
-                            </Col>
-                            <Col md={10}>
-                                <Row>
-                                    <Col md={6}>
-                                        <div className="memberInput">
-                                            <label>Name</label>
-                                            <input type="text" value={name} placeholder='Name' className='form-control' />
-                                        </div>
-                                        <div className="memberInput rate">
-                                            <span>$</span>
-                                            <label>Rate</label>
-                                            <input type="number" value={rate} placeholder='Rate' className='form-control' />
-                                            <button>USD</button>
-                                        </div>
-                                    </Col>
-                                    <Col md={6}>
-                                        <div className="memberInput sizeInput">
-                                            <label>Size</label>
-                                            <input type="number" value={size} placeholder='Size' className='form-control' />
-                                            <button>Sqft</button>
-                                        </div>
-                                        <div className="memberInput">
-                                            <label>Tag (Type)</label>
-                                            <Dropdown>
-                                                <Dropdown.Toggle variant="" className="custom-toggle">
-                                                    {tag === "private" ? "Private Office" : tag === "dedicated" ? "Dedicated Desk" : tag === "flex" ? "Flex" : ""}
-                                                </Dropdown.Toggle>
-                                            </Dropdown>
-                                            <button>
-                                                <FontAwesomeIcon icon={faChevronDown} />
-                                            </button>
-                                        </div>
-                                    </Col>
-                                    <Col md={12}>
-                                        <div className="memberInput">
-                                            <label>Notes</label>
-                                            <input type="text" value={notes} placeholder='Notes' className='form-control' />
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </Col>
-
-                            <div className="memberAddBtn">
-                                <button type='submit' className='save'>Save</button>
                             </div>
-                        </Row>
-                        {/* </form> */}
-                    </Container>
+                        </div>
+                    </div>
                 </div>
-            </Modal>
+            </Layout>
+            <EditSpaces spacesId={spacesId} updateShow={updateShow} setUpdateShow={setUpdateShow} handleUpdateClose={handleUpdateClose} />
         </>
     )
 }

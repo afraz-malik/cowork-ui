@@ -18,9 +18,11 @@ import PhoneInput from 'react-phone-input-2';
 import memberAvatar from "../../Assets/Images/icon/memberAvatar.png";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from './../../Component/Pagination/Pagination';
+import { Link,useNavigate } from 'react-router-dom';
 
 
 const Member = () => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -63,7 +65,7 @@ const Member = () => {
   // member info view
   const memberView = (memberId: string) => {
     setMemberId(memberId);
-    setMemberShow(true);
+    return navigate(`${memberId}`);
   }
   // member update view
   const memberUpdate = (memberId: string) => {
@@ -160,14 +162,13 @@ const Member = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
-                    <td>
-                      <div className='tableImage'>
+                    <td className='tableLink'>
+                      <Link className='tableImage' to={`${data.id}`}>
                         {data.member_image ?
                           <><img src={`${API}/${data.member_image}`} alt="avatar" style={{ borderRadius: "50%", objectFit: "cover" }} /> {data.first_name} {data.last_name}</>
                           : <><img src={memberAvatar} alt="avatar" style={{ borderRadius: "50%" }} /> {data.first_name} {data.last_name}</>
                         }
-                      </div>
-
+                      </Link>
                     </td>
                     <td>{data.email}</td>
                     <td className='memberPhone'><PhoneInput country={'us'} disableCountryCode={false} value={data.phone_number} /></td>
@@ -202,7 +203,6 @@ const Member = () => {
 
 
             <AddMember show={show} setShow={setShow} handleClose={handleClose} />
-            <ViewMember memberId={memberId} memberShow={memberShow} setMemberShow={setMemberShow} handleMemberClose={handleMemberClose} />
             <EditMember memberId={memberId} updateShow={updateShow} setUpdateShow={setUpdateShow} handleUpdateClose={handleUpdateClose} />
             <AssignSpaces memberId={memberId} assignShow={assignShow} setAssignShow={setAssignShow} handleAssignClose={handleAssignClose} />
           </div>

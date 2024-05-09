@@ -29,6 +29,7 @@ import { getMemberList } from '../../../api/member';
 import ShareFile from '../../../Component/UploadFile/ShareFile';
 import DeleteModal from '../../../Component/DeleteModal/DeleteModal';
 import memberIcon from "../../../Assets/Images/icon/memberAvatar.png";
+import Pagination from '../../../Component/Pagination/Pagination';
 
 const MyFiles = () => {
 
@@ -43,12 +44,14 @@ const MyFiles = () => {
     const handleDeleteClose = () => setDeleteShow(false);
 
     // pagination number
-    const numbers = [1, 2, 3, 4, 5, 10, 20, 50, 100];
-    const handleSelect = (selectedValue: any) => {
-        const integerValue = parseInt(selectedValue);
-        setSelectedValue(selectedValue);
-    };
-
+    const [totalValue, setTotalValue] = useState<any>();
+    const [limitValue, setLimitValue] = useState<any>();
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState<number>(6);
+    const pageCount = Math.ceil(totalValue / limitValue);
+    const [prevButton, setPrevButton] = useState<boolean>(false);
+    const [nextButton, setNextButton] = useState<boolean>(false);
+    const [pageValue, setPageValue] = useState<number>();
     const [uploadShow, setUploadShow] = useState(false);
     const handleUploadClose = () => setUploadShow(false);
 
@@ -60,12 +63,15 @@ const MyFiles = () => {
     }
 
     useEffect(() => {
-        getFilesList(10, 1).then((data) => {
+        getFilesList(limit, page).then((data) => {
             if (data.statusCode !== 200) {
 
             }
             else {
                 setFilesList(data && data.files);
+                setTotalValue(data && data.total);
+                setLimitValue(data && data.limit);
+                setPageValue(data && data.page)
             }
         });
 
@@ -79,17 +85,7 @@ const MyFiles = () => {
             }
         })
 
-        getFavoriteList().then((data) => {
-
-            if (data.statusCode !== 200) {
-
-            }
-            else {
-                setFavoriteList(data.favorite);
-            }
-        })
-
-    }, [uploadShow, count, shareShow]);
+    }, [uploadShow, count, shareShow,page]);
 
 
 
@@ -188,7 +184,31 @@ const MyFiles = () => {
         setFilesId(fileId);
         setShareShow(true);
     }
-
+    useEffect(() => {
+        if (pageCount > 1) {
+            setPrevButton(true)
+        }
+        if (page === 1) {
+            setPrevButton(false)
+        }
+        // next button
+        if (pageCount > 1) {
+            setNextButton(true)
+        }
+        if (pageCount === page) {
+            setNextButton(false)
+        }
+    }, [pageCount,page])
+    
+    
+      const nextPage = () => {
+        setPage(page + 1)
+        setNextButton(true)
+      }
+    
+      const prevPage = () => {
+        setPage(page - 1)
+      }
     return (
         <>
             <Layout>
@@ -250,65 +270,11 @@ const MyFiles = () => {
                                         <td className='tableAction'>
                                             <button className='btn download' onClick={() => handleDownloadClick(file.name)}><img src={download} alt="download" /></button>
                                             <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
-                                            <button className='btn start' onClick={() => favoriteAdd(file.id)}>
-                                                {file.favorite === 0 ? <img src={markStar} alt="download" /> : <img src={star} alt="download" />}
-
-                                            </button>
                                         </td>
                                     </tr>)}
                                 </tbody>
                             </Table>
-                            {/* <div className='paginationBox'>
-                                <div className="tableNumber">
-                                  
-                                    <Dropdown className="paginationDropdown" onSelect={handleSelect}>
-                                        <Dropdown.Toggle id="pageDropDown">
-                                        {selectedValue !== null ? selectedValue : (limitDivided.length > 0 && limitDivided[limitDivided.length - 1])}
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu role="menu" aria-labelledby="pageDropDown">
-                                            {limitDivided && limitDivided.map((data:any,index) => (
-                                                <Dropdown.Item key={`limitNumber` + index} eventKey={data}>
-                                                    {data}
-                                                </Dropdown.Item>
-                                            ))}
-                                        </Dropdown.Menu>
-                                    </Dropdown> 
-                                    <p>Showing {resultLength} of {totalValue} members</p>
-                                </div>
-                                <div className="paginationNumber">
-                                    <button onClick={() => prevPage(1)} className={prevButton === true ? "" : "disable"}><FontAwesomeIcon icon={faArrowLeft} /> Previous</button>
-                                    <button>{page}</button>
-                                    <button onClick={() => nextPage(1)} className={nextButton === true ? "" : "disable"}>Next <FontAwesomeIcon icon={faArrowRight} /></button>
-                                </div>
-                            </div> */}
-                            <div className='paginationBox'>
-                                <div className="tableNumber">
-                                    <Dropdown className="paginationDropdown" onSelect={handleSelect}>
-                                        <Dropdown.Toggle id="pageDropDown">
-                                            {selectedValue}
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu role="menu" aria-labelledby="pageDropDown">
-                                            {numbers.map((number) => (
-                                                <Dropdown.Item key={number} eventKey={number.toString()}>
-                                                    {number}
-                                                </Dropdown.Item>
-                                            ))}
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                    <p>Showing 10 of 100 members</p>
-                                </div>
-                                <div className="paginationNumber">
-                                    <button><FontAwesomeIcon icon={faArrowLeft} /> Previous</button>
-                                    <button>1</button>
-                                    <button>2</button>
-                                    <button>3</button>
-                                    <button>...</button>
-                                    <button>8</button>
-                                    <button>9</button>
-                                    <button>10</button>
-                                    <button>Next <FontAwesomeIcon icon={faArrowRight} /></button>
-                                </div>
-                            </div>
+                            <Pagination paginationTitle="files" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={filesList} />
                         </div>
                     </div>
                 </div>

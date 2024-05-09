@@ -1,9 +1,10 @@
 .loginSection {
     background-color: #1F2937;
     min-height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    width: 100% !important;
     position: relative;
     display: flex;
     align-items: center;
@@ -16,8 +17,8 @@
 
 .logo img {
     margin-bottom: 40px;
-    width: 230px;
-    height: 45px;
+    max-width: 300px;
+    max-height: 75px;
 }
 
 .loginForm {

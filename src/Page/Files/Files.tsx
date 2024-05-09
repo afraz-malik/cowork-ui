@@ -7,10 +7,9 @@ import figma from "../../Assets/Images/icon/figma.png";
 import imageFile from "../../Assets/Images/icon/image-03.png";
 import avatar from "../../Assets/Images/icon/tableAvatar.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight, faArrowUp, faPen, faPencil, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Dropdown, Table } from 'react-bootstrap';
+import { faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
+import {  Table } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../config';
-import { faEye } from '@fortawesome/free-regular-svg-icons';
 import filter from '../../Assets/Images/icon/filter-lines.png';
 import download from "../../Assets/Images/icon/download-cloud-02.png";
 import deleteIcon from "../../Assets/Images/icon/trash-02.png";
@@ -31,6 +30,7 @@ import ShareFile from '../../Component/UploadFile/ShareFile';
 import DeleteModal from '../../Component/DeleteModal/DeleteModal';
 import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
 import Pagination from '../../Component/Pagination/Pagination';
+import LightBox from '../../Component/LightBox/LightBox';
 
 
 const Files = () => {
@@ -39,6 +39,7 @@ const Files = () => {
   const [count, setCount] = useState(0);
   const [filesId, setFilesId] = useState("");
   const [deleteId, setDeleteId] = useState("");
+  const [lightBoxFile, setLightBoxFile] = useState("");
   const [member, setMember] = useState([]);
   const [favoriteList, setFavoriteList] = useState([]);
   const [deleteShow, setDeleteShow] = useState(false);
@@ -51,8 +52,8 @@ const Files = () => {
   const [prevButton, setPrevButton] = useState<boolean>(false);
   const [nextButton, setNextButton] = useState<boolean>(false);
   const [pageValue, setPageValue] = useState<number>();
-
-
+  const [lightBoxShow, setLightBoxShow] = useState(false);
+  const handleLightBoxClose = () => setLightBoxShow(false);
   const [uploadShow, setUploadShow] = useState(false);
   const handleUploadClose = () => setUploadShow(false);
 
@@ -222,6 +223,10 @@ const Files = () => {
     setPage(page - 1)
   }
 
+  const lightBox = (fileName: string) => {
+    setLightBoxShow(true);
+    setLightBoxFile(fileName);
+  }
 
   return (
     <>
@@ -280,7 +285,7 @@ const Files = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
-                    <td><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
+                    <td onClick={()=>lightBox(file.files_upload)} style={{cursor: "pointer"}}><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
                     {file.member_images ? <td>
@@ -314,6 +319,7 @@ const Files = () => {
         <UploadFile uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
         <ShareFile filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
         <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
+        <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={handleLightBoxClose} />
       </Layout>
     </>
   )

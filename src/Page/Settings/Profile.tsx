@@ -3,8 +3,8 @@ import "./Settings.css";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
 import trash from "../../Assets/Images/icon/red-trash.png";
-import changeLogo from "../../Assets/Images/logo/changeLogo.png";
-import changeBackground from "../../Assets/Images/background/changeBackground.png";
+import iconLogo from "../../Assets/Images/logo/Vector.png";
+import trashLight from "../../Assets/Images/icon/trash-03.png";
 import uploadFile from "../../Assets/Images/icon/uploadIcon.png";
 import { profileAdd, singleProfile, updateProfile } from '../../api/settings';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,9 +20,16 @@ interface ProfileProps {
 const Profile = ({ settingTab }: ProfileProps) => {
 
 
-    const [logoFile, setLogoFile] = useState("");
+ 
+    const [lightLogoFile, setLightLogoFile] = useState("");
+    const [darkLogoFile, setDarkLogoFile] = useState("");
+    const [lightIconFile, setLightIconFile] = useState("");
+    const [darkIconFile, setDarkIconFile] = useState("");
+    const [lightLogo, setLightLogo] = useState("");
+    const [darkLogo, setDarkLogo] = useState("");
+    const [lightIcon, setLightIcon] = useState("");
+    const [darkIcon, setDarkIcon] = useState("");
     const [backFile, setBackFile] = useState("");
-    const [uploadedLogo, setUploadedLogo] = useState("");
     const [uploadedBack, setUploadedBack] = useState("");
     const [companyName, setCompanyName] = useState("");
     const [email, setEmail] = useState("");
@@ -33,13 +40,35 @@ const Profile = ({ settingTab }: ProfileProps) => {
     const [companyId, setCompanyId] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [backgroundImage, setBackgroundImage] = useState("");
-    const [logoImage, setLogoImage] = useState("");
-    
+    const [lightLogoImage, setLightLogoImage] = useState("");
+    const [darkLogoImage, setDarkLogoImage] = useState("");
+    const [lightIconImage, setLightIconImage] = useState("");
+    const [darkIconImage, setDarkIconImage] = useState("");
+
+
+    const [address, setAddress] = useState("");
+
+
     const wrapperRef = useRef<HTMLInputElement>(null);
-    function onFileLogoDrop(event: any) {
-        setLogoFile(URL.createObjectURL(event.target.files[0]));
-        setUploadedLogo(event.target.files[0]);
+
+    function onFileLogoLight(event: any) {
+        setLightLogoFile(URL.createObjectURL(event.target.files[0]));
+        setLightLogo(event.target.files[0]);
     }
+    function onFileLogoDark(event: any) {
+        setDarkLogoFile(URL.createObjectURL(event.target.files[0]));
+        setDarkLogo(event.target.files[0]);
+    }
+    function onFileIconLight(event: any) {
+        setLightIconFile(URL.createObjectURL(event.target.files[0]));
+        setLightIcon(event.target.files[0]);
+    }
+    function onFileIconDark(event: any) {
+        setDarkIconFile(URL.createObjectURL(event.target.files[0]));
+        setDarkIcon(event.target.files[0]);
+    }
+
+
     function onFileBackgroundDrop(event: any) {
         setBackFile(URL.createObjectURL(event.target.files[0]));
         setUploadedBack(event.target.files[0]);
@@ -49,13 +78,17 @@ const Profile = ({ settingTab }: ProfileProps) => {
         let profile = {
             "id": uuidv4(),
             "companyName": companyName,
-            "companyLogo": uploadedLogo,
+            "companyLightLogo": lightLogo,
+            "companyDarkLogo": darkLogo,
+            "companyLightIcon": lightIcon,
+            "companyDarkIcon": darkIcon,
             "background": uploadedBack,
             "companyEmail": email,
             "companyLinkedin": linkedin,
             "companyPhone": phoneNumber,
             "companyFacebook": facebook,
             "companyInstagram": instagram,
+            "address": address
         }
         profileAdd(profile).then((data) => {
             console.log('profile', data);
@@ -65,12 +98,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
 
     useEffect(() => {
         singleProfile().then((data) => {
-            console.log('profile',data);
-            
-            if (data.statusCode !== 200) {
-
-            }
-            else {
+            if (data.statusCode === 200) {
                 setCompanyId(data.data.id);
                 setCompanyName(data.data.company_name);
                 setEmail(data.data.company_email);
@@ -79,8 +107,12 @@ const Profile = ({ settingTab }: ProfileProps) => {
                 setInstagram(data.data.company_instagram);
                 setLinkedin(data.data.company_linkedin);
                 setBackgroundImage(data.data.background);
-                setLogoImage(data.data.company_logo);
                 setPhoneNumber(data.data.company_phone);
+                setAddress(data.data.address);
+                setLightLogoImage(data.data.company_logo_light);
+                setDarkLogoImage(data.data.company_logo_dark);
+                setLightIconImage(data.data.company_icon_light);
+                setDarkIconImage(data.data.company_icon_dark);
             }
         })
     }, []);
@@ -93,9 +125,19 @@ const Profile = ({ settingTab }: ProfileProps) => {
             "company_phone": phoneNumber,
             "company_facebook": facebook,
             "company_instagram": instagram,
+            "address": address
         }
-        if (uploadedLogo) {
-            profile.companyLogo = uploadedLogo;
+        if (lightLogo) {
+            profile.companyLightLogo = lightLogo;
+        }
+        if (darkLogo) {
+            profile.companyDarkLogo = darkLogo;
+        }
+        if (lightIcon) {
+            profile.companyLightIcon = lightIcon;
+        }
+        if (darkIcon) {
+            profile.companyDarkIcon = darkIcon;
         }
         // If uploadedBack exists, add it to the profile object
         if (uploadedBack) {
@@ -103,6 +145,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
         }
         updateProfile(companyId, profile).then((data) => {
             showNotifications('success', "Company Profile Update Successfully !!");
+            window.location.reload();
         });
     }
 
@@ -143,11 +186,11 @@ const Profile = ({ settingTab }: ProfileProps) => {
                         </div>
                     </div>
                     <div className="companyName">
-                        <p>Company Logo</p>
+                        <p>Company Logo (Light)</p>
                         <div className='rightFileSetting'>
-                            <div className="logoImageBox">
-                                {logoFile && logoFile.length > 0 ? <img src={logoFile} className='changeLogo' alt="change-logo" />
-                                    : <img src={`${API}/${logoImage}`} className='changeLogo' alt="change-logo" />
+                            <div className="logoImageBox liteIcon">
+                                {lightLogoFile && lightLogoFile.length > 0 ? <img src={lightLogoFile} className='changeLogo' alt="change-logo" />
+                                    : <img src={`${API}/${lightLogoImage}`} className='changeLogo' alt="change-logo" />
                                 }
                                 <img src={trash} alt="delete" /> 
                             </div>
@@ -156,10 +199,65 @@ const Profile = ({ settingTab }: ProfileProps) => {
                                     <img src={uploadFile} alt="" />
                                     <p><span>Click to upload</span> or drag and drop</p>
                                 </div>
-                                <input type="file" onChange={onFileLogoDrop} />
+                                <input type="file" onChange={onFileLogoLight} />
                             </div>
                         </div>
                     </div>
+                    <div className="companyName">
+                        <p>Company Logo (Dark)</p>
+                        <div className='rightFileSetting'>
+                            <div className="logoImageBox darkIcon">
+                                {darkLogoFile && darkLogoFile.length > 0 ? <img src={darkLogoFile} className='changeLogo' alt="change-logo" />
+                                    : <img src={`${API}/${darkLogoImage}`} className='changeLogo' alt="change-logo" />
+                                }
+                                <img src={trashLight} alt="delete" /> 
+                            </div>
+                            <div ref={wrapperRef} className="drop-file-input">
+                                <div className="drop-file-input__label">
+                                    <img src={uploadFile} alt="" />
+                                    <p><span>Click to upload</span> or drag and drop</p>
+                                </div>
+                                <input type="file" onChange={onFileLogoDark} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="companyName">
+                        <p>Company Icon (Light)</p>
+                        <div className='rightFileSetting'>
+                            <div className="iconImageBox liteIcon">
+                                {lightIconFile && lightIconFile.length > 0 ? <img src={lightIconFile} className='changeLogo' alt="change-logo" />
+                                    : <img src={`${API}/${lightIconImage}`} className='changeLogo' alt="change-logo" />
+                                }
+                                <img src={trash} alt="delete" /> 
+                            </div>
+                            <div ref={wrapperRef} className="drop-file-input">
+                                <div className="drop-file-input__label">
+                                    <img src={uploadFile} alt="" />
+                                    <p><span>Click to upload</span> or drag and drop</p>
+                                </div>
+                                <input type="file" onChange={onFileIconLight} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="companyName">
+                        <p>Company Icon (Dark)</p>
+                        <div className='rightFileSetting'>
+                            <div className="iconImageBox darkIcon">
+                                {darkIconFile && darkIconFile.length > 0 ? <img src={darkIconFile} className='changeLogo' alt="change-logo" />
+                                    : <img src={`${API}/${darkIconImage}`} className='changeLogo' alt="change-logo" />
+                                }
+                                <img src={trashLight} alt="delete" /> 
+                            </div>
+                            <div ref={wrapperRef} className="drop-file-input">
+                                <div className="drop-file-input__label">
+                                    <img src={uploadFile} alt="" />
+                                    <p><span>Click to upload</span> or drag and drop</p>
+                                </div>
+                                <input type="file" onChange={onFileIconDark} />
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div className="companyName">
                         <p>Background Image</p>
                         <div className='rightFileSetting'>
@@ -179,7 +277,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                         </div>
                     </div>
                     <div className="contactDetails">
-                        <p>Company Name</p>
+                        <p>Company Details</p>
                         <div className='rightSideSetting'>
                             <div className="companyInput email">
                                 <span>Email</span>
@@ -188,7 +286,11 @@ const Profile = ({ settingTab }: ProfileProps) => {
                             <div className="mt-2 phone phoneInput">
                                 <label>Phone Number</label>
                                 <PhoneInput country={'us'} value={phoneNumber} disableCountryCode={false} onChange={(value) => handlePhoneChange(value)}  />
-                                {/* <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder='Enter phone number' className='form-control' /> */}
+                            </div>
+                            <div className="companyInput address mt-2">
+                                <span>Address</span>
+                                <textarea value={address} onChange={(e) => setAddress(e.target.value)} placeholder='' className='form-control'></textarea>
+                                {/* <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder='' className='form-control' /> */}
                             </div>
                         </div>
                     </div>

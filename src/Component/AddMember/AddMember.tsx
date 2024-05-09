@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef,useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
@@ -12,6 +12,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import imageInput from "../../Assets/Images/icon/imgButton.png";
 import PhoneInput from 'react-phone-input-2';
 import memberAvatar from "../../Assets/Images/icon/memberLargeIcon.png";
+import { singleProfile } from '../../api/settings';
+import { DESKIE_API as API } from '../../config';
 
 interface AddMemberProps {
     handleClose: () => void;
@@ -24,7 +26,11 @@ const AddMember = ({ show, setShow, handleClose }: AddMemberProps) => {
     const [imageKey, setImageKey] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [businessNumber, setBusinessNumber] = useState("");
-  
+    const [companyName, setCompanyName] = useState("");
+    const [lightLogoImage, setLightLogoImage] = useState("");
+    const [darkLogoImage, setDarkLogoImage] = useState("");
+    const [address, setAddress] = useState("");
+
     function handleChange(e: any) {
         setFile(URL.createObjectURL(e.target.files[0]));
         setImageKey(e.target.files[0]);
@@ -37,14 +43,28 @@ const AddMember = ({ show, setShow, handleClose }: AddMemberProps) => {
     const handleBusinessChange= (value: string) => {
         setBusinessNumber(value);
     };
+    useEffect(() => {
+        singleProfile().then((data) => {
+            if (data.statusCode === 200) {
+                setCompanyName(data.data.company_name);
+                setLightLogoImage(data.data.company_logo_light);
+                setDarkLogoImage(data.data.company_logo_dark);
+                setAddress(data.data.address);
+            }
+        })
+    }, []);
     let onSubmit = () => {
         if (form.current) {
             const member = new FormData(form.current);
             member.append('id', uuidv4());
             member.append('member_image', imageKey);
             member.append('phoneNumber', phoneNumber);
-            member.append('businessPhone', businessNumber);
-
+            member.append('businessPhone', businessNumber); 
+            member.append('companyName', companyName);
+            member.append('darkLogo', darkLogoImage);
+            member.append('address', address);
+             member.append('logoImage', `${API}/${encodeURIComponent(darkLogoImage)}`);
+            
             memberAdd(member).then((data) => {
                 if (data.statusCode !== 201) {
                     showNotifications('error', data.message);

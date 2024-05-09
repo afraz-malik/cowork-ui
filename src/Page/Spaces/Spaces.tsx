@@ -9,7 +9,6 @@ import { faEye } from '@fortawesome/free-regular-svg-icons';
 import AddSpace from '../../Component/AddSpace/AddSpace';
 import filter from '../../Assets/Images/icon/filter-lines.png';
 import { getSpacesList } from '../../api/spaces';
-import ViewSpaces from '../../Component/ViewSpaces/ViewSpaces';
 import editPen from "../../Assets/Images/icon/edit-01.png"
 import EditSpaces from '../../Component/ViewSpaces/EditSpaces';
 import AssignMember from '../../Component/AssignMember/AssignMember';
@@ -19,8 +18,10 @@ import blankUser from "../../Assets/Images/icon/blank-profile.jpg"
 import memberAvatar from "../../Assets/Images/icon/memberAvatar.png";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from '../../Component/Pagination/Pagination';
+import { Link ,useNavigate } from 'react-router-dom';
 
 const Spaces = () => {
+    const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -86,7 +87,7 @@ const Spaces = () => {
     // view
     const spacesView = (spacesId: string) => {
         setSpacesId(spacesId);
-        setSpacesShow(true);
+        return navigate(`${spacesId}`);
     }
 
     // update spaces
@@ -171,7 +172,7 @@ const Spaces = () => {
                                                     : <img src={spaceAvatar} alt="avatar" style={{ borderRadius: "50%" }} />
                                                 } </div>
                                         </td>
-                                        <td>{data.name}</td>
+                                        <td className='tableLink'><Link to={`${data.id}`}>{data.name}</Link></td>
                                         <td className='deskType'>
                                             {data.tag === "private" ? <span className='private'>Private Office</span> : ""}
                                             {data.tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
@@ -210,7 +211,6 @@ const Spaces = () => {
                         </div>
 
                         <AddSpace show={show} setShow={setShow} handleClose={handleClose} />
-                        <ViewSpaces spacesId={spacesId} spacesShow={spacesShow} setSpacesShow={setSpacesShow} handleSpacesClose={handleSpacesClose} />
                         <EditSpaces spacesId={spacesId} updateShow={updateShow} setUpdateShow={setUpdateShow} handleUpdateClose={handleUpdateClose} />
                         <AssignMember spaceId={spaceId} assignShow={assignShow} setAssignShow={setAssignShow} handleAssignClose={handleAssignClose} />
                     </div>
