@@ -1,133 +1,230 @@
 import React, { useState, useEffect } from 'react'
-import { ToastContainer } from 'react-toastify';
-import { Col, Container, Modal, Row } from 'react-bootstrap';
+import moment from 'moment';
 import memberIcon from "../../Assets/Images/icon/member.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { singleMember } from '../../api/member';
 import { DESKIE_API as API } from '../../config';
 import PhoneInput from 'react-phone-input-2';
 import memberBlank from "../../Assets/Images/icon/memberLargeIcon.png";
+import more from "../../Assets/Images/icon/dots-vertical.png";
+import { Link, useParams } from 'react-router-dom';
+import Layout from '../Layout/Layout';
+import penIcon from "../../Assets/Images/icon/pencil-01.png";
+import EditMember from './EditMember';
+import memberAvatar from "../../Assets/Images/icon/memberLargeIcon.png";
 
-interface ViewMemberProps {
-    memberId: string;
-    handleMemberClose: () => void;
-    memberShow: boolean;
-    setMemberShow: (type: boolean) => void;
-}
-
-const ViewMember = ({ memberId, memberShow, setMemberShow, handleMemberClose }: ViewMemberProps) => {
-
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [email, setEmail] = useState("");
-    const [businessName, setBusinessName] = useState("");
-    const [businessEmail, setBusinessEmail] = useState("");
-    const [businessPhone, setBusinessPhone] = useState("");
-    const [notes, setNotes] = useState("");
-    const [memberImage, setMemberImage] = useState("");
+const ViewMember = () => {
+    const { id } = useParams();
+    const [memberDetails, setMemberDetails] = useState<any>({});
+    const [memberId, setMemberId] = useState("");
+    const [updateShow, setUpdateShow] = useState(false);
+    const handleUpdateClose = () => setUpdateShow(false);
 
     useEffect(() => {
-        singleMember(memberId).then((data) => {
-            setFirstName(data.data && data.data.first_name);
-            setLastName(data.data && data.data.last_name);
-            setPhoneNumber(data.data && data.data.phone_number);
-            setEmail(data.data && data.data.email);
-            setBusinessName(data.data && data.data.business_name);
-            setBusinessEmail(data.data && data.data.business_email);
-            setBusinessPhone(data.data && data.data.business_phone);
-            setNotes(data.data && data.data.notes);
-            setMemberImage(data.data && data.data.member_image);
-        })
-    }, [memberId]);
+        if (id) {
+            singleMember(id).then((data) => {
+                setMemberDetails(data.data && data.data);
+            })
+        }
+    }, []);
+
+    // member update view
+    const memberUpdate = (memberId: string) => {
+        setMemberId(memberId);
+        setUpdateShow(true);
+    }
+
     return (
         <>
-            <Modal show={memberShow} onHide={handleMemberClose} centered size="lg">
-                <ToastContainer />
-                <div className="addMemberForm">
-                    <button className='closeModal' onClick={handleMemberClose}>
-                        <FontAwesomeIcon icon={faXmark} />
-                    </button>
-                    <Container>
-                        <Row>
-                            <Col md={12}>
-                                <div className='addMemberHeading'>
-                                    <img src={memberIcon} alt="member" />
-                                    <p>Member Information</p>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md={2} className='inputFieldSidebar'>
-                                <div className="imageUpload">
-                                    <div className="upload">
-                                        {memberImage ? <div style={{ width: "80px", height: "80px", overflow: "hidden", borderRadius: "50%" }}>
-                                            <img src={`${API}/${memberImage}`} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                                        </div>
-                                            : <img src={memberBlank} alt="shop" />
-                                        }
+            <Layout>
+                <div className='mainContent'>
+                    <div className="invoiceHeading">
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb m-0 ms-2">
+                                <li className="breadcrumb-item"><Link to="/assets">Assets</Link></li>
+                                <li className="breadcrumb-item active" aria-current="page">{memberDetails.first_name} {memberDetails.last_name}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div className="membersDetails">
+                        <div className="topLine">
+                            <div className='tableHeading'>
+                                <div className="memberName">
+                                    <h5><FontAwesomeIcon icon={faArrowLeft} /></h5>
+                                    {memberDetails.member_image ?
+                                        <><img src={`${API}/${memberDetails.member_image}`} alt="avatar" style={{ borderRadius: "50%", objectFit: "cover" }} /></>
+                                        : <><img src={memberAvatar} alt="avatar" style={{ borderRadius: "50%" }} /></>
+                                    }
+                                    <div>
+                                        <h6>{memberDetails.first_name}</h6>
+                                        <p>Member</p>
                                     </div>
                                 </div>
-                            </Col>
-                            <Col md={10}>
-                                <Row>
-                                    <Col md={12}>
-                                        <div className="inputHeading">
-                                            <p>Personal</p>
+                            </div>
+                            <div className="editBtn">
+                                <button className='invite'>Invitation Pending</button>
+                                <button className='edit' onClick={() => memberUpdate(memberDetails.id)}><img src={penIcon} alt="edit" /> Edit Asset</button>
+                            </div>
+                        </div>
+                        <div className="memberInfo">
+                            <div className="memberInfoBox">
+                                <h6>Signup Date</h6>
+                                <p>{moment(memberDetails.created_at).format("MMMM DD, YYYY")}</p>
+                            </div>
+                            <div className="memberInfoBox" style={{ borderLeft: '1px solid  rgba(234, 236, 240, 1)', borderRight: '1px solid  rgba(234, 236, 240, 1)' }}>
+                                <h6>Phone Number</h6>
+                                <p>{memberDetails.phone_number}</p>
+                            </div>
+                            <div className="memberInfoBox">
+                                <h6>Email</h6>
+                                <p>{memberDetails.email}</p>
+                            </div>
+                            <div className="memberInfoBox">
+                                <h6>Business Name</h6>
+                                <p>{memberDetails.business_name}</p>
+                            </div>
+                            <div className="memberInfoBox" style={{ borderLeft: '1px solid  rgba(234, 236, 240, 1)', borderRight: '1px solid  rgba(234, 236, 240, 1)' }}>
+                                <h6>Business Phone</h6>
+                                <p>{memberDetails.business_phone}</p>
+                            </div>
+                            <div className="memberInfoBox">
+                                <h6>Business Email</h6>
+                                <p>{memberDetails.business_email}</p>
+                            </div>
+                        </div>
+                        <div className="memberInvoice">
+                            <div className="invoiceLeft">
+                                <div className="memberAssign">
+                                    <h6>{memberDetails.first_name}’s Invoice History</h6>
+                                    <div className="invoiceHeading">
+                                        <div className="invoiceName">
+                                            <p> <img src={`${API}/${memberDetails.member_image}`} alt="member" /> <span>#INV009</span> </p>
+                                            <div className='deskType'>
+                                                <span className='private'>Private Office</span>
+                                            </div>
+                                            {/* <div className='deskType'>
+                                            {memberDetails.tag === "private" ? <span className='private'>Private Office</span> : ""}
+                                            {memberDetails.tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
+                                            {memberDetails.tag === "flex" ? <span className='flex'>Flex</span> : ""}
+                                        </div> */}
                                         </div>
-                                    </Col>
-                                    <Col md={6}>
-                                        <div className="memberInput">
-                                            <label>First Name</label>
-                                            <input type="text" value={firstName} placeholder='First Name' className='form-control' />
+                                        <div className="invoicePrice billingAction">
+                                            <p>$500 <span>/mo</span> </p>
+                                            <button className='btn download'><img src={more} alt="download" /></button>
                                         </div>
-                                        <div className="numberInput">
-                                            <label>Phone Number</label>
-                                            <PhoneInput country={'us'} disableCountryCode={false} value={phoneNumber} />
+                                    </div>
+                                    <div className="invoiceHeading">
+                                        <div className="invoiceName">
+                                            <p> <img src={`${API}/${memberDetails.member_image}`} alt="member" /> <span>#INV009</span> </p>
+                                            <div className='deskType'>
+                                                <span className='private'>Private Office</span>
+                                            </div>
+                                            {/* <div className='deskType'>
+                                            {memberDetails.tag === "private" ? <span className='private'>Private Office</span> : ""}
+                                            {memberDetails.tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
+                                            {memberDetails.tag === "flex" ? <span className='flex'>Flex</span> : ""}
+                                        </div> */}
                                         </div>
-                                    </Col>
-                                    <Col md={6}>
-                                        <div className="memberInput">
-                                            <label>Last Name</label>
-                                            <input type="text" value={lastName} placeholder='Last Name' className='form-control' />
+                                        <div className="invoicePrice billingAction">
+                                            <p>$500 <span>/mo</span> </p>
+                                            <button className='btn download'><img src={more} alt="download" /></button>
                                         </div>
-                                        <div className="memberInput">
-                                            <label>Email</label>
-                                            <input type="email" value={email} placeholder='Email' className='form-control' />
+                                    </div>
+                                </div>
+                                <div className="invoiceHistory">
+                                    <h6>{memberDetails.first_name}’s Invoice History</h6>
+                                    <div className="invoiceBox">
+                                        <div className="invoiceHeading">
+                                            <div className="invoiceName">
+                                                <h6>#INV009</h6>
+                                                <p> <img src={`${API}/${memberDetails.member_image}`} alt="member" /> <span>Emma Clarkson</span> </p>
+                                            </div>
+                                            <div className="invoicePrice billingAction">
+                                                <p>$500 <span>/mo</span> </p>
+                                                <button className='btn download'><img src={more} alt="download" /></button>
+                                            </div>
                                         </div>
-                                    </Col>
-                                    <Col md={12}>
-                                        <div className="inputHeading mt-4">
-                                            <p>Business</p>
+                                        <div className="invoiceDetails">
+                                            <div className="assign">
+                                                <h6>Assignment</h6>
+                                                <p> <img src={`${API}/${memberDetails.member_image}`} alt="member" /> <span>Emma Clarkson</span> </p>
+                                            </div>
+                                            <div className="assign">
+                                                <h6>Due Date</h6>
+                                                <p>January 20, 2024</p>
+                                            </div>
+                                            <div className="assign">
+                                                <h6>Status</h6>
+                                                <p className='status'>
+                                                    {memberDetails.payment_status === "paid" ? <span className='paid'>Paid</span>
+                                                        : memberDetails.payment_status === "void" ? <span className='unpaid'>Void</span>
+                                                            : <span className='unpaid'>Unpaid</span>}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </Col>
-                                    <Col md={6}>
-                                        <div className="memberInput">
-                                            <label>Business Name</label>
-                                            <input type="text" value={businessName} placeholder='Business Name' className='form-control' />
+                                    </div>
+                                    <div className="invoiceBox">
+                                        <div className="invoiceHeading">
+                                            <div className="invoiceName">
+                                                <h6>#INV009</h6>
+                                                <p> <img src={`${API}/${memberDetails.member_image}`} alt="member" /> <span>Emma Clarkson</span> </p>
+                                            </div>
+                                            <div className="invoicePrice billingAction">
+                                                <p>$500 <span>/mo</span> </p>
+                                                <button className='btn download'><img src={more} alt="download" /></button>
+                                            </div>
                                         </div>
-                                        <div className="memberInput">
-                                            <label>Business Email</label>
-                                            <input type="email" value={businessEmail} placeholder='Business Email' className='form-control' />
+                                        <div className="invoiceDetails">
+                                            <div className="assign">
+                                                <h6>Assignment</h6>
+                                                <p> <img src={`${API}/${memberDetails.member_image}`} alt="member" /> <span>Emma Clarkson</span> </p>
+                                            </div>
+                                            <div className="assign">
+                                                <h6>Due Date</h6>
+                                                <p>January 20, 2024</p>
+                                            </div>
+                                            <div className="assign">
+                                                <h6>Status</h6>
+                                                <p className='status'>
+                                                    {memberDetails.payment_status === "paid" ? <span className='paid'>Paid</span>
+                                                        : memberDetails.payment_status === "void" ? <span className='unpaid'>Void</span>
+                                                            : <span className='unpaid'>Unpaid</span>}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </Col>
-                                    <Col md={6}>
-                                        <div className="numberInput">
-                                            <label>Business Phone</label>
-                                            <PhoneInput country={'us'} disableCountryCode={false} value={businessPhone} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="invoiceRight">
+                                <div className="memberBooking">
+                                    <h6>Upcoming Bookings</h6>
+                                    <div className="bookingList">
+                                        <img src={`${API}/${memberDetails.member_image}`} alt="member" />
+                                        <div className="spacesInfo">
+                                            <h6>{memberDetails.member_image}</h6>
+                                            <p>asa</p>
                                         </div>
-                                        <div className="memberInput">
-                                            <label>Notes</label>
-                                            <input type="text" value={notes} placeholder='Notes' className='form-control' />
+                                    </div>
+                                    <div className="bookingList">
+                                        <img src={`${API}/${memberDetails.member_image}`} alt="member" />
+                                        <div className="spacesInfo">
+                                            <h6>{memberDetails.member_image}</h6>
+                                            <p>asa</p>
                                         </div>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Container>
+                                    </div>
+                                </div>
+                                <div className="memberNotes">
+                                    <h6>Notes</h6>
+                                    <p>{memberDetails.notes ? memberDetails.notes: "You haven’t added any notes for this user."}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </Modal>
+                <EditMember memberId={memberId} updateShow={updateShow} setUpdateShow={setUpdateShow} handleUpdateClose={handleUpdateClose} />
+            </Layout>
         </>
     )
 }

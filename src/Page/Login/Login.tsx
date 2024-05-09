@@ -41,7 +41,6 @@ const Login = () => {
     let onSubmit = (user: any) => {
         const { email, password } = user;
         loginAdmin({ email, password }).then((data) => {
-            console.log('login', data);
             if (data.statusCode !== 200) {
                 showNotifications('error', 'Wrong information');
             }
@@ -92,8 +91,8 @@ const Login = () => {
         return (
             <div className="loginBox">
                 <div className="logo">
-                    {profile && profile.company_logo ?
-                        <img src={`${API}/${profile.company_logo}`} alt="logo" />
+                    {profile && profile.company_logo_dark ?
+                        <img src={`${API}/${profile.company_logo_dark}`} alt="logo" />
                         : <img src={logo} alt="logo" />
                     }
                 </div>
@@ -132,7 +131,7 @@ const Login = () => {
             <ToastContainer />
             <div>
 
-                <section className="loginSection" style={{ backgroundImage: `url(${profile && `${API}/${encodeURIComponent(profile.background)}`})` }}>
+                <section className="loginSection" style={{ background:`linear-gradient(rgba(31, 41, 55, 0.9), rgba(31, 41, 55, 0.94)), url(${profile && `${API}/${encodeURIComponent(profile.background)}`})` }}>
                     {LoginForm()}
                 </section>
 

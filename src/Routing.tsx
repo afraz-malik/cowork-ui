@@ -22,6 +22,8 @@ import MySetting from './Page/User/MySetting/MySetting';
 import MyInvoice from './Page/User/MyInvoice/MyInvoice';
 import MyFiles from './Page/User/MyFiles/MyFiles';
 import MyHome from './Page/User/MyHome/MyHome';
+import ViewSpaces from './Component/ViewSpaces/ViewSpaces';
+import ViewMember from './Component/ViewMember/ViewMember';
 
 const Routing = () => {
     return (
@@ -31,7 +33,9 @@ const Routing = () => {
 
                     <Route element={<PrivateRoute />}>
                         <Route path="/member" element={<Member />}></Route>
+                        <Route path="/member/:id" element={<ViewMember />}></Route>
                         <Route path="/assets" element={<Spaces />}></Route>
+                        <Route path="/assets/:id" element={<ViewSpaces />}></Route>
                         <Route path="/announcements" element={<Announcement />}></Route>
                         <Route path="/files" element={<Files />}></Route>
                         {/* <Route path="/tickets" element={<Ticket />}></Route> */}

@@ -22,6 +22,7 @@ import { postComment } from './../../api/announcement';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import InputEmoji from "react-input-emoji";
+import { singleProfile } from '../../api/settings';
 
 const Announcement = () => {
   const [file, setFile] = useState("");
@@ -44,7 +45,9 @@ const Announcement = () => {
   const [lastName, setLastName] = useState("");
   const [userRole, setUserRole] = useState("");
   const [userId, setUserId] = useState("");
-
+  const [companyName, setCompanyName] = useState("");
+  const [lightIconImage, setLightIconImage] = useState("");
+  const [darkIconImage, setDarkIconImage] = useState("");
   let auth = isAuthenticate();
 
   const handleStateSelect = (id: string, state: string) => {
@@ -87,7 +90,13 @@ const Announcement = () => {
       }
     })
 
-
+    singleProfile().then((data) => {
+      if (data.statusCode === 200) {
+        setCompanyName(data.data.company_name);
+        setLightIconImage(data.data.company_icon_light);
+        setDarkIconImage(data.data.company_icon_dark);
+      }
+    })
 
   }, []);
 
@@ -345,11 +354,11 @@ const Announcement = () => {
                   {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
                     : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
                   }
-                    <div className="input-with-label3">
-                      <div className="input3">
-                        <textarea id="postTextarea" value={post} onChange={(e) => { setPost(e.target.value); autoResize(); }} placeholder="Post a new announcement" />
-                      </div>
+                  <div className="input-with-label3">
+                    <div className="input3">
+                      <textarea id="postTextarea" value={post} onChange={(e) => { setPost(e.target.value); autoResize(); }} placeholder="Post a new announcement" />
                     </div>
+                  </div>
                 </div>
                 <div className='d-flex justify-content-end w-100'>
                   <div className="postIconImage">
@@ -370,8 +379,8 @@ const Announcement = () => {
                           <Dropdown.Item onClick={() => handleStateSelect(userId, `${firstName} ${lastName}`)}>
                             {firstName} {lastName} (You)
                           </Dropdown.Item>
-                          <Dropdown.Item onClick={() => handleStateSelect('company', 'Beehive Coworking')}>
-                            Beehive Coworking
+                          <Dropdown.Item onClick={() => handleStateSelect('company', `${companyName}`)}>
+                            {companyName}
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </> : <></>}
@@ -388,11 +397,11 @@ const Announcement = () => {
                     <div className="user">
                       <div className="postLogo">
                         {data.userInfo ? <img className="" alt="post" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }} src={`${API}/${data.userInfo.member_image ? data.userInfo.member_image : data.userInfo.avatar}`} />
-                          : <img className="vector-icon" alt="" src={postLogo} />
+                          : <img className="vector-icon" alt="" src={`${API}/${darkIconImage ? darkIconImage : postLogo}`} />
                         }
                       </div>
                       <div className="beehive-coworking-parent">
-                        <div className="elviro-anasta">{data.userInfo ? <>{data.userInfo.first_name} {data.userInfo.last_name}</> : "Beehive Coworking"}</div>
+                        <div className="elviro-anasta">{data.userInfo ? <>{data.userInfo.first_name} {data.userInfo.last_name}</> : `${companyName}`}</div>
                         <div className="mins-ago">{getTimeDifferenceString(data.created_at)}</div>
                       </div>
                       <img className="line-chart-up-04-icon" alt="" src={dotLine} />
