@@ -29,12 +29,6 @@ const Header = ({ onValueChange }: any) => {
     const location = useLocation();
     const pathArray = location.pathname.split('/');
     const urlParams = pathArray[pathArray.length - 1];
-
-
-    const logoutUser = () => {
-        localStorage.removeItem("company");
-        return navigate(`/`);
-    }
     let auth = isAuthenticate();
 
     useEffect(() => {

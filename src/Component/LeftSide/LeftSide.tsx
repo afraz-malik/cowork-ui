@@ -117,7 +117,7 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
                                 </li>
                             </ul>
                             :<ul className="list-unstyled">
-                            <li className="navLink">
+                            <li className={urlParams === "my-home" ? "navLink activeMenu" : "navLink"}>
                                 <Link to="/my-home">
                                     <img src={dashboard} alt="dashboard" />Home</Link>
                             </li>

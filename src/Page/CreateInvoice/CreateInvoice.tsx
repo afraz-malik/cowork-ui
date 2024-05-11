@@ -65,8 +65,6 @@ const CreateInvoice = () => {
             }
         })
         getSpacesList(10, 1).then((data) => {
-            console.log('as', data);
-
             if (data.statusCode !== 200) {
 
             }
@@ -75,7 +73,6 @@ const CreateInvoice = () => {
             }
         })
         getLastInvoice().then((data) => {
-            console.log('invoice', data);
             setInvoiceId(`00${data.data}`)
         })
 

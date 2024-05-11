@@ -4,11 +4,11 @@ import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap';
 import memberIcon from "../../Assets/Images/icon/member.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
-import blankUser from "../../Assets/Images/icon/blank-profile.jpg";
 import imageInput from "../../Assets/Images/icon/imgButton.png";
 import { singleSpaces, updateSpaces } from '../../api/spaces';
 import { DESKIE_API as API } from '../../config';
 import spaceIcon from "../../Assets/Images/icon/spaceLargeIcon.png";
+import { showNotifications } from '../../CommonFunction/toaster';
 
 interface EditSpacesProps {
     spacesId: string;
@@ -65,8 +65,19 @@ const EditSpaces = ({ spacesId, updateShow, setUpdateShow, handleUpdateClose }: 
             spaces["space_image"] = imageKey;
           }
         updateSpaces(spacesId, spaces).then((data) => {
-            console.log('update', data);
             setUpdateShow(false);
+            showNotifications("success","Spaces update successfully!!");
+        })
+    }
+
+     // hide spaces info
+     const spacesHide = () => {
+        let spaces:any = {
+            "active": false,
+        }
+        updateSpaces(spacesId, spaces).then((data) => {
+            setUpdateShow(false);
+            showNotifications("success","Spaces delete successfully!!");
         })
     }
 
@@ -154,6 +165,7 @@ const EditSpaces = ({ spacesId, updateShow, setUpdateShow, handleUpdateClose }: 
                             </Col>
 
                             <div className="memberAddBtn">
+                            <button type='submit' className='mr-2 deleteSpaces' onClick={spacesHide}>Delete</button>
                                 <button type='submit' className='save' onClick={spacesUpdate}>Save</button>
                             </div>
                         </Row>

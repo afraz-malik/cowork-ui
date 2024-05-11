@@ -39,22 +39,12 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
     const [shares, setShares] = useState<any>([]);
     const [shareMember, setShareMember] = useState<any>([]);
-    console.log('shares', shares);
-    console.log('shareMember', shareMember);
-
     const [uploadShow, setUploadShow] = useState(false);
     const handleUploadClose = () => setUploadShow(false);
     const [isActive, setIsActive] = useState(false);
     const [searchMembers, setSearchMembers] = useState('');
     const [memberImage, setMemberImage] = useState("");
 
-
-    // useEffect(() => {
-    //     searchMember(searchTerm).then((data) => {
-    //         setMembers(data.results);
-    //     });
-
-    // }, [searchTerm]);
 
     useEffect(() => {
         getMemberList(20, 1).then((data) => {
@@ -148,7 +138,7 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
             "description": content,
             "assign": `${shares}`,
             "task_image": file,
-            "dueDate": dueDate,
+            "dueDate": dueDate
         }
 
         taskAdd(task).then((data) => {

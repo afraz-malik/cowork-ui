@@ -11,6 +11,8 @@ import { updateAdmin } from '../../../api/admin';
 import { showNotifications } from '../../../CommonFunction/toaster';
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import memberIcon from "../../../Assets/Images/icon/memberLargeIcon.png";
+
 
 interface AccountProps {
     settingTab: (type: string) => void;
@@ -97,7 +99,7 @@ const MyAccount = ({ settingTab }: AccountProps) => {
                                 {imageLogo && imageLogo.length > 0 ? <img src={changeLogo} className='changeLogo' alt="change-logo" />
                                     : <>
                                         {logoFile && logoFile.length > 0 ? <img src={logoFile} className='changeLogo' alt="change-logo" />
-                                            : <img src={`${API}/${userImage}`} className='changeLogo' alt="change-logo" />
+                                           : userImage.length ? <img src={`${API}/${userImage}`} className='changeLogo' alt="change-logo" /> : <img src={memberIcon} className='changeLogo' alt="change-logo" /> 
                                         }
                                     </>}
 

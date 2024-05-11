@@ -50,11 +50,7 @@ const Messenger = () => {
     const [messages, setMessages] = useState<MSG[]>([]);
     const [input, setInput] = useState<string>('');
     const chatContainerRef = useRef<HTMLDivElement>(null);
-    const [avatars, setAvatars] = useState<string[]>([])
-
-    const [users, setUsers] = useState<CHATTER[]>([]) // users to be showed in the contact list
-    console.log('users', users);
-
+    const [users, setUsers] = useState<CHATTER[]>([])
     const [toUsers, setToUsers] = useState<USER[]>([]) // users to be showed in the dropdown
     const [dropdownUsers, setDropdownUsers] = useState<USER[]>([])
     const [currentUser, setCurrentUser] = useState<USER>(initUser)

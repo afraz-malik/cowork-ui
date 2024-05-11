@@ -70,7 +70,16 @@ const EditMember = ({ memberId, updateShow, setUpdateShow, handleUpdateClose }: 
             member["member_image"] = imageKey;
           }
         updateMember(memberId, member).then((data) => {
-            console.log('update', data);
+            setUpdateShow(false);
+        })
+    }
+
+     // hide member info
+     const memberHide = () => {
+        let member:any = {
+            "active": false,
+        }
+        updateMember(memberId, member).then((data) => {
             setUpdateShow(false);
         })
     }
@@ -169,6 +178,7 @@ const EditMember = ({ memberId, updateShow, setUpdateShow, handleUpdateClose }: 
                             </Col>
 
                             <div className="memberAddBtn">
+                            <button type='submit' className='mr-2 deleteSpaces' onClick={memberHide}>Delete</button>
                                 <button type='submit' className='save' onClick={memberUpdate}>Update</button>
                             </div>
                         </Row>

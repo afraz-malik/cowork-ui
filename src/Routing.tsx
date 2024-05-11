@@ -61,6 +61,7 @@ const Routing = () => {
                         <Route path="/my-invoice" element={<MyInvoice />}></Route>
                         <Route path="/my-files" element={<MyFiles />}></Route>
                         <Route path="/my-home" element={<MyHome />}></Route>
+                        <Route path="/my-invoice-details/:id" element={<InvoiceDetails />}></Route>
                     </Route>
                     <Route path="/sign-up" element={<SignUp />}></Route>
                     <Route path="/create-invoice" element={<CreateInvoice />}></Route>

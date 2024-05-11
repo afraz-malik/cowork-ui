@@ -75,7 +75,6 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose }: ViewTaskPr
     useEffect(() => {
         getSingleTask(taskId).then((data) => {
             if (data.statusCode === 200) {
-                console.log('task view', data);
                 setContent(data.data.description)
                 setTitle(data.data.title)
                 setTaskImage(data.data.task_image)

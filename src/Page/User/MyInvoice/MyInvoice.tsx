@@ -12,16 +12,19 @@ import { useNavigate } from 'react-router-dom';
 import RecordPayment from '../../../Component/RecordPayment/RecordPayment';
 import memberAvatar from "../../../Assets/Images/icon/memberAvatar.png";
 import spaceAvatar from "../../../Assets/Images/icon/spaceAvatar.png";
+import Pagination from '../../../Component/Pagination/Pagination';
 
 const MyInvoice = () => {
     const navigate = useNavigate();
-    const numbers = [1, 2, 3, 4, 5, 10, 20, 50, 100];
-    const [limitValue, setLimitValue] = useState<any>();
     const [show, setShow] = useState(false);
     const [invoiceKey, setInvoiceKey] = useState("");
-
+    const [prevButton, setPrevButton] = useState<boolean>(false);
+    const [nextButton, setNextButton] = useState<boolean>(false);
+    const [totalValue, setTotalValue] = useState<number>(0);
+    const [limitValue, setLimitValue] = useState<number>(0);
+    const [pageValue, setPageValue] = useState<number>();
+    const pageCount = Math.ceil(totalValue / limitValue);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const [invoiceList, setInvoiceList] = useState<any>([]);
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState<number>(2);
@@ -37,17 +40,34 @@ const MyInvoice = () => {
     };
 
     useEffect(() => {
-        getInvoicesList(100, 1, "all").then((data) => {
-            console.log('invoice', data);
-
+        getInvoicesList(limit, page, "all").then((data) => {
             if (data.statusCode !== 200) {
 
             }
             else {
                 setInvoiceList(data.invoices);
+                setTotalValue(data.total)
+                setLimitValue(data.limit)
+                setPageValue(data.page)
             }
         })
     }, [show]);
+
+    useEffect(() => {
+        if (pageCount > 1) {
+          setPrevButton(true)
+        }
+        if (page === 1) {
+          setPrevButton(false)
+        }
+        // next button
+        if (pageCount > 1) {
+          setNextButton(true)
+        }
+        if (pageCount === page) {
+          setNextButton(false)
+        }
+      }, [pageCount, page])
 
     const invoiceView = (invoiceId: string) => {
         return navigate(`/invoice-details/${invoiceId}`);
@@ -58,6 +78,16 @@ const MyInvoice = () => {
         setInvoiceKey(invoiceId);
     }
 
+    const nextPage = () => {
+        setPage(page + 1)
+        setNextButton(true)
+      }
+    
+      const prevPage = () => {
+        setPage(page - 1)
+      }
+
+      
     return (
         <>
             <Layout>
@@ -82,7 +112,7 @@ const MyInvoice = () => {
                                     <input type="text" placeholder='Search billing' className='form-control' />
                                     <FontAwesomeIcon icon={faSearch} />
                                 </div>
-                                <Link to="/create-invoice"><FontAwesomeIcon icon={faPlus} /> Create New Invoice</Link>
+                                {/* <Link to="/create-invoice"><FontAwesomeIcon icon={faPlus} /> Create New Invoice</Link> */}
                             </div>
                         </div>
                         <div className="billingList">
@@ -110,7 +140,7 @@ const MyInvoice = () => {
                                                 <input type="checkbox" name="agreement" onClick={() => invoiceView(invoice.id)} />
                                                 <span className="checkmark"></span></div>
                                         </label></td>
-                                        <td>#INV{invoice.invoice_id}</td>
+                                        <td><Link to={`/my-invoice-details/${invoice.id}`}>#INV{invoice.invoice_id}</Link></td>
                                         <td>
                                             {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                                 : <img src={memberAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
@@ -136,7 +166,7 @@ const MyInvoice = () => {
 
                                 </tbody>
                             </Table>
-                            <div className='paginationBox'>
+                            {/* <div className='paginationBox'>
                                 <div className="tableNumber">
                                     <Dropdown className="paginationDropdown" onSelect={handleSelect}>
                                         <Dropdown.Toggle id="pageDropDown">
@@ -163,7 +193,8 @@ const MyInvoice = () => {
                                     <button>10</button>
                                     <button>Next <FontAwesomeIcon icon={faArrowRight} /></button>
                                 </div>
-                            </div>
+                            </div> */}
+                            <Pagination paginationTitle="invoices" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={invoiceList} />
                         </div>
                     </div>
                 </div>

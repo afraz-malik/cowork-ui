@@ -104,7 +104,9 @@ const RegistrationPanel = () => {
             "password": password,
             "signature_image": dataFile,
             "signature": signName,
+            "account_active": true
         }
+
         updateSignature(memberInfo.id, signIno).then((data) => {
             console.log('update',data);
             

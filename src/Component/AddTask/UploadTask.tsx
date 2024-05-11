@@ -21,8 +21,7 @@ interface UploadTaskProps {
 
 
 const UploadTask = ({ setFile, uploadedFiles, setUploadedFiles, uploadShow, setUploadShow, handleUploadClose }: UploadTaskProps) => {
-    const [nickName, setNickName] = useState("");
-    // const [file, setFile] = useState("");
+ 
     const wrapperRef = useRef<HTMLInputElement>(null);
     const onFileDrop = (event: any) => {
         const imageFile = event.target.files && event.target.files[0];

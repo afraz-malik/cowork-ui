@@ -15,6 +15,10 @@ import { getMemberList, searchMember } from '../../api/member';
 import { showNotifications } from '../../CommonFunction/toaster';
 import UploadTask from '../AddTask/UploadTask';
 import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import { convertBytesToSize } from '../../CommonFunction/Function';
+import fileFormat from "../../Assets/Images/icon/file-05.png";
+import trash from "../../Assets/Images/icon/red-trash.png";
+
 
 interface EditTaskProps {
     handleEditTaskClose: () => void;
@@ -26,15 +30,13 @@ interface EditTaskProps {
 const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }: EditTaskProps) => {
     const [content, setContent] = useState("");
     const [dueDate, setDueDate] = useState<any>(new Date());
-    const [searchTerm, setSearchTerm] = useState("");
     const [title, setTitle] = useState("");
     const [taskImage, setTaskImage] = useState("");
     const [file, setFile] = useState("");
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
     const [members, setMembers] = useState([]);
     const [shares, setShares] = useState<any>([]);
-    console.log('shares',shares);
-    
+
     const [shareMember, setShareMember] = useState<any>([]);
     const [assignedMembers, setAssignedMembers] = useState([]);
     const [assignMember, setAssignMember] = useState<any>();
@@ -42,7 +44,6 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
     const handleUploadClose = () => setUploadShow(false);
     const [isActive, setIsActive] = useState(false);
     const [searchMembers, setSearchMembers] = useState('');
-    const [memberImage, setMemberImage] = useState("");
 
     var modules: any = {
         toolbar: [
@@ -94,20 +95,12 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
                 setDueDate(data.data.dueDate)
                 setAssignedMembers(data.data.assigned_images)
                 setAssignMember(data.data.assign)
-                console.log('data.data.assign',data.data.assign);
-                
                 const assignMemberArray = data.data.assign.split(',');
                 setShares(assignMemberArray)
             }
         })
-    }, [taskId])
+    }, [taskId,taskEditShow])
 
-    // useEffect(() => {
-    //     searchMember(searchTerm).then((data) => {
-    //         setMembers(data.results);
-    //     });
-
-    // }, [searchTerm]);
 
     useEffect(() => {
         getMemberList(20, 1).then((data) => {
@@ -147,20 +140,17 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
     const updateTask = () => {
         const assignMemberArray = assignMember.split(',');
         const mergedIds = Array.from(new Set([...assignMemberArray, ...shares]));
-        console.log('assignMemberArray',assignMemberArray);
-        console.log('shares',shares);
-        console.log('mergedIds',mergedIds);
-        
         let taskInfo = {
             "title": title,
             "description": content,
             "assign": mergedIds.join(','),
-            "task_image": file.length ? file : "",
+            "task_image": file ? file : "",
             "dueDate": dueDate,
         }
         taskUpdate(taskId, taskInfo).then((data) => {
-            console.log('edit', data);
-
+            setTaskEditShow(false);
+            showNotifications("success","Task updated");
+            setUploadedFiles([]);
         })
     }
 
@@ -253,6 +243,10 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
                                     <div className="memberInfos assignBox">
                                         <div className="dropdown">
                                             <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
+                                            <div className='assignHeading'>
+                                                    <p><img src={assign} alt="assign" /> Assignee</p>
+                                                    <button onClick={() => setIsActive(!isActive)}><FontAwesomeIcon icon={faClose} /></button>
+                                                </div>
                                                 <div className='assignInput'>
                                                     <FontAwesomeIcon icon={faSearch} />
                                                     <input type="text" placeholder='Search member' onChange={handleMemberChange} className='form-control' />
@@ -285,12 +279,29 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
                                 </div>
                                 <div className="taskOptions">
                                     <p><img src={attachment} alt="attachment" /> Attachments</p>
-                                    <button><FontAwesomeIcon icon={faPlus} /></button>
+                                    <button onClick={taskImage ? () => {} : () => setUploadShow(true)}><FontAwesomeIcon icon={faPlus} /></button>
                                 </div>
                                 {taskImage ? <div className="taskFiles mt-3">
                                     <button onClick={removeFile}><FontAwesomeIcon icon={faClose} /></button>
                                     <img src={`${API}/${taskImage}`} alt="" width="250px" />
                                 </div> : ""}
+                                {uploadShow ? "" : <>
+                                    {uploadedFiles && uploadedFiles.map((file: any, index: number) =>
+                                        <div className="uploadFileShow">
+                                            <div className="fileFormat">
+                                                <img src={fileFormat} alt="file" />
+                                            </div>
+                                            <div className="fileName">
+                                                <p>{file.name}</p>
+                                                <span>{convertBytesToSize(file.size)} – 100% uploaded</span>
+                                            </div>
+                                            <div className="fileDelete" onClick={removeFile}>
+                                                <img src={trash} alt="trash" />
+                                            </div>
+                                        </div>
+                                    )}
+                                </> }
+                               
                                 <div className='taskBtn d-flex justify-content-end'>
                                     <button onClick={updateTask}>Update Task</button>
                                 </div>

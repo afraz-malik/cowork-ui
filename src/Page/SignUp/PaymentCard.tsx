@@ -47,7 +47,6 @@ const PaymentCard = () => {
                     type: 'card',
                     card: cardElement,
                 });
-                console.log("[PaymentMethod]", payload);
             } catch (error) {
                 console.error("Error creating payment method:", error);
             }
