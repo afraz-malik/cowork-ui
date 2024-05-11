@@ -68,7 +68,7 @@ const Task = () => {
         getTaskList("DONE").then((data) => {
             setDoneList(data)
         });
-    }, [show, deleteShow])
+    }, [show, deleteShow,taskEditShow])
     const [columns, setColumns] = useState<Column[]>([]);
     useEffect(() => {
         const initialColumns = [
@@ -91,7 +91,7 @@ const Task = () => {
 
         // Set the initial columns
         setColumns(initialColumns);
-    }, [pendingList, doingList, doneList, show]);
+    }, [pendingList, doingList, doneList, show,taskEditShow]);
 
 
     const addTask = (status: string) => {
@@ -281,13 +281,13 @@ const Task = () => {
                                                                                 </Dropdown.Toggle>
                                                                                 <Dropdown.Menu>
                                                                                     <Dropdown.Item onClick={() => viewTasks(task.id)}>
-                                                                                        <FontAwesomeIcon icon={faEye} />
+                                                                                        <FontAwesomeIcon icon={faEye} /> Detail
                                                                                     </Dropdown.Item>
                                                                                     <Dropdown.Item onClick={() => EditTasks(task.id)}>
-                                                                                        <FontAwesomeIcon icon={faPen} />
+                                                                                        <FontAwesomeIcon icon={faPen} /> Edit
                                                                                     </Dropdown.Item>
                                                                                     <Dropdown.Item onClick={() => deleteTasks(task.id)}>
-                                                                                        <FontAwesomeIcon icon={faTrash} />
+                                                                                        <FontAwesomeIcon icon={faTrash} /> Delete
                                                                                     </Dropdown.Item>
                                                                                 </Dropdown.Menu>
                                                                             </Dropdown>

@@ -55,7 +55,7 @@ const AddMember = ({ show, setShow, handleClose }: AddMemberProps) => {
     }, []);
     let onSubmit = () => {
         if (form.current) {
-            const member = new FormData(form.current);
+            const member:any = new FormData(form.current);
             member.append('id', uuidv4());
             member.append('member_image', imageKey);
             member.append('phoneNumber', phoneNumber);
@@ -63,8 +63,9 @@ const AddMember = ({ show, setShow, handleClose }: AddMemberProps) => {
             member.append('companyName', companyName);
             member.append('darkLogo', darkLogoImage);
             member.append('address', address);
-             member.append('logoImage', `${API}/${encodeURIComponent(darkLogoImage)}`);
-            
+            member.append('logoImage', `${API}/${encodeURIComponent(darkLogoImage)}`);
+            member.append('active', true);
+
             memberAdd(member).then((data) => {
                 if (data.statusCode !== 201) {
                     showNotifications('error', data.message);

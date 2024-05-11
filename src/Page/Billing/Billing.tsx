@@ -23,21 +23,14 @@ const Billing = () => {
     const [invoiceList, setInvoiceList] = useState<any>([]);
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState<number>(6);
-    const [selectedValue, setSelectedValue] = useState(limit);
     // pagination
     const [allCheck, setAllCheck] = useState(false);
     const [result, setResult] = useState<string[]>([]);
     const [totalValue, setTotalValue] = useState<number>(0);
     const [limitValue, setLimitValue] = useState<number>(0);
-    console.log('total',totalValue,limitValue);
-    
     const pageCount = Math.ceil(totalValue / limitValue);
-    console.log('pageCount',pageCount);
-    
     const [prevButton, setPrevButton] = useState<boolean>(false);
     const [nextButton, setNextButton] = useState<boolean>(false);
-    console.log('prevButton',prevButton);
-    console.log('nextButton',nextButton);
     const [tableId, setTableId] = useState<string[]>([]);
     const [pageValue, setPageValue] = useState<number>();
     
@@ -191,7 +184,7 @@ const Billing = () => {
                                             {invoice.space_image ? <img src={`${API}/${invoice.space_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                                 : <img src={spaceAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                             }
-                                            {invoice.spaces_name}</td>
+                                            {invoice.spaces_name ? invoice.spaces_name : "N/A"}</td>
                                         <td>{moment(invoice.renewal_date).format("MMMM DD, YYYY")}</td>
                                         <td className='status'>
                                             {invoice.payment_status === "paid" ? <span className='paid'>Paid</span>

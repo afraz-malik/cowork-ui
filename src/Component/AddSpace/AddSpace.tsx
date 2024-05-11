@@ -41,10 +41,11 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
 
     let onSubmit = () => {
         if (form.current) {
-            const spaces = new FormData(form.current);
+            const spaces:any = new FormData(form.current);
             spaces.append('id', uuidv4());
             spaces.append('space_image', imageKey);
             spaces.append('tag', selectedTag);
+            spaces.append('active', true);
             spacesAdd(spaces).then((data) => {
                 if (data.statusCode !== 201) {
                     showNotifications('error', 'Wrong information');

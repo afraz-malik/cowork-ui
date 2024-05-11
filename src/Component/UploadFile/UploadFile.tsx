@@ -51,7 +51,6 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
     const onFileDrop = (event: any) => {
         const imageFile = event.target.files && event.target.files[0];
         const fileName = imageFile.name.split('.').slice(0, -1).join('.');
-        console.log('fileName', fileName);
         setNickName(fileName);
         if (imageFile && imageFile.size <= 26 * 1024 * 1024) { // Convert MB to bytes
             setFile(imageFile);

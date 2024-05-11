@@ -165,7 +165,6 @@ export const enhanceGroupUserName = (name: string) => {
 }
 
 export const enhanceToGroupUserName = (name: string) => {
-  console.log('group', name);
   return name.replace(/&/g, ' & ');
 
   //   const names = name.split("&")

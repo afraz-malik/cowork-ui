@@ -16,26 +16,31 @@ import arrowIcon from "../../../Assets/Images/icon/arrow-up-right.png";
 import wifiIcon from "../../../Assets/Images/icon/wifi.png";
 import wifiQr from "../../../Assets/Images/icon/wifiScan.png";
 import spacesIcon from "../../../Assets/Images/icon/spacesImage.png";
+import { singleJwtMember } from '../../../api/member';
+import { isAuthenticate } from '../../../api/auth';
+import { Link } from 'react-router-dom';
 
 const MyHome = () => {
+  let auth = isAuthenticate();
   const [invoiceList, setInvoiceList] = useState<any>([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   useEffect(() => {
-    getInvoicesList(100, 1, "all").then((data) => {
-      console.log('invoice', data);
-
-      if (data.statusCode !== 200) {
-
+    getInvoicesList(5, 1, "all").then((data) => {
+      setInvoiceList(data.invoices);
+    });
+    singleJwtMember(auth.token).then((data) => {
+      if (data.statusCode === 200) {
+          setFirstName(data.data.data.first_name);
+          setLastName(data.data.data.last_name);
       }
-      else {
-        setInvoiceList(data.invoices);
-      }
-    })
+  })
   }, []);
   return (
     <Layout>
       <div className='mainContent'>
         <div className="memberHome">
-          <h5>Welcome Back, <span>Sarah Kline</span></h5>
+          <h5>Welcome Back, <span>{firstName} {lastName}</span></h5>
           <div className="memberDashboard">
             <div className="memberLeft">
               <div className="assetsTicket">
@@ -51,7 +56,7 @@ const MyHome = () => {
               <div className="latestInvoice">
                 <div className="latestInvoiceHeading">
                   <h5><img src={invoiceIcon} alt="assets" />Latest Invoice</h5>
-                  <button>See More <img src={arrowIcon} alt="arrow" /> </button>
+                  <Link to="/my-invoice">See More <img src={arrowIcon} alt="arrow" /> </Link>
                 </div>
                 <div className="invoiceBillingList">
                   <Table responsive hover>
@@ -71,13 +76,13 @@ const MyHome = () => {
                         <td>
                           {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                             : <img src={memberAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
-                          }
+                          }&nbsp; &nbsp;
                           {invoice.member_first_name} {invoice.member_last_name}
                         </td>
                         <td>
                           {invoice.space_image ? <img src={`${API}/${invoice.space_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                             : <img src={spaceAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
-                          }
+                          }&nbsp; &nbsp;
                           {invoice.spaces_name}</td>
                         <td>{moment(invoice.renewal_date).format("MMMM DD, YYYY")}</td>
                         <td className='status'>

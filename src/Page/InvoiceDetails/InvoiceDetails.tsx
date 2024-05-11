@@ -26,10 +26,7 @@ const InvoiceDetails = () => {
 
     const { id } = useParams();
     const [invoiceDetail, setInvoiceDetail] = useState<any>({});
-    console.log('invoiceDetail', invoiceDetail);
-
     const [show, setShow] = useState(false);
-    const [invoiceKey, setInvoiceKey] = useState("");
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const { toPDF, targetRef } = usePDF({ filename: `${invoiceDetail && invoiceDetail.invoice_id}.pdf` });
@@ -114,7 +111,7 @@ const InvoiceDetails = () => {
                                 </div>
                                 <div className="invoiceId">
                                     <p>Status</p>
-                                    <h6 className='status'>{invoiceDetail && invoiceDetail.payment_status === "paid" ? <><span className='paid'>Paid</span></> : invoiceDetail.payment_status === "void" ? <span className='unpaid'>Void</span> : <span className='unpaid'>UnPaid</span>}</h6>
+                                    <h6 className='status'>{invoiceDetail && invoiceDetail.payment_status === "paid" ? <><span className='paid'>Paid</span></> : invoiceDetail && invoiceDetail.payment_status === "void" ? <span className='unpaid'>Void</span> : <span className='unpaid'>UnPaid</span>}</h6>
                                 </div>
                                 <div className="invoiceId">
                                     <p>Payment Date</p>
@@ -133,7 +130,7 @@ const InvoiceDetails = () => {
                                 <div className="itemList">
                                     <div className="itemName">
                                         {invoiceDetail && invoiceDetail.space_image ? <img src={`${API}/${invoiceDetail && invoiceDetail.space_image}`} alt="avatar" />
-                                            : <img src={spacesImage} alt="avatar" />} {invoiceDetail && invoiceDetail.space_name}
+                                            : <img src={spacesImage} alt="avatar" />} {invoiceDetail && invoiceDetail.space_name ? invoiceDetail.space_name : "N/A"}
                                     </div>
                                     <div className="itemPrice">
                                         {invoiceDetail && invoiceDetail.amount ? <>${invoiceDetail.amount}</> : "N/A"}
@@ -173,6 +170,9 @@ const InvoiceDetails = () => {
                         <div className="invoiceNotes">
                             <h1>Note</h1>
                             <p>{invoiceDetail && invoiceDetail.notes ? <>{invoiceDetail.notes}</> : "No notes"}</p>
+                        </div>
+                        <div className="invoicePoint">
+
                         </div>
                         <div className="invoiceDownload">
                             <p>Download Invoice</p>
