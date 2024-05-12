@@ -37,14 +37,14 @@ const InvoiceDetails = () => {
                 setInvoiceDetail(data.data)
             })
         }
-    }, [show]);
+    }, [show,id]);
 
     const paymentView = () => {
         setShow(true);
     }
 
     const voidUpdate = () => {
-        const paymentInfo={
+        const paymentInfo = {
             "void": "void"
         }
         paymentVoid(invoiceDetail.payment_id, paymentInfo).then((data) => {
@@ -171,9 +171,35 @@ const InvoiceDetails = () => {
                             <h1>Note</h1>
                             <p>{invoiceDetail && invoiceDetail.notes ? <>{invoiceDetail.notes}</> : "No notes"}</p>
                         </div>
-                        <div className="invoicePoint">
-
-                        </div>
+                        {/* <div className="invoicePoint invoiceDownload">
+                            <p>Invoice History</p>
+                            <ul className="list-ic vertical">
+                                <li>
+                                    <span></span>
+                                    <Link to="#">Invoice Paid <b>26 Apr 2024, 11:50 AM</b></Link>
+                                </li>
+                                <li>
+                                    <span></span>
+                                    <Link to="#">Invoice Sent <b>26 Apr 2024, 11:50 AM</b></Link>
+                                </li>
+                                <li>
+                                    <span></span>
+                                    <Link to="#">Invoice Edited <b>26 Apr 2024, 11:50 AM</b></Link>
+                                </li>
+                                <li>
+                                    <span></span>
+                                    <Link to="#">Invoice Reminder Sent <b>26 Apr 2024, 11:50 AM</b></Link>
+                                </li>
+                                <li>
+                                    <span></span>
+                                    <Link to="#">Invoice Viewed <b>26 Apr 2024, 11:50 AM</b></Link>
+                                </li>
+                                <li>
+                                    <span></span>
+                                    <Link to="#">Invoice Generated <b>26 Apr 2024, 11:50 AM</b></Link>
+                                </li>
+                            </ul>
+                        </div> */}
                         <div className="invoiceDownload">
                             <p>Download Invoice</p>
                             <button onClick={() => toPDF()}><img src={download} alt="download" /> Download PDF</button>
@@ -183,7 +209,7 @@ const InvoiceDetails = () => {
                 </div>
             </div>
 
-            <RecordPayment invoiceId={id} show={show} setShow={setShow} handleClose={handleClose} invoiceDetail={invoiceDetail}  />
+            <RecordPayment invoiceId={id} show={show} setShow={setShow} handleClose={handleClose} invoiceDetail={invoiceDetail} />
         </Layout>
     )
 }

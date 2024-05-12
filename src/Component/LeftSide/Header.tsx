@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import bell from "../../Assets/Images/icon/bell-01.png";
 import circle from "../../Assets/Images/icon/info-circle.png";
@@ -14,6 +14,8 @@ import { isAuthenticate } from '../../api/auth';
 import { DESKIE_API as API } from '../../config';
 import { Link } from 'react-router-dom';
 import memberIcon from '../../Assets/Images/icon/memberAvatar.png';
+import { faBell } from '@fortawesome/free-regular-svg-icons';
+import { notificationsList } from '../../api/notification';
 
 const Header = ({ onValueChange }: any) => {
     const navigate = useNavigate();
@@ -22,6 +24,9 @@ const Header = ({ onValueChange }: any) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userRole, setUserRole] = useState("");
+    const [searchTerm, setSearchTerm] = useState('');
+    const [notifyList, setNotifyList] = useState([]);
+
     const handleClick = () => {
         setCollapsed(!collapsed)
         onValueChange(collapsed);
@@ -45,8 +50,18 @@ const Header = ({ onValueChange }: any) => {
                 setUserRole(data.data.data.role);
             }
         })
+        notificationsList().then((data) => {
+            setNotifyList(data) 
+        })
     }, []);
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const filteredNotify = notifyList.filter((notify: any) =>
+        notify.invoice_id.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
     return (
         <>
@@ -65,7 +80,33 @@ const Header = ({ onValueChange }: any) => {
                 </div>
                 <div className='rightNavbar'>
                     <button><img src={circle} alt="circle" /></button>
-                    <button><img src={bell} alt="bell" /></button>
+                    <div className="notificationBox">
+                        <Dropdown>
+                            <Dropdown.Toggle>
+                            <img src={bell} alt="bell" />
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <div className="notifyHeading">
+                                    <p>Notifications</p>
+                                    <img src={bell} alt="bell" />
+                                </div>
+                                <div className='searchInput mt-3'>
+                                    <input type="text" placeholder='Search notification' onChange={handleInputChange} className='form-control' />
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </div>
+                                <div className="latestHeading">
+                                <h5>LATEST</h5>
+                                </div>
+                                <div className="latestNotify">
+                                    {filteredNotify && filteredNotify.map(((notify:any)=><Link className="notifyBox" to={`/invoice-details/${notify.id}`}>
+                                        <h6>You have a new invoice</h6>
+                                        <h5>Invoice : <span>#{notify.invoice_id}</span></h5>
+                                        <p>{notify.running_time} ago</p>
+                                    </Link>))}
+                                </div>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
                     <button className='memberImg'>
                         {userImage && userImage.length ? <img src={`${API}/${userImage}`} style={{ objectFit: "cover" }} alt="logo" />
                             : <img src={memberIcon} alt="bell" style={{ objectFit: "cover" }} />
@@ -82,9 +123,9 @@ const Header = ({ onValueChange }: any) => {
                                 }
                                 <h6>{firstName && firstName} {lastName && lastName}</h6>
                                 <p>{userRole && userRole === "admin" ? "Admin" : "Member"}</p>
-                                {userRole === 'admin' ?  <Link to="/settings"><img src={userIcon} alt="admin" /> Profile</Link>
-                                : <Link to="/my-settings"><img src={userIcon} alt="admin" /> Profile</Link>}
-                                <Link to="/"><img src={logout} alt="admin" /> Logout</Link> 
+                                {userRole === 'admin' ? <Link to="/settings"><img src={userIcon} alt="admin" /> Profile</Link>
+                                    : <Link to="/my-settings"><img src={userIcon} alt="admin" /> Profile</Link>}
+                                <Link to="/"><img src={logout} alt="admin" /> Logout</Link>
                             </div>
                         </Dropdown.Menu>
                     </Dropdown>
