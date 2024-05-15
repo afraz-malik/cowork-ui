@@ -1,15 +1,16 @@
-/* .invoiceView {
-    padding: 26px 24px;
-} */
 .invoiceView {
     background-color: #fff;
-    width: 80%;
+    width: 60%;
     margin-right: 20px;
     border-radius: 12px;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
+}
+
+.rightInvoice {
+    width: 39%;
 }
 
 .invoiceInformation {
@@ -37,14 +38,14 @@
     margin-bottom: 4px;
 }
 
-.invoiceInfo .invoiceId h6{
-font-family: "Inter";
-font-size: 14px;
-font-weight: 500;
-line-height: 24px;
-letter-spacing: 0em;
-text-align: left;
-color: rgba(16, 24, 40, 1);
+.invoiceInfo .invoiceId h6 {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(16, 24, 40, 1);
 }
 
 .invoiceTop .invoiceId h1 {
@@ -291,31 +292,33 @@ color: rgba(16, 24, 40, 1);
     white-space: nowrap;
 }
 
-.invoiceId .status span{
+.invoiceId .status span {
     font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: center;
-  width: auto;
-  padding: 5px 10px;
-  margin-bottom: 0px;
-  border-radius: 16px;
-  -webkit-border-radius: 16px;
-  -moz-border-radius: 16px;
-  -ms-border-radius: 16px;
-  -o-border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    width: auto;
+    padding: 5px 10px;
+    margin-bottom: 0px;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
 }
 
-.invoiceId .status .paid{
+.invoiceId .status .paid {
     color: rgba(2, 122, 72, 1);
-  background: rgba(236, 253, 243, 1);
+    background: rgba(236, 253, 243, 1);
 }
-.invoiceId .status .unpaid{
+
+.invoiceId .status .unpaid {
     color: rgba(185, 56, 21, 1);
-  background: rgba(255, 244, 237, 1);
+    background: rgba(255, 244, 237, 1);
 }
+
 .amountPaid {
     color: rgba(2, 122, 72, 1) !important;
     background: rgba(236, 253, 243, 1) !important;
@@ -325,14 +328,16 @@ color: rgba(16, 24, 40, 1);
     color: rgba(185, 56, 21, 1) !important;
     background: rgba(255, 244, 237, 1) !important;
 }
-.invoiceDropdown .dropdown-toggle svg{
-margin: 0px 6px;
+
+.invoiceDropdown .dropdown-toggle svg {
+    margin: 0px 6px;
 }
 
-.invoiceDropdown .dropdown-toggle::after{
+.invoiceDropdown .dropdown-toggle::after {
     display: none !important;
 }
-.invoiceDropdown .invoiceActions button{
+
+.invoiceDropdown .invoiceActions button {
     font-family: "Inter";
     font-size: 14px;
     font-weight: 500;
@@ -343,9 +348,115 @@ margin: 0px 6px;
     display: flex;
     align-items: center;
 }
-.invoiceDropdown .invoiceActions button img{
+
+.invoiceDropdown .invoiceActions button img {
     margin-right: 10px;
 }
-.invoiceDropdown .dropdown .dropdown-menu{
+
+.invoiceDropdown .dropdown .dropdown-menu {
     min-width: 250px;
+}
+
+.invoicePoint .list-ic a {
+    color: rgba(102, 112, 133, 1);
+    text-decoration: none;
+    padding-left: 15px;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+   cursor: default;
+}
+
+.invoicePoint .list-ic a b {
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    color: rgba(152, 162, 179, 1);
+}
+
+.invoicePoint .list-ic li {
+    position: relative;
+}
+
+.invoicePoint .list-ic li span {
+    display: inline-block;
+    font-weight: 800;
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    line-height: 2em;
+    border-radius: 1em;
+    background: rgba(99, 102, 241, 1);
+    color: white;
+    position: relative;
+    z-index: 9;
+    border: 5px solid rgba(99, 102, 241, 1);
+}
+
+.invoicePoint .list-ic li::before {
+    content: '';
+    position: absolute;
+    background: rgba(234, 236, 240, 1);
+    z-index: 1;
+}
+
+.invoicePoint .list-ic.horizontal li {
+    display: inline-block;
+}
+
+.invoicePoint .list-ic.horizontal li span {
+    margin: 0 1em;
+}
+
+.invoicePoint .list-ic.horizontal li:before {
+    top: 0.9em;
+    left: -25px;
+    width: 4em;
+    height: 0.2em;
+}
+
+.invoicePoint .list-ic.vertical {
+    padding: 0;
+    margin: 0;
+}
+
+.invoicePoint .list-ic.vertical li {
+    list-style-type: none;
+    text-align: left;
+    display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+
+.invoicePoint .list-ic.vertical li:before {
+    top: -25px;
+    left: 6px;
+    width: 2px;
+    height: 23px;
+    position: relative;
+    display: block;
+}
+
+.invoicePoint .list-ic li:first-child:before {
+   background-color: transparent;
+}
+
+.invoicePoint .list-ic .active {
+    background: dodgerblue;
+}
+
+.invoicePoint .list-ic .active~li {
+    background: lightblue;
+}
+
+.invoicePoint .list-ic .active~li::before {
+    background: lightblue;
 }

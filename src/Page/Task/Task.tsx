@@ -17,8 +17,6 @@ import DeleteModal from '../../Component/DeleteModal/DeleteModal';
 import ViewTask from '../../Component/ViewTask/ViewTask';
 import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
 import EditTask from '../../Component/ViewTask/EditTask';
-import DateCalender from '../../Component/DateCalender/DateCalender';
-import DatePicker from 'react-datepicker';
 import calenderIcon from "../../Assets/Images/icon/calendar.png";
 
 

@@ -27,9 +27,6 @@ const Spaces = () => {
     const handleShow = () => setShow(true);
     const [assignShow, setAssignShow] = useState(false);
     const handleAssignClose = () => setAssignShow(false);
-    const [spacesShow, setSpacesShow] = useState(false);
-    const handleSpacesClose = () => setSpacesShow(false);
-    const handleSpacesShow = () => setSpacesShow(true);
     const [spaces, setSpaces] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [spacesId, setSpacesId] = useState('');

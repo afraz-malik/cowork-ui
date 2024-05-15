@@ -2,15 +2,12 @@ import React, { useRef, useState, useEffect } from 'react';
 import trash from "../../../Assets/Images/icon/red-trash.png";
 import changeLogo from "../../../Assets/Images/icon/adminUser.png";
 import uploadFile from "../../../Assets/Images/icon/uploadIcon.png";
-import blankUser from "../../../Assets/Images/icon/blank-profile.jpg";
 import PhoneInput from 'react-phone-input-2';
 import { singleJwtMember, updateMember } from '../../../api/member';
 import { isAuthenticate } from '../../../api/auth';
 import { DESKIE_API as API } from '../../../config';
-import { updateAdmin } from '../../../api/admin';
 import { showNotifications } from '../../../CommonFunction/toaster';
 import { ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import memberIcon from "../../../Assets/Images/icon/memberLargeIcon.png";
 
 
@@ -19,7 +16,6 @@ interface AccountProps {
 }
 
 const MyAccount = ({ settingTab }: AccountProps) => {
-    const navigate = useNavigate();
     const [imageLogo, setImageLogo] = useState("");
     const [logoFile, setLogoFile] = useState("");
     const [uploadedLogo, setUploadedLogo] = useState("");

@@ -5,13 +5,11 @@ import Member from './Page/Member/Member';
 import Spaces from './Page/Spaces/Spaces';
 import Announcement from './Page/Announcement/Announcement';
 import Files from './Page/Files/Files';
-import Ticket from './Page/Ticket/Ticket';
 import Chat from './Page/Chat/Chat';
 import Messenger from './Page/Messenger/Messenger';
 import Billing from './Page/Billing/Billing';
 import CreateInvoice from './Page/CreateInvoice/CreateInvoice';
 import InvoiceDetails from './Page/InvoiceDetails/InvoiceDetails';
-import Calender from './Page/Calender/Calender';
 import Settings from './Page/Settings/Settings';
 import Task from './Page/Task/Task';
 import Dashboard from './Page/Dashboard/Dashboard';
@@ -24,6 +22,7 @@ import MyFiles from './Page/User/MyFiles/MyFiles';
 import MyHome from './Page/User/MyHome/MyHome';
 import ViewSpaces from './Component/ViewSpaces/ViewSpaces';
 import ViewMember from './Component/ViewMember/ViewMember';
+import Calender from './Page/Calender/Calender';
 
 const Routing = () => {
     return (
@@ -44,7 +43,7 @@ const Routing = () => {
                         <Route path="/billing" element={<Billing />}></Route>
                         {/* <Route path="/create-invoice" element={<CreateInvoice />}></Route> */}
                         <Route path="/invoice-details/:id" element={<InvoiceDetails />}></Route>
-                        {/* <Route path="/calender" element={<Calender />}></Route> */}
+                         <Route path="/calender" element={<Calender />}></Route> 
                         <Route path="/settings" element={<Settings />}></Route>
                         <Route path="/task" element={<Task />}></Route>
                         <Route path="/dashboard" element={<Dashboard />}></Route>

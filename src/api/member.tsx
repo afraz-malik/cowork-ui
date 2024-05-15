@@ -1,5 +1,5 @@
 
-import { get, getJwt, post, put } from "./base-api";
+import { get, getJwt } from "./base-api";
 import axios from 'axios';
 import { DESKIE_API as API } from '../config';
 // admin login

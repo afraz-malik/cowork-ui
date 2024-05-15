@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Layout from '../../Component/Layout/Layout';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -9,15 +9,31 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import avatar from "../../Assets/Images/icon/Avatar.png";
 import { faCircle, faCircleDot } from '@fortawesome/free-regular-svg-icons';
 import MonthView from './MonthView';
+import { getTaskList } from '../../api/task';
+import moment from 'moment';
+import { DESKIE_API as API } from '../../config';
+import memberBlank from "../../Assets/Images/icon/memberAvatar.png";
 
 const Calender = () => {
+    const [taskList, setTaskList] = useState([]);
+    const [upcomingTasks, setUpcomingTasks] = useState([]);
+console.log('upcomingTasks',upcomingTasks);
 
-    const events = [
-        { title: 'event 1', name: 'saidul', date: '2024-02-18' },
-        { title: 'event 2', name: 'saidul', date: '2024-02-22' },
-        { title: 'event 3', name: 'saidul', date: '2024-02-20' },
-        { title: 'event 4', name: 'saidul', date: '2024-02-20' }
-    ];
+    useEffect(() => {
+        getTaskList("ALL").then((data) => {
+            const transformedTasks = data.map((task:any) => ({
+                title: task.title,
+                status: task.status,
+                date: new Date(task.dueDate).toISOString().split('T')[0] // Convert dueDate to date format
+            }));
+            setTaskList(transformedTasks);
+            const currentDate = new Date().toISOString().split('T')[0];
+            const upcoming = data.filter((task:any) => task.dueDate >= currentDate);
+            const sortedUpcoming:any = upcoming.sort((a:any, b:any) => new Date(a.date).getTime() - new Date(b.date).getTime()).slice(0, 2);
+            setUpcomingTasks(sortedUpcoming);
+        });
+    }, [])
+   
 
     return (
         <>
@@ -36,26 +52,17 @@ const Calender = () => {
                                     <p>Upcoming Events</p>
                                     <button>See All</button>
                                 </div>
-                                <div className="eventDetails">
-                                    <img src={avatar} alt="event" />
+                                {upcomingTasks && upcomingTasks.map((event:any)=><div className="eventDetails">
+                                {event.task_image ? <img src={`${API}/${event.task_image}`} alt="event" />
+                                : <img src={memberBlank} alt="event" />} 
                                     <div className='eventInfo'>
-                                        <p>Suite #102</p>
+                                        <p>{event.title}</p>
                                         <div className='eventCategory'>
-                                            <button>Resource</button>
-                                            <span> <FontAwesomeIcon icon={faCircle} /> Jan 27, 2024</span>
+                                            <button>Task</button>
+                                            <span> <FontAwesomeIcon icon={faCircle} /> {moment(event.dueDate).format('MMM D, YYYY')}</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="eventDetails">
-                                    <img src={avatar} alt="event" />
-                                    <div className='eventInfo'>
-                                        <p>Suite #102</p>
-                                        <div className='eventCategory'>
-                                            <button>Resource</button>
-                                            <span> <FontAwesomeIcon icon={faCircle} /> Jan 27, 2024</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>)}
                                 <div className="eventFilters">
                                     <h1>Filters</h1>
                                     <div className="filterCheck">
@@ -102,7 +109,7 @@ const Calender = () => {
                                 plugins={[dayGridPlugin, timeGridPlugin]}
                                 initialView="dayGridMonth"
                                 weekends={true}
-                                events={events}
+                                events={taskList}
                                 headerToolbar={{
                                     left: 'today',
                                     center: 'prev,title,next',
