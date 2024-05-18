@@ -23,6 +23,8 @@ import MyHome from './Page/User/MyHome/MyHome';
 import ViewSpaces from './Component/ViewSpaces/ViewSpaces';
 import ViewMember from './Component/ViewMember/ViewMember';
 import Calender from './Page/Calender/Calender';
+import BookTour from './Page/BookTour/BookTour';
+import BookList from './Page/BookList/BookList';
 
 const Routing = () => {
     return (
@@ -43,7 +45,7 @@ const Routing = () => {
                         <Route path="/billing" element={<Billing />}></Route>
                         {/* <Route path="/create-invoice" element={<CreateInvoice />}></Route> */}
                         <Route path="/invoice-details/:id" element={<InvoiceDetails />}></Route>
-                         <Route path="/calender" element={<Calender />}></Route> 
+                        <Route path="/calender" element={<Calender />}></Route>
                         <Route path="/settings" element={<Settings />}></Route>
                         <Route path="/task" element={<Task />}></Route>
                         <Route path="/dashboard" element={<Dashboard />}></Route>
@@ -51,7 +53,9 @@ const Routing = () => {
 
                     {/* login */}
                     <Route path="/" element={<Login />}></Route>
-
+                    {/* book tour */}
+                    <Route path="/book-a-tour" element={<BookTour />}></Route>
+                    <Route path="/book-list" element={<BookList />}></Route>
                     {/* member */}
                     <Route element={<UserRoute />}>
                         <Route path="/my-messenger" element={<Messenger />}></Route>
@@ -64,7 +68,7 @@ const Routing = () => {
                     </Route>
                     <Route path="/sign-up" element={<SignUp />}></Route>
                     <Route path="/create-invoice" element={<CreateInvoice />}></Route>
-
+                    
                 </Routes>
             </BrowserRouter>
         </>
