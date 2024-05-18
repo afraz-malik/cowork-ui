@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../Component/Layout/Layout';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -13,27 +13,69 @@ import { getTaskList } from '../../api/task';
 import moment from 'moment';
 import { DESKIE_API as API } from '../../config';
 import memberBlank from "../../Assets/Images/icon/memberAvatar.png";
-
+import { getTourList } from '../../api/tour';
+interface Task {
+    title: string;
+    filter: string;
+    date: string;
+    classNames: string;
+}
 const Calender = () => {
-    const [taskList, setTaskList] = useState([]);
+    const [taskList, setTaskList] = useState<Task[]>([]);
     const [upcomingTasks, setUpcomingTasks] = useState([]);
-console.log('upcomingTasks',upcomingTasks);
-
+    
     useEffect(() => {
         getTaskList("ALL").then((data) => {
-            const transformedTasks = data.map((task:any) => ({
-                title: task.title,
-                status: task.status,
-                date: new Date(task.dueDate).toISOString().split('T')[0] // Convert dueDate to date format
-            }));
-            setTaskList(transformedTasks);
             const currentDate = new Date().toISOString().split('T')[0];
-            const upcoming = data.filter((task:any) => task.dueDate >= currentDate);
-            const sortedUpcoming:any = upcoming.sort((a:any, b:any) => new Date(a.date).getTime() - new Date(b.date).getTime()).slice(0, 2);
+            const upcoming = data.filter((task: any) => task.dueDate >= currentDate);
+            const sortedUpcoming: any = upcoming.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime()).slice(0, 2);
             setUpcomingTasks(sortedUpcoming);
         });
     }, [])
-   
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const taskData = await getTaskList("ALL");
+                const tourData = await getTourList();
+
+                const transformedTasks = taskData.map((task: any) => {
+                    let title = task.title;
+                    if (title.length > 9) {
+                        title = title.slice(0, 9) + '...';
+                    }
+                    return {
+                        title: title,
+                        filter: "task",
+                        classNames: ['task-background'],
+                        date: new Date(task.dueDate).toISOString().split('T')[0]
+                    };
+                });
+
+                const transformedTours = tourData.map((tour: any) => {
+                    let title = tour.name;
+                    if (title.length > 9) {
+                        title = title.slice(0, 9) + '...';
+                    }
+                    return {
+                        title: title,
+                        filter: "tour",
+                        classNames: ['tour-background'],
+                        date: new Date(tour.tour_date).toISOString().split('T')[0]
+                    };
+                });
+
+                const mergedList = [...transformedTasks, ...transformedTours];
+
+                setTaskList(mergedList);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
 
     return (
         <>
@@ -45,16 +87,16 @@ console.log('upcomingTasks',upcomingTasks);
                                 <button> <FontAwesomeIcon icon={faPlus} /> Add Event</button>
                             </div>
                             <div className="monthView">
-                                <MonthView/>
+                                <MonthView />
                             </div>
                             <div className="eventUpcoming">
                                 <div className="eventHeading">
                                     <p>Upcoming Events</p>
                                     <button>See All</button>
                                 </div>
-                                {upcomingTasks && upcomingTasks.map((event:any)=><div className="eventDetails">
-                                {event.task_image ? <img src={`${API}/${event.task_image}`} alt="event" />
-                                : <img src={memberBlank} alt="event" />} 
+                                {upcomingTasks && upcomingTasks.map((event: any) => <div className="eventDetails">
+                                    {event.task_image ? <img src={`${API}/${event.task_image}`} alt="event" />
+                                        : <img src={memberBlank} alt="event" />}
                                     <div className='eventInfo'>
                                         <p>{event.title}</p>
                                         <div className='eventCategory'>
