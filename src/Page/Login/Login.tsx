@@ -17,7 +17,6 @@ import ChangePassword from '../../Component/ChangePassword/ChangePassword';
 const Login = () => {
     const navigate = useNavigate();
     const [profile, setProfile] = useState<any>();
-    const [backImage, setBackImage] = useState("");
     const [passwordUpdate, setPasswordUpdate] = useState(false);
     const [togglePassword, setTogglePassword] = useState(false);
     const [toggleType, setToggleType] = useState("password");
@@ -80,7 +79,6 @@ const Login = () => {
             }
             else {
                 setProfile(data.data);
-                setBackImage(data.data.background);
             }
         })
     }, [])

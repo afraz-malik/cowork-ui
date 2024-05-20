@@ -25,6 +25,8 @@ import ViewMember from './Component/ViewMember/ViewMember';
 import Calender from './Page/Calender/Calender';
 import BookTour from './Page/BookTour/BookTour';
 import BookList from './Page/BookList/BookList';
+import Visitor from './Page/Visitor/Visitor';
+import VisitorList from './Page/VisitorList/VisitorList';
 
 const Routing = () => {
     return (
@@ -49,6 +51,7 @@ const Routing = () => {
                         <Route path="/settings" element={<Settings />}></Route>
                         <Route path="/task" element={<Task />}></Route>
                         <Route path="/dashboard" element={<Dashboard />}></Route>
+                        <Route path="/visitor-log" element={<VisitorList />}></Route>
                     </Route>
 
                     {/* login */}
@@ -56,6 +59,7 @@ const Routing = () => {
                     {/* book tour */}
                     <Route path="/book-a-tour" element={<BookTour />}></Route>
                     <Route path="/book-list" element={<BookList />}></Route>
+                    <Route path="/visitor" element={<Visitor />}></Route>
                     {/* member */}
                     <Route element={<UserRoute />}>
                         <Route path="/my-messenger" element={<Messenger />}></Route>

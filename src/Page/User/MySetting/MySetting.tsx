@@ -1,9 +1,9 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Layout from '../../../Component/Layout/Layout'
 import MyAccount from './MyAccount';
 
 const MySetting = () => {
-  
+
     const [companyFinance, setCompanyFinance] = useState(false);
     const [companyAccount, setCompanyAccount] = useState(true);
     const settingTab = (setting: string) => {
@@ -22,22 +22,23 @@ const MySetting = () => {
         }
     }
 
-  return (
-    <>
-     <Layout>
+    return (
+        <>
+            <Layout>
 
-     {companyAccount ? <MyAccount settingTab={settingTab} /> : ""}
+                {companyAccount ? <MyAccount settingTab={settingTab} /> : ""}
 
-{/* {companyProfile ? <Profile settingTab={settingTab} /> : ""}
-{companyAccount ? <Account settingTab={settingTab} /> : ""}
-{companyFinance ? <Finance settingTab={settingTab} /> : ""}
-{companyUsers ? <Users settingTab={settingTab} /> : ""}
-{companyCustomization ? <Customization settingTab={settingTab} /> : ""}
- */}
+                {/*
+                    {companyProfile ? <Profile settingTab={settingTab} /> : ""}
+                    {companyAccount ? <Account settingTab={settingTab} /> : ""}
+                    {companyFinance ? <Finance settingTab={settingTab} /> : ""}
+                    {companyUsers ? <Users settingTab={settingTab} /> : ""}
+                    {companyCustomization ? <Customization settingTab={settingTab} /> : ""}
+                */}
 
-</Layout>   
-    </>
-  )
+            </Layout>
+        </>
+    )
 }
 
 export default MySetting

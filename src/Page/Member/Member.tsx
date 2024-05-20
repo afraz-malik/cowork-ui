@@ -199,9 +199,6 @@ const Member = () => {
               </Table>
               <Pagination paginationTitle="members" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={member} />
             </div>
-
-
-
             <AddMember show={show} setShow={setShow} handleClose={handleClose} />
             <EditMember memberId={memberId} updateShow={updateShow} setUpdateShow={setUpdateShow} handleUpdateClose={handleUpdateClose} />
             <AssignSpaces memberId={memberId} assignShow={assignShow} setAssignShow={setAssignShow} handleAssignClose={handleAssignClose} />

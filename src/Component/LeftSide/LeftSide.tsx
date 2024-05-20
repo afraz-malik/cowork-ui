@@ -112,6 +112,9 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
                                         </ul>
                                     </div> */}
                                 </li>
+                                <li className={urlParams === "visitor" ? "navLink activeMenu" : "navLink"}>
+                                <Link to="/visitor-log"><img src={wallet02} alt="dashboard" />Visitor Log</Link>
+                            </li>
                                 <li className={urlParams === "settings" ? "navLink activeMenu" : "navLink"}>
                                     <Link to="/settings"><img src={setting} alt="dashboard" />Settings</Link>
                                 </li>
