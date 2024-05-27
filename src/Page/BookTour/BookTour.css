@@ -170,6 +170,20 @@
     background-color: rgba(99, 102, 241, 1);
     color: rgb(255, 255, 255);
 }
+.selectTime .pickTime .booked{
+    color: rgb(214, 214, 214);
+    position: relative;
+}
+.selectTime .pickTime .booked::after{
+    content: "";
+    width: 45px;
+    height: 2px;
+    position: absolute;
+    top: 17px;
+    left: 11px;
+    background-color: rgb(214, 214, 214);
+}
+
 
 .selectTime .chooseDate {
     display: flex;

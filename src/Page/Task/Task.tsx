@@ -193,15 +193,38 @@ const Task = () => {
             </div>
         </div>
     );
-
-    const CustomDateFormatInput: React.FC<any> = forwardRef(({ value, onClick }, ref) => (
-        <button className="calenderBox requestInputForm" onClick={onClick}>
-            {value}
-            <p>MM/DD/YYYY</p>
-            <img src={calenderIcon} alt="calender" />
-        </button>
-    ));
-
+    const [dragging, setDragging] = useState(false);
+    const [mouseDown, setMouseDown] = useState(false);
+  
+    useEffect(() => {
+      const handleMouseMove = () => {
+        if (mouseDown) {
+          setDragging(true);
+        }
+      };
+  
+      const handleMouseUp = () => {
+        if (mouseDown && !dragging) {
+          console.log('Mouse clicked!');
+          viewTasks(taskId)
+        }
+        setMouseDown(false);
+        setDragging(false);
+      };
+  
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+  
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
+      };
+    }, [mouseDown, dragging]);
+    const handleMouseDown = (taskId:string) => {
+        setMouseDown(true);
+        setDragging(false);
+        setTaskId(taskId);
+      };
     return (
         <>
             <Layout>
@@ -270,6 +293,7 @@ const Task = () => {
                                                                         ref={provided.innerRef}
                                                                         {...provided.draggableProps}
                                                                         {...provided.dragHandleProps}
+                                                                        onMouseDown={()=>handleMouseDown(task.id)}
                                                                     >
                                                                         <div className="taskHeading">
                                                                             <p>{task.title}</p>

@@ -237,7 +237,7 @@ const Files = () => {
             <div className="text43">Favorites</div>
             <div className="file-2-parent">
               {favoriteList && favoriteList.map((favorite: any, index) =>
-                <div className={getFileExtension(favorite.extension)}>
+                <div className={getFileExtension(favorite.extension)} onClick={()=>lightBox(favorite.files_upload)}>
                   <div className='favorite'>
                     <img src={getFileType(favorite.extension)} alt="avatar" />
                   </div>

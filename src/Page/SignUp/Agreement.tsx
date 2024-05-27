@@ -52,7 +52,7 @@ const Agreement = ({ tabChoose, signatureAdd,memberId, dataURL, setDataURL, sign
                                 <input type="checkbox" name="agreement" />
                                 <span className="checkmark"></span></div>
                         </label>
-                        <span className='agreeText'>I Aggree to the aggreement</span>
+                        <span className='agreeText'>I agree</span>
                     </label>
                 </div>
 

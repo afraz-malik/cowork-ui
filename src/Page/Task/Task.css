@@ -260,11 +260,17 @@
 .taskDropdown .filterBtn svg {
     margin: 0px 15px;
 }
-.mr-2{
+
+.mr-2 {
     margin-right: 5px;
 }
-.memberAddBtn button.deleteSpaces{
+
+.memberAddBtn button.deleteSpaces {
     background-color: rgba(254, 243, 242, 1) !important;
     color: rgba(180, 35, 24, 1) !important;
-    border: 1px solid rgba(180, 35, 24, 1) !important;;
+    border: 1px solid rgba(180, 35, 24, 1) !important;
+}
+
+[data-rbd-drag-handle-context-id="0"] {
+    cursor: pointer !important;
 }

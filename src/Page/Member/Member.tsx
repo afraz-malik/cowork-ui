@@ -148,6 +148,7 @@ const Member = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></th>
+                    <th></th>
                     <th>Name <FontAwesomeIcon icon={faArrowUp} /></th>
                     <th>Email Address</th>
                     <th>Phone Number</th>
@@ -162,12 +163,15 @@ const Member = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
+                    <td>
+                    {data.member_image ?
+                          <><img src={`${API}/${data.member_image}`} alt="avatar" style={{ borderRadius: "50%", objectFit: "cover" }} /></>
+                          : <><img src={memberAvatar} alt="avatar" style={{ borderRadius: "50%" }} /> </>
+                        }
+                    </td>
                     <td className='tableLink'>
                       <Link className='tableImage' to={`${data.id}`}>
-                        {data.member_image ?
-                          <><img src={`${API}/${data.member_image}`} alt="avatar" style={{ borderRadius: "50%", objectFit: "cover" }} /> {data.first_name} {data.last_name}</>
-                          : <><img src={memberAvatar} alt="avatar" style={{ borderRadius: "50%" }} /> {data.first_name} {data.last_name}</>
-                        }
+                        {data.first_name} {data.last_name}
                       </Link>
                     </td>
                     <td>{data.email}</td>
@@ -199,9 +203,6 @@ const Member = () => {
               </Table>
               <Pagination paginationTitle="members" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={member} />
             </div>
-
-
-
             <AddMember show={show} setShow={setShow} handleClose={handleClose} />
             <EditMember memberId={memberId} updateShow={updateShow} setUpdateShow={setUpdateShow} handleUpdateClose={handleUpdateClose} />
             <AssignSpaces memberId={memberId} assignShow={assignShow} setAssignShow={setAssignShow} handleAssignClose={handleAssignClose} />

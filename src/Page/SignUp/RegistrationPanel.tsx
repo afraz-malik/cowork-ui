@@ -89,12 +89,7 @@ const RegistrationPanel = () => {
     // single member info load
     useEffect(() => {
         singleJwtMember(token).then((data) => {
-            if (data.statusCode !== 200) {
-
-            }
-            else {
-                setMemberInfo(data.data.data);
-            }
+            setMemberInfo(data.data.data);
         })
     }, []);
 
@@ -191,7 +186,7 @@ const RegistrationPanel = () => {
                     {passwordTab ? <PasswordPanel password={password} setPassword={setPassword} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} tabChoose={tabChoose} /> : ""}
                     {billingTab ? <Billing tabChoose={tabChoose} /> : ""}
                     {agreementTab ? <Agreement memberId={memberInfo.id} signatureAdd={signatureAdd} dataURL={dataURL} setDataURL={setDataURL} signName={signName} setSignName={setSignName} dataFile={dataFile} setDataFile={setDataFile} tabChoose={tabChoose} /> : ""}
-                    {finishTab ? <Finish tabChoose={tabChoose} /> : ""}
+                    {finishTab ? <Finish password={password} email={memberInfo.email} tabChoose={tabChoose} /> : ""}
                 </div>
             </div>
         </>

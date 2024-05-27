@@ -15,6 +15,9 @@ export const memberPassword = async (body = {}) => {
 export const getUsers = async () => {
     return get("/users")
 }
+export const adminList = async () => {
+    return get("/adminList")
+}
 
 // export const updateAdmin = async (email:string,body = {}) => {
 //     return put(`/adminUpdate/${email}`,body)

@@ -50,8 +50,9 @@ const ViewSpaces = () => {
                     </div>
                     <div className="spacesDetailsBox">
                         <div className="topLine">
-                            <div className='tableHeading'>
-                                <h6><FontAwesomeIcon icon={faArrowLeft} /> {spacesDetails.name}</h6>
+                            <div className="memberName">
+                                <Link to="/assets" className='backDashboard'><FontAwesomeIcon icon={faArrowLeft} /></Link>
+                                <h6> {spacesDetails.name}</h6>
                             </div>
                             <div className="editBtn">
                                 <button onClick={() => spacesUpdate(spacesDetails.id)}><img src={penIcon} alt="edit" /> Edit Asset</button>
@@ -81,13 +82,13 @@ const ViewSpaces = () => {
                                             <h6>Size</h6>
                                             <p>{spacesDetails.size}</p>
                                         </div>
-                                        <div className="spacesType" style={{borderLeft: '1px solid rgba(234, 236, 240, 1)'}}>
+                                        <div className="spacesType" style={{ borderLeft: '1px solid rgba(234, 236, 240, 1)' }}>
                                             <h6>Type</h6>
                                             <span className='deskType'>
-                                            {spacesDetails.tag === "private" ? <span className='private'>Private Office</span> : ""}
-                                            {spacesDetails.tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
-                                            {spacesDetails.tag === "flex" ? <span className='flex'>Flex</span> : ""}
-                                        </span>
+                                                {spacesDetails.tag === "private" ? <span className='private'>Private Office</span> : ""}
+                                                {spacesDetails.tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
+                                                {spacesDetails.tag === "flex" ? <span className='flex'>Flex</span> : ""}
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="spacesNotes">

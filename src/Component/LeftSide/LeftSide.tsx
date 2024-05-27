@@ -15,7 +15,7 @@ import setting from "../../Assets/Images/icon/settings-01.svg";
 import ticket from "../../Assets/Images/icon/ticket-02.svg";
 import user from "../../Assets/Images/icon/user-01.svg";
 import wallet02 from "../../Assets/Images/icon/wallet-02.svg";
-import file from "../../Assets/Images/icon/folder.svg";
+import visitor from "../../Assets/Images/icon/user-check-02.png";
 import { useNavigate } from 'react-router-dom';
 import { singleProfile } from '../../api/settings';
 
@@ -40,7 +40,7 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
             }
             else {
                 setCompanyName(data.data.company_name);
-                setDarkIconImage(data.data.company_icon_dark);
+                setDarkIconImage(data.data.company_logo_dark);
                 setCompanyAddress(data.data.address);
             }
         })
@@ -49,17 +49,12 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
         <div className='sideBar'>
             <Sidebar onBackdropClick={() => setCollapsed(false)} collapsed={collapsed} width="280px" collapsedWidth="0px">
                 <div className="sidebarBox">
-                    <div style={{ padding: "0px 15px" }}>
+                    <div>
                         <div className="sidebarLogo"> 
                          {darkIconImage ? <img src={`${API}/${darkIconImage}`} alt="admin" /> 
                          : <img src={adminIcon} alt="admin" />}   
-                            <div className='adminHeading'>
-                                <p>{companyName && companyName}</p>
-                                <span>{companyAddress}</span>
-                            </div>
-                            <img src={arrow} className='arrow' alt="admin" />
                         </div>
-                        <div className="sidebarMenu">
+                        <div className="sidebarMenu" style={{ padding: "0px 15px" }}>
                             {userAuth && userAuth.user.role === "admin" ? <ul className="list-unstyled">
                             <li className={urlParams === "dashboard" ? "navLink activeMenu" : "navLink"}>
                                     <Link to="/dashboard"><img src={dashboard} alt="dashboard" />Dashboard</Link>
@@ -112,6 +107,9 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
                                         </ul>
                                     </div> */}
                                 </li>
+                                <li className={urlParams === "visitor-log" ? "navLink activeMenu" : "navLink"}>
+                                <Link to="/visitor-log"><img src={visitor} alt="dashboard" />Visitor Log</Link>
+                            </li>
                                 <li className={urlParams === "settings" ? "navLink activeMenu" : "navLink"}>
                                     <Link to="/settings"><img src={setting} alt="dashboard" />Settings</Link>
                                 </li>

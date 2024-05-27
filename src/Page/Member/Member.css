@@ -161,7 +161,7 @@
     vertical-align: middle;
 }
 
-.memberList table tbody tr td:nth-child(2) {
+.memberList table tbody tr td:nth-child(3) {
     color: #101828;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
@@ -172,8 +172,8 @@
     white-space: nowrap;
 }
 
-.memberList table tbody tr td:nth-child(3),
-.memberList table tbody tr td:nth-child(4) {
+.memberList table tbody tr td:nth-child(4),
+.memberList table tbody tr td:nth-child(5) {
     color: #475467;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
@@ -267,14 +267,13 @@
     vertical-align: middle;
     text-align: center;
 }
-
-.memberList table thead tr th:nth-child(3) {
-    width: 284px;
-    text-align: left;
+.memberList table thead tr th:nth-child(2),
+.memberList table tbody tr td:nth-child(2) {
+    width: 94px;
+    text-align: center;
 }
-
 .memberList table thead tr th:nth-child(4) {
-    width: 206px;
+    width: 284px;
     text-align: left;
 }
 
@@ -284,11 +283,16 @@
 }
 
 .memberList table thead tr th:nth-child(6) {
+    width: 206px;
+    text-align: left;
+}
+
+.memberList table thead tr th:nth-child(7) {
     width: 116px;
     text-align: center;
 }
 
-.memberList table tbody tr td:nth-child(6) {
+.memberList table tbody tr td:nth-child(7) {
     width: 116px;
     text-align: center;
     display: flex;
@@ -383,7 +387,7 @@
     background-color: rgb(228, 228, 228);
 }
 
-.paginationNumber button:nth-child(1),
+.paginationNumber button:first-child,
 .paginationNumber button:last-child {
     width: 120px;
 }
@@ -476,6 +480,22 @@
     margin-bottom: 0px;
 }
 
+.memberName .backDashboard,
+.memberName .backDashboard:hover,
+.tableHeading .backDashboard,
+.tableHeading .backDashboard:hover {
+    font-family: "Inter";
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 18px;
+    text-align: left;
+    color: rgba(52, 64, 84, 1);
+    margin-bottom: 0px;
+    background-color: #fff;
+    padding: 0px 8px;
+    display: flex;
+}
+
 .membersDetails {
     background-color: #fff;
     border-radius: 12px;
@@ -501,9 +521,11 @@
     color: rgba(99, 102, 241, 1) !important;
     background-color: #fff !important;
 }
-.membersDetails .topLine .editBtn .edit img{
+
+.membersDetails .topLine .editBtn .edit img {
     margin-right: 8px;
 }
+
 .membersDetails .topLine .editBtn .invite {
     margin-right: 10px;
     font-family: "Inter";
@@ -560,7 +582,8 @@
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
 }
-.invoiceMemberList{
+
+.invoiceMemberList {
     max-height: 650px;
     background-color: white;
     overflow-y: auto;
@@ -826,7 +849,7 @@
 }
 
 .memberBooking .bookingList {
-  margin-top: 15px;
+    margin-top: 15px;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -880,8 +903,9 @@
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
 }
-.invoiceRight .memberNotes{
-    border: 1px solid  rgba(234, 236, 240, 1);
+
+.invoiceRight .memberNotes {
+    border: 1px solid rgba(234, 236, 240, 1);
     padding: 24px;
     border-radius: 12px;
     -webkit-border-radius: 12px;
@@ -889,15 +913,17 @@
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
 }
-.memberNotes p{
-font-family: "Inter";
-font-size: 14px;
-font-weight: 400;
-line-height: 24px;
-text-align: left;
-color: rgba(152, 162, 179, 1);
+
+.memberNotes p {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(152, 162, 179, 1);
 
 }
+
 @media (max-width: 778px) {
     .searchInput input {
         min-width: 100%;
