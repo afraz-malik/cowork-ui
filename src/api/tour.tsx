@@ -6,3 +6,6 @@ export const tourAdd = async (body = {}) => {
 export const getTourList = async () => {
     return get(`/tourList`);
 };
+export const tourTime = async (body={}) => {
+    return get(`/tourTime?dueDate=${body}`,);
+};

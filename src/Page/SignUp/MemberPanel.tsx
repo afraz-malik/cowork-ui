@@ -4,6 +4,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { DESKIE_API as API } from '../../config';
 import imageInput from "../../Assets/Images/icon/imgButton.png";
 import blankUser from "../../Assets/Images/icon/blank-profile.jpg";
+import PhoneInput from 'react-phone-input-2';
 
 interface tabMemberProps {
     tabChoose: (tab: string, select: string) => void;
@@ -39,7 +40,7 @@ const MemberPanel = ({ tabChoose,memberInfo }: tabMemberProps) => {
                 </div>
                 <div className="memberInput memberSignUp">
                     <label>Phone Number</label>
-                    <input type="text" value={memberInfo.phone_number} readOnly name="firstName" placeholder="First Name" className="form-control" />
+                    <PhoneInput country={'us'} disableCountryCode={false} value={memberInfo.phone_number}  inputProps={{ readOnly: true }} />
                 </div>
                 <div className="memberInput memberSignUp">
                     <label>Business Name</label>

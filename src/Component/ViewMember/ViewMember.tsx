@@ -63,13 +63,13 @@ const ViewMember = () => {
                         <div className="topLine">
                             <div className='tableHeading'>
                                 <div className="memberName">
-                                    <h5><FontAwesomeIcon icon={faArrowLeft} /></h5>
+                                    <Link to="/member" className='backDashboard'><FontAwesomeIcon icon={faArrowLeft} /></Link>
                                     {memberDetails.member_image ?
                                         <><img src={`${API}/${memberDetails.member_image}`} alt="avatar" style={{ borderRadius: "50%", objectFit: "cover" }} /></>
                                         : <><img src={memberAvatar} alt="avatar" style={{ borderRadius: "50%" }} /></>
                                     }
                                     <div>
-                                        <h6>{memberDetails.first_name}</h6>
+                                        <h6>{memberDetails.first_name} {memberDetails.last_name}</h6>
                                         <p>Member</p>
                                     </div>
                                 </div>

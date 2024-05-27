@@ -74,12 +74,7 @@ const Login = () => {
 
     useEffect(() => {
         singleProfile().then((data) => {
-            if (data.statusCode !== 200) {
-
-            }
-            else {
-                setProfile(data.data);
-            }
+            setProfile(data.data);
         })
     }, [])
 

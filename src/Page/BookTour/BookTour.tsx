@@ -13,7 +13,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import PhoneInput from 'react-phone-input-2';
 import { v4 as uuidv4 } from 'uuid';
 import { showNotifications } from '../../CommonFunction/toaster';
-import { tourAdd } from '../../api/tour';
+import { tourAdd, tourTime } from '../../api/tour';
 import confirmIcon from "../../Assets/Images/icon/check-circle.png"
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -30,11 +30,19 @@ const BookTour = () => {
     const [tourInfo, setTourInfo] = useState(false);
     const [confirmBook, setConfirmBook] = useState(false);
     const [tourDate, setTourDate] = useState("");
+    const [bookTourDate, setBookTourDate] = useState([]);
+
+    const bookTimes = ["9 AM", "10 AM", "11 AM", "12 AM", "1 PM", "2 PM", "3 PM", "4 PM"];
+
+    const isTimeBooked = (time: string, bookedTimes:any) => {
+        return bookedTimes.includes(time) ? "booked" : "";
+    };
 
     useEffect(() => {
         singleProfile().then((data) => {
             setProfile(data.data);
         })
+
     }, [])
 
     const handleSelect = (info: any) => {
@@ -50,6 +58,10 @@ const BookTour = () => {
         });
         setSelectDay(dayOfWeek);
         setSelectDate(formattedDate);
+        tourTime(info.startStr).then((data) => {
+            console.log('tour', data);
+            setBookTourDate(data)
+        })
     };
 
     const handlePhoneChange = (value: string) => {
@@ -82,6 +94,9 @@ const BookTour = () => {
             }
         })
     }
+
+
+
     return (
         <section className='bookTour'>
             <ToastContainer />
@@ -133,7 +148,19 @@ const BookTour = () => {
 
                                 <div className="pickTime">
                                     <h4>Pick a Time</h4>
-                                    <button className={selectTime === "9 AM" ? 'activeTime' : ""} onClick={() => setSelectTime("9 AM")}>9 AM</button>
+                                    {bookTimes.map((time) => (
+                                        <button
+                                            key={time}
+                                            onClick={()=> isTimeBooked(time, bookTourDate) === 'booked' ?   null : setSelectTime(time)  }
+                                            className={`
+                                            ${selectTime === time ? 'activeTime' : ""} 
+                                            ${isTimeBooked(time, bookTourDate) ? 'booked' : ""}
+                                          `}
+                                        >
+                                            {time}
+                                        </button>
+                                    ))}
+                                    {/* <button className={selectTime === "9 AM" ? 'activeTime' : ""} onClick={() => setSelectTime("9 AM")}>9 AM</button>
                                     <button className={selectTime === "10 AM" ? 'activeTime' : ""} onClick={() => setSelectTime("10 AM")}>10 AM</button>
                                     <button className={selectTime === "11 AM" ? 'activeTime' : ""} onClick={() => setSelectTime("11 AM")}>11 AM</button>
                                     <button className={selectTime === "12 AM" ? 'activeTime' : ""} onClick={() => setSelectTime("12 AM")}>12 AM</button>
@@ -141,6 +168,7 @@ const BookTour = () => {
                                     <button className={selectTime === "2 PM" ? 'activeTime' : ""} onClick={() => setSelectTime("2 PM")}>2 PM</button>
                                     <button className={selectTime === "3 PM" ? 'activeTime' : ""} onClick={() => setSelectTime("3 PM")}>3 PM</button>
                                     <button className={selectTime === "4 PM" ? 'activeTime' : ""} onClick={() => setSelectTime("4 PM")}>4 PM</button>
+                                */}
                                 </div>
                             </div>
                         </div>
