@@ -25,7 +25,7 @@ const Calender = () => {
     const [upcomingTasks, setUpcomingTasks] = useState([]);
     
     useEffect(() => {
-        getTaskList("ALL").then((data) => {
+        getTaskList("ALL","ASC").then((data) => {
             const currentDate = new Date().toISOString().split('T')[0];
             const upcoming = data.filter((task: any) => task.dueDate >= currentDate);
             const sortedUpcoming: any = upcoming.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime()).slice(0, 2);
@@ -36,7 +36,7 @@ const Calender = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const taskData = await getTaskList("ALL");
+                const taskData = await getTaskList("ALL","ASC");
                 const tourData = await getTourList();
 
                 const transformedTasks = taskData.map((task: any) => {

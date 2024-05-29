@@ -917,6 +917,7 @@
   justify-content: center;
   align-items: center;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .avatars2 {
@@ -1837,12 +1838,17 @@ color: rgba(71, 84, 103, 1);
   width: 40px;
   height: 40px;
   object-fit: cover;
-  border: 2px solid #FFAB00;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+.adminOption .adminBorder{
+  border: 2px solid #FFAB00;
+}
+.adminOption .adminBorderless{
+  border: 2px solid #e3e1e1;
 }
 
 .adminName {
@@ -1897,29 +1903,40 @@ color: rgba(71, 84, 103, 1);
   list-style: none;
   background: #F2F2F2;
   padding: 0px 6px;
-  border: 1px solid #e3e1e1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #FFAB00;
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
 }
+.shareMember .content ul .adminBorder{
+   border: 1px solid #FFAB00; 
+}
+.shareMember .content ul .adminBorderless{
+  border: 1px solid #e3e1e1;
+}
+
 
 .shareMember .content ul li img {
   width: 16px;
   height: 16px;
   object-fit: cover;
-  border: 1px solid #FFAB00;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
+.shareMember .content ul li img.adminBorder{
+  border: 1px solid #FFAB00;
+}
+.shareMember .content ul li img.adminBorderless{
+  border: 1px solid #e3e1e1;
+}
+
 
 .shareMember .content ul li span {
   font-family: 'Inter', sans-serif;
@@ -2007,11 +2024,9 @@ color: rgba(71, 84, 103, 1);
   list-style: none;
   background: #F2F2F2;
   padding: 0px 6px;
-  border: 1px solid #e3e1e1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #FFAB00;
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -2022,14 +2037,24 @@ color: rgba(71, 84, 103, 1);
 .searchMemberList li img {
   width: 16px;
   height: 16px;
-  border: 1px solid #FFAB00;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
-
+.adminBordered{
+  border: 1px solid #FFAB00;
+}
+.adminBorderless{
+  border: 1px solid #e3e1e1;
+}
+.searchMemberList li img.adminBordered{
+  border: 1px solid #FFAB00;
+}
+.searchMemberList li img.adminBorderless{
+  border: 1px solid #e3e1e1;
+}
 .searchMemberList li span {
   font-family: 'Inter', sans-serif;
   font-size: 14px;

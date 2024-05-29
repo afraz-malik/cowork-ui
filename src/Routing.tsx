@@ -27,6 +27,7 @@ import BookTour from './Page/BookTour/BookTour';
 import BookList from './Page/BookList/BookList';
 import Visitor from './Page/Visitor/Visitor';
 import VisitorList from './Page/VisitorList/VisitorList';
+import VisitorMember from './Component/ViewMember/VisitorMember';
 
 const Routing = () => {
     return (
@@ -37,6 +38,7 @@ const Routing = () => {
                     <Route element={<PrivateRoute />}>
                         <Route path="/member" element={<Member />}></Route>
                         <Route path="/member/:id" element={<ViewMember />}></Route>
+                        <Route path="/visitor/:id" element={<VisitorMember />}></Route>
                         <Route path="/assets" element={<Spaces />}></Route>
                         <Route path="/assets/:id" element={<ViewSpaces />}></Route>
                         <Route path="/announcements" element={<Announcement />}></Route>

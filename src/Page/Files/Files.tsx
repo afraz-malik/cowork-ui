@@ -66,15 +66,10 @@ const Files = () => {
 
   useEffect(() => {
     getFilesList(limit, page).then((data) => {
-      if (data.statusCode !== 200) {
-
-      }
-      else {
-        setFilesList(data && data.files);
-        setTotalValue(data && data.total);
-        setLimitValue(data && data.limit);
-        setPageValue(data && data.page)
-      }
+      setFilesList(data && data.files);
+      setTotalValue(data && data.total);
+      setLimitValue(data && data.limit);
+      setPageValue(data && data.page)
     });
 
     getMemberList(10, 1).then((data) => {
@@ -228,12 +223,19 @@ const Files = () => {
     setLightBoxFile(fileName);
   }
 
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredFiles = filesList?.filter((member: any) =>
+    member.nick_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    member.extension.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <Layout>
         <ToastContainer />
         <div className='mainContent'>
-          <div className="files">
+           <div className="files">
             <div className="text43">Favorites</div>
             <div className="file-2-parent">
               {favoriteList && favoriteList.map((favorite: any, index) =>
@@ -247,7 +249,7 @@ const Files = () => {
                 </div>)}
 
             </div>
-          </div>
+          </div> 
           <div className="filesTable">
             <div className="topLine">
               <div className='tableHeading'>
@@ -255,7 +257,7 @@ const Files = () => {
               </div>
               <div className='memberSearch'>
                 <div className='searchInput'>
-                  <input type="text" placeholder='Search files' className='form-control' />
+                  <input type="text" placeholder='Search files' onChange={(e)=>setSearchTerm(e.target.value)} className='form-control' />
                   <FontAwesomeIcon icon={faSearch} />
                 </div>
                 <button className='filterBtn'><img src={filter} alt='filter' /> Filter</button>
@@ -279,7 +281,7 @@ const Files = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {filesList && filesList.map((file: any, index) => <tr>
+                  {filteredFiles && filteredFiles.map((file: any, index) => <tr>
                     <td><label className="tableCheckBox">
                       <div className="contactCheck">
                         <input type="checkbox" name="agreement" />

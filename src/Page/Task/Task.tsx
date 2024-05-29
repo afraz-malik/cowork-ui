@@ -56,17 +56,20 @@ const Task = () => {
     const handleEditTaskClose = () => setTaskEditShow(false);
     const [dueDate, setDueDate] = useState<any>("");
 
+    const [sort, setSort] = useState("ASC");
+
     useEffect(() => {
-        getTaskList("PENDING").then((data) => {
+        getTaskList("PENDING", sort).then((data) => {
             setPendingList(data)
         });
-        getTaskList("DOING").then((data) => {
+        getTaskList("DOING", sort).then((data) => {
             setDoingList(data)
         });
-        getTaskList("DONE").then((data) => {
+        getTaskList("DONE", sort).then((data) => {
             setDoneList(data)
         });
-    }, [show, deleteShow,taskEditShow])
+    }, [show, deleteShow, taskEditShow, sort])
+
     const [columns, setColumns] = useState<Column[]>([]);
     useEffect(() => {
         const initialColumns = [
@@ -89,7 +92,7 @@ const Task = () => {
 
         // Set the initial columns
         setColumns(initialColumns);
-    }, [pendingList, doingList, doneList, show,taskEditShow]);
+    }, [pendingList, doingList, doneList, show, taskEditShow]);
 
 
     const addTask = (status: string) => {
@@ -195,36 +198,36 @@ const Task = () => {
     );
     const [dragging, setDragging] = useState(false);
     const [mouseDown, setMouseDown] = useState(false);
-  
+
     useEffect(() => {
-      const handleMouseMove = () => {
-        if (mouseDown) {
-          setDragging(true);
-        }
-      };
-  
-      const handleMouseUp = () => {
-        if (mouseDown && !dragging) {
-          console.log('Mouse clicked!');
-          viewTasks(taskId)
-        }
-        setMouseDown(false);
-        setDragging(false);
-      };
-  
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-  
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
-      };
+        const handleMouseMove = () => {
+            if (mouseDown) {
+                setDragging(true);
+            }
+        };
+
+        const handleMouseUp = () => {
+            if (mouseDown && !dragging) {
+                console.log('Mouse clicked!');
+                viewTasks(taskId)
+            }
+            setMouseDown(false);
+            setDragging(false);
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseup', handleMouseUp);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseup', handleMouseUp);
+        };
     }, [mouseDown, dragging]);
-    const handleMouseDown = (taskId:string) => {
+    const handleMouseDown = (taskId: string) => {
         setMouseDown(true);
         setDragging(false);
         setTaskId(taskId);
-      };
+    };
     return (
         <>
             <Layout>
@@ -233,7 +236,7 @@ const Task = () => {
                     <Container>
                         <Row>
                             <Col md={12}>
-                          
+
                                 <div className="allTaskFilter">
                                     <p>All Tasks</p>
                                     <div className="d-flex">
@@ -247,14 +250,22 @@ const Task = () => {
                                                     <Dropdown.Item>Your Tasks</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
-                                        </div> 
+                                        </div>
                                         {/* <div className='filterDropdown'>
                                         <DatePicker placeholderText="Select a date" onChange={dueDateChange} dateFormat="MM/dd/yyyy" customInput={<CustomDateFormatInput />} renderCustomHeader={CustomHeader} />
                                         </div> */}
-                                            <div className='filterDropdown taskDropdown'>
-                                           <button className='filterBtn' style={{height: "100%", marginLeft: '10px',paddingLeft: '10px'}}><img src={arrow} alt="arrow" style={{marginRight: '7px'}} /> Due Date <FontAwesomeIcon icon={faChevronDown} /></button> 
-                                           </div> 
-                                      
+                                        <div className='filterDropdown taskDropdown'>
+                                            <Dropdown>
+                                                <Dropdown.Toggle>
+                                                    <button className='filterBtn' style={{ height: "100%", marginLeft: '10px', paddingLeft: '10px' }}><img src={arrow} alt="arrow" style={{ marginRight: '7px' }} /> Due Date <FontAwesomeIcon icon={faChevronDown} /></button>
+                                                </Dropdown.Toggle>
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Item onClick={() => setSort("ASC")}>Due Date (Ascending)</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => setSort("DESC")}>Due Date (Descending)</Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+                                        </div>
+
                                     </div>
                                 </div>
                             </Col>
@@ -293,7 +304,7 @@ const Task = () => {
                                                                         ref={provided.innerRef}
                                                                         {...provided.draggableProps}
                                                                         {...provided.dragHandleProps}
-                                                                        onMouseDown={()=>handleMouseDown(task.id)}
+                                                                        onMouseDown={() => handleMouseDown(task.id)}
                                                                     >
                                                                         <div className="taskHeading">
                                                                             <p>{task.title}</p>
