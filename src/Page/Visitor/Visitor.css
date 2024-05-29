@@ -129,8 +129,10 @@ line-height: 24px;
 text-align: left;
 color: rgba(16, 24, 40, 1);
 }
-.visitorList .reason span{
+.visitorList .reason a{
     font-weight: 400;
+    text-decoration: none;
+    color: rgba(16, 24, 40, 1);
 }
 .removeVisitor img{
     width: 20px !important;

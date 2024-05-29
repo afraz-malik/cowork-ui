@@ -21,6 +21,7 @@ const Visitor = () => {
   const [email, setEmail] = useState("");
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [roleItem, setRoleItem] = useState<string | null>(null);
+  const [roleId, setRoleId] = useState<string | null>(null);
   const [visitorOption, setVisitorOption] = useState(true);
   const [visitorInfo, setVisitorInfo] = useState(false);
   const [successCheck, setSuccessCheck] = useState(false);
@@ -39,10 +40,16 @@ const Visitor = () => {
     })
   }, []);
 
-  
+
 
   const handleSelect = (eventKey: string | null) => {
     setSelectedItem(eventKey);
+  };
+
+  const handleRoleSelect = (eventKey: string | null) => {
+    const [id, name]: any = eventKey?.split('|');
+    setRoleItem(name);
+    setRoleId(id);
   };
 
   const manuallyOption = () => {
@@ -56,7 +63,7 @@ const Visitor = () => {
       "name": name,
       "email": email,
       "reason": selectedItem,
-      "looking": roleItem,
+      "looking": roleId,
       "companyName": profile.company_name,
       "address": profile.address,
       "logoImage": `${API}/${encodeURIComponent(profile.company_logo_dark)}`,
@@ -123,14 +130,14 @@ const Visitor = () => {
         </div>
         <div className="reasonVisit memberInput mb-2">
           <label>I’m Here To See</label>
-          <Dropdown onSelect={(event) => setRoleItem(event)}>
+          <Dropdown onSelect={handleRoleSelect}>
             <Dropdown.Toggle id="dropdown-basic">
               {roleItem && roleItem ? <>{roleItem} <img src={arrow} alt="arrow" /></> : <>Nobody <img src={arrow} alt="arrow" /></>}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              {admin && admin.map((admin: any, index: number) =><Dropdown.Item eventKey={`${admin.first_name} ${admin.last_name}`}>{admin.first_name} {admin.last_name}</Dropdown.Item>)}
-              {member && member.map((member: any, index: number) =><Dropdown.Item eventKey={`${member.first_name} ${member.last_name}`}>{member.first_name} {member.last_name}</Dropdown.Item>)}
+              {admin && admin.map((admin: any, index: number) => <Dropdown.Item eventKey={`${admin.id}|${admin.first_name} ${admin.last_name}`}>{admin.first_name} {admin.last_name}</Dropdown.Item>)}
+              {member && member.map((member: any, index: number) => <Dropdown.Item eventKey={`${member.id}|${member.first_name} ${member.last_name}`}>{member.first_name} {member.last_name}</Dropdown.Item>)}
             </Dropdown.Menu>
           </Dropdown>
         </div>

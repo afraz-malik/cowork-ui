@@ -61,12 +61,7 @@ const Announcement = () => {
 
   useEffect(() => {
     getPostList(auth.user.id).then((data) => {
-      if (data.statusCode !== 200) {
-
-      }
-      else {
-        setPostList(data.posts);
-      }
+      setPostList(data.posts);
     })
   }, [count]);
 
@@ -424,7 +419,7 @@ const Announcement = () => {
                       <div className="feedback-child" />
                       <div className="like">
                         <img className="heart-icon" alt="" src={message} />
-                        <div className="comments">{data.comments?.length} Comments</div>
+                        <div className="comments">{data.commentCount} Comments</div>
                       </div>
                     </div>
                     {/* previous comment */}

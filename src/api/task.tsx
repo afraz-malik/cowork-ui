@@ -17,8 +17,8 @@ export const taskAdd = async (body = {}) => {
 };
 
 // task list
-export const getTaskList = async (status: string) => {
-    return get(`/taskList/${status}`);
+export const getTaskList = async (status: string,sort: string) => {
+    return get(`/taskList/${status}?sort=${sort}`);
 };
 // task status update
 export const updateStatus = async (id: string, body = {}) => {

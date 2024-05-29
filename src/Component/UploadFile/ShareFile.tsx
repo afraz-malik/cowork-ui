@@ -4,12 +4,13 @@ import { Col, Container, Modal, Row } from 'react-bootstrap';
 import folder from "../../Assets/Images/icon/folder.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { searchMember, singleJwtMember } from '../../api/member';
+import { getMemberList, searchMember, singleJwtMember } from '../../api/member';
 import { DESKIE_API as API } from '../../config';
 import { showNotifications } from '../../CommonFunction/toaster';
 import { shareUpdate } from '../../api/files';
 import { isAuthenticate } from '../../api/auth';
 import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import { adminList } from '../../api/admin';
 
 interface ShareFileProps {
     handleShareClose: () => void;
@@ -22,20 +23,14 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
     const [userImage, setUserImage] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [members, setMembers] = useState([]);
+    const [loginId, setLoginId] = useState("");
+    const [sharesList, setSharesList] = useState([]);
     const [shares, setShares] = useState<any>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [userRole, setUserRole] = useState("");
-    
+    const [filteredSharesList, setFilteredSharesList] = useState([]);
+
     let auth = isAuthenticate();
-    useEffect(() => {
-
-        searchMember(searchTerm).then((data) => {
-            setMembers(data.results);
-        });
-
-    }, [searchTerm]);
-
     useEffect(() => {
         singleJwtMember(auth.token).then((data) => {
             if (data.statusCode === 200) {
@@ -48,9 +43,49 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
                 setFirstName(data.data.data.first_name);
                 setLastName(data.data.data.last_name);
                 setUserRole(data.data.data.role);
+                setLoginId(data.data.data.id);
             }
         })
     }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const memberData = await getMemberList(10, 1);
+                const adminData = await adminList();
+                let combinedData: any = [];
+                if (userRole === 'admin') {
+                    combinedData = [
+                        ...memberData.members.map((member: any) => ({ ...member, type: 'member' })),
+                    ];
+                    console.log('combinedData', combinedData);
+                    setSharesList(combinedData);
+                } else if (userRole === 'user') {
+                    combinedData = [
+                        ...adminData.map((admin: any) => ({ ...admin, type: 'admin' })),
+                    ];
+                    combinedData = combinedData.filter((item: any) => item.id !== loginId);
+                    setSharesList(combinedData);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, [userRole]);
+
+
+    useEffect(() => {
+        if (searchTerm) {
+            const filteredData = sharesList.filter((item:any) => 
+              item.first_name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            setFilteredSharesList(filteredData);
+          } else {
+            setFilteredSharesList([]);
+          }
+      }, [searchTerm, sharesList]);
+
+   
     const shareList = (share: any) => {
         const shareExists = shares.some((existingShare: any) => existingShare.id === share.id);
         if (!shareExists) {
@@ -77,7 +112,7 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
                     showNotifications('success', 'Share added successfully');
                     setShareShow(false);
                     setShares([]);
-                    setMembers([]);
+                    // setSharesList([]);
                 }
             })
         }
@@ -106,7 +141,7 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
                             <div className="sharing">
                                 <p>Sharing With:</p>
                                 <div className="adminOption">
-                                        {userImage && userImage ? <img src={`${API}/${userImage}`} alt="admin" /> :  <img src={memberIcon} alt="" />}
+                                        {userImage && userImage ? <img src={`${API}/${userImage}`} alt="admin" className={userRole === "admin" ? "adminBorder" : ""} /> :  <img src={memberIcon} alt="" />}
                                         <div className='adminName'>
                                             <p>{firstName} {lastName} (you)</p>
                                             <span>{userRole === "admin" ? "ADMIN" : "MEMBER"}</span>
@@ -115,11 +150,12 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
                                 <div className="shareMember">
                                     <div className="content">
                                         <ul>
-                                        <li>{userImage && userImage ? <img src={`${API}/${userImage}`} alt="admin" /> :  <img src={memberIcon} alt="" />}<span>{firstName}</span><FontAwesomeIcon icon={faXmark} /> </li>
+                                        <li className={userRole === "admin" ? "adminBorder" : ""}>
+                                            {userImage && userImage ? <img src={`${API}/${userImage}`} className={userRole === "admin" ? "adminBorder" : ""} alt="admin" /> :  <img className={userRole === "admin" ? "adminBorder" : ""} src={memberIcon} alt="" />}<span>{firstName}</span><FontAwesomeIcon icon={faXmark} /> </li>
                                             {shares && shares.map((member: any) => (
-                                                <li>
-                                                    {member.member_image ? <img src={`${API}/${member.member_image}`} alt="" />
-                                                    : <img src={memberIcon} alt="" />}
+                                                <li className={member.type === 'admin' ? "adminBordered" : "adminBorderless"}>
+                                                    {member.member_image ? <img src={`${API}/${member.member_image}`} alt="" className={member.type === 'admin' ? "adminBordered" : "adminBorderless"} />
+                                                    : <img src={memberIcon} alt="" className={member.type === 'admin' ? "adminBordered" : "adminBorderless"}/>}
                                                     
                                                     <span>{member.first_name}</span>
                                                     <FontAwesomeIcon onClick={() => removeShare(member.id)} icon={faXmark} />
@@ -130,10 +166,10 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
                                     </div>
                                     <div>
                                         <ul className='searchMemberList'>
-                                            {members && members.map((member: any, index) => (
-                                                <li key={`member` + index} onClick={() => shareList(member)}>
-                                                    {member.member_image ? <img src={`${API}/${member.member_image}`} alt="" />
-                                                    : <img src={memberIcon} alt="" />}
+                                            {filteredSharesList && filteredSharesList.map((member: any, index) => (
+                                                <li key={`member` + index} onClick={() => shareList(member)} className={member.type === 'admin' ? "adminBordered" : "adminBorderless"}>
+                                                    {member.member_image ? <img src={`${API}/${member.member_image}`} className={member.type === 'admin' ? "adminBordered" : "adminBorderless"} alt="" />
+                                                    : <img src={memberIcon} className={member.type === 'admin' ? "adminBordered" : "adminBorderless"} alt="" />}
                                                     
                                                     <span>{member.first_name}</span>
                                                 </li>

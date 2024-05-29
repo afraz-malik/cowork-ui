@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment';
-import memberIcon from "../../Assets/Images/icon/member.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { singleMember, memberSpaces, memberInvoice } from '../../api/member';
 import { DESKIE_API as API } from '../../config';
-import PhoneInput from 'react-phone-input-2';
 import memberBlank from "../../Assets/Images/icon/memberAvatar.png";
 import spacesBlank from "../../Assets/Images/icon/spaceAvatar.png";
 import more from "../../Assets/Images/icon/dots-vertical.png";
@@ -77,7 +75,7 @@ const ViewMember = () => {
                             <div className="editBtn">
                                 {memberDetails.account_active === 1 ? "" : <span className='invite'>Invitation Pending</span> }
                                 
-                                <button className='edit' onClick={() => memberUpdate(memberDetails.id)}><img src={penIcon} alt="edit" /> Edit Asset</button>
+                                <button className='edit' onClick={() => memberUpdate(memberDetails.id)}><img src={penIcon} alt="edit" /> Edit Member</button>
                             </div>
                         </div>
                         <div className="memberInfo">

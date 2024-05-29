@@ -10,6 +10,7 @@ import trashIcon from "../../Assets/Images/icon/trash-icon.png";
 import downloadIcon from "../../Assets/Images/icon/download-02.png";
 import { showNotifications } from '../../CommonFunction/toaster';
 import { CSVLink } from 'react-csv';
+import { Link } from 'react-router-dom';
 
 const VisitorList = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -160,7 +161,10 @@ const VisitorList = () => {
                     <td className='tableAction'>{visitor.name}</td>
                     <td className='tableAction'>{visitor.email}</td>
                     <td className='tableAction'>{visitor.create_at_date}<br />{visitor.create_at_time}</td>
-                    <td className='tableAction reason'>{visitor.reason}{visitor.looking ? <><br /><span>( {visitor.looking} )</span></> : ""}</td>
+                    <td className='tableAction reason'>{visitor.reason}
+                    {visitor.member_name ? <><br /><Link to={`/visitor/${visitor.member_id}`}> {visitor.member_name} </Link></> : ""}
+                    {visitor.admin_name ? <><br /><Link to="/settings"> {visitor.admin_name} </Link></> : ""}
+                    </td>
                     <td className='tableAction'><button className='btn removeVisitor' onClick={() => deleteVisitor(visitor.id)}><img src={trashIcon} alt="trash" /></button></td>
                   </tr>)}
                 </tbody>
