@@ -9,6 +9,7 @@ import { DESKIE_API as API } from '../../config';
 import imageInput from "../../Assets/Images/icon/imgButton.png";
 import PhoneInput from 'react-phone-input-2';
 import memberBlank from "../../Assets/Images/icon/memberLargeIcon.png";
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 
 interface EditMemberProps {
@@ -33,7 +34,8 @@ const EditMember = ({ memberId, updateShow, setUpdateShow, handleUpdateClose }: 
     const [businessPhone, setBusinessPhone] = useState("");
     const [notes, setNotes] = useState("");
     const [memberImage, setMemberImage] = useState("");
-
+    const [deleteShow, setDeleteShow] = useState(false);
+    const handleDeleteClose = () => setDeleteShow(false);
     function handleChange(e: any) {
         setFile(URL.createObjectURL(e.target.files[0]));
         setImageKey(e.target.files[0]);
@@ -71,6 +73,7 @@ const EditMember = ({ memberId, updateShow, setUpdateShow, handleUpdateClose }: 
           }
         updateMember(memberId, member).then((data) => {
             setUpdateShow(false);
+            setDeleteShow(false);
         })
     }
 
@@ -81,7 +84,13 @@ const EditMember = ({ memberId, updateShow, setUpdateShow, handleUpdateClose }: 
         }
         updateMember(memberId, member).then((data) => {
             setUpdateShow(false);
+            setDeleteShow(false);
         })
+    }
+
+    const memberRemove = () => {
+        // setUpdateShow(false);
+         setDeleteShow(true);
     }
 
     return (
@@ -178,12 +187,13 @@ const EditMember = ({ memberId, updateShow, setUpdateShow, handleUpdateClose }: 
                             </Col>
 
                             <div className="memberAddBtn">
-                            <button type='submit' className='mr-2 deleteSpaces' onClick={memberHide}>Delete</button>
+                            <button type='submit' className='mr-2 deleteSpaces' onClick={()=>memberRemove()}>Delete</button>
                                 <button type='submit' className='save' onClick={memberUpdate}>Update</button>
                             </div>
                         </Row>
                     </Container>
                 </div>
+                <DeleteModal deleteShow={deleteShow} deleteApi={memberHide} handleDeleteClose={handleDeleteClose} />
             </Modal>
         </>
     )

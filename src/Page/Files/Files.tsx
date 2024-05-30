@@ -56,9 +56,13 @@ const Files = () => {
   const handleLightBoxClose = () => setLightBoxShow(false);
   const [uploadShow, setUploadShow] = useState(false);
   const handleUploadClose = () => setUploadShow(false);
-
+  const [searchTerm, setSearchTerm] = useState('');
   const [shareShow, setShareShow] = useState(false);
   const handleShareClose = () => setShareShow(false);
+  const [sharesShow, setSharesShow] = useState<any>([]);
+  const [shares, setShares] = useState<any>([]);
+
+
 
   const fileUpload = () => {
     setUploadShow(true);
@@ -187,9 +191,12 @@ const Files = () => {
   }
 
 
-  const shareModal = (fileId: string) => {
+  const shareModal = (fileId: string, shareList:any) => {
     setFilesId(fileId);
     setShareShow(true);
+    setSharesShow(shareList);
+    setShares([]);
+
   }
 
   useEffect(() => {
@@ -223,7 +230,7 @@ const Files = () => {
     setLightBoxFile(fileName);
   }
 
-  const [searchTerm, setSearchTerm] = useState('');
+
 
   const filteredFiles = filesList?.filter((member: any) =>
     member.nick_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -247,9 +254,8 @@ const Files = () => {
                     {favorite.nick_name}.{favorite.extension}
                   </div>
                 </div>)}
-
             </div>
-          </div> 
+          </div>  
           <div className="filesTable">
             <div className="topLine">
               <div className='tableHeading'>
@@ -293,22 +299,24 @@ const Files = () => {
                     {file.member_images ? <td>
                       <div className="avatars2">
                         {file.member_images && separateComma(file.member_images).map((share: any) =>
-                          <>{share ? <img className="avatar-icon36" alt="" src={`${API}/${share}`} />
-                            : <img className="avatar-icon36" alt="" src={memberIcon} />}</>
+                          <>{share === "imageNull" ? <img className="avatar-icon36" alt="" src={memberIcon} />
+                          : <img className="avatar-icon36" alt="" src={`${API}/${share}`} />
+                            }</>
                         )}
-                        <div className="avatar2" onClick={() => shareModal(file.id)}>
+                        <div className="avatar2" onClick={() => shareModal(file.id,file.shares)}>
                           +
                         </div>
                       </div>
                     </td>
-                      : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id)}>Share</button></td>
+                      : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id,file.shares)}>Share</button></td>
                     }
                     <td className='tableAction'>
                       <button className='btn download' onClick={() => handleDownloadClick(file.name)}><img src={download} alt="download" /></button>
+                     {file.delete ?
                       <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
-                      <button className='btn start' onClick={() => favoriteAdd(file.id)}>
+                     :""}
+                     <button className='btn start' onClick={() => favoriteAdd(file.id)}>
                         {file.favorite === 0 ? <img src={markStar} alt="download" /> : <img src={star} alt="download" />}
-
                       </button>
                     </td>
                   </tr>)}
@@ -319,7 +327,7 @@ const Files = () => {
           </div>
         </div>
         <UploadFile uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
-        <ShareFile filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
+        <ShareFile shares={shares} setShares={setShares} sharesShow={sharesShow} setSharesShow={setSharesShow} filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
         <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
         <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={handleLightBoxClose} />
       </Layout>

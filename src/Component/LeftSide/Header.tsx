@@ -26,6 +26,7 @@ const Header = ({ onValueChange }: any) => {
     const [userRole, setUserRole] = useState("");
     const [searchTerm, setSearchTerm] = useState('');
     const [notifyList, setNotifyList] = useState([]);
+console.log('notifyList',notifyList);
 
     const handleClick = () => {
         setCollapsed(!collapsed)
@@ -90,7 +91,8 @@ const Header = ({ onValueChange }: any) => {
                                     <p>Notifications</p>
                                     <img src={bell} alt="bell" />
                                 </div>
-                                <div className='searchInput mt-3'>
+                                {filteredNotify && filteredNotify.length ? <>
+                                    <div className='searchInput mt-3'>
                                     <input type="text" placeholder='Search notification' onChange={handleInputChange} className='form-control' />
                                     <FontAwesomeIcon icon={faSearch} />
                                 </div>
@@ -98,12 +100,18 @@ const Header = ({ onValueChange }: any) => {
                                 <h5>LATEST</h5>
                                 </div>
                                 <div className="latestNotify">
-                                    {filteredNotify && filteredNotify.map(((notify:any)=><Link className="notifyBox" to={`/invoice-details/${notify.id}`}>
+                                    {filteredNotify && filteredNotify.map(((notify:any)=><Link className="notifyBox" to={`/${userRole === "admin" ? "invoice-details" : "my-invoice-details"}/${notify.id}`}>
                                         <h6>You have a new invoice</h6>
                                         <h5>Invoice : <span>#{notify.invoice_id}</span></h5>
                                         <p>{notify.running_time} ago</p>
                                     </Link>))}
                                 </div>
+                                </>:<>
+                                <div className="latestNotify text-center mt-5">
+                                <h6>You have no invoice</h6>
+                                </div>
+                                </>}
+                                
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>

@@ -17,15 +17,18 @@ interface ShareFileProps {
     shareShow: boolean;
     setShareShow: (type: boolean) => void;
     filesId: string;
+    sharesShow?: any;
+    setSharesShow?: any;
+    shares?: any;
+    setShares?: any;
 }
 
-const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: ShareFileProps) => {
+const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesShow, setSharesShow, setShares, shares}: ShareFileProps) => {
     const [userImage, setUserImage] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [loginId, setLoginId] = useState("");
     const [sharesList, setSharesList] = useState([]);
-    const [shares, setShares] = useState<any>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [userRole, setUserRole] = useState("");
     const [filteredSharesList, setFilteredSharesList] = useState([]);
@@ -57,7 +60,6 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
                     combinedData = [
                         ...memberData.members.map((member: any) => ({ ...member, type: 'member' })),
                     ];
-                    console.log('combinedData', combinedData);
                     setSharesList(combinedData);
                 } else if (userRole === 'user') {
                     combinedData = [
@@ -76,18 +78,18 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
 
     useEffect(() => {
         if (searchTerm) {
-            const filteredData = sharesList.filter((item:any) => 
-              item.first_name.toLowerCase().includes(searchTerm.toLowerCase())
+            const filteredData = sharesList.filter((item: any) =>
+                item.first_name.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setFilteredSharesList(filteredData);
-          } else {
+        } else {
             setFilteredSharesList([]);
-          }
-      }, [searchTerm, sharesList]);
+        }
+    }, [searchTerm, sharesList]);
 
-   
+
     const shareList = (share: any) => {
-        const shareExists = shares.some((existingShare: any) => existingShare.id === share.id);
+        const shareExists = shares?.some((existingShare: any) => existingShare.id === share.id);
         if (!shareExists) {
             setShares([...shares, share]);
         } else {
@@ -112,12 +114,32 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
                     showNotifications('success', 'Share added successfully');
                     setShareShow(false);
                     setShares([]);
-                    // setSharesList([]);
+                    setSearchTerm("");
                 }
             })
         }
 
     }
+
+
+    useEffect(() => {
+
+        if (sharesShow?.length) {
+            const shareList = sharesShow.split(',');
+            shareList.forEach((shareId: any) => {
+                const matchingShare = sharesList.find((share: any) => share.id === shareId);
+                if (matchingShare) {
+                    setShares((prevShares: any) => {
+                        if (!prevShares.find((share: any) => share.id === matchingShare)) {
+                            return [...prevShares, matchingShare];
+                        }
+                        return prevShares;
+                    });
+                }
+            });
+        }
+    }, [sharesShow]);
+
 
     return (
         <>
@@ -141,22 +163,22 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
                             <div className="sharing">
                                 <p>Sharing With:</p>
                                 <div className="adminOption">
-                                        {userImage && userImage ? <img src={`${API}/${userImage}`} alt="admin" className={userRole === "admin" ? "adminBorder" : ""} /> :  <img src={memberIcon} alt="" />}
-                                        <div className='adminName'>
-                                            <p>{firstName} {lastName} (you)</p>
-                                            <span>{userRole === "admin" ? "ADMIN" : "MEMBER"}</span>
-                                        </div>
+                                    {userImage && userImage ? <img src={`${API}/${userImage}`} alt="admin" className={userRole === "admin" ? "adminBorder" : ""} /> : <img src={memberIcon} alt="" />}
+                                    <div className='adminName'>
+                                        <p>{firstName} {lastName} (you)</p>
+                                        <span>{userRole === "admin" ? "ADMIN" : "MEMBER"}</span>
                                     </div>
+                                </div>
                                 <div className="shareMember">
                                     <div className="content">
                                         <ul>
-                                        <li className={userRole === "admin" ? "adminBorder" : ""}>
-                                            {userImage && userImage ? <img src={`${API}/${userImage}`} className={userRole === "admin" ? "adminBorder" : ""} alt="admin" /> :  <img className={userRole === "admin" ? "adminBorder" : ""} src={memberIcon} alt="" />}<span>{firstName}</span><FontAwesomeIcon icon={faXmark} /> </li>
+                                            <li className={userRole === "admin" ? "adminBorder" : ""}>
+                                                {userImage && userImage ? <img src={`${API}/${userImage}`} className={userRole === "admin" ? "adminBorder" : ""} alt="admin" /> : <img className={userRole === "admin" ? "adminBorder" : ""} src={memberIcon} alt="" />}<span>{firstName}</span><FontAwesomeIcon icon={faXmark} /> </li>
                                             {shares && shares.map((member: any) => (
                                                 <li className={member.type === 'admin' ? "adminBordered" : "adminBorderless"}>
                                                     {member.member_image ? <img src={`${API}/${member.member_image}`} alt="" className={member.type === 'admin' ? "adminBordered" : "adminBorderless"} />
-                                                    : <img src={memberIcon} alt="" className={member.type === 'admin' ? "adminBordered" : "adminBorderless"}/>}
-                                                    
+                                                        : <img src={memberIcon} alt="" className={member.type === 'admin' ? "adminBordered" : "adminBorderless"} />}
+
                                                     <span>{member.first_name}</span>
                                                     <FontAwesomeIcon onClick={() => removeShare(member.id)} icon={faXmark} />
                                                 </li>
@@ -166,11 +188,11 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose }: Share
                                     </div>
                                     <div>
                                         <ul className='searchMemberList'>
-                                            {filteredSharesList && filteredSharesList.map((member: any, index) => (
+                                            {filteredSharesList && filteredSharesList.map((member: any, index: number) => (
                                                 <li key={`member` + index} onClick={() => shareList(member)} className={member.type === 'admin' ? "adminBordered" : "adminBorderless"}>
                                                     {member.member_image ? <img src={`${API}/${member.member_image}`} className={member.type === 'admin' ? "adminBordered" : "adminBorderless"} alt="" />
-                                                    : <img src={memberIcon} className={member.type === 'admin' ? "adminBordered" : "adminBorderless"} alt="" />}
-                                                    
+                                                        : <img src={memberIcon} className={member.type === 'admin' ? "adminBordered" : "adminBorderless"} alt="" />}
+
                                                     <span>{member.first_name}</span>
                                                 </li>
                                             ))}
