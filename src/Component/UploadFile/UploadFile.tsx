@@ -40,7 +40,6 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
     const [sharesList, setSharesList] = useState([]);
     const [loginId, setLoginId] = useState("");
     const [filteredSharesList, setFilteredSharesList] = useState([]);
-console.log('filteredSharesList',filteredSharesList);
 
     let auth = isAuthenticate();
     useEffect(() => {
@@ -69,7 +68,6 @@ console.log('filteredSharesList',filteredSharesList);
                     combinedData = [
                         ...memberData.members.map((member: any) => ({ ...member, type: 'member' })),
                     ];
-                    console.log('combinedData', combinedData);
                     setSharesList(combinedData);
                 } else if (userRole === 'user') {
                     combinedData = [

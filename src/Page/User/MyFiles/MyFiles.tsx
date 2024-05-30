@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../../Component/Layout/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
-import {  Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../../config';
 import filter from '../../../Assets/Images/icon/filter-lines.png';
 import download from "../../../Assets/Images/icon/download-cloud-02.png";
@@ -22,6 +22,7 @@ import ShareFile from '../../../Component/UploadFile/ShareFile';
 import DeleteModal from '../../../Component/DeleteModal/DeleteModal';
 import memberIcon from "../../../Assets/Images/icon/memberAvatar.png";
 import Pagination from '../../../Component/Pagination/Pagination';
+import LightBox from '../../../Component/LightBox/LightBox';
 
 const MyFiles = () => {
 
@@ -34,7 +35,7 @@ const MyFiles = () => {
     const [favoriteList, setFavoriteList] = useState([]);
     const [deleteShow, setDeleteShow] = useState(false);
     const handleDeleteClose = () => setDeleteShow(false);
-
+    const [searchTerm, setSearchTerm] = useState('');
     // pagination number
     const [totalValue, setTotalValue] = useState<any>();
     const [limitValue, setLimitValue] = useState<any>();
@@ -46,10 +47,13 @@ const MyFiles = () => {
     const [pageValue, setPageValue] = useState<number>();
     const [uploadShow, setUploadShow] = useState(false);
     const handleUploadClose = () => setUploadShow(false);
-
+    const [lightBoxShow, setLightBoxShow] = useState(false);
+    const handleLightBoxClose = () => setLightBoxShow(false);
+    const [lightBoxFile, setLightBoxFile] = useState("");
     const [shareShow, setShareShow] = useState(false);
     const handleShareClose = () => setShareShow(false);
-
+    const [sharesShow, setSharesShow] = useState<any>([]);
+    const [shares, setShares] = useState<any>([]);
     const fileUpload = () => {
         setUploadShow(true);
     }
@@ -77,7 +81,7 @@ const MyFiles = () => {
             }
         })
 
-    }, [uploadShow, count, shareShow,page]);
+    }, [uploadShow, count, shareShow, page]);
 
 
 
@@ -172,9 +176,10 @@ const MyFiles = () => {
     }
 
 
-    const shareModal = (fileId: string) => {
+    const shareModal = (fileId: string, shareList: any) => {
         setFilesId(fileId);
         setShareShow(true);
+        setSharesShow(shareList);
     }
     useEffect(() => {
         if (pageCount > 1) {
@@ -190,17 +195,30 @@ const MyFiles = () => {
         if (pageCount === page) {
             setNextButton(false)
         }
-    }, [pageCount,page])
-    
-    
-      const nextPage = () => {
+    }, [pageCount, page])
+
+
+    const nextPage = () => {
         setPage(page + 1)
         setNextButton(true)
-      }
-    
-      const prevPage = () => {
+    }
+
+    const prevPage = () => {
         setPage(page - 1)
-      }
+    }
+
+
+
+
+    const filteredFiles = filesList?.filter((member: any) =>
+        member.nick_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        member.extension.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    const lightBox = (fileName: string) => {
+        setLightBoxShow(true);
+        setLightBoxFile(fileName);
+    }
+
     return (
         <>
             <Layout>
@@ -213,7 +231,7 @@ const MyFiles = () => {
                             </div>
                             <div className='memberSearch'>
                                 <div className='searchInput'>
-                                    <input type="text" placeholder='Search files' className='form-control' />
+                                    <input type="text" placeholder='Search files' onChange={(e) => setSearchTerm(e.target.value)} className='form-control' />
                                     <FontAwesomeIcon icon={faSearch} />
                                 </div>
                                 <button className='filterBtn'><img src={filter} alt='filter' /> Filter</button>
@@ -237,32 +255,35 @@ const MyFiles = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filesList && filesList.map((file: any, index) => <tr>
+                                    {filteredFiles && filteredFiles.map((file: any, index) => <tr>
                                         <td><label className="tableCheckBox">
                                             <div className="contactCheck">
                                                 <input type="checkbox" name="agreement" />
                                                 <span className="checkmark"></span></div>
                                         </label></td>
-                                        <td><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
+                                        <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
                                         <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                                         <td>{convertBytesToSize(file.size)}</td>
                                         {file.member_images ? <td>
                                             <div className="avatars2">
                                                 {file.member_images && separateComma(file.member_images).map((share: any) =>
-                                                    <>{share ? <img className="avatar-icon36" alt="" src={`${API}/${share}`} />
-                                                        : <img className="avatar-icon36" alt="" src={memberIcon} />}</>
+                                                    <>{share === "imageNull" ? <img className="avatar-icon36" alt="" src={memberIcon} />
+                                                        : <img className="avatar-icon36" alt="" src={`${API}/${share}`} />
+                                                    }</>
                                                 )}
-                                                <div className="avatar2" onClick={() => shareModal(file.id)}>
+                                                <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
                                                     +
                                                 </div>
                                             </div>
                                         </td>
-                                            : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id)}>Share</button></td>
+                                            : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id, file.shares)}>Share</button></td>
                                         }
                                         <td className='tableAction'>
                                             <button className='btn download' onClick={() => handleDownloadClick(file.name)}><img src={download} alt="download" /></button>
+                                            {file.delete ?
                                             <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
-                                        </td>
+                                        :""}
+                                            </td>
                                     </tr>)}
                                 </tbody>
                             </Table>
@@ -271,8 +292,9 @@ const MyFiles = () => {
                     </div>
                 </div>
                 <UploadFile uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
-                <ShareFile filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
+                <ShareFile shares={shares} setShares={setShares} sharesShow={sharesShow} setSharesShow={setSharesShow} filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
                 <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
+                <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={handleLightBoxClose} />
             </Layout>
         </>
     )

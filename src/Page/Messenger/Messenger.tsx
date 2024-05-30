@@ -278,7 +278,7 @@ const Messenger = () => {
                 <div className="chat">
                     <div className="contacts">
                         <div className="all-messages-parent">
-                            <div className="all-messages">All Messages</div>
+                            <div className="all-messages"><img className="info-circle-icon" alt="" src={plusBtn} />  All Messages</div>
                             <div className="button">
                                 {/* <img className="info-circle-icon" alt="" src={plusBtn} /> */}
                                 <FontAwesomeIcon icon={faPlus} />

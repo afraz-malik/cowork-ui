@@ -73,7 +73,7 @@ const InvoiceDetails = () => {
                 <div className="createInvoice d-flex">
                     <div className="topLine">
                         <div className='tableHeading'>
-                            <h6><FontAwesomeIcon icon={faArrowLeft} /> Invoice: #INV{invoiceDetail && invoiceDetail.invoice_id}</h6>
+                            <h6 className='d-flex'><Link className='backDashboard' to="/billing"><FontAwesomeIcon icon={faArrowLeft} /></Link>Invoice: #INV{invoiceDetail && invoiceDetail.invoice_id}</h6>
                         </div>
                         <div className='invoiceDropdown'>
                             <Dropdown>
