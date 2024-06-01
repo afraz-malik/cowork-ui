@@ -5,15 +5,18 @@
     color: var(--gray-400);
     height: calc(100vh - 140px);
 }
-
+.messageChat{
+    height: calc(100vh - 140px);
+    background-color: rgb(255, 255, 255);
+    overflow-y: auto;
+}
 .contacts {
     border-radius: var(--br-mini) 0 0 var(--br-mini);
     background-color: white;
     border-right: 2px solid var(--brand-divider);
-    overflow: auto;
-    padding: var(--padding-13xl) 0;
     gap: var(--gap-5xl);
     height: 100%;
+    width: 360px;
 }
 
 .contact,
@@ -25,22 +28,32 @@
 }
 
 .all-messages-parent {
-    align-self: stretch;
+  display: flex;
     justify-content: space-between;
-    padding: 0 var(--padding-5xl);
+    align-items: center;
+    border-bottom: 1px solid var(--brand-divider);
+    height: 96px;
 }
 
-.all-messages-parent,
-.button {
+.contact .avatar-parent  img{
+    margin-right: 15px;
+}
+
+.chatList{
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    width: 100%;
+    cursor: pointer;
+}
+.chatList .chatBox{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
-
-.all-messages {
-    position: relative;
-    line-height: 24px;
-    font-weight: 500;
+.chatList .chatBox .avatar{
+margin-right: 16px;
 }
 
 .info-circle-icon {
@@ -64,7 +77,7 @@
     padding: 0 var(--padding-5xl);
     gap: var(--gap-base);
     color: var(--typography-body);
-    /* overflow-y: auto; */
+   width: 100%;
 }
 
 .contact1 {
@@ -84,7 +97,7 @@
 }
 
 .chatter-select {
-    background-color: gray;
+    background-color: rgba(244, 247, 248, 1);
 }
 
 .avatar-parent {
@@ -107,8 +120,8 @@
 
 .avatar-online-indicator {
     position: absolute;
-    right: -1.5px;
-    bottom: -1.5px;
+    right: -0.5px;
+    bottom: 5px;
     border-radius: var(--br-7xs);
     background-color: var(--success-500);
     border: 1.5px solid var(--base-white);
@@ -516,25 +529,44 @@
 
 .all-messages {
     position: relative;
-    line-height: 24px;
+display: flex;
+align-items: center;
+}
+.all-messages img{
+margin-right: 15px;
+}
+.all-messages p{
+    font-family: "Inter";
+    font-size: 14px;
     font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 0px;
+    color: rgba(152, 162, 179, 1);
 }
 
-.all-messages-parent,
-.button {
+.all-messages-parent {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.button {
-    border-radius: var(--br-71xl);
+.all-messages-parent .button {
     background-color: var(--brand-brand-primary);
     box-shadow: 0 6px 30px rgba(42, 55, 119, 0.06);
     overflow: hidden;
     justify-content: center;
-    padding: var(--padding-5xs);
+    text-align: center;
     color: white;
+    font-size: 12px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }
 
 .all-messages-parent {
@@ -643,6 +675,8 @@
     padding: 0 var(--padding-5xl);
     gap: var(--gap-base);
     color: var(--typography-body);
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
@@ -691,7 +725,8 @@
     border-bottom: 1px solid var(--brand-divider);
     flex-direction: row;
     justify-content: flex-start;
-    padding: var(--padding-5xl) var(--padding-13xl);
+    padding: 0px 32px;
+    height: 96px;
 }
 
 .friday-january-26th,
@@ -875,8 +910,8 @@
     flex: 1;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 0 var(--padding-13xl);
-    margin-bottom: 15px;
+    padding: 10px var(--padding-13xl);
+    /* margin-bottom: 15px; */
 }
 
 .label1,
@@ -996,10 +1031,11 @@
     flex-direction: column;
     font-size: var(--font-size-xs);
     color: var(--gray-400);
-    height: 100%;
+    position: relative;
+    height: calc(100vh - 140px);
+    background-color: rgb(255, 255, 255);
     overflow-y: auto;
     overflow-x: hidden;
-    position: relative;
 }
 
 .chat,
@@ -1017,7 +1053,6 @@
     overflow: hidden;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
     color: var(--typography-body);
 }
 
@@ -1079,8 +1114,9 @@
 }
 
 .div-4 {
-    font-family: Inter, sans-serif;
+    font-family: "Inter";
     align-self: stretch;
+    text-wrap: nowrap;
 }
 
 .img-2 {
@@ -1107,17 +1143,23 @@
 }
 
 .dropdown-content {
-    top: 80px;
-    background-color: whitesmoke;
+    top: 65px;
+    height: 420px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 1);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     position: absolute;
-    padding: 10px 0px;
+    padding: 10px 10px;
     z-index: 1;
+    box-shadow: 0px 0px 30px 0px rgba(122, 122, 122, 0.14);
+
 }
 
 .dropdown-content .item {
+    cursor: pointer;
     color: black;
     display: flex;
     flex-direction: row;
@@ -1126,18 +1168,26 @@
     width: max-content;
     padding: 8px 16px;
     text-decoration: none;
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
 }
 
 .dropdown-content .item:hover {
-    background-color: wheat;
+    background-color: rgba(244, 247, 248, 1);
 }
 
 .dropdown-content .item .label {
     align-items: center;
     margin-left: 12px;
 }
-
+.dropdown-content .item img{
+    width: 32px;
+    height: 32px;
+}
 
 .u1div {
     align-items: center;

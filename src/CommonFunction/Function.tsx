@@ -222,3 +222,34 @@ export function paginationNumber(total: any, limit: any) {
     }
     return resultArray;
 }
+
+export const messageFormatDate = (dateString: string) => {
+  const inputDate: any = new Date(dateString);
+  const today: any = new Date();
+  const yesterday = new Date();
+  yesterday.setDate(today.getDate() - 1);
+
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  // Helper function to check if two dates are the same day
+  const isSameDay = (d1: any, d2: any) => 
+    d1.getFullYear() === d2.getFullYear() && 
+    d1.getMonth() === d2.getMonth() && 
+    d1.getDate() === d2.getDate();
+
+  if (isSameDay(inputDate, today)) {
+    return inputDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
+  if (isSameDay(inputDate, yesterday)) {
+    return 'Yesterday';
+  }
+
+  const daysDifference: any = Math.floor((today - inputDate) / (1000 * 60 * 60 * 24));
+
+  if (daysDifference >= 2 && daysDifference <= 7) {
+    return daysOfWeek[inputDate.getDay()];
+  }
+
+  return inputDate.toLocaleDateString();
+};

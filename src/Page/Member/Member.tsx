@@ -175,7 +175,7 @@ const Member = () => {
                       </Link>
                     </td>
                     <td>{data.email}</td>
-                    <td className='memberPhone'><PhoneInput country={'us'} disableCountryCode={false} value={data.phone_number} /></td>
+                    <td className='memberPhone'><PhoneInput country={'us'} inputProps={{ readOnly: true }} disableCountryCode={false} value={data.phone_number} /></td>
                     <td className='tableAction text-center'>
                       {data.space_images ? <>
                         <div className="memberSpacesList">

@@ -143,7 +143,6 @@
 
 .postLogo {
     border-radius: var(--br-71xl);
-    background-color: var(--typography-body);
     display: flex;
     flex-direction: row;
     align-items: flex-start;

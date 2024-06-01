@@ -25,13 +25,14 @@ const UserList = ({ ...props }) => {
         to.length === 1 ? (
           <>
             <div className="u1div">
-              <img
+              {to[0].avatar ? <img
                 alt=""
                 loading="lazy"
                 // src={`${API}/image/avatar/${to[0].avatar}`}
                 src={`${API}/${to[0].avatar}`}
                 className="u1img"
-              />
+              /> : <img loading="lazy" className="avatar-icon1" alt="" src={avatar} />}
+              
               <div className="u1div-2">{to[0].name}</div>
               <div className="u1div-3">{to[0].role}</div>
             </div>

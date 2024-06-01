@@ -161,7 +161,7 @@ const Announcement = () => {
         else {
           showNotifications('success', 'Comment add successfully');
           setComment("Write your comment");
-          setPlaceholder("Write your comment");
+          setPlaceholder("");
           setCount(count + 1)
         }
       })
@@ -184,7 +184,7 @@ const Announcement = () => {
         else {
           showNotifications('success', 'Comment reply successfully');
           setCommentReply("");
-          setPlaceholder("Write your comment");
+          setPlaceholder("");
           setCount(count + 1)
         }
       })
@@ -208,7 +208,7 @@ const Announcement = () => {
         else {
           showNotifications('success', 'Reply comment successfully');
           setCommentNext("");
-          setPlaceholder("Write your comment");
+          setPlaceholder("");
           setCount(count + 1)
         }
       })
@@ -221,7 +221,7 @@ const Announcement = () => {
   function handleEnter(text: any, post_id: string) {
     commentPost(post_id);
   }
-  function handleCommentEnter(comment_id: any, post_id: string) {
+  function handleCommentEnter(post_id: any, comment_id: string) {
     replyCommentPost(post_id, comment_id);
   }
   function handleCommentReplyEnter(post_id: string, comment_id: string, reply_id: string) {

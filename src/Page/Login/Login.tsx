@@ -58,7 +58,7 @@ const Login = () => {
                                 return navigate("/member");
                             }
                             else {
-                                return navigate("/my-messenger");
+                                return navigate("/my-home");
                             }
 
                         }, 500)

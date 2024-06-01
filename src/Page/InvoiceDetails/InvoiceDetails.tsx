@@ -47,15 +47,20 @@ const InvoiceDetails = () => {
         const paymentInfo = {
             "void": "void"
         }
-        paymentVoid(invoiceDetail.payment_id, paymentInfo).then((data) => {
-            if (data.statusCode !== 200) {
-                showNotifications('error', data.message)
-            }
-            else {
-                setShow(false)
-                showNotifications('success', data.message)
-            }
-        })
+        console.log('invoiceDetail.payment_id',invoiceDetail);
+        
+        if (invoiceDetail) {
+            paymentVoid(invoiceDetail.payment_id, paymentInfo).then((data) => {
+                if (data.statusCode !== 200) {
+                    showNotifications('error', data.message)
+                }
+                else {
+                    setShow(false)
+                    showNotifications('success', data.message)
+                }
+            })
+        }
+       
     }
 
     return (
@@ -111,7 +116,7 @@ const InvoiceDetails = () => {
                                 </div>
                                 <div className="invoiceId">
                                     <p>Status</p>
-                                    <h6 className='status'>{invoiceDetail && invoiceDetail.payment_status === "paid" ? <><span className='paid'>Paid</span></> : invoiceDetail && invoiceDetail.payment_status === "void" ? <span className='unpaid'>Void</span> : <span className='unpaid'>UnPaid</span>}</h6>
+                                    <h6 className='status'>{invoiceDetail && invoiceDetail.payment_status === "paid" ? <><span className='paid'>Paid</span></> : invoiceDetail && invoiceDetail.payment_status === "void" ? <span className='unpaid'>Void</span> : <span className='unpaid'>Unpaid</span>}</h6>
                                 </div>
                                 <div className="invoiceId">
                                     <p>Payment Date</p>
