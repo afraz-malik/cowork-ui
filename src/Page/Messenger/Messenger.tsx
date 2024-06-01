@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useContext, useCallback } from 'rea
 import "./Messenger.css";
 import Layout from '../../Component/Layout/Layout';
 import avatar from "../../Assets/Images/icon/blank-profile.jpg";
-import assign from "../../Assets/Images/icon/assign.png";
+import assign from "../../Assets/Images/icon/memberAvatar.png";
 import emoji from "../../Assets/Images/icon/face-smile.png";
 import fileShare from "../../Assets/Images/icon/link-01.png";
 import onlineShow from "../../Assets/Images/icon/online.png";
@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from 'react-router-dom';
-
+import allMessage from "../../Assets/Images/icon/filter-lines.png";
 import FromMessage from './FromMessage';
 import ToMessage from "./ToMessage"
 import { SocketContext } from '../../CommonFunction/SocketContext';
@@ -20,7 +20,7 @@ import UploadFileForChat from '../../Component/UploadFile/UploadFileForChat';
 import { CHATTER, USER } from '../../CommonFunction/types';
 import { CHAT_GROUP, CHAT_SINGLE, CHAT_TEXT, GROUP_ICON } from '../../CommonFunction/constant';
 import { getChatHistory, getChatters } from '../../api/message';
-import { convertTimeToReadable, enhanceGroupUserName, enhanceToGroupUserName, formattedDateForChatHeadWithCurrent, fromNow } from "../../CommonFunction/Function";
+import { convertTimeToReadable, enhanceGroupUserName, enhanceToGroupUserName, formattedDateForChatHeadWithCurrent, fromNow, messageFormatDate } from "../../CommonFunction/Function";
 import UsersList from '../../Component/Messenger/UserList';
 import { getUsers } from '../../api/admin';
 import { DESKIE_API as API } from '../../config';
@@ -118,7 +118,7 @@ const Messenger = () => {
             type: to.length > 1 ? CHAT_GROUP : CHAT_SINGLE,
             message: input,
             group_id: chatter?.group_id,
-            created_at: Date()
+            created_at: new Date()
         }
 
         socket?.emit("senderMessage", sockData)
@@ -278,28 +278,26 @@ const Messenger = () => {
                 <div className="chat">
                     <div className="contacts">
                         <div className="all-messages-parent">
-                            <div className="all-messages"><img className="info-circle-icon" alt="" src={plusBtn} />  All Messages</div>
-                            <div className="button">
-                                {/* <img className="info-circle-icon" alt="" src={plusBtn} /> */}
+                            <div className="all-messages">
+                                <img className="info-circle-icon" alt="" src={allMessage} />  
+                            <p>All Messages</p>
+                            </div>
+                            <div className="button"  onClick={() => handleFromSet(null)}>
                                 <FontAwesomeIcon icon={faPlus} />
                             </div>
                         </div>
-                        <div className="contacts-child" />
                         <div className="contact">
-                            <div className={"contact1 " + (!chatter ? "chatter-select" : "")} onClick={() => handleFromSet(null)}>
+                            {showDropdown ? <div className="contact1 chatter-select" onClick={() => handleFromSet(null)}>
                                 <div className="avatar-parent">
-                                    <div className="avatar">
-                                        <img className="avatar-icon1" alt="" src={assign} />
-                                    </div>
-                                    <div className="text">
+                                <img className="" alt="" src={assign} />
                                         <div className="bogdan-krivenchenko">New Message</div>
-                                    </div>
                                 </div>
-                            </div>
+                            </div>: ""}
+                            {/*  */}
                             {users.map((e, i) =>
-                            (<div className={"contact1 " + ((!e.group_id && (e.recipient === chatter?.recipient)) || (e.group_id && (e.group_id === chatter?.group_id)) ? "chatter-select" : "")} key={i}>
+                            (<div className={"chatList " + ((!e.group_id && (e.recipient === chatter?.recipient)) || (e.group_id && (e.group_id === chatter?.group_id)) ? "chatter-select" : "")} key={i}>
                                 {/* <>{e.group_id}</> */}
-                                <div className="avatar-parent"
+                                <div className="chatBox"
                                     onClick={() => handleFromSet(e)}>
                                     <div className="avatar">
                                         {/* <img className="avatar-icon1" alt="" src={`${API}/image/avatar/${e.avatar}`} /> */}
@@ -313,12 +311,12 @@ const Messenger = () => {
                                     <div className="text">
                                         <div className="bogdan-krivenchenko">{e.group_id ? enhanceGroupUserName(e.name!) : e.name}</div>
                                         <div className="hi-how-are">
-                                            {e.message}
+                                        {e.message?.length > 25 ? `${e.message.substring(0, 25)}...` : e.message}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="parent">
-                                    <div className="div16">{convertTimeToReadable(e.created_at)}</div>
+                                    <div className="div16">{messageFormatDate(e.created_at)}</div>
                                     <div className="ellipse" />
                                 </div>
                             </div>)
@@ -330,7 +328,7 @@ const Messenger = () => {
                             {showDropdown ?
                                 <div className="dropdown-content" ref={dropdownContent}>
                                     {dropdownUsers.map((e, i) => ( // dropdown
-                                        <div className='item avatar1' onClick={() => handleToUser(e)}>
+                                        <div className='item' onClick={() => handleToUser(e)}>
                                             {e.avatar ? <img className='avatar-icon1' src={`${API}/${e.avatar}`} alt='' width={"48px"} />
                                                 : <img className='avatar-icon1' src={avatar} alt='' width={"48px"} />
                                             }
@@ -347,9 +345,9 @@ const Messenger = () => {
                                                 {e.avatar ? <img className="avatar-icon1" alt="" src={`${API}/${e.avatar}`} />
                                                     : <img className="avatar-icon1" alt="" src={avatar} />
                                                 }
-                                                <div className="avatar-online-indicator">
+                                                {/* <div className="avatar-online-indicator">
                                                     <img alt="" src={"onlineShow"} />
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <div className="dropdown">
                                             <div className="sarah-kline">{e.name && e.role === "group" ? enhanceToGroupUserName(e.name) : e.name}</div>

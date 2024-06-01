@@ -26,7 +26,6 @@ const Header = ({ onValueChange }: any) => {
     const [userRole, setUserRole] = useState("");
     const [searchTerm, setSearchTerm] = useState('');
     const [notifyList, setNotifyList] = useState([]);
-console.log('notifyList',notifyList);
 
     const handleClick = () => {
         setCollapsed(!collapsed)
@@ -108,7 +107,7 @@ console.log('notifyList',notifyList);
                                 </div>
                                 </>:<>
                                 <div className="latestNotify text-center mt-5">
-                                <h6>You have no invoice</h6>
+                                <h6>No new notifications</h6>
                                 </div>
                                 </>}
                                 
