@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import trash from "../../Assets/Images/icon/red-trash.png";
-import changeLogo from "../../Assets/Images/icon/adminUser.png";
+import changeLogo from "../../Assets/Images/icon/memberLargeIcon.png";
 import uploadFile from "../../Assets/Images/icon/uploadIcon.png";
 import PhoneInput from 'react-phone-input-2';
 import { singleJwtMember } from '../../api/member';
@@ -27,6 +27,8 @@ const Account = ({ settingTab }: AccountProps) => {
     const [lastName, setLastName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [adminId, setAdminId] = useState("");
+    const [emptyImg, setEmptyImg] = useState("");
+
     const handlePhoneChange = (value: string) => {
         setPhoneNumber(value);
     };
@@ -56,6 +58,9 @@ const Account = ({ settingTab }: AccountProps) => {
             "email": email,
             "phone": phoneNumber,
             "avatar": uploadedLogo
+        }
+        if (imageLogo === "logo") {
+            adminInfo.avatar = "empty";
         }
         updateAdmin(adminId, adminInfo).then((data) => {
             if (data.statusCode === 200) {
@@ -109,7 +114,6 @@ const Account = ({ settingTab }: AccountProps) => {
                                             : userImage.length ? <img src={`${API}/${userImage}`} className='changeLogo' alt="change-logo" /> : <img src={memberIcon} className='changeLogo' alt="change-logo" /> 
                                         }
                                     </>}
-
                                 <img src={trash} className='trash' alt="delete" onClick={removeImage} />
                             </div>
                             <div ref={wrapperRef} className="drop-file-input">

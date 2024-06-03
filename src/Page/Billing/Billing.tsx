@@ -11,7 +11,6 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { getInvoicesList } from '../../api/invoice';
 import { useNavigate } from 'react-router-dom';
-import RecordPayment from '../../Component/RecordPayment/RecordPayment';
 import memberAvatar from "../../Assets/Images/icon/memberAvatar.png";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from '../../Component/Pagination/Pagination';
@@ -107,6 +106,9 @@ const Billing = () => {
         setPage(page - 1)
     }
 
+   
+
+    
 
     return (
         <>

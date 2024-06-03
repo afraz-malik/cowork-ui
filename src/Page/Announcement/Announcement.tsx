@@ -351,7 +351,7 @@ const Announcement = () => {
                   }
                   <div className="input-with-label3">
                     <div className="input3">
-                      <textarea id="postTextarea" value={post} onChange={(e) => { setPost(e.target.value); autoResize(); }} placeholder="Post a new announcement" />
+                      <textarea id="postTextarea" value={post} onChange={(e) => { setPost(e.target.value); autoResize(); }} placeholder="Write a new post" />
                     </div>
                   </div>
                 </div>
@@ -391,7 +391,7 @@ const Announcement = () => {
                   <div className="post">
                     <div className="user">
                       <div className="postLogo">
-                        {data.userInfo ? <img className="" alt="post" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }} src={`${API}/${data.userInfo.member_image ? data.userInfo.member_image : data.userInfo.avatar}`} />
+                        {data.userInfo ? <img className="" alt="post" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }} src={`${data.userInfo.member_image ? `${API}/${data.userInfo.member_image}` : avatar}`} />
                           : <img className="vector-icon" alt="" src={`${API}/${darkIconImage ? darkIconImage : postLogo}`} />
                         }
                       </div>
@@ -514,7 +514,7 @@ const Announcement = () => {
                         : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
                       }
                       <div className="commentInput">
-                        <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
+                          <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
                         <FontAwesomeIcon className="info-circle-icon" onClick={() => commentPost(data.id)} icon={faPaperPlane} />
                       </div>
                     </div>

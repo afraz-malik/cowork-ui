@@ -75,7 +75,7 @@ const Header = ({ onValueChange }: any) => {
                     {urlParams === "task" ? <p>Tasks</p> : ""}
                     {urlParams === "dashboard" ? <p>Dashboard</p> : ""}
                     {urlParams === "messenger" ? <p>Messenger</p> : ""}
-                    {urlParams === "announcements" ? <p>Announcements</p> : ""}
+                    {urlParams === "feed" ? <p>Feed</p> : ""}
                     {urlParams === "settings" ? <p>Settings</p> : ""}
                 </div>
                 <div className='rightNavbar'>

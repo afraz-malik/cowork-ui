@@ -16,8 +16,8 @@ export const filesAdd = async (body = {}) => {
     }
 };
 // files list
-export const getFilesList = async (limit: number, page: number) => {
-    return get(`/filesList?limit=${limit}&&page=${page}`);
+export const getFilesList = async (limit: number, page: number, filter: string) => {
+    return get(`/filesList?limit=${limit}&page=${page}&filter=${filter}`);
 };
 
 // files delete

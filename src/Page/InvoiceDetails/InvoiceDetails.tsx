@@ -9,8 +9,8 @@ import recordFile from "../../Assets/Images/icon/record.png";
 import emailFile from "../../Assets/Images/icon/mail-01.png";
 import voidFile from "../../Assets/Images/icon/void.png";
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { singleInvoice } from '../../api/invoice';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { invoiceUpdate, singleInvoice } from '../../api/invoice';
 import moment from 'moment';
 import { DESKIE_API as API } from '../../config';
 import { usePDF } from 'react-to-pdf';
@@ -20,16 +20,23 @@ import spacesImage from "../../Assets/Images/icon/spaceAvatar.png";
 import memberImage from "../../Assets/Images/icon/memberAvatar.png";
 import { paymentVoid } from './../../api/invoice';
 import { showNotifications } from '../../CommonFunction/toaster';
-
+import { v4 as uuidv4 } from 'uuid';
+import { isAuthenticate } from '../../api/auth';
+import { ToastContainer } from 'react-toastify';
+import { invoiceFormatTimes } from '../../CommonFunction/Function';
 
 const InvoiceDetails = () => {
 
     const { id } = useParams();
+    const location = useLocation();
+    const [urlTag, sttUrlTag] = useState("");
     const [invoiceDetail, setInvoiceDetail] = useState<any>({});
     const [show, setShow] = useState(false);
+    const [count, setCount] = useState(0);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const { toPDF, targetRef } = usePDF({ filename: `${invoiceDetail && invoiceDetail.invoice_id}.pdf` });
+    let auth = isAuthenticate();
 
     useEffect(() => {
         if (id) {
@@ -37,7 +44,10 @@ const InvoiceDetails = () => {
                 setInvoiceDetail(data.data)
             })
         }
-    }, [show,id]);
+        const pathname = location.pathname;
+        const invoiceDetails = pathname.split('/')[1];
+        sttUrlTag(invoiceDetails)
+    }, [show, id, count]);
 
     const paymentView = () => {
         setShow(true);
@@ -47,30 +57,53 @@ const InvoiceDetails = () => {
         const paymentInfo = {
             "void": "void"
         }
-        console.log('invoiceDetail.payment_id',invoiceDetail);
-        
-        if (invoiceDetail) {
+        let voidInfo = {
+            "id": uuidv4(),
+            "invoiceId": id,
+            "userId": auth.user.id,
+            "amount": 0.00,
+            "paymentDate": "",
+            "method": "",
+            "paymentNote": "",
+            "status": "void"
+        }
+
+        if (invoiceDetail.payment_id) {
             paymentVoid(invoiceDetail.payment_id, paymentInfo).then((data) => {
                 if (data.statusCode !== 200) {
                     showNotifications('error', data.message)
                 }
                 else {
-                    setShow(false)
+                    setCount(count + 1)
                     showNotifications('success', data.message)
                 }
             })
         }
-       
+        else {
+
+            invoiceUpdate(voidInfo).then((data) => {
+                if (data.statusCode !== 200) {
+                    showNotifications('error', data.message)
+                }
+                else {
+                    setCount(count + 1)
+                    showNotifications('success', data.message)
+                }
+
+            })
+        }
+
     }
 
     return (
         <Layout>
+            <ToastContainer />
             <div className='mainContent'>
                 <div className="invoiceHeading">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb m-0 ms-2">
                             <li className="breadcrumb-item">Finances</li>
-                            <li className="breadcrumb-item"><Link to="/billing">Billing</Link></li>
+                            <li className="breadcrumb-item"><Link to={`/${urlTag === "my-invoice-details" ? "my-invoice" : "billing"}`}>Billing</Link></li>
                             <li className="breadcrumb-item active" aria-current="page">Invoice {invoiceDetail && invoiceDetail.invoice_id}</li>
                         </ol>
                     </nav>
@@ -78,7 +111,7 @@ const InvoiceDetails = () => {
                 <div className="createInvoice d-flex">
                     <div className="topLine">
                         <div className='tableHeading'>
-                            <h6 className='d-flex'><Link className='backDashboard' to="/billing"><FontAwesomeIcon icon={faArrowLeft} /></Link>Invoice: #INV{invoiceDetail && invoiceDetail.invoice_id}</h6>
+                            <h6 className='d-flex'><Link className='backDashboard' to={`/${urlTag === "my-invoice-details" ? "my-invoice" : "billing"}`}><FontAwesomeIcon icon={faArrowLeft} /></Link>Invoice: #INV{invoiceDetail && invoiceDetail.invoice_id}</h6>
                         </div>
                         <div className='invoiceDropdown'>
                             <Dropdown>
@@ -176,35 +209,37 @@ const InvoiceDetails = () => {
                             <h1>Note</h1>
                             <p>{invoiceDetail && invoiceDetail.notes ? <>{invoiceDetail.notes}</> : "No notes"}</p>
                         </div>
-                        {/* <div className="invoicePoint invoiceDownload">
+                         <div className="invoicePoint invoiceDownload">
                             <p>Invoice History</p>
                             <ul className="list-ic vertical">
-                                <li>
-                                    <span></span>
-                                    <Link to="#">Invoice Paid <b>26 Apr 2024, 11:50 AM</b></Link>
-                                </li>
-                                <li>
-                                    <span></span>
-                                    <Link to="#">Invoice Sent <b>26 Apr 2024, 11:50 AM</b></Link>
-                                </li>
-                                <li>
+                               {invoiceDetail && invoiceDetail.updated_date ? <li>
+                                    <span className='blue'></span>
+                                    <Link to="#">{invoiceDetail && invoiceDetail.payment_status === "paid" ? "Invoice paid" : "Partial paid"} <b>{invoiceDetail && invoiceFormatTimes(invoiceDetail.updated_date)}</b></Link>
+                                </li>: ""}
+                                
+                                {/* <li>
                                     <span></span>
                                     <Link to="#">Invoice Edited <b>26 Apr 2024, 11:50 AM</b></Link>
                                 </li>
                                 <li>
                                     <span></span>
                                     <Link to="#">Invoice Reminder Sent <b>26 Apr 2024, 11:50 AM</b></Link>
+                                </li> */}
+                                {invoiceDetail.invoice_view ? <li>
+                                    <span></span>
+                                    <Link to="#">Invoice Viewed <b>{invoiceDetail && invoiceFormatTimes(invoiceDetail.invoice_view)}</b></Link>
+                                </li> : ""}
+                                
+                                <li>
+                                    <span></span>
+                                    <Link to="#">Invoice Sent <b>{invoiceDetail && invoiceFormatTimes(invoiceDetail.created_at)}</b></Link>
                                 </li>
                                 <li>
                                     <span></span>
-                                    <Link to="#">Invoice Viewed <b>26 Apr 2024, 11:50 AM</b></Link>
-                                </li>
-                                <li>
-                                    <span></span>
-                                    <Link to="#">Invoice Generated <b>26 Apr 2024, 11:50 AM</b></Link>
+                                    <Link to="#">Invoice Generated <b>{invoiceDetail && invoiceFormatTimes(invoiceDetail.created_at)}</b></Link>
                                 </li>
                             </ul>
-                        </div> */}
+                        </div> 
                         <div className="invoiceDownload">
                             <p>Download Invoice</p>
                             <button onClick={() => toPDF()}><img src={download} alt="download" /> Download PDF</button>

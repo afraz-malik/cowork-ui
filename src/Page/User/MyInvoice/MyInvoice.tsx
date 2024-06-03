@@ -7,7 +7,7 @@ import more from "../../../Assets/Images/icon/dots-vertical.png";
 import { DESKIE_API as API } from '../../../config';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { getInvoicesList } from '../../../api/invoice';
+import { getInvoicesList, invoicesView } from '../../../api/invoice';
 import { useNavigate } from 'react-router-dom';
 import RecordPayment from '../../../Component/RecordPayment/RecordPayment';
 import memberAvatar from "../../../Assets/Images/icon/memberAvatar.png";
@@ -15,6 +15,7 @@ import spaceAvatar from "../../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from '../../../Component/Pagination/Pagination';
 
 const MyInvoice = () => {
+
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const [invoiceKey, setInvoiceKey] = useState("");
@@ -41,15 +42,10 @@ const MyInvoice = () => {
 
     useEffect(() => {
         getInvoicesList(limit, page, "all").then((data) => {
-            if (data.statusCode !== 200) {
-
-            }
-            else {
-                setInvoiceList(data.invoices);
-                setTotalValue(data.total)
-                setLimitValue(data.limit)
-                setPageValue(data.page)
-            }
+            setInvoiceList(data.invoices);
+            setTotalValue(data.total)
+            setLimitValue(data.limit)
+            setPageValue(data.page)
         })
     }, [show]);
 
@@ -87,6 +83,12 @@ const MyInvoice = () => {
         setPage(page - 1)
       }
 
+      const viewInvoice = (invoiceId: string) => {
+        invoicesView(invoiceId).then((data) => {
+ console.log('invoice',data);
+ 
+        })
+     }
       
     return (
         <>
@@ -140,7 +142,7 @@ const MyInvoice = () => {
                                                 <input type="checkbox" name="agreement" onClick={() => invoiceView(invoice.id)} />
                                                 <span className="checkmark"></span></div>
                                         </label></td>
-                                        <td><Link to={`/my-invoice-details/${invoice.id}`}>#INV{invoice.invoice_id}</Link></td>
+                                        <td><Link to={`/my-invoice-details/${invoice.id}`} onClick={()=>invoice.invoice_view ? null : viewInvoice(invoice.id)}>#INV{invoice.invoice_id}</Link></td>
                                         <td>
                                             {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                                 : <img src={memberAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />

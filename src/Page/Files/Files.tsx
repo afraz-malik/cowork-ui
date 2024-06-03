@@ -8,7 +8,7 @@ import imageFile from "../../Assets/Images/icon/image-03.png";
 import avatar from "../../Assets/Images/icon/tableAvatar.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
-import {  Table } from 'react-bootstrap';
+import { Dropdown, Table } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../config';
 import filter from '../../Assets/Images/icon/filter-lines.png';
 import download from "../../Assets/Images/icon/download-cloud-02.png";
@@ -61,7 +61,7 @@ const Files = () => {
   const handleShareClose = () => setShareShow(false);
   const [sharesShow, setSharesShow] = useState<any>([]);
   const [shares, setShares] = useState<any>([]);
-
+  const [filterTag, setFilterTag] = useState('');
 
 
   const fileUpload = () => {
@@ -69,7 +69,7 @@ const Files = () => {
   }
 
   useEffect(() => {
-    getFilesList(limit, page).then((data) => {
+    getFilesList(limit, page, filterTag).then((data) => {
       setFilesList(data && data.files);
       setTotalValue(data && data.total);
       setLimitValue(data && data.limit);
@@ -96,7 +96,7 @@ const Files = () => {
       }
     })
 
-  }, [uploadShow, count, shareShow, limit, page]);
+  }, [uploadShow, count, shareShow, limit, page, filterTag]);
 
 
 
@@ -191,7 +191,7 @@ const Files = () => {
   }
 
 
-  const shareModal = (fileId: string, shareList:any) => {
+  const shareModal = (fileId: string, shareList: any) => {
     setFilesId(fileId);
     setShareShow(true);
     setSharesShow(shareList);
@@ -201,19 +201,19 @@ const Files = () => {
 
   useEffect(() => {
     if (pageCount > 1) {
-        setPrevButton(true)
+      setPrevButton(true)
     }
     if (page === 1) {
-        setPrevButton(false)
+      setPrevButton(false)
     }
     // next button
     if (pageCount > 1) {
-        setNextButton(true)
+      setNextButton(true)
     }
     if (pageCount === page) {
-        setNextButton(false)
+      setNextButton(false)
     }
-}, [pageCount,page])
+  }, [pageCount, page])
 
 
   const nextPage = () => {
@@ -242,11 +242,11 @@ const Files = () => {
       <Layout>
         <ToastContainer />
         <div className='mainContent'>
-           <div className="files">
+          <div className="files">
             <div className="text43">Favorites</div>
             <div className="file-2-parent">
               {favoriteList && favoriteList.map((favorite: any, index) =>
-                <div className={getFileExtension(favorite.extension)} onClick={()=>lightBox(favorite.files_upload)}>
+                <div className={getFileExtension(favorite.extension)} onClick={() => lightBox(favorite.files_upload)}>
                   <div className='favorite'>
                     <img src={getFileType(favorite.extension)} alt="avatar" />
                   </div>
@@ -255,7 +255,7 @@ const Files = () => {
                   </div>
                 </div>)}
             </div>
-          </div>  
+          </div>
           <div className="filesTable">
             <div className="topLine">
               <div className='tableHeading'>
@@ -263,10 +263,22 @@ const Files = () => {
               </div>
               <div className='memberSearch'>
                 <div className='searchInput'>
-                  <input type="text" placeholder='Search files' onChange={(e)=>setSearchTerm(e.target.value)} className='form-control' />
+                  <input type="text" placeholder='Search files' onChange={(e) => setSearchTerm(e.target.value)} className='form-control' />
                   <FontAwesomeIcon icon={faSearch} />
                 </div>
-                <button className='filterBtn'><img src={filter} alt='filter' /> Filter</button>
+
+                <div className='filterDropdown taskDropdown'>
+                  <Dropdown>
+                    <Dropdown.Toggle>
+                      <button className='filterBtn'><img src={filter} alt='filter' />{filterTag === "created" ? "My files" : filterTag === "member" ? "Share files" : filterTag === "all" ? "All files" : "Filter"}</button>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={()=>setFilterTag('all')}>All files</Dropdown.Item>
+                      <Dropdown.Item onClick={()=>setFilterTag('created')}>My files</Dropdown.Item>
+                      <Dropdown.Item onClick={()=>setFilterTag('member')}>Share files</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
                 <button onClick={() => fileUpload()}><FontAwesomeIcon icon={faPlus} /> Upload File</button>
               </div>
             </div>
@@ -293,29 +305,29 @@ const Files = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
-                    <td onClick={()=>lightBox(file.files_upload)} style={{cursor: "pointer"}}><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
+                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
                     {file.member_images ? <td>
                       <div className="avatars2">
                         {file.member_images && separateComma(file.member_images).map((share: any) =>
                           <>{share === "imageNull" ? <img className="avatar-icon36" alt="" src={memberIcon} />
-                          : <img className="avatar-icon36" alt="" src={`${API}/${share}`} />
-                            }</>
+                            : <img className="avatar-icon36" alt="" src={`${API}/${share}`} />
+                          }</>
                         )}
-                        <div className="avatar2" onClick={() => shareModal(file.id,file.shares)}>
+                        <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
                           +
                         </div>
                       </div>
                     </td>
-                      : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id,file.shares)}>Share</button></td>
+                      : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id, file.shares)}>Share</button></td>
                     }
                     <td className='tableAction'>
                       <button className='btn download' onClick={() => handleDownloadClick(file.name)}><img src={download} alt="download" /></button>
-                     {file.delete ?
-                      <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
-                     :""}
-                     <button className='btn start' onClick={() => favoriteAdd(file.id)}>
+                      {file.delete ?
+                        <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
+                        : ""}
+                      <button className='btn start' onClick={() => favoriteAdd(file.id)}>
                         {file.favorite === 0 ? <img src={markStar} alt="download" /> : <img src={star} alt="download" />}
                       </button>
                     </td>

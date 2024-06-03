@@ -41,7 +41,7 @@ const Routing = () => {
                         <Route path="/visitor/:id" element={<VisitorMember />}></Route>
                         <Route path="/assets" element={<Spaces />}></Route>
                         <Route path="/assets/:id" element={<ViewSpaces />}></Route>
-                        <Route path="/announcements" element={<Announcement />}></Route>
+                        <Route path="/feed" element={<Announcement />}></Route>
                         <Route path="/files" element={<Files />}></Route>
                         {/* <Route path="/tickets" element={<Ticket />}></Route> */}
                         <Route path="/chat" element={<Chat />}></Route>
@@ -65,7 +65,7 @@ const Routing = () => {
                     {/* member */}
                     <Route element={<UserRoute />}>
                         <Route path="/my-messenger" element={<Messenger />}></Route>
-                        <Route path="/my-announcements" element={<Announcement />}></Route>
+                        <Route path="/my-feed" element={<Announcement />}></Route>
                         <Route path="/my-settings" element={<MySetting />}></Route>
                         <Route path="/my-invoice" element={<MyInvoice />}></Route>
                         <Route path="/my-files" element={<MyFiles />}></Route>
