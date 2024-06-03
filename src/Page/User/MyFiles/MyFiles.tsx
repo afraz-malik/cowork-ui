@@ -59,7 +59,7 @@ const MyFiles = () => {
     }
 
     useEffect(() => {
-        getFilesList(limit, page).then((data) => {
+        getFilesList(limit, page, "all").then((data) => {
             if (data.statusCode !== 200) {
 
             }

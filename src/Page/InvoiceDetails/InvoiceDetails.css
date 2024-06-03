@@ -267,7 +267,7 @@
     letter-spacing: 0em;
     text-align: left;
     color: rgba(52, 64, 84, 1);
-    margin-bottom: 0px;
+    margin-bottom: 20px;
 }
 
 .invoiceDownload button {
@@ -399,7 +399,10 @@
     z-index: 9;
     border: 5px solid rgba(99, 102, 241, 1);
 }
-
+.invoicePoint .list-ic li span.blue{
+    background: rgba(18, 183, 106, 1);
+    border: 5px solid rgba(18, 183, 106, 1);
+}
 .invoicePoint .list-ic li::before {
     content: '';
     position: absolute;
@@ -407,20 +410,6 @@
     z-index: 1;
 }
 
-.invoicePoint .list-ic.horizontal li {
-    display: inline-block;
-}
-
-.invoicePoint .list-ic.horizontal li span {
-    margin: 0 1em;
-}
-
-.invoicePoint .list-ic.horizontal li:before {
-    top: 0.9em;
-    left: -25px;
-    width: 4em;
-    height: 0.2em;
-}
 
 .invoicePoint .list-ic.vertical {
     padding: 0;

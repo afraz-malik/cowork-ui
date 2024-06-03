@@ -253,3 +253,29 @@ export const messageFormatDate = (dateString: string) => {
 
   return inputDate.toLocaleDateString();
 };
+
+
+export function invoiceFormatTimes(timestamp:string) {
+  // Parse the input timestamp
+  const date = new Date(timestamp);
+
+  // Define arrays for month names and AM/PM
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", 
+                  "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+
+  // Get the components of the date
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  // Convert 24-hour time to 12-hour time
+  let hours = date.getHours() % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  // Format the date and time
+  const formattedDate = `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
+  
+  return formattedDate;
+}

@@ -149,7 +149,6 @@ const RecordPayment = ({ show, setShow, handleClose, invoiceId, invoiceDetail }:
     return (
         <>
             <Modal show={show} onHide={handleClose} centered size="lg">
-                <ToastContainer />
                 <div className="addMemberForm">
                     <button className='closeModal' onClick={handleClose}>
                         <FontAwesomeIcon icon={faXmark} />

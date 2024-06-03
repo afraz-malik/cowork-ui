@@ -424,12 +424,13 @@
     margin-bottom: 0px;
 }
 
-.memberPhone .react-tel-input .form-control {
+.memberPhone .react-tel-input .form-control,.memberPhone .react-tel-input .form-control:focus {
     height: auto !important;
     padding-left: 0px !important;
     border: none !important;
     background-color: transparent !important;
     font-family: 'Inter' !important;
+    box-shadow: none  !important;
 }
 
 .memberPhone .react-tel-input .selected-flag {

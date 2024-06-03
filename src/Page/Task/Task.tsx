@@ -308,7 +308,7 @@ const Task = () => {
                                                                     >
                                                                         <div className="taskHeading">
                                                                             <p>{task.title}</p>
-                                                                            <Dropdown className='taskIcon'>
+                                                                            <Dropdown className='taskIcon' onMouseDown={(e) => e.stopPropagation()}>
                                                                                 <Dropdown.Toggle id="dropdown-basic">
                                                                                     <FontAwesomeIcon icon={faEllipsis} />
                                                                                 </Dropdown.Toggle>

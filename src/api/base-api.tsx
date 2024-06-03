@@ -43,14 +43,14 @@ export const get = (url: string) => {
 
 // PUT request
 export const put = (url: string, body: any = {}) => {
-    const token = JSON.parse(localStorage.getItem("company") || '{}');
-    const { jwt } = token;
+    const jwt = JSON.parse(localStorage.getItem("company") || '{}');
+    const { token } = jwt;
     return fetch(`${API}${url}`, {
         method: 'PUT',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: (jwt) ? `Bearer ${jwt.toString()}` : "",
+            Authorization: (token) ? `Bearer ${token.toString()}` : "",
         },
         body: JSON.stringify(body),
     })
