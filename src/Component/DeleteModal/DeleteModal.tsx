@@ -1,9 +1,11 @@
 import React from 'react';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+
+import trash from "../../Assets/Images/icon/trash-02.svg";
+
 import "./DeleteModal.css"
-import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 interface AddMemberProps {
     handleDeleteClose: () => void;
@@ -14,7 +16,7 @@ interface AddMemberProps {
 const DeleteModal = ({ deleteShow, handleDeleteClose,deleteApi }: AddMemberProps) => {
     return (
         <>
-            <Modal show={deleteShow} onHide={handleDeleteClose} centered size="lg">
+            <Modal show={deleteShow} id="delete-confirm" onHide={handleDeleteClose} centered size="lg">
                 <div className="addMemberForm">
                     <button className='closeModal' onClick={handleDeleteClose}>
                         <FontAwesomeIcon icon={faXmark} />
@@ -23,12 +25,12 @@ const DeleteModal = ({ deleteShow, handleDeleteClose,deleteApi }: AddMemberProps
                         <Row>
                             <Col md={12}>
                                 <div className="deleteIcon">
-                                    <FontAwesomeIcon icon={faTrashCan} />
-                                    <h4 className="modal-title w-100">Are you sure?</h4>
-                                    <p>Do you really want to delete these records? <br/> This process cannot be undone.</p>
+                                    <img src={trash} alt="trash" />
+                                    <h4 className="modal-title w-100">Are you sure you want to delete this file?</h4>
+                                    <p>Deleted files cannot be recovered!</p>
                                     <div className='deleteBtn'>
                                         <button className='cancel' onClick={handleDeleteClose}>Cancel</button>
-                                        <button className='delete' onClick={deleteApi}>Delete</button>
+                                        <button className='delete' onClick={deleteApi}>Yes, Delete</button>
                                     </div>
                                 </div>
                             </Col>

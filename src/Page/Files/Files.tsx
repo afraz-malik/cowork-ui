@@ -291,6 +291,7 @@ const Files = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></th>
+                    <th></th>
                     <th>Name <FontAwesomeIcon icon={faArrowUp} /></th>
                     <th>Uploaded <FontAwesomeIcon icon={faArrowUp} /></th>
                     <th>Size <FontAwesomeIcon icon={faArrowUp} /></th>
@@ -305,7 +306,8 @@ const Files = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
-                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
+                    <td><img src={getFileType(file.extension)} alt="avatar" /></td>
+                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}>{file.nick_name}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
                     {file.member_images ? <td>
