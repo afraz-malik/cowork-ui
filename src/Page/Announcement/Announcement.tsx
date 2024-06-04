@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react'
 import Layout from '../../Component/Layout/Layout';
 import "./Announcement.css";
 import postLogo from "../../Assets/Images/icon/adminIcon.png";
-import blankLove from "../../Assets/Images/post/heart.png";
-import message from "../../Assets/Images/post/message-dots-square.png";
+import blankLove from "../../Assets/Images/post/heart.svg";
+import message from "../../Assets/Images/post/message-dots-square.svg";
 import clickLove from "../../Assets/Images/post/heart(1).png";
 import dotLine from "../../Assets/Images/post/dots-horizontal.png";
 import avatar from "../../Assets/Images/icon/memberAvatar.png";
 import uploadImage from "../../Assets/Images/post/image-03.png";
 import UploadFile from './UploadFile';
 import { v4 as uuidv4 } from 'uuid';
-import { commentCommentReply, commentLike, commentLikeUpdate, commentReplyLike, commentReplyLikeUpdate, getPostList, likesPost, likesPostEdit, postAdd, replyComment } from '../../api/announcement';
+import { commentCommentReply, commentLike, commentLikeUpdate, commentReplyLike, commentReplyLikeUpdate, deletePost, getPostList, likesPost, likesPostEdit, postAdd, replyComment } from '../../api/announcement';
 import { showNotifications } from '../../CommonFunction/toaster';
 import { ToastContainer } from 'react-toastify';
 import { DESKIE_API as API } from '../../config';
@@ -23,6 +23,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import InputEmoji from "react-input-emoji";
 import { singleProfile } from '../../api/settings';
+import publish from "../../Assets/Images/icon/mail.png";
+import LightBox from '../../Component/LightBox/LightBox';
+import trash from "../../Assets/Images/post/trash-02.svg";
+import emojiIcon from "../../Assets/Images/post/emoji_emotions.svg";
+import uploadIcon from "../../Assets/Images/post/add_photo_alternate.svg";
+import commentMessage from "../../Assets/Images/post/local_post_office.svg";
 
 const Announcement = () => {
   const [file, setFile] = useState("");
@@ -48,6 +54,9 @@ const Announcement = () => {
   const [companyName, setCompanyName] = useState("");
   const [lightIconImage, setLightIconImage] = useState("");
   const [darkIconImage, setDarkIconImage] = useState("");
+  const [lightBoxFile, setLightBoxFile] = useState("");
+  const [lightBoxShow, setLightBoxShow] = useState(false);
+  const handleLightBoxClose = () => setLightBoxShow(false);
   let auth = isAuthenticate();
 
   const handleStateSelect = (id: string, state: string) => {
@@ -118,14 +127,17 @@ const Announcement = () => {
   }
 
   function getTimeDifferenceString(providedTimeStr: any) {
-    var providedTime: any = new Date(providedTimeStr);
-    var currentTime: any = new Date();
-    var timeDifference: any = currentTime - providedTime;
+    var providedTime = new Date(providedTimeStr);
+    var currentTime = new Date();
+    var timeDifference = currentTime.getTime() - providedTime.getTime(); // use getTime() to get timestamps in milliseconds
+
     var minutes = Math.floor(timeDifference / (1000 * 60));
     var hours = Math.floor(minutes / 60);
     var days = Math.floor(hours / 24);
     var months = Math.floor(days / 30);
     var years = Math.floor(months / 12);
+
+    var remainingMinutes = minutes % 60;
 
     // Generate the human-readable time difference string
     if (years > 0) {
@@ -135,14 +147,13 @@ const Announcement = () => {
     } else if (days > 0) {
       return days === 1 ? "1 day ago" : days + " days ago";
     } else if (hours > 0) {
-      // Convert hours to HH:MM:SS format
-      var formattedHours = hours.toString().padStart(2, "0");
-      var formattedMinutes = (minutes % 60).toString().padStart(2, "0");
-      var formattedSeconds = (timeDifference % 60).toString().padStart(2, "0");
-      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+      let hourString = hours === 1 ? "1 hour" : hours + " hours";
+      let minuteString = remainingMinutes === 1 ? "1 minute" : remainingMinutes + " minutes";
+      return `${hourString} ${minuteString} ago`;
+    } else if (minutes > 0) {
+      return minutes === 1 ? "1 minute ago" : minutes + " minutes ago";
     } else {
-      // Return just now or minutes
-      return minutes <= 1 ? "just now" : minutes + " minutes ago";
+      return "just now";
     }
   }
 
@@ -336,6 +347,28 @@ const Announcement = () => {
     textarea.style.height = textarea.scrollHeight + 'px';
   };
 
+  const lightBox = (fileName: string) => {
+    setLightBoxShow(true);
+    setLightBoxFile(fileName);
+  }
+
+  // post archive
+  const postArchive = (postId: string) => {
+    let postArchive = {
+      "archive": true
+    }
+    deletePost(postId, postArchive).then((data) => {
+      if (data.statusCode !== 200) {
+        showNotifications('error', data.message);
+      }
+      else {
+        showNotifications('success', 'Post delete successfully');
+        setCount(count + 1)
+      }
+    })
+  }
+
+  
   return (
     <>
       <Layout>
@@ -350,17 +383,19 @@ const Announcement = () => {
                     : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
                   }
                   <div className="input-with-label3">
+                    <div className="postEmoji">
+                      <img className="heart-icon" alt="emoji" src={emojiIcon} />
+                    </div>
                     <div className="input3">
                       <textarea id="postTextarea" value={post} onChange={(e) => { setPost(e.target.value); autoResize(); }} placeholder="Write a new post" />
+                    </div>
+                    <div className="image" onClick={uploadFiles}>
+                      <img className="heart-icon" alt="upload" src={uploadIcon} />
                     </div>
                   </div>
                 </div>
                 <div className='d-flex justify-content-end w-100'>
                   <div className="postIconImage">
-                    <div className="image" onClick={uploadFiles}>
-                      <img className="heart-icon" alt="" src={uploadImage} />
-                      <div className="comments">Upload Image/Video</div>
-                    </div>
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic">
                         {userRole === "admin" ? <>
@@ -370,17 +405,19 @@ const Announcement = () => {
                         </>}
                       </Dropdown.Toggle>
                       {userRole === "admin" ? <>
-                        <Dropdown.Menu>
-                          <Dropdown.Item onClick={() => handleStateSelect(userId, `${firstName} ${lastName}`)}>
-                            {firstName} {lastName} (You)
+                        <Dropdown.Menu className='postingAs'>
+                          <Dropdown.Item className='admin' onClick={() => handleStateSelect(userId, `${firstName} ${lastName}`)}>
+                            {userImage && userImage.length ? <img src={`${API}/${userImage}`} style={{ objectFit: "cover" }} alt="logo" />
+                              : <img src={avatar} alt="bell" style={{ objectFit: "cover" }} />
+                            } {firstName} {lastName}
                           </Dropdown.Item>
                           <Dropdown.Item onClick={() => handleStateSelect('company', `${companyName}`)}>
-                            {companyName}
+                            <img alt="" src={`${API}/${darkIconImage ? darkIconImage : postLogo}`} /> {companyName}
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </> : <></>}
                     </Dropdown>
-                    <button type='submit' className='btn btn-info' onClick={addPost}>Publish</button>
+                    <button type='submit' className='btn btn-info' onClick={addPost}><img src={publish} alt="publish" /> Publish</button>
                   </div>
                 </div>
               </div>
@@ -399,7 +436,16 @@ const Announcement = () => {
                         <div className="elviro-anasta">{data.userInfo ? <>{data.userInfo.first_name} {data.userInfo.last_name}</> : `${companyName}`}</div>
                         <div className="mins-ago">{getTimeDifferenceString(data.created_at)}</div>
                       </div>
-                      <img className="line-chart-up-04-icon" alt="" src={dotLine} />
+                      <div className="trashPost">
+                        <Dropdown>
+                          <Dropdown.Toggle id="dropdown-basic" className='custom-dropdown-toggle'>
+                            <img className="line-chart-up-04-icon" alt="" src={dotLine} />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className='postDelete'>
+                            <Dropdown.Item className='custom-dropdown-toggle' onClick={() => postArchive(data.id)}><img className="line-chart-up-04-icon" alt="" src={trash} /> Delete Post </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
                     </div>
 
                     <div className="the-modern-workplace">
@@ -407,19 +453,19 @@ const Announcement = () => {
                     </div>
 
                     {data.post_image ? <div className="images">
-                      <img src={`${API}/${data.post_image}`} className="wtqzczkosgc-1-icon" alt="post" />
+                      <img src={`${API}/${data.post_image}`} onClick={() => lightBox(data.post_image)} className="wtqzczkosgc-1-icon" alt="post" />
                     </div> : ""}
 
                     <div className="feedback">
                       <div className="like" onClick={data.user_has_liked === null ? () => postLikes(data.id) : () => updatePostLikes(data.id, data.user_has_liked)}>
                         {data.user_has_liked ? <img className="heart-icon" alt="" src={clickLove} />
                           : <img className="heart-icon" alt="" src={blankLove} />}
-                        <div className="comments">{data.likes_count} like</div>
+                        <div className="comments">{data.likes_count} {data.likes_count === 1 ? "like" : "likes"}</div>
                       </div>
                       <div className="feedback-child" />
                       <div className="like">
                         <img className="heart-icon" alt="" src={message} />
-                        <div className="comments">{data.commentCount} Comments</div>
+                        <div className="comments">{data.commentCount} {data.commentCount === 1 ? "Comment" : "Comments"}</div>
                       </div>
                     </div>
                     {/* previous comment */}
@@ -514,8 +560,9 @@ const Announcement = () => {
                         : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
                       }
                       <div className="commentInput">
-                          <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
-                        <FontAwesomeIcon className="info-circle-icon" onClick={() => commentPost(data.id)} icon={faPaperPlane} />
+                        <InputEmoji  value={placeholder} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
+                        <img src={uploadIcon} alt="upload" />
+                        <img onClick={() => commentPost(data.id)} src={commentMessage} alt="comment" />
                       </div>
                     </div>
                     {/* comment */}
@@ -528,7 +575,7 @@ const Announcement = () => {
         </div>
 
         <UploadFile setFile={setFile} uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
-
+        <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={handleLightBoxClose} />
 
       </Layout>
     </>

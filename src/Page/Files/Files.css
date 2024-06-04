@@ -1531,7 +1531,7 @@
 }
 
 .filesList table thead tr th {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -1546,7 +1546,7 @@
 
 .filesList table tbody tr td:nth-child(1) {
   color: #101828;
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -1561,7 +1561,7 @@
 .filesList table tbody tr td:nth-child(5),
 .filesList table tbody tr td:nth-child(6) {
   color: #475467;
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1654,7 +1654,7 @@
 }
 
 .drop-file-input__label p {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -1665,7 +1665,7 @@
 }
 
 .drop-file-input__label p span {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -1674,7 +1674,7 @@
   color: #6941C6;
 }
 .drop-file-input__label h6{
-font-family: "Inter";
+font-family: "MyCustomFont";
 font-size: 12px;
 font-weight: 400;
 line-height: 18px;
@@ -1732,7 +1732,7 @@ color: rgba(71, 84, 103, 1);
 }
 
 .uploadFileShow .fileName p {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -1743,7 +1743,7 @@ color: rgba(71, 84, 103, 1);
 }
 
 .uploadFileShow .fileName span {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1776,7 +1776,7 @@ color: rgba(71, 84, 103, 1);
 }
 
 .fileNameType label {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -1787,7 +1787,7 @@ color: rgba(71, 84, 103, 1);
 }
 
 .fileNameType input {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   width: 100%;
   border: 1px solid #D0D5DD;
   box-shadow: 0px 1px 2px 0px #1018280D;
@@ -1819,7 +1819,7 @@ color: rgba(71, 84, 103, 1);
 }
 
 .sharing p {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -1856,7 +1856,7 @@ color: rgba(71, 84, 103, 1);
 }
 
 .adminName p {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0em;
@@ -1867,7 +1867,7 @@ color: rgba(71, 84, 103, 1);
 }
 
 .adminName span {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -1939,7 +1939,7 @@ color: rgba(71, 84, 103, 1);
 
 
 .shareMember .content ul li span {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 13px;
@@ -1960,7 +1960,7 @@ color: rgba(71, 84, 103, 1);
   padding: 5px;
   border: none;
   outline: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -1982,7 +1982,7 @@ color: rgba(71, 84, 103, 1);
   box-shadow: 0px 2.4000000953674316px 6px 0px #0619380F;
   padding: 12px 50px;
   border: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -2001,7 +2001,7 @@ color: rgba(71, 84, 103, 1);
   box-shadow: 0px 2.4000000953674316px 6px 0px #0619380F;
   padding: 12px 50px;
   border: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -2056,7 +2056,7 @@ color: rgba(71, 84, 103, 1);
   border: 1px solid #e3e1e1;
 }
 .searchMemberList li span {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 13px;
@@ -2070,7 +2070,7 @@ color: rgba(71, 84, 103, 1);
   width: 79px !important;
   height: 40px !important;
   border: 1px solid #6366F1;
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;

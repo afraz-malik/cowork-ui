@@ -1,5 +1,5 @@
 .memberHome h5 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 500;
     line-height: 26px;
@@ -8,7 +8,7 @@
 }
 
 .memberHome h5 span {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 20px;
     font-weight: 600;
     line-height: 32px;
@@ -62,7 +62,7 @@
 }
 
 .memberLeft .assetsTicket .ticketItem p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 24px;
@@ -112,7 +112,7 @@
 
 .latestInvoice .latestInvoiceHeading h5,
 .wifiQr h5 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -125,7 +125,7 @@
 .latestInvoice .latestInvoiceHeading a {
     background-color: #fff;
     border: none;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 12px;
     font-weight: 600;
     line-height: 16px;
@@ -139,7 +139,7 @@
 }
 
 .invoiceBillingList table thead tr th {
-    font-family: 'Inter';
+    font-family: 'MyCustomFont';
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -163,7 +163,7 @@
 }
 
 .invoiceBillingList table tbody tr td:nth-child(1) {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -176,7 +176,7 @@
 .invoiceBillingList table tbody tr td:nth-child(4),
 .invoiceBillingList table tbody tr td:nth-child(5),
 .invoiceBillingList table tbody tr td:nth-child(6) {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -207,7 +207,7 @@
 
 .memberRight .wifiQr .qr p {
     margin-top: 10px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 500;
     line-height: 26px;
@@ -247,7 +247,7 @@
 }
 
 .upcomingBook .bookingList .spacesInfo h6 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 24px;
@@ -257,7 +257,7 @@
 }
 
 .upcomingBook .bookingList .spacesInfo p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 12px;
     font-weight: 500;
     line-height: 22px;

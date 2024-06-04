@@ -6,7 +6,7 @@
 }
 
 .taskOptions p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -50,7 +50,7 @@
 
 .taskDescription h6 {
     margin-top: 24px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -84,7 +84,7 @@
 
 .dateShow .taskDate {
     color: rgba(52, 64, 84, 1);
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -132,7 +132,7 @@
     margin-right: 8px;
     font-size: 16px;
     color: rgb(49, 49, 49);
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-weight: 600;
     border: 1px solid rgb(112, 112, 112);
     border-radius: 15px;
@@ -155,7 +155,7 @@
     margin-top: 38px;
   background: #6366F1;
   border: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -204,7 +204,7 @@
 }
 
 .assignHeading p{
-font-family: "Inter";
+font-family: "MyCustomFont";
 font-size: 16px;
 font-weight: 600;
 line-height: 26px;

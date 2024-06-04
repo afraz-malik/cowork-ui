@@ -28,7 +28,7 @@
 }
 
 .invoiceInfo .invoiceId p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -39,7 +39,7 @@
 }
 
 .invoiceInfo .invoiceId h6 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -49,7 +49,7 @@
 }
 
 .invoiceTop .invoiceId h1 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 18px;
     font-weight: 600;
     line-height: 28px;
@@ -64,7 +64,7 @@
 }
 
 .invoiceTop .invoiceDate p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 700;
     line-height: 24px;
@@ -88,7 +88,7 @@
 }
 
 .invoiceItem .itemHeading p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 500;
     line-height: 26px;
@@ -105,7 +105,7 @@
 }
 
 .itemList .itemName {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -126,7 +126,7 @@
 }
 
 .itemList .itemPrice {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -143,7 +143,7 @@
 }
 
 .itemTotal p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 500;
     line-height: 26px;
@@ -153,7 +153,7 @@
 }
 
 .itemTotal p span {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -174,7 +174,7 @@
 }
 
 .invoiceMember h1 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 500;
     line-height: 26px;
@@ -190,7 +190,7 @@
 }
 
 .invoiceMember .memberDetails p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -201,7 +201,7 @@
 }
 
 .invoiceMember .memberDetails span {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -228,7 +228,7 @@
 }
 
 .invoiceNotes h1 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 500;
     line-height: 26px;
@@ -239,7 +239,7 @@
 }
 
 .invoiceNotes p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -260,7 +260,7 @@
 }
 
 .invoiceDownload p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 500;
     line-height: 26px;
@@ -282,7 +282,7 @@
     -moz-border-radius: 12px;
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 16px;
@@ -293,7 +293,7 @@
 }
 
 .invoiceId .status span {
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -338,7 +338,7 @@
 }
 
 .invoiceDropdown .invoiceActions button {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -361,7 +361,7 @@
     color: rgba(102, 112, 133, 1);
     text-decoration: none;
     padding-left: 15px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 24px;
@@ -373,7 +373,7 @@
 }
 
 .invoicePoint .list-ic a b {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 12px;
     font-weight: 400;
     line-height: 20px;
