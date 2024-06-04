@@ -26,7 +26,7 @@
 }
 
 .contentHeading p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 20px;
     font-weight: 600;
     line-height: 32px;
@@ -63,7 +63,7 @@
 }
 
 .rightNavbar .dropdown button {
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 15px;
     font-weight: 600;
     line-height: 24px;
@@ -99,7 +99,7 @@
 }
 
 .navProfile h6 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 20px;
@@ -110,7 +110,7 @@
 }
 
 .navProfile p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -119,7 +119,7 @@
 }
 
 .navProfile a {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
@@ -179,7 +179,7 @@
 .sidebarLogo .adminHeading p {
     color: #D1D5DB;
     margin-bottom: 0px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 14px;
     font-weight: 600;
     line-height: 24px;
@@ -188,7 +188,7 @@
 }
 
 .sidebarLogo .adminHeading span {
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -225,7 +225,7 @@
 .sidebarFooter ul .dropNavLink button {
     color: #98A2B3;
     text-decoration: none;
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -253,7 +253,7 @@
 .sidebarFooter ul .dropNavLink #help-collapse ul li button {
     color: #667085;
     text-decoration: none;
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -373,7 +373,7 @@
 }
 
 .notificationBox .notifyHeading p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -395,7 +395,7 @@
     overflow-y: auto;
 }
 .notificationBox .latestHeading h5 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 12px;
     font-weight: 500;
     line-height: 20px;
@@ -418,7 +418,7 @@
     -o-border-radius: 6px;
 }
 .latestNotify .notifyBox h6{
-font-family: "Inter";
+font-family: "MyCustomFont";
 font-size: 16px;
 font-weight: 600;
 line-height: 26px;
@@ -427,7 +427,7 @@ color: rgba(29, 41, 57, 1);
 margin-bottom: 0px;
 }
 .latestNotify .notifyBox h5{
-    font-family: "Inter";
+    font-family: "MyCustomFont";
 font-size: 14px;
 font-weight: 700;
 line-height: 24px;
@@ -436,14 +436,14 @@ color: rgba(102, 112, 133, 1);
 margin-bottom: 0px;
 }
 .latestNotify .notifyBox h5 span{
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
     text-align: left;
 }
 .latestNotify .notifyBox p{
-    font-family: "Inter";
+    font-family: "MyCustomFont";
 font-size: 12px;
 font-weight: 400;
 line-height: 20px;

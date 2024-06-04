@@ -536,7 +536,7 @@ align-items: center;
 margin-right: 15px;
 }
 .all-messages p{
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -1079,7 +1079,7 @@ margin-right: 15px;
 
 .div-2 {
     color: var(--Typography-Muted, #98a2b3);
-    font-family: Inter, sans-serif;
+    font-family: MyCustomFont, sans-serif;
     font-weight: 600;
     margin: auto 0;
 }
@@ -1114,7 +1114,7 @@ margin-right: 15px;
 }
 
 .div-4 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     align-self: stretch;
     text-wrap: nowrap;
 }
@@ -1224,14 +1224,14 @@ margin-right: 15px;
     align-self: stretch;
     margin-top: 24px;
     width: 100%;
-    font: 600 18px/156% Inter, -apple-system, Roboto, Helvetica,
+    font: 600 18px/156% MyCustomFont, -apple-system, Roboto, Helvetica,
         sans-serif;
 }
 
 .u1div-3 {
     color: var(--Typography-Muted, #98a2b3);
     margin-top: 4px;
-    font: 400 14px/24px Inter, -apple-system, Roboto, Helvetica,
+    font: 400 14px/24px MyCustomFont, -apple-system, Roboto, Helvetica,
         sans-serif;
 }
 
@@ -1270,7 +1270,7 @@ margin-right: 15px;
     align-self: stretch;
     margin-top: 24px;
     width: 100%;
-    font: 600 18px/156% Inter, -apple-system, Roboto, Helvetica,
+    font: 600 18px/156% MyCustomFont, -apple-system, Roboto, Helvetica,
         sans-serif;
 }
 
@@ -1278,6 +1278,6 @@ margin-right: 15px;
     color: var(--Typography-Muted, #98a2b3);
     text-align: center;
     margin-top: 4px;
-    font: 400 14px/24px Inter, -apple-system, Roboto, Helvetica,
+    font: 400 14px/24px MyCustomFont, -apple-system, Roboto, Helvetica,
         sans-serif;
 }

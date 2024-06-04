@@ -60,3 +60,8 @@ export const commentReplyLike = async (data={}) => {
 export const commentReplyLikeUpdate = async (data={}) => {
     return put(`/commentReplyLikeUpdate`,data);
 };
+
+// post delete
+export const deletePost = async (id: string,body={}) => {
+    return put(`/deletePost/${id}`,body);
+};

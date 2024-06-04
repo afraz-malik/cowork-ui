@@ -1,11 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('./Assets/fonts/Avenir-Medium.otf') format('woff2'),
+    url('./Assets/fonts/Avenir-Medium.otf') format('woff'),
+    url('./Assets/fonts/Avenir-Medium.otf') format('truetype');
+}
+
 body {
   margin: 0;
   line-height: normal;
+  font-family: 'MyCustomFont';
 }
 :root {
   /* fonts */
-  --text-xs-regular: Inter;
+  --text-xs-regular: MyCustomFont;
 
   /* font sizes */
   --font-size-xs: 12px;

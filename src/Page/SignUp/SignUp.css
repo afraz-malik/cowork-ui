@@ -16,7 +16,7 @@
 }
 
 .welcomeText h6 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 36px;
     font-weight: 700;
     line-height: 50px;
@@ -26,7 +26,7 @@
 }
 
 .welcomeText p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
@@ -36,7 +36,7 @@
 }
 
 .welcomeText button {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -125,7 +125,7 @@
 
 .arrowHeading h6 {
     margin-top: 6px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 15px;
     font-weight: 600;
     line-height: 16px;
@@ -136,7 +136,7 @@
 }
 
 .arrowHeading p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -170,7 +170,7 @@
 .passwordInfo h1,
 .billingInfo h1,
 .agreementInfo h1 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 24px;
     font-weight: 700;
     line-height: 36px;
@@ -191,7 +191,7 @@
 
 .tabPanelBtn .continue {
     margin-left: 24px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -216,7 +216,7 @@
 
 .tabPanelBtn .backBtn {
     width: 98px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -243,7 +243,7 @@
 .tabPanelBtn .skip {
     margin-left: 24px;
     width: 98px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -296,7 +296,7 @@
 }
 
 .agreementText h6 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 700;
     line-height: 26px;
@@ -306,7 +306,7 @@
 }
 
 .agreementText p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
@@ -347,7 +347,7 @@
 }
 
 .signBox p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -372,7 +372,7 @@
 
 .finishText h6 {
     margin-top: 25px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 700;
     line-height: 26px;
@@ -382,7 +382,7 @@
 }
 
 .finishText p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -392,7 +392,7 @@
 }
 
 .signatureTab h1 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 24px;
     font-weight: 700;
     line-height: 36px;
@@ -406,7 +406,7 @@
 }
 
 .signatureTab .nav-item a {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -421,7 +421,7 @@
 }
 
 .signaturePad p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -452,7 +452,7 @@
 }
 
 .typeSignature p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -489,7 +489,7 @@
 }
 
 .signShow .signatureName {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -510,7 +510,7 @@
 
 .signChange button {
     background-color: #fff;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -522,7 +522,7 @@
 }
 
 .passMatch {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -532,7 +532,7 @@
 }
 .disable{
     margin-left: 24px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -570,7 +570,7 @@
     margin-top: 15px;
 }
 .cardNumber label{
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
   font-size: 15px;
   font-weight: 500;
   line-height: 24px;

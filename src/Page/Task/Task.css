@@ -13,7 +13,7 @@
 }
 
 .taskTopHeading p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 12px;
     font-weight: 500;
     line-height: 20px;
@@ -35,7 +35,7 @@
 }
 
 .allTaskFilter p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 18px;
     font-weight: 600;
     line-height: 28px;
@@ -59,7 +59,7 @@
     -moz-border-radius: 12px;
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 24px;
@@ -83,7 +83,7 @@
     -moz-border-radius: 12px;
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -121,7 +121,7 @@
 }
 
 .taskHeading p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 24px;
@@ -152,7 +152,7 @@
 }
 
 .taskDate p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 12px;
     font-weight: 500;
     line-height: 20px;
@@ -234,7 +234,7 @@
 
 .taskIcon .dropdown-menu a {
     color: rgba(52, 64, 84, 1);
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -247,7 +247,7 @@
 }
 
 .taskDropdown .filterBtn {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 600;
     line-height: 24px;

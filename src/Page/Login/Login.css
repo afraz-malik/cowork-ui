@@ -33,7 +33,7 @@
 }
 
 .loginForm h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 24px;
     font-weight: 700;
     line-height: 36px;
@@ -43,7 +43,7 @@
 }
 
 .loginInput label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -69,7 +69,7 @@
     -moz-border-radius: 12px;
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
@@ -98,7 +98,7 @@
     background: #6366F1;
     width: 100%;
     border: none;
-    font-family: 'Inter', sans-serif;
+    font-family: 'MyCustomFont';
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -123,7 +123,7 @@
 }
 
 .agreement span {
-    font-family: 'Inter';
+    font-family: 'MyCustomFont';
     font-size: 15px;
     font-weight: 500;
     line-height: 22px;

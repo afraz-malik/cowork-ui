@@ -29,7 +29,7 @@
 
 .bookTour .bookCalender h6,
 .bookTour .bookInfo h6 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 20px;
     font-weight: 600;
     line-height: 32px;
@@ -39,7 +39,7 @@
 
 .bookTour .bookCalender h5,
 .bookTour .bookInfo h5 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 20px;
     font-weight: 600;
     line-height: 32px;
@@ -68,7 +68,7 @@
 
 .bookTour .bookCalender .selectBook .selectDate h6,
 .bookTour .bookCalender .selectBook .selectTime h6 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -139,7 +139,7 @@
 }
 
 .selectTime .pickTime h4 {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -148,7 +148,7 @@
 }
 
 .selectTime .pickTime button {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -193,7 +193,7 @@
 
 .selectTime .chooseDate p {
     margin-left: 10px;
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -217,7 +217,7 @@
 }
 
 .selectTime .selectedDate .dateTime p {
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
@@ -233,7 +233,7 @@
 }
 
 .bookTourBtn button ,.bookTourBtn a{
-    font-family: "Inter";
+    font-family: "MyCustomFont";
     font-size: 14px;
     text-decoration: none;
     font-weight: 600;
