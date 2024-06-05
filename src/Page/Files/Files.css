@@ -1555,6 +1555,10 @@
 
 }
 
+.filesList table tbody tr td:nth-child(2) {
+  width: 60px;
+}
+
 .filesList table tbody tr td:nth-child(2),
 .filesList table tbody tr td:nth-child(3),
 .filesList table tbody tr td:nth-child(4),
