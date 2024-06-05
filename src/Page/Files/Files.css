@@ -1563,7 +1563,9 @@
 .filesList table tbody tr td:nth-child(3),
 .filesList table tbody tr td:nth-child(4),
 .filesList table tbody tr td:nth-child(5),
-.filesList table tbody tr td:nth-child(6) {
+.filesList table tbody tr td:nth-child(6),
+.filesList table tbody tr td:nth-child(7),
+.filesList table tbody tr td:nth-child(8) {
   color: #475467;
   font-family: 'MyCustomFont';
   font-size: 14px;
