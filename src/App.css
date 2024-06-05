@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('./Assets/fonts/Avenir-Medium.otf') format('woff2'),
-    url('./Assets/fonts/Avenir-Medium.otf') format('woff'),
-    url('./Assets/fonts/Avenir-Medium.otf') format('truetype');
+  src: url('./Assets/fonts/AvenirLTProMedium.otf') format('woff2'),
+    url('./Assets/fonts/AvenirLTProMedium.otf') format('woff'),
+    url('./Assets/fonts/AvenirLTProMedium.otf') format('truetype');
 }
 
 body {

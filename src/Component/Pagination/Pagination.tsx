@@ -45,7 +45,7 @@ const Pagination = ({ paginationTitle, setPage, limit, setLimit, prevPage, nextP
                             ))}
                         </Dropdown.Menu>
                     </Dropdown>
-                    <p>Showing {allRequestList.length} of {totalValue} {paginationTitle}</p>
+                    <p>1-10 of {allRequestList.length} of {totalValue} {paginationTitle} items</p>
                 </div>
                 <div className="paginationNumber">
                     <button onClick={() => prevPage()} className={prevButton === true ? "" : "disablePag"}><FontAwesomeIcon icon={faArrowLeft} /> Previous</button>
