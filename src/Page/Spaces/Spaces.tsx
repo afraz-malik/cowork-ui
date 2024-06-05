@@ -204,7 +204,7 @@ const Spaces = () => {
                                     </tr>)}
                                 </tbody>
                             </Table>
-                            <Pagination paginationTitle="assets" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={spaces} />
+                            <Pagination page={page} paginationTitle="assets" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={spaces} />
                         </div>
 
                         <AddSpace show={show} setShow={setShow} handleClose={handleClose} />

@@ -201,7 +201,7 @@ const Billing = () => {
 
                                 </tbody>
                             </Table>
-                            <Pagination paginationTitle="invoices" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={invoiceList} />
+                            <Pagination page={page} paginationTitle="invoices" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={invoiceList} />
                             
                         </div>
                     </div>
