@@ -225,7 +225,7 @@ const InvoiceDetails = () => {
                                     <span></span>
                                     <Link to="#">Invoice Reminder Sent <b>26 Apr 2024, 11:50 AM</b></Link>
                                 </li> */}
-                                {invoiceDetail.invoice_view ? <li>
+                                {invoiceDetail && invoiceDetail.invoice_view ? <li>
                                     <span></span>
                                     <Link to="#">Invoice Viewed <b>{invoiceDetail && invoiceFormatTimes(invoiceDetail.invoice_view)}</b></Link>
                                 </li> : ""}

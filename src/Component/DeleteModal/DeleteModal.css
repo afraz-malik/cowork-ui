@@ -1,10 +1,20 @@
+#delete-confirm .modal-content {
+    width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#delete-confirm .addMemberForm {
+    padding: 24px 32px;
+}
+
 .deleteIcon {
     text-align: center;
 }
 
-.deleteIcon svg {
+.deleteIcon img {
     background-color: rgba(255, 241, 243, 1);
-    padding: 28px;
+    padding: 12px;
     font-size: 47px;
     color: rgba(192, 16, 72, 1);
     border-radius: 50%;
@@ -15,22 +25,23 @@
 }
 
 .deleteIcon h4 {
+    margin-top: 16px;
     font-family: "MyCustomFont";
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 36px;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 28px;
     text-align: center;
-    color: rgba(16, 24, 40, 1);
+    color: #1D2939;
 }
 
 .deleteIcon p {
-    margin-top: 20px;
+    margin-top: 8px;
     font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
     text-align: center;
-    color: rgba(52, 64, 84, 1);
+    color: #475467;
 }
 
 .deleteBtn {
@@ -41,10 +52,11 @@
 .deleteBtn button {
     margin: 0px 15px;
     color: white;
+    width: 188px;
     padding: 12px 18px;
     font-family: "MyCustomFont";
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 800;
     line-height: 20px;
     text-align: center;
     border: none;
@@ -57,9 +69,11 @@
 }
 
 .deleteBtn .cancel {
-    background: rgba(99, 102, 241, 1);
+    color: #6366F1;
+    background-color: white;
+    border: 1px solid #6366F1;
 }
 
 .deleteBtn .delete {
-    background: rgba(192, 16, 72, 1);
+    background: #F04438;
 }

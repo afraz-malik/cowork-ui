@@ -368,6 +368,44 @@ const Announcement = () => {
     })
   }
 
+  const handleEmojiButtonClick = () => {
+    // Handle emoji button click
+    console.log('Emoji button clicked');
+  };
+
+  const CustomEmojiButton = () => (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        marginLeft: '10px', // Adjust margin as needed
+      }}
+    >
+      <img
+        src={emojiIcon}
+        alt="Custom Emoji"
+        style={{ width: '24px', height: '24px', cursor: 'pointer' }}
+        onClick={handleEmojiButtonClick}
+      />
+    </div>
+  );
+
+  const emojiButtonElement:any = (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        marginLeft: '10px', // Adjust margin as needed
+      }}
+    >
+      <img
+        src={emojiIcon}
+        alt="Custom Emoji"
+        style={{ width: '24px', height: '24px', cursor: 'pointer' }}
+        onClick={handleEmojiButtonClick}
+      />
+    </div>
+  );
   
   return (
     <>
@@ -560,8 +598,9 @@ const Announcement = () => {
                         : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
                       }
                       <div className="commentInput">
-                        <InputEmoji  value={placeholder} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
-                        <img src={uploadIcon} alt="upload" />
+                      {/* <CustomEmojiButton /> */}
+                        <InputEmoji  value={placeholder} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} buttonElement={emojiButtonElement} />
+                        <img src={uploadIcon} alt="upload" />&nbsp;
                         <img onClick={() => commentPost(data.id)} src={commentMessage} alt="comment" />
                       </div>
                     </div>
