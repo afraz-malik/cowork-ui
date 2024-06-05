@@ -875,6 +875,11 @@
   font-size: var(--text-xs-semibold-size);
 }
 
+.avatar-icon36 {
+  border: solid 1.5px #FFAB00;
+  margin-left: -4px;
+}
+
 .avatar-icon36,
 .avatar-icon37,
 .avatar-icon41 {
@@ -905,13 +910,13 @@
 }
 
 .avatar2 {
-  width: 28px;
+  width: 24px;
   position: relative;
   border-radius: var(--br-181xl);
   background-color: var(--gray-100);
   border: 2px solid var(--bg-4);
   box-sizing: border-box;
-  height: 28px;
+  height: 24px;
   margin-left: -4px;
   display: flex;
   justify-content: center;
