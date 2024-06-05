@@ -281,7 +281,7 @@ const Files = () => {
                 <div className='filterDropdown taskDropdown'>
                   <Dropdown>
                     <Dropdown.Toggle>
-                      <button className='filterBtn'><img src={filter} alt='filter' />{filterTag === "created" ? "My files" : filterTag === "member" ? "Share files" : filterTag === "all" ? "All files" : "Filter"}</button>
+                      <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "created" ? "My files" : filterTag === "member" ? "Share files" : filterTag === "all" ? "All files" : "Filter"}</button>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item onClick={()=>setFilterTag('all')}>All files</Dropdown.Item>
