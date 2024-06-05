@@ -168,35 +168,7 @@ const MyInvoice = () => {
 
                                 </tbody>
                             </Table>
-                            {/* <div className='paginationBox'>
-                                <div className="tableNumber">
-                                    <Dropdown className="paginationDropdown" onSelect={handleSelect}>
-                                        <Dropdown.Toggle id="pageDropDown">
-                                            {selectedValue}
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu role="menu" aria-labelledby="pageDropDown">
-                                            {numbers.map((number) => (
-                                                <Dropdown.Item key={number} eventKey={number.toString()}>
-                                                    {number}
-                                                </Dropdown.Item>
-                                            ))}
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                    <p>Showing 10 of 100 members</p>
-                                </div>
-                                <div className="paginationNumber">
-                                    <button><FontAwesomeIcon icon={faArrowLeft} /> Previous</button>
-                                    <button>1</button>
-                                    <button>2</button>
-                                    <button>3</button>
-                                    <button>...</button>
-                                    <button>8</button>
-                                    <button>9</button>
-                                    <button>10</button>
-                                    <button>Next <FontAwesomeIcon icon={faArrowRight} /></button>
-                                </div>
-                            </div> */}
-                            <Pagination paginationTitle="invoices" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={invoiceList} />
+                            <Pagination page={page} paginationTitle="invoices" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={invoiceList} />
                         </div>
                     </div>
                 </div>

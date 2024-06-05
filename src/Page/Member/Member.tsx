@@ -201,7 +201,7 @@ const Member = () => {
                   </tr>)}
                 </tbody>
               </Table>
-              <Pagination paginationTitle="members" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={member} />
+              <Pagination page={page} paginationTitle="members" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={member} />
             </div>
             <AddMember show={show} setShow={setShow} handleClose={handleClose} />
             <EditMember memberId={memberId} updateShow={updateShow} setUpdateShow={setUpdateShow} handleUpdateClose={handleUpdateClose} />
