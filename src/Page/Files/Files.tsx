@@ -46,8 +46,8 @@ const Files = () => {
   const handleDeleteClose = () => setDeleteShow(false);
   const [totalValue, setTotalValue] = useState<any>();
   const [limitValue, setLimitValue] = useState<any>();
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState<number>(6);
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(10);
   const pageCount = Math.ceil(totalValue / limitValue);
   const [prevButton, setPrevButton] = useState<boolean>(false);
   const [nextButton, setNextButton] = useState<boolean>(false);
@@ -307,7 +307,7 @@ const Files = () => {
                         <span className="checkmark"></span></div>
                     </label></td>
                     <td><img src={getFileType(file.extension)} alt="avatar" /></td>
-                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}>{file.nick_name}.{file.extension}</td>
+                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}>{file.nick_name.length <= 23 ? file.nick_name : file.nick_name.substring(0, 20) + '...'}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
                     {file.member_images ? <td>
@@ -336,7 +336,7 @@ const Files = () => {
                   </tr>)}
                 </tbody>
               </Table>
-              <Pagination paginationTitle="files" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={filesList} />
+              <Pagination page={page} paginationTitle="items" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={filesList} />
             </div>
           </div>
         </div>
