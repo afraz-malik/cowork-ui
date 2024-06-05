@@ -5,24 +5,24 @@ import sketch from "../../Assets/Images/icon/sketch(1).png";
 import file from "../../Assets/Images/icon/file-05.png";
 import figma from "../../Assets/Images/icon/figma.png";
 import imageFile from "../../Assets/Images/icon/image-03.png";
-import avatar from "../../Assets/Images/icon/tableAvatar.png";
+import upload from "../../Assets/Images/icon/upload.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown, Table } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../config';
 import filter from '../../Assets/Images/icon/filter-lines.png';
-import download from "../../Assets/Images/icon/download-cloud-02.png";
-import deleteIcon from "../../Assets/Images/icon/trash-02.png";
-import star from "../../Assets/Images/icon/star-01.png";
-import markStar from "../../Assets/Images/icon/star-01(1).png";
+import download from "../../Assets/Images/icon/download-cloud-02.svg";
+import deleteIcon from "../../Assets/Images/icon/trash-02.svg";
+import star from "../../Assets/Images/icon/star-01.svg";
+import markStar from "../../Assets/Images/icon/star-01(1).svg";
 import UploadFile from '../../Component/UploadFile/UploadFile';
 import { favoriteFile, filesDelete, getFavoriteList, getFilesList } from '../../api/files';
 import { convertBytesToSize, separateComma } from '../../CommonFunction/Function';
 import moment from 'moment';
-import imgExtension from "../../Assets/Images/icon/feature-image.png";
-import fileExtension from "../../Assets/Images/icon/feature-file.png";
-import videoExtension from "../../Assets/Images/icon/feature-video.png";
-import unknownExtension from "../../Assets/Images/icon/feature-unknown.png";
+import imgExtension from "../../Assets/Images/icon/feature-image.svg";
+import fileExtension from "../../Assets/Images/icon/feature-file.svg";
+import videoExtension from "../../Assets/Images/icon/feature-video.svg";
+import unknownExtension from "../../Assets/Images/icon/feature-unknown.svg";
 import { showNotifications } from '../../CommonFunction/toaster';
 import { ToastContainer } from 'react-toastify';
 import { getMemberList } from '../../api/member';
@@ -46,8 +46,8 @@ const Files = () => {
   const handleDeleteClose = () => setDeleteShow(false);
   const [totalValue, setTotalValue] = useState<any>();
   const [limitValue, setLimitValue] = useState<any>();
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState<number>(6);
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(10);
   const pageCount = Math.ceil(totalValue / limitValue);
   const [prevButton, setPrevButton] = useState<boolean>(false);
   const [nextButton, setNextButton] = useState<boolean>(false);
@@ -62,7 +62,8 @@ const Files = () => {
   const [sharesShow, setSharesShow] = useState<any>([]);
   const [shares, setShares] = useState<any>([]);
   const [filterTag, setFilterTag] = useState('');
-
+  const [sortBy, setSortBy] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   const fileUpload = () => {
     setUploadShow(true);
@@ -77,23 +78,11 @@ const Files = () => {
     });
 
     getMemberList(10, 1).then((data) => {
-
-      if (data.statusCode !== 200) {
-
-      }
-      else {
-        setMember(data.members);
-      }
+      setMember(data.members);
     })
 
     getFavoriteList().then((data) => {
-
-      if (data.statusCode !== 200) {
-
-      }
-      else {
-        setFavoriteList(data.favorite);
-      }
+      setFavoriteList(data.favorite);
     })
 
   }, [uploadShow, count, shareShow, limit, page, filterTag]);
@@ -230,12 +219,34 @@ const Files = () => {
     setLightBoxFile(fileName);
   }
 
-
-
   const filteredFiles = filesList?.filter((member: any) =>
     member.nick_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     member.extension.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
+  const handleSort = (columnName: string) => {
+    if (sortBy === columnName) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(columnName);
+      setSortOrder('asc');
+    }
+  };
+
+  const sortedFiles = [...filteredFiles].sort((a:any, b:any) => {
+    if (sortBy === 'name') {
+      return a.nick_name.localeCompare(b.nick_name) * (sortOrder === 'asc' ? 1 : -1);
+    } else if (sortBy === 'uploaded') {
+      const dateA = new Date(a.created_at);
+    const dateB = new Date(b.created_at);
+    return (dateA.getTime() - dateB.getTime()) * (sortOrder === 'asc' ? 1 : -1);
+    } else if (sortBy === 'size') {
+      const sizeA = parseFloat(a.size.replace(/[^\d.]/g, '')); // Remove non-numeric characters and parse
+      const sizeB = parseFloat(b.size.replace(/[^\d.]/g, '')); // Remove non-numeric characters and parse
+      return (sizeA - sizeB) * (sortOrder === 'asc' ? 1 : -1);
+    }
+    return 0;
+  });
 
   return (
     <>
@@ -270,7 +281,7 @@ const Files = () => {
                 <div className='filterDropdown taskDropdown'>
                   <Dropdown>
                     <Dropdown.Toggle>
-                      <button className='filterBtn'><img src={filter} alt='filter' />{filterTag === "created" ? "My files" : filterTag === "member" ? "Share files" : filterTag === "all" ? "All files" : "Filter"}</button>
+                      <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "created" ? "My files" : filterTag === "member" ? "Share files" : filterTag === "all" ? "All files" : "Filter"}</button>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item onClick={()=>setFilterTag('all')}>All files</Dropdown.Item>
@@ -279,7 +290,7 @@ const Files = () => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
-                <button onClick={() => fileUpload()}><FontAwesomeIcon icon={faPlus} /> Upload File</button>
+                <button onClick={() => fileUpload()}><img src={upload} alt='upload' /> Upload File</button>
               </div>
             </div>
             <div className="filesList">
@@ -292,22 +303,23 @@ const Files = () => {
                         <span className="checkmark"></span></div>
                     </label></th>
                     <th></th>
-                    <th>Name <FontAwesomeIcon icon={faArrowUp} /></th>
-                    <th>Uploaded <FontAwesomeIcon icon={faArrowUp} /></th>
-                    <th>Size <FontAwesomeIcon icon={faArrowUp} /></th>
+                    <th onClick={() => handleSort('name')}>Name <FontAwesomeIcon icon={faArrowUp} /> <FontAwesomeIcon icon={faArrowDown} /></th>
+                    <th onClick={() => handleSort('uploaded')}>Uploaded <FontAwesomeIcon icon={faArrowUp} /> <FontAwesomeIcon icon={faArrowDown} /></th>
+                    <th onClick={() => handleSort('size')}>Size <FontAwesomeIcon icon={faArrowUp} /> <FontAwesomeIcon icon={faArrowDown} /></th>
                     <th>Sharing</th>
                     <th>Actions</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredFiles && filteredFiles.map((file: any, index) => <tr>
+                  {sortedFiles && sortedFiles.map((file: any, index) => <tr>
                     <td><label className="tableCheckBox">
                       <div className="contactCheck">
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
                     <td><img src={getFileType(file.extension)} alt="avatar" /></td>
-                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}>{file.nick_name}.{file.extension}</td>
+                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}>{file.nick_name.length <= 23 ? file.nick_name : file.nick_name.substring(0, 20) + '...'}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
                     {file.member_images ? <td>
@@ -329,6 +341,8 @@ const Files = () => {
                       {file.delete ?
                         <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
                         : ""}
+                    </td>
+                    <td>
                       <button className='btn start' onClick={() => favoriteAdd(file.id)}>
                         {file.favorite === 0 ? <img src={markStar} alt="download" /> : <img src={star} alt="download" />}
                       </button>
@@ -336,7 +350,7 @@ const Files = () => {
                   </tr>)}
                 </tbody>
               </Table>
-              <Pagination paginationTitle="files" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={filesList} />
+              <Pagination page={page} paginationTitle="items" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={filesList} />
             </div>
           </div>
         </div>

@@ -5,8 +5,8 @@ import { faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Table } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../../config';
 import filter from '../../../Assets/Images/icon/filter-lines.png';
-import download from "../../../Assets/Images/icon/download-cloud-02.png";
-import deleteIcon from "../../../Assets/Images/icon/trash-02.png";
+import download from "../../../Assets/Images/icon/download-cloud-02.svg";
+import deleteIcon from "../../../Assets/Images/icon/trash-02.svg";
 import UploadFile from '../../../Component/UploadFile/UploadFile';
 import { favoriteFile, filesDelete, getFilesList } from '../../../api/files';
 import { convertBytesToSize, separateComma } from '../../../CommonFunction/Function';
@@ -287,7 +287,7 @@ const MyFiles = () => {
                                     </tr>)}
                                 </tbody>
                             </Table>
-                            <Pagination paginationTitle="files" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={filesList} />
+                            <Pagination page={page} paginationTitle="files" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={filesList} />
                         </div>
                     </div>
                 </div>

@@ -169,7 +169,7 @@ const VisitorList = () => {
                   </tr>)}
                 </tbody>
               </Table>
-              <Pagination paginationTitle="visitors" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={visitorList} />
+              <Pagination page={page} paginationTitle="visitors" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={visitorList} />
             </div>
           </div>
         </div>
