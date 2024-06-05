@@ -1368,8 +1368,8 @@
 
 .file-2-parent .favorite {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   background-color: rgb(255, 255, 255);
   border-radius: var(--br-5xl);
   -webkit-border-radius: var(--br-5xl);
@@ -1581,9 +1581,13 @@
   vertical-align: middle;
 }
 
-.filesList table tbody tr td:nth-child(2) img{
-  width: 40px;
-  height: 40px;
+.filesList table tbody tr td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.filesList table tbody tr td:nth-child(2) img {
+  padding: 8px;
   background-color: #FEF3F2;
   border-radius: 20px;
   -webkit-border-radius: 20px;
