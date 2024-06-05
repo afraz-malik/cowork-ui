@@ -204,11 +204,11 @@ export const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButt
 
 // pagination divided
 export function multiplyBySixAndShowSeries(originalValue: number) {
-  if (originalValue <= 6) {
+  if (originalValue <= 10) {
     return [originalValue];
   }
-  const resultArray = Array.from({ length: Math.ceil(originalValue / 6) }, (_, index) => {
-    const calculatedValue = 6 * (index + 1);
+  const resultArray = Array.from({ length: Math.ceil(originalValue / 10) }, (_, index) => {
+    const calculatedValue = 10 * (index + 1);
     return calculatedValue <= originalValue ? calculatedValue : originalValue;
   });
   return resultArray;

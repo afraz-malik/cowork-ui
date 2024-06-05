@@ -499,7 +499,7 @@
     box-sizing: border-box;
     gap: var(--gap-5xl);
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .nvett22elcu-1-icon {
@@ -878,7 +878,9 @@
     /* Occupy full width */
 }
 
-
+.react-input-emoji--button svg{
+    width: 20px !important;
+}
 
 @media (max-width: 778px) {
     .new-post {
