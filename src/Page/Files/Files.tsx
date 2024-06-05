@@ -5,7 +5,7 @@ import sketch from "../../Assets/Images/icon/sketch(1).png";
 import file from "../../Assets/Images/icon/file-05.png";
 import figma from "../../Assets/Images/icon/figma.png";
 import imageFile from "../../Assets/Images/icon/image-03.png";
-import avatar from "../../Assets/Images/icon/tableAvatar.png";
+import upload from "../../Assets/Images/icon/upload.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown, Table } from 'react-bootstrap';
@@ -290,7 +290,7 @@ const Files = () => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
-                <button onClick={() => fileUpload()}><FontAwesomeIcon icon={faPlus} /> Upload File</button>
+                <button onClick={() => fileUpload()}><img src={upload} alt='upload' /> Upload File</button>
               </div>
             </div>
             <div className="filesList">
