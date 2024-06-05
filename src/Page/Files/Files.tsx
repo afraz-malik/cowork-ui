@@ -296,6 +296,7 @@ const Files = () => {
                     <th>Size <FontAwesomeIcon icon={faArrowUp} /></th>
                     <th>Sharing</th>
                     <th>Actions</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -327,6 +328,8 @@ const Files = () => {
                       {file.delete ?
                         <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
                         : ""}
+                    </td>
+                    <td>
                       <button className='btn start' onClick={() => favoriteAdd(file.id)}>
                         {file.favorite === 0 ? <img src={markStar} alt="download" /> : <img src={star} alt="download" />}
                       </button>
