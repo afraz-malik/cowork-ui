@@ -270,7 +270,7 @@ const Files = () => {
                 <div className='filterDropdown taskDropdown'>
                   <Dropdown>
                     <Dropdown.Toggle>
-                      <button className='filterBtn'><img src={filter} alt='filter' />{filterTag === "created" ? "My files" : filterTag === "member" ? "Share files" : filterTag === "all" ? "All files" : "Filter"}</button>
+                      <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "created" ? "My files" : filterTag === "member" ? "Share files" : filterTag === "all" ? "All files" : "Filter"}</button>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item onClick={()=>setFilterTag('all')}>All files</Dropdown.Item>
@@ -305,7 +305,7 @@ const Files = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
-                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
+                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer", fontWeight: "800" }}><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
                     {file.member_images ? <td>
