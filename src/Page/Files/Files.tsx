@@ -7,7 +7,7 @@ import figma from "../../Assets/Images/icon/figma.png";
 import imageFile from "../../Assets/Images/icon/image-03.png";
 import avatar from "../../Assets/Images/icon/tableAvatar.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown, Table } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../config';
 import filter from '../../Assets/Images/icon/filter-lines.png';
@@ -62,7 +62,8 @@ const Files = () => {
   const [sharesShow, setSharesShow] = useState<any>([]);
   const [shares, setShares] = useState<any>([]);
   const [filterTag, setFilterTag] = useState('');
-
+  const [sortBy, setSortBy] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   const fileUpload = () => {
     setUploadShow(true);
@@ -77,23 +78,11 @@ const Files = () => {
     });
 
     getMemberList(10, 1).then((data) => {
-
-      if (data.statusCode !== 200) {
-
-      }
-      else {
-        setMember(data.members);
-      }
+      setMember(data.members);
     })
 
     getFavoriteList().then((data) => {
-
-      if (data.statusCode !== 200) {
-
-      }
-      else {
-        setFavoriteList(data.favorite);
-      }
+      setFavoriteList(data.favorite);
     })
 
   }, [uploadShow, count, shareShow, limit, page, filterTag]);
@@ -230,12 +219,34 @@ const Files = () => {
     setLightBoxFile(fileName);
   }
 
-
-
   const filteredFiles = filesList?.filter((member: any) =>
     member.nick_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     member.extension.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
+  const handleSort = (columnName: string) => {
+    if (sortBy === columnName) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(columnName);
+      setSortOrder('asc');
+    }
+  };
+
+  const sortedFiles = [...filteredFiles].sort((a:any, b:any) => {
+    if (sortBy === 'name') {
+      return a.nick_name.localeCompare(b.nick_name) * (sortOrder === 'asc' ? 1 : -1);
+    } else if (sortBy === 'uploaded') {
+      const dateA = new Date(a.created_at);
+    const dateB = new Date(b.created_at);
+    return (dateA.getTime() - dateB.getTime()) * (sortOrder === 'asc' ? 1 : -1);
+    } else if (sortBy === 'size') {
+      const sizeA = parseFloat(a.size.replace(/[^\d.]/g, '')); // Remove non-numeric characters and parse
+      const sizeB = parseFloat(b.size.replace(/[^\d.]/g, '')); // Remove non-numeric characters and parse
+      return (sizeA - sizeB) * (sortOrder === 'asc' ? 1 : -1);
+    }
+    return 0;
+  });
 
   return (
     <>
@@ -292,15 +303,15 @@ const Files = () => {
                         <span className="checkmark"></span></div>
                     </label></th>
                     <th></th>
-                    <th>Name <FontAwesomeIcon icon={faArrowUp} /></th>
-                    <th>Uploaded <FontAwesomeIcon icon={faArrowUp} /></th>
-                    <th>Size <FontAwesomeIcon icon={faArrowUp} /></th>
+                    <th onClick={() => handleSort('name')}>Name <FontAwesomeIcon icon={faArrowUp} /> <FontAwesomeIcon icon={faArrowDown} /></th>
+                    <th onClick={() => handleSort('uploaded')}>Uploaded <FontAwesomeIcon icon={faArrowUp} /> <FontAwesomeIcon icon={faArrowDown} /></th>
+                    <th onClick={() => handleSort('size')}>Size <FontAwesomeIcon icon={faArrowUp} /> <FontAwesomeIcon icon={faArrowDown} /></th>
                     <th>Sharing</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredFiles && filteredFiles.map((file: any, index) => <tr>
+                  {sortedFiles && sortedFiles.map((file: any, index) => <tr>
                     <td><label className="tableCheckBox">
                       <div className="contactCheck">
                         <input type="checkbox" name="agreement" />

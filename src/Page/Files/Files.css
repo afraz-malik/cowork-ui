@@ -1593,14 +1593,17 @@
 } 
 .filesList table thead tr th:nth-child(3) {
   width: 186px;
+  cursor: pointer;
 }
 
 .filesList table thead tr th:nth-child(4) {
   width: 120px;
+  cursor: pointer;
 }
 
 .filesList table thead tr th:nth-child(5) {
   width: 180px;
+  cursor: pointer;
 }
 
 .filesList table thead tr th:nth-child(6) {
