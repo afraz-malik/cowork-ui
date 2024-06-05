@@ -161,7 +161,7 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesS
                     <Row>
                         <Col lg={12}>
                             <div className="sharing">
-                                <p>Sharing With:</p>
+                                <p>Who has access to this file:</p>
                                 <div className="adminOption">
                                     {userImage && userImage ? <img src={`${API}/${userImage}`} alt="admin" className={userRole === "admin" ? "adminBorder" : ""} /> : <img src={memberIcon} alt="" />}
                                     <div className='adminName'>
