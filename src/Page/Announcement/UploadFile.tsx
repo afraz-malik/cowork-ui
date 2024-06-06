@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react'
 import { ToastContainer } from 'react-toastify';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
-import folder from "../../Assets/Images/icon/folder.png"
+import folder from "../../Assets/Images/icon/folder.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import uploadFile from "../../Assets/Images/icon/uploadIcon.png";
-import fileFormat from "../../Assets/Images/icon/file-05.png";
-import trash from "../../Assets/Images/icon/red-trash.png";
+import uploadFile from "../../Assets/Images/icon/uploadIcon.svg";
+import fileFormat from "../../Assets/Images/icon/file-05.svg";
+import trash from "../../Assets/Images/icon/trash-02.svg";
 import { convertBytesToSize } from '../../CommonFunction/Function';
 
 
@@ -60,6 +60,7 @@ const UploadFile = ({ setFile, uploadedFiles, setUploadedFiles, uploadShow, setU
                                     <div className="drop-file-input__label">
                                         <img src={uploadFile} alt="" />
                                         <p><span>Click to upload</span> or drag and drop</p>
+                                        <h6>Maximum upload size <b>26 MB</b></h6>
                                     </div>
                                     <input type="file" value="" onChange={onFileDrop} />
                                 </div>
@@ -79,7 +80,7 @@ const UploadFile = ({ setFile, uploadedFiles, setUploadedFiles, uploadShow, setU
                                 )}
 
 
-                                <div className="uploadBtn">
+                                <div className="uploadBtn" style={{marginTop: "24px"}}>
                                     {uploadedFiles && uploadedFiles.length === 0 ? <button className='btn noFile' type='submit'>Save</button>
                                         : <button className='btn save' type='submit' onClick={() => setUploadShow(false)}>Save</button>
                                     }

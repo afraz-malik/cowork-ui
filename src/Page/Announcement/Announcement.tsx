@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../../Component/Layout/Layout';
 import "./Announcement.css";
-import postLogo from "../../Assets/Images/icon/adminIcon.png";
+import postLogo from "../../Assets/Images/icon/adminIcon.svg";
 import blankLove from "../../Assets/Images/post/heart.svg";
 import message from "../../Assets/Images/post/message-dots-square.svg";
-import clickLove from "../../Assets/Images/post/heart(1).png";
-import dotLine from "../../Assets/Images/post/dots-horizontal.png";
-import avatar from "../../Assets/Images/icon/memberAvatar.png";
+import clickLove from "../../Assets/Images/post/heart(1).svg";
+import dotLine from "../../Assets/Images/post/dots-horizontal.svg";
+import avatar from "../../Assets/Images/icon/memberAvatar.svg";
 import uploadImage from "../../Assets/Images/post/image-03.png";
 import UploadFile from './UploadFile';
 import { v4 as uuidv4 } from 'uuid';
@@ -15,7 +15,7 @@ import { showNotifications } from '../../CommonFunction/toaster';
 import { ToastContainer } from 'react-toastify';
 import { DESKIE_API as API } from '../../config';
 import { Dropdown } from 'react-bootstrap';
-import arrow from "../../Assets/Images/icon/downArrowBlack.png";
+import arrow from "../../Assets/Images/icon/downArrowBlack.svg";
 import { singleJwtMember } from '../../api/member';
 import { isAuthenticate } from '../../api/auth';
 import { postComment } from './../../api/announcement';
@@ -418,7 +418,7 @@ const Announcement = () => {
               <div className="new-post">
                 <div className="frame-div">
                   {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
-                    : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
+                    : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />
                   }
                   <div className="input-with-label3">
                     <div className="postEmoji">
@@ -446,7 +446,7 @@ const Announcement = () => {
                         <Dropdown.Menu className='postingAs'>
                           <Dropdown.Item className='admin' onClick={() => handleStateSelect(userId, `${firstName} ${lastName}`)}>
                             {userImage && userImage.length ? <img src={`${API}/${userImage}`} style={{ objectFit: "cover" }} alt="logo" />
-                              : <img src={avatar} alt="bell" style={{ objectFit: "cover" }} />
+                              : <img src={avatar} className='default' alt="bell" style={{ objectFit: "cover" }} />
                             } {firstName} {lastName}
                           </Dropdown.Item>
                           <Dropdown.Item onClick={() => handleStateSelect('company', `${companyName}`)}>
@@ -466,7 +466,8 @@ const Announcement = () => {
                   <div className="post">
                     <div className="user">
                       <div className="postLogo">
-                        {data.userInfo ? <img className="" alt="post" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }} src={`${data.userInfo.member_image ? `${API}/${data.userInfo.member_image}` : avatar}`} />
+                        {data.userInfo ? 
+                          data.userInfo.member_image ? <img className="" alt="post" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }} src={`${API}/${data.userInfo.member_image}`} /> : <img src={avatar} className='avatar-icon default' alt="bell" style={{ objectFit: "cover" }} />
                           : <img className="vector-icon" alt="" src={`${API}/${darkIconImage ? darkIconImage : postLogo}`} />
                         }
                       </div>
@@ -512,7 +513,7 @@ const Announcement = () => {
                         <div className="comment">
                           <div className="commentImg">
                             {comment.avatar ? <img src={`${API}/${comment.avatar}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
-                              : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
+                              : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />
                             }
                           </div>
                           <div className="commentText">
@@ -533,7 +534,7 @@ const Announcement = () => {
                             <div className="commentImg">
                               {/* {reply.id} */}
                               {reply.avatar ? <img src={`${API}/${reply.avatar}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
-                                : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
+                                : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />
                               }
                             </div>
                             <div className="commentText">
@@ -556,7 +557,7 @@ const Announcement = () => {
                               <div className="commentImg">
                                 {/* {reply.id} */}
                                 {nestedReply.avatar ? <img src={`${API}/${nestedReply.avatar}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
-                                  : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
+                                  : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />
                                 }
                               </div>
                               <div className="commentText">
@@ -568,7 +569,7 @@ const Announcement = () => {
                           {/* comment comment reply */}
                           {reply.id === replyCommentAdd ? <div className="avatar-parent" style={{ paddingLeft: "68px" }}>
                             {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
-                              : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />}
+                              : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />}
                             <div className="commentInput">
                               <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setCommentNext(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentReplyEnter(data.id, comment.id, reply.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
                               <FontAwesomeIcon className="info-circle-icon" onClick={() => replyCommentReply(data.id, comment.id, reply.id)} icon={faPaperPlane} />
@@ -582,7 +583,7 @@ const Announcement = () => {
                         {/* reply comment */}
                         {comment.id === replyAdd ? <div className="avatar-parent">
                           {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
-                            : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />}
+                            : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />}
                           <div className="commentInput">
                             <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setCommentReply(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentEnter(data.id, comment.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
                             <FontAwesomeIcon className="info-circle-icon" onClick={() => replyCommentPost(data.id, comment.id)} icon={faPaperPlane} />
@@ -595,7 +596,7 @@ const Announcement = () => {
                     {/* comment */}
                     <div className="avatar-parent">
                       {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
-                        : <img src={avatar} className="avatar-icon" alt="bell" style={{ objectFit: "cover" }} />
+                        : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />
                       }
                       <div className="commentInput">
                       {/* <CustomEmojiButton /> */}
