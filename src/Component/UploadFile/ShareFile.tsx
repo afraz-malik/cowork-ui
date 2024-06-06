@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ToastContainer } from 'react-toastify';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
-import folder from "../../Assets/Images/icon/folder.png"
+import folder from "../../Assets/Images/icon/folder.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { getMemberList, searchMember, singleJwtMember } from '../../api/member';
@@ -183,7 +183,7 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesS
                                                     <FontAwesomeIcon onClick={() => removeShare(member.id)} icon={faXmark} />
                                                 </li>
                                             ))}
-                                            <input onChange={(e) => setSearchTerm(e.target.value)} type="text" spellCheck="false" placeholder='Share this file with other members' />
+                                            <input onChange={(e) => setSearchTerm(e.target.value)} type="text" spellCheck="false" placeholder='Who would you like to share this with?' />
                                         </ul>
                                     </div>
                                     <div>

@@ -880,6 +880,11 @@
   margin-left: -4px;
 }
 
+.avatar-icon36.default {
+  background-color: var(--gray-100);
+  padding: 5px;
+}
+
 .avatar-icon36,
 .avatar-icon37,
 .avatar-icon41 {
@@ -1560,8 +1565,27 @@
 
 }
 
-.filesList table tbody tr td:nth-child(2) {
-  width: 60px;
+.filesList table tbody tr td:nth-child(1),
+.filesList table tbody tr td:nth-child(2),
+.filesList table tbody tr td:nth-child(8) {
+  width: 5%;
+}
+
+.filesList table tbody tr td:nth-child(3) {
+  width: 30%;
+}
+
+.filesList table tbody tr td:nth-child(4) {
+  width: 20%;
+}
+
+.filesList table tbody tr td:nth-child(6) {
+  width: 15%;
+}
+
+.filesList table tbody tr td:nth-child(5),
+.filesList table tbody tr td:nth-child(7) {
+  width: 10%;
 }
 
 .filesList table tbody tr td:nth-child(2),
@@ -1583,7 +1607,6 @@
 
 .filesList table thead tr th:nth-child(1),
 .filesList table tbody tr td:nth-child(1) {
-  width: 68px;
   text-align: center;
   vertical-align: middle;
 }
@@ -1595,7 +1618,6 @@
 
 .filesList table tbody tr td:nth-child(2) img {
   padding: 8px;
-  background-color: #FEF3F2;
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -1636,7 +1658,6 @@
 
 .filesList table tbody .tableAction button:nth-child(1) {
   border: 1px solid #6366F1;
-  color: #6366F1;
 }
 
 .filesList table tbody .tableAction button:nth-child(2):hover {
@@ -1652,7 +1673,7 @@
 .drop-file-input {
   position: relative;
   width: 100%;
-  height: 104px;
+  height: 126px;
   padding: 16px 24px;
   display: flex;
   align-items: center;
@@ -1680,6 +1701,7 @@
   text-align: left;
   color: #475467;
   margin-bottom: 4px;
+  margin-top: 6px;
 }
 
 .drop-file-input__label p span {
@@ -1736,11 +1758,6 @@ color: rgba(71, 84, 103, 1);
   -moz-border-radius: 16px;
   -ms-border-radius: 16px;
   -o-border-radius: 16px;
-}
-
-.uploadFileShow .fileFormat img {
-  width: 16px;
-  height: 16px;
 }
 
 .uploadFileShow .fileName {
@@ -1994,7 +2011,7 @@ color: rgba(71, 84, 103, 1);
 }
 
 .uploadBtn .save,.uploadBtn .save:hover {
-  margin-top: 24px;
+  margin-top: 8px;
   background: #6366F1;
   color: #fff;
   box-shadow: 0px 2.4000000953674316px 6px 0px #0619380F;
@@ -2013,7 +2030,7 @@ color: rgba(71, 84, 103, 1);
   -o-border-radius: 12px;
 }
 .uploadBtn .noFile,.uploadBtn .noFile:hover {
-  margin-top: 24px;
+  margin-top: 8px;
   background: #BAC7CE;
   color: #fff;
   box-shadow: 0px 2.4000000953674316px 6px 0px #0619380F;

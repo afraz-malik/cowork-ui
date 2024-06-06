@@ -26,9 +26,9 @@
 .addMemberHeading {
     display: flex;
     align-items: center;
-    padding-bottom: 15px;
+    padding-bottom: 28px;
     border-bottom: 1px solid #E5E7EB;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
 }
 
 .addMemberHeading p {

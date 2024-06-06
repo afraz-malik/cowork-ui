@@ -3,14 +3,14 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
-import folder from "../../Assets/Images/icon/folder.png"
+import folder from "../../Assets/Images/icon/folder.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { getMemberList, searchMember, singleJwtMember, singleMember } from '../../api/member';
 import { DESKIE_API as API } from '../../config';
-import uploadFile from "../../Assets/Images/icon/uploadIcon.png";
-import fileFormat from "../../Assets/Images/icon/file-05.png";
-import trash from "../../Assets/Images/icon/red-trash.png";
+import uploadFile from "../../Assets/Images/icon/uploadIcon.svg";
+import fileFormat from "../../Assets/Images/icon/file-05.svg";
+import trash from "../../Assets/Images/icon/trash-02.svg";
 import avatar from "../../Assets/Images/icon/Avatar.png";
 import { filesAdd } from '../../api/files';
 import { convertBytesToSize } from '../../CommonFunction/Function';
@@ -18,6 +18,7 @@ import { showNotifications } from '../../CommonFunction/toaster';
 import { isAuthenticate } from '../../api/auth';
 import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
 import { adminList } from '../../api/admin';
+
 interface UploadFileProps {
     handleUploadClose: () => void;
     uploadShow: boolean;
@@ -204,8 +205,8 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
 
                             <div className="fileSendInfo">
                                 <div className="fileNameType">
-                                    <label htmlFor="name">Filename</label>
-                                    <input type='text' value={nickName} onChange={(e) => setNickName(e.target.value)} placeholder='File name' className='form-control' required />
+                                    <label htmlFor="name">{uploadedFiles && uploadedFiles.length === 0 ? "Filename" : "Rename"}</label>
+                                    <input type='text' value={nickName} onChange={(e) => setNickName(e.target.value)} placeholder='Enter a filename' className='form-control' required />
                                 </div>
                             </div>
 
@@ -230,7 +231,7 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
                                                     <FontAwesomeIcon onClick={() => removeShare(member.id)} icon={faXmark} />
                                                 </li>
                                             ))}
-                                            <input onChange={(e) => setSearchTerm(e.target.value)} type="text" spellCheck="false" placeholder='Share this file with other members' />
+                                            <input onChange={(e) => setSearchTerm(e.target.value)} type="text" spellCheck="false" placeholder='Who would you like to share this with?' />
                                         </ul>
                                     </div>
                                     <div>
