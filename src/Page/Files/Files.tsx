@@ -303,9 +303,9 @@ const Files = () => {
                         <span className="checkmark"></span></div>
                     </label></th>
                     <th></th>
-                    <th onClick={() => handleSort('name')}>Name <FontAwesomeIcon icon={faArrowUp} /> <FontAwesomeIcon icon={faArrowDown} /></th>
-                    <th onClick={() => handleSort('uploaded')}>Uploaded <FontAwesomeIcon icon={faArrowUp} /> <FontAwesomeIcon icon={faArrowDown} /></th>
-                    <th onClick={() => handleSort('size')}>Size <FontAwesomeIcon icon={faArrowUp} /> <FontAwesomeIcon icon={faArrowDown} /></th>
+                    <th onClick={() => handleSort('name')}>Name {sortBy === "name" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : "" }</th>
+                    <th onClick={() => handleSort('uploaded')}>Uploaded {sortBy === "uploaded" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : "" }</th>
+                    <th onClick={() => handleSort('size')}>Size {sortBy === "size" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : "" }</th>
                     <th>Sharing</th>
                     <th>Actions</th>
                     <th></th>
