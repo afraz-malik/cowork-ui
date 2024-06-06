@@ -210,7 +210,7 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
                             </div>
 
                             <div className="sharing">
-                                <p>Sharing</p>
+                                <p>Who has access to this file:</p>
                                 <div className="adminOption">
                                     {userImage && userImage ? <img src={`${API}/${userImage}`} className={userRole === "admin" ? "adminBorder" : "adminBorderless"} alt="admin" /> : <img src={memberIcon} alt="" className={userRole === "admin" ? "adminBorder" : "adminBorderless"} />}
                                     <div className='adminName'>
