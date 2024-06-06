@@ -8,7 +8,7 @@
 
 .postingAs {
     border: none !important;
-    padding: 20px 16px !important;
+    padding: 20px 6px !important;
     box-shadow: 0px 12px 30px 0px rgba(122, 122, 122, 0.14) !important;
 }
 
@@ -468,6 +468,7 @@
     align-items: center;
     width: 100%;
     padding-right: 15px;
+    margin-left: 1rem;
     background-color: rgba(248, 250, 251, 1);
     box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
     border-radius: 12px;
@@ -601,7 +602,8 @@
     background-color: rgba(248, 250, 251, 1);
     overflow: hidden;
     flex-direction: row;
-    padding: var(--padding-3xs) var(--padding-base);
+    padding: 0;
+    /* padding: var(--padding-3xs) var(--padding-base); */
     gap: var(--gap-5xs);
     color: var(--gray-400);
     width: 100%;
@@ -648,6 +650,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding-left: 1rem;
 }
 
 .image {

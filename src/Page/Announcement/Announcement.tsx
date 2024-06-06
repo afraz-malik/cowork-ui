@@ -23,7 +23,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import InputEmoji from "react-input-emoji";
 import { singleProfile } from '../../api/settings';
-import publish from "../../Assets/Images/icon/mail.png";
+import publish from "../../Assets/Images/icon/mail.svg";
 import LightBox from '../../Component/LightBox/LightBox';
 import trash from "../../Assets/Images/post/trash-02.svg";
 import emojiIcon from "../../Assets/Images/post/emoji_emotions.svg";
@@ -425,7 +425,7 @@ const Announcement = () => {
                       <img className="heart-icon" alt="emoji" src={emojiIcon} />
                     </div>
                     <div className="input3">
-                      <textarea id="postTextarea" value={post} onChange={(e) => { setPost(e.target.value); autoResize(); }} placeholder="Write a new post" />
+                      <textarea id="postTextarea" value={post} onChange={(e) => { setPost(e.target.value); autoResize(); }} placeholder="Write a new post" rows={3} />
                     </div>
                     <div className="image" onClick={uploadFiles}>
                       <img className="heart-icon" alt="upload" src={uploadIcon} />
