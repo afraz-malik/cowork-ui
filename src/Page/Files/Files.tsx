@@ -160,7 +160,6 @@ const Files = () => {
       else {
         showNotifications('error', 'Favorite remove successfully');
       }
-
       setCount(count + 1)
     });
   }
@@ -217,6 +216,7 @@ const Files = () => {
   const lightBox = (fileName: string) => {
     setLightBoxShow(true);
     setLightBoxFile(fileName);
+     setLightboxVisible(true);
   }
 
   const filteredFiles = filesList?.filter((member: any) =>
@@ -247,6 +247,13 @@ const Files = () => {
     }
     return 0;
   });
+
+  const [lightboxVisible, setLightboxVisible] = useState(false);
+  const [currentImage, setCurrentImage] = useState('');
+  const closeLightbox = () => {
+    setLightboxVisible(false);
+    setCurrentImage('');
+  };
 
   return (
     <>
@@ -344,7 +351,7 @@ const Files = () => {
                     </td>
                     <td>
                       <button className='btn start' onClick={() => favoriteAdd(file.id)}>
-                        {file.favorite === 0 ? <img src={markStar} alt="download" /> : <img src={star} alt="download" />}
+                        {file.favorite === 0 ?  <img src={star} alt="download" /> : <img src={markStar} alt="download" />}
                       </button>
                     </td>
                   </tr>)}
@@ -357,7 +364,7 @@ const Files = () => {
         <UploadFile uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
         <ShareFile shares={shares} setShares={setShares} sharesShow={sharesShow} setSharesShow={setSharesShow} filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
         <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
-        <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={handleLightBoxClose} />
+        {lightboxVisible &&  <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightbox} /> }
       </Layout>
     </>
   )

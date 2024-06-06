@@ -3,7 +3,8 @@ import { Modal } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import "./LightBox.css"
+import "./LightBox.css";
+import { SlideshowLightbox } from 'lightbox.js-react'
 
 interface LightBoxShowProps {
     handleLightBoxClose: () => void;
@@ -15,17 +16,13 @@ interface LightBoxShowProps {
 const LightBox = ({ lightBoxFile, lightBoxShow, setLightBoxShow, handleLightBoxClose }: LightBoxShowProps) => {
     return (
         <>
-            <section className='lightModal'>
-                <Modal show={lightBoxShow} onHide={() => setLightBoxShow(false)} centered size="lg" className='lightModal' aria-labelledby="example-custom-modal-styling-title" >
-                    <div className="lightBox">
-                        <button className='closeModal' onClick={handleLightBoxClose}>
-                            <FontAwesomeIcon icon={faXmark} />
-                        </button>
-                        <img src={`${API}/${lightBoxFile}`} width="100%" height="100%" alt="light" />
+             <div className="lightbox-overlay" onClick={handleLightBoxClose}>
+                <div className="lightbox-content" >
+                    <div className="lightbox-inner">
+                        <img src={`${API}/${lightBoxFile}`} alt="lightbox" className="lightbox-image" />
                     </div>
-                </Modal>
-            </section>
-
+                </div>
+            </div> 
         </>
     )
 }
