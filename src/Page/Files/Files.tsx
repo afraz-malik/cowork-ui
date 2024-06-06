@@ -10,9 +10,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown, Table } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../config';
-import filter from '../../Assets/Images/icon/filter-lines.png';
+import filter from '../../Assets/Images/icon/filter-lines.svg';
 import download from "../../Assets/Images/icon/download-cloud-02.svg";
-import deleteIcon from "../../Assets/Images/icon/trash-02.svg";
+import deleteIcon from "../../Assets/Images/icon/trash-02 (1).svg";
 import star from "../../Assets/Images/icon/star-01.svg";
 import markStar from "../../Assets/Images/icon/star-01(1).svg";
 import UploadFile from '../../Component/UploadFile/UploadFile';
@@ -28,7 +28,7 @@ import { ToastContainer } from 'react-toastify';
 import { getMemberList } from '../../api/member';
 import ShareFile from '../../Component/UploadFile/ShareFile';
 import DeleteModal from '../../Component/DeleteModal/DeleteModal';
-import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import Pagination from '../../Component/Pagination/Pagination';
 import LightBox from '../../Component/LightBox/LightBox';
 
@@ -281,12 +281,12 @@ const Files = () => {
                 <div className='filterDropdown taskDropdown'>
                   <Dropdown>
                     <Dropdown.Toggle>
-                      <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "created" ? "My files" : filterTag === "member" ? "Share files" : filterTag === "all" ? "All files" : "Filter"}</button>
+                      <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "created" ? "My Files" : filterTag === "member" ? "Shared With Me" : filterTag === "all" ? "All Files" : "Filters"}</button>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                     <Dropdown.Item onClick={()=>setFilterTag('all')}>All Files</Dropdown.Item>
                       <Dropdown.Item onClick={()=>setFilterTag('created')}>My Files</Dropdown.Item>
-                      <Dropdown.Item onClick={()=>setFilterTag('member')}>Share With Me</Dropdown.Item>
+                      <Dropdown.Item onClick={()=>setFilterTag('member')}>Shared With Me</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
@@ -318,14 +318,14 @@ const Files = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
-                    <td><img className={getFileExtension(file.extension)} style={{ width: "40px" }} src={getFileType(file.extension)} alt="avatar" /></td>
-                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}>{file.nick_name.length <= 23 ? file.nick_name : file.nick_name.substring(0, 20) + '...'}.{file.extension}</td>
+                    <td><img className={getFileExtension(file.extension) + " mx-auto"} style={{ width: "40px" }} src={getFileType(file.extension)} alt="avatar" /></td>
+                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer", fontWeight: "800" }}>{file.nick_name.length <= 23 ? file.nick_name : file.nick_name.substring(0, 20) + '...'}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
                     {file.member_images ? <td>
                       <div className="avatars2">
                         {file.member_images && separateComma(file.member_images).map((share: any) =>
-                          <>{share === "imageNull" ? <img className="avatar-icon36" alt="" src={memberIcon} />
+                          <>{share === "imageNull" ? <img className="avatar-icon36 default" alt="" src={memberIcon} />
                             : <img className="avatar-icon36" alt="" src={`${API}/${share}`} />
                           }</>
                         )}
