@@ -254,29 +254,31 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
                                     <div className="memberInfos assignBox">
                                         <div className="dropdown">
                                             <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-                                                <div className='assignHeading' style={{marginBottom: "20px"}}>
+                                                <div className='assignHeading' style={{marginBottom: "20px", paddingLeft: "16px", paddingRight: "16px"}}>
                                                     <p><img src={assign} alt="assign" /> Assignee</p>
                                                     <button onClick={() => setIsActive(!isActive)}><FontAwesomeIcon icon={faClose} /></button>
                                                 </div>
-                                                <div className='assignInput'>
+                                                <div className='assignInput' style={{paddingLeft: "16px", paddingRight: "16px"}}>
                                                     <FontAwesomeIcon icon={faSearch} />
                                                     <input type="text" placeholder='Search member' onChange={handleMemberChange} className='form-control' />
                                                 </div>
-                                                {filteredMembers && filteredMembers.map((data: any, index) =>
-                                                    <div className="item tableImage d-flex justify-content-between w-100">
-                                                        <div className='d-flex align-items-center'>
-                                                            {data.member_image ? <img src={`${API}/${data.member_image}`} alt="avatar" style={{ objectFit: "cover" }} />
-                                                                : <img className='default' src={memberIcon} alt="avatar" />}
-                                                            <p>{data.first_name} {data.last_name}</p>
-                                                        </div>
-                                                        <div className="memberCheck">
-                                                            <label className="tableCheckBox">
-                                                                <div className="contactCheck">
-                                                                    <input type="checkbox" name="agreement" onChange={() => shareList(data)} />
-                                                                    <span className="checkmark"></span></div>
-                                                            </label>
-                                                        </div>
-                                                    </div>)}
+                                                <div className='member-container'>
+                                                    {filteredMembers && filteredMembers.map((data: any, index) =>
+                                                        <div className="item tableImage d-flex justify-content-between w-100">
+                                                            <div className='d-flex align-items-center'>
+                                                                {data.member_image ? <img src={`${API}/${data.member_image}`} alt="avatar" style={{ objectFit: "cover" }} />
+                                                                    : <img className='default' src={memberIcon} alt="avatar" />}
+                                                                <p>{data.first_name} {data.last_name}</p>
+                                                            </div>
+                                                            <div className="memberCheck">
+                                                                <label className="tableCheckBox">
+                                                                    <div className="contactCheck">
+                                                                        <input type="checkbox" name="agreement" onChange={() => shareList(data)} />
+                                                                        <span className="checkmark"></span></div>
+                                                                </label>
+                                                            </div>
+                                                        </div>)}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

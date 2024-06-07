@@ -251,15 +251,15 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
                                     <div className="memberInfos assignBox">
                                         <div className="dropdown">
                                             <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-                                                <div className='assignHeading' style={{marginBottom: "20px"}}>
+                                                <div className='assignHeading' style={{marginBottom: "20px", paddingLeft: "16px", paddingRight: "16px"}}>
                                                     <p><img src={assign} alt="assign" /> Assignee</p>
                                                     <button onClick={() => setIsActive(!isActive)}><FontAwesomeIcon icon={faClose} /></button>
                                                 </div>
-                                                <div className='assignInput'>
+                                                <div className='assignInput' style={{paddingLeft: "16px", paddingRight: "16px"}}>
                                                     <FontAwesomeIcon icon={faSearch} />
                                                     <input type="text" placeholder='Search member' onChange={handleMemberChange} className='form-control' />
                                                 </div>
-                                                <div className='overflow-y-auto'>
+                                                <div className='member-container'>
                                                     {filteredMembers && filteredMembers.map((data: any, index) =>
                                                         <div className="item tableImage d-flex justify-content-between w-100">
                                                             <div className='d-flex align-items-center'>

@@ -232,6 +232,41 @@ color: rgba(29, 41, 57, 1);
 
 .assignHeading button{
     background-color: transparent !important;
-   border: none;
-   color: rgba(102, 112, 133, 1);
+    border: none;
+    color: rgba(102, 112, 133, 1);
+}
+
+.member-container {
+    overflow-y: scroll;
+    height: 210px;
+    padding-left: 16px;
+    padding-right: 14px;
+}
+
+.member-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.member-container::-webkit-scrollbar-track {
+    background: white;
+}
+
+.member-container::-webkit-scrollbar-thumb {
+    background: #D0D5DD;
+    border-radius: 10px;
+    border: none;
+}
+
+.list-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.list-container::-webkit-scrollbar-track {
+    background: inherit;
+}
+
+.list-container::-webkit-scrollbar-thumb {
+    background: #D0D5DD;
+    border-radius: 10px;
+    border: none;
 }

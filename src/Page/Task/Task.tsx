@@ -284,6 +284,7 @@ const Task = () => {
                                             <Droppable droppableId={column.id}>
                                                 {(provided: any) => (
                                                     <div
+                                                        className='list-container'
                                                         {...provided.droppableProps}
                                                         ref={provided.innerRef}
                                                         style={{
