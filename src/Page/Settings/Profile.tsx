@@ -2,10 +2,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import "./Settings.css";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
-import trash from "../../Assets/Images/icon/red-trash.png";
+import trash from "../../Assets/Images/icon/trash-02 (1).svg";
 import iconLogo from "../../Assets/Images/logo/Vector.png";
 import trashLight from "../../Assets/Images/icon/trash-03.png";
-import uploadFile from "../../Assets/Images/icon/uploadIcon.png";
+import uploadFile from "../../Assets/Images/icon/uploadIcon.svg";
 import { profileAdd, singleProfile, updateProfile } from '../../api/settings';
 import { v4 as uuidv4 } from 'uuid';
 import { showNotifications } from '../../CommonFunction/toaster';

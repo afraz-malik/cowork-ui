@@ -5,7 +5,7 @@ import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronLeft, faChevronRight, faEllipsis, faPen, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faClock, faEye } from '@fortawesome/free-regular-svg-icons';
-import arrow from "../../Assets/Images/icon/doubleArrow.png";
+import arrow from "../../Assets/Images/icon/doubleArrow.svg";
 import AddTask from '../../Component/AddTask/AddTask';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { deleteTask, getTaskList, updateStatus } from '../../api/task';
@@ -15,7 +15,7 @@ import { ToastContainer } from 'react-toastify';
 import { getDueDateStatus } from '../../CommonFunction/Function';
 import DeleteModal from '../../Component/DeleteModal/DeleteModal';
 import ViewTask from '../../Component/ViewTask/ViewTask';
-import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import EditTask from '../../Component/ViewTask/EditTask';
 import calenderIcon from "../../Assets/Images/icon/calendar.png";
 
@@ -243,7 +243,7 @@ const Task = () => {
                                         <div className='filterDropdown taskDropdown'>
                                             <Dropdown>
                                                 <Dropdown.Toggle>
-                                                    <button className='filterBtn'><FontAwesomeIcon icon={faEye} /> All Tasks <FontAwesomeIcon icon={faChevronDown} /></button>
+                                                    <button className='filterBtn'><FontAwesomeIcon icon={faEye} /> <span className='mx-3'>All Tasks</span> <FontAwesomeIcon icon={faChevronDown} /></button>
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
                                                     <Dropdown.Item>All Tasks</Dropdown.Item>
@@ -254,10 +254,10 @@ const Task = () => {
                                         {/* <div className='filterDropdown'>
                                         <DatePicker placeholderText="Select a date" onChange={dueDateChange} dateFormat="MM/dd/yyyy" customInput={<CustomDateFormatInput />} renderCustomHeader={CustomHeader} />
                                         </div> */}
-                                        <div className='filterDropdown taskDropdown'>
+                                        <div className='filterDropdown taskDropdown' style={{marginLeft: "1.5rem"}}>
                                             <Dropdown>
                                                 <Dropdown.Toggle>
-                                                    <button className='filterBtn' style={{ height: "100%", marginLeft: '10px', paddingLeft: '10px' }}><img src={arrow} alt="arrow" style={{ marginRight: '7px' }} /> Due Date <FontAwesomeIcon icon={faChevronDown} /></button>
+                                                    <button className='filterBtn'><img src={arrow} alt="arrow" style={{ marginRight: '7px' }} /> Due Date</button>
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
                                                     <Dropdown.Item onClick={() => setSort("ASC")}>Due Date (Ascending)</Dropdown.Item>
@@ -280,7 +280,6 @@ const Task = () => {
                                         <div className="pendingList">
                                             <div className="taskTopHeading">
                                                 <p>{column.title}</p>
-                                                <FontAwesomeIcon icon={faEllipsis} />
                                             </div>
                                             <Droppable droppableId={column.id}>
                                                 {(provided: any) => (
@@ -307,25 +306,25 @@ const Task = () => {
                                                                         onMouseDown={() => handleMouseDown(task.id)}
                                                                     >
                                                                         <div className="taskHeading">
-                                                                            <p>{task.title}</p>
+                                                                            <p className='mb-0'>{task.title}</p>
                                                                             <Dropdown className='taskIcon' onMouseDown={(e) => e.stopPropagation()}>
                                                                                 <Dropdown.Toggle id="dropdown-basic">
                                                                                     <FontAwesomeIcon icon={faEllipsis} />
                                                                                 </Dropdown.Toggle>
                                                                                 <Dropdown.Menu>
                                                                                     <Dropdown.Item onClick={() => viewTasks(task.id)}>
-                                                                                        <FontAwesomeIcon icon={faEye} /> Detail
+                                                                                        View
                                                                                     </Dropdown.Item>
                                                                                     <Dropdown.Item onClick={() => EditTasks(task.id)}>
-                                                                                        <FontAwesomeIcon icon={faPen} /> Edit
+                                                                                        Edit
                                                                                     </Dropdown.Item>
                                                                                     <Dropdown.Item onClick={() => deleteTasks(task.id)}>
-                                                                                        <FontAwesomeIcon icon={faTrash} /> Delete
+                                                                                        Delete
                                                                                     </Dropdown.Item>
                                                                                 </Dropdown.Menu>
                                                                             </Dropdown>
                                                                         </div>
-                                                                        {task.task_image ? <div className="taskImg">
+                                                                        {task.task_image ? <div className="taskImg mt-3">
                                                                             <img src={`${API}/${task.task_image}`} alt='task' />
                                                                         </div> : ""}
 
@@ -339,7 +338,7 @@ const Task = () => {
                                                                             {task.assigned_members && task.assigned_members.split(',').map((filePath: any, index: number) => (
                                                                                 <>
                                                                                     {filePath.trim() ? <img key={index} src={`${API}/${filePath.trim()}`} alt="" />
-                                                                                        : <img src={memberIcon} alt='task' />}
+                                                                                        : <img className='default' src={memberIcon} alt='task' />}
                                                                                 </>
                                                                             ))}
                                                                         </div>
@@ -350,7 +349,7 @@ const Task = () => {
                                                         ))}
                                                         {provided.placeholder}
                                                         <div className="addTask">
-                                                            <button onClick={() => addTask(column.title)}><FontAwesomeIcon icon={faPlus} /> Add a Task</button>
+                                                            <button className='mt-0' onClick={() => addTask(column.title)}><FontAwesomeIcon icon={faPlus} /> Add a Task</button>
                                                         </div>
                                                     </div>
                                                 )}

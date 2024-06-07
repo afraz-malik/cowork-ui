@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import trash from "../../../Assets/Images/icon/red-trash.png";
+import trash from "../../../Assets/Images/icon/trash-02 (1).svg";
 import changeLogo from "../../../Assets/Images/icon/adminUser.png";
-import uploadFile from "../../../Assets/Images/icon/uploadIcon.png";
+import uploadFile from "../../../Assets/Images/icon/uploadIcon.svg";
 import PhoneInput from 'react-phone-input-2';
 import { singleJwtMember, updateMember } from '../../../api/member';
 import { isAuthenticate } from '../../../api/auth';

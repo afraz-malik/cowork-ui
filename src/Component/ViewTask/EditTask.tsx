@@ -2,22 +2,22 @@ import React, { useState, forwardRef, useEffect } from 'react';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronLeft, faChevronRight, faClose, faPlus, faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
-import taskIcon from "../../Assets/Images/icon/task.png";
+import taskIcon from "../../Assets/Images/icon/task.svg";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import attachment from "../../Assets/Images/icon/attachment.png";
-import assign from "../../Assets/Images/icon/assign.png";
-import clock from "../../Assets/Images/icon/clock.png";
+import attachment from "../../Assets/Images/icon/attachment.svg";
+import assign from "../../Assets/Images/icon/assign.svg";
+import clock from "../../Assets/Images/icon/clock.svg";
 import DatePicker from 'react-datepicker';
 import { getSingleTask, taskUpdate } from '../../api/task';
 import { DESKIE_API as API } from '../../config';
 import { getMemberList, searchMember } from '../../api/member';
 import { showNotifications } from '../../CommonFunction/toaster';
 import UploadTask from '../AddTask/UploadTask';
-import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import { convertBytesToSize } from '../../CommonFunction/Function';
-import fileFormat from "../../Assets/Images/icon/file-05.png";
-import trash from "../../Assets/Images/icon/red-trash.png";
+import fileFormat from "../../Assets/Images/icon/file-05.svg";
+import trash from "../../Assets/Images/icon/trash-02.svg";
 
 
 interface EditTaskProps {
@@ -79,9 +79,20 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
         setDueDate(selectedDate)
     }
 
+    const changeDateStyle = (value: string) => {
+        const [day, month, year] = value.split("/").map(Number);
+        const date = new Date(year, month - 1, day);
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const formattedDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        return formattedDate;
+    }
+
     const CustomDatePickerInput: React.FC<any> = forwardRef(({ value, onClick }, ref) => (
         <button className="taskDate" onClick={onClick}>
-            {value}
+            {changeDateStyle(value)}
             <FontAwesomeIcon icon={faChevronDown} />
         </button>
     ));
@@ -229,13 +240,13 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
                                 {assignedMembers && assignedMembers.map((filePath: any, index: number) => (
                                             <>
                                                 {filePath ? <img key={index} src={`${API}/${filePath}`} alt="" />
-                                                    : <img src={memberIcon} alt='task' />}
+                                                    : <img className='default' src={memberIcon} alt='task' />}
                                             </>
                                         ))}
                                     {shareMember.map((filePath: any, index: number) => (
                                         <>
                                             {filePath.member_image ? <img key={index} src={`${API}/${filePath.member_image}`} alt="" />
-                                                : <img src={memberIcon} alt="" />}
+                                                : <img className='default' src={memberIcon} alt="" />}
                                         </>
                                     ))}
                                 </div>
@@ -243,7 +254,7 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
                                     <div className="memberInfos assignBox">
                                         <div className="dropdown">
                                             <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-                                            <div className='assignHeading'>
+                                                <div className='assignHeading' style={{marginBottom: "20px"}}>
                                                     <p><img src={assign} alt="assign" /> Assignee</p>
                                                     <button onClick={() => setIsActive(!isActive)}><FontAwesomeIcon icon={faClose} /></button>
                                                 </div>
@@ -253,9 +264,9 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
                                                 </div>
                                                 {filteredMembers && filteredMembers.map((data: any, index) =>
                                                     <div className="item tableImage d-flex justify-content-between w-100">
-                                                        <div className='d-flex align-item-center'>
+                                                        <div className='d-flex align-items-center'>
                                                             {data.member_image ? <img src={`${API}/${data.member_image}`} alt="avatar" style={{ objectFit: "cover" }} />
-                                                                : <img src={memberIcon} alt="avatar" />}
+                                                                : <img className='default' src={memberIcon} alt="avatar" />}
                                                             <p>{data.first_name} {data.last_name}</p>
                                                         </div>
                                                         <div className="memberCheck">
@@ -302,7 +313,7 @@ const EditTask = ({ taskEditShow, taskId, setTaskEditShow, handleEditTaskClose }
                                     )}
                                 </> }
                                
-                                <div className='taskBtn d-flex justify-content-end'>
+                                <div className='taskBtn d-flex justify-content-end mt-3'>
                                     <button onClick={updateTask}>Update Task</button>
                                 </div>
                             </Col>
