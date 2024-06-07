@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./SignUp.css";
 import { singleProfile } from '../../api/settings';
 import { DESKIE_API as API } from '../../config';
-import logo from "../../Assets/Images/logo/logo.png";
+import logo from "../../Assets/Images/logo/logo.svg";
 import signUpImage from "../../Assets/Images/background/member.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';

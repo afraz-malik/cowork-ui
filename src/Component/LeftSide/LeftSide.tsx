@@ -8,7 +8,7 @@ import { DESKIE_API as API } from '../../config';
 import help from "../../Assets/Images/icon/life-buoy-01.svg";
 import { useNavigate } from 'react-router-dom';
 import { singleProfile } from '../../api/settings';
-import sidebarLogo from "../../Assets/Images/logo/logo.png"
+import sidebarLogo from "../../Assets/Images/logo/logo.svg"
 
 interface CollapseProps {
     collapsed: boolean;

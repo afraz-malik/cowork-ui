@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./BookTour.css"
 import { singleProfile } from '../../api/settings';
 import { DESKIE_API as API } from '../../config';
-import logo from "../../Assets/Images/logo/logo.png";
+import logo from "../../Assets/Images/logo/logo.svg";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
