@@ -1,5 +1,5 @@
 
-import { get, getJwt } from "./base-api";
+import { get, getJwt, post, put } from "./base-api";
 import axios from 'axios';
 import { DESKIE_API as API } from '../config';
 // admin login
@@ -65,4 +65,14 @@ export const memberSpaces = async (id: string, limit: number, page: number) => {
 
 export const memberInvoice = async (id: string, limit: number, page: number) => {
     return get(`/singleMemberInvoice?limit=${limit}&page=${page}&memberId=${id}`);
+};
+
+// forget password
+export const forgetPassword = async (body={}) => {
+    return post(`/forgetPassword`,body);
+};
+
+// update password
+export const forgetUpdate = async (id:string, body = {}) => {
+    return put(`/forgetUpdate/${id}`, body);
 };

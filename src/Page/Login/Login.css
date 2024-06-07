@@ -10,7 +10,24 @@
     align-items: center;
     justify-content: center;
 }
+.loginPass{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.loginPass .agreement{
+    margin-top: 0px;
+}
+.loginPass a{
+    text-decoration: none;
+font-family: "Avenir";
+font-size: 14px;
+font-weight: 800;
+line-height: 24px;
+text-align: center;
+color: rgba(99, 102, 241, 1);
 
+}
 .logo {
     text-align: center;
 }

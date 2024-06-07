@@ -28,6 +28,7 @@ import BookList from './Page/BookList/BookList';
 import Visitor from './Page/Visitor/Visitor';
 import VisitorList from './Page/VisitorList/VisitorList';
 import VisitorMember from './Component/ViewMember/VisitorMember';
+import ForgetPassword from './Page/ForgetPassword/ForgetPassword';
 
 const Routing = () => {
     return (
@@ -58,6 +59,8 @@ const Routing = () => {
 
                     {/* login */}
                     <Route path="/" element={<Login />}></Route>
+                    {/* forget password */}
+                    <Route path="/forget-password" element={<ForgetPassword />}></Route>
                     {/* book tour */}
                     <Route path="/book-a-tour" element={<BookTour />}></Route>
                     <Route path="/book-list" element={<BookList />}></Route>

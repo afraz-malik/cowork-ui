@@ -64,6 +64,8 @@ const Files = () => {
   const [filterTag, setFilterTag] = useState('');
   const [sortBy, setSortBy] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [lightBoxVisible, setLightBoxVisible] = useState(false);
+
 
   const fileUpload = () => {
     setUploadShow(true);
@@ -212,11 +214,11 @@ const Files = () => {
   const prevPage = () => {
     setPage(page - 1)
   }
-
+ 
   const lightBox = (fileName: string) => {
     setLightBoxShow(true);
     setLightBoxFile(fileName);
-     setLightboxVisible(true);
+    setLightBoxVisible(true);
   }
 
   const filteredFiles = filesList?.filter((member: any) =>
@@ -248,13 +250,10 @@ const Files = () => {
     return 0;
   });
 
-  const [lightboxVisible, setLightboxVisible] = useState(false);
-  const [currentImage, setCurrentImage] = useState('');
-  const closeLightbox = () => {
-    setLightboxVisible(false);
-    setCurrentImage('');
+ 
+  const closeLightBox = () => {
+    setLightBoxVisible(false);
   };
-
   return (
     <>
       <Layout>
@@ -364,7 +363,7 @@ const Files = () => {
         <UploadFile uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
         <ShareFile shares={shares} setShares={setShares} sharesShow={sharesShow} setSharesShow={setSharesShow} filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
         <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
-        {lightboxVisible &&  <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightbox} /> }
+        {lightBoxVisible &&  <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow}  handleLightBoxClose={closeLightBox} /> }
       </Layout>
     </>
   )

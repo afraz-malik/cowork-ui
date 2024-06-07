@@ -55,6 +55,7 @@ const Announcement = () => {
   const [lightIconImage, setLightIconImage] = useState("");
   const [darkIconImage, setDarkIconImage] = useState("");
   const [lightBoxFile, setLightBoxFile] = useState("");
+  const [lightBoxVisible, setLightBoxVisible] = useState(false);
   const [lightBoxShow, setLightBoxShow] = useState(false);
   const handleLightBoxClose = () => setLightBoxShow(false);
   let auth = isAuthenticate();
@@ -350,6 +351,7 @@ const Announcement = () => {
   const lightBox = (fileName: string) => {
     setLightBoxShow(true);
     setLightBoxFile(fileName);
+    setLightBoxVisible(true);
   }
 
   // post archive
@@ -406,6 +408,10 @@ const Announcement = () => {
       />
     </div>
   );
+
+  const closeLightBox = () => {
+    setLightBoxVisible(false);
+  };
   
   return (
     <>
@@ -615,7 +621,7 @@ const Announcement = () => {
         </div>
 
         <UploadFile setFile={setFile} uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
-        <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={handleLightBoxClose} />
+        {lightBoxVisible &&  <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} /> }
 
       </Layout>
     </>
