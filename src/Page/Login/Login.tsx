@@ -8,7 +8,7 @@ import { loginAdmin, memberPassword } from '../../api/admin';
 import { showNotifications } from '../../CommonFunction/toaster';
 import { ToastContainer } from 'react-toastify';
 import { authenticate } from '../../api/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { singleProfile } from '../../api/settings';
 import { DESKIE_API as API } from '../../config';
 import backgroundImg from "../../Assets/Images/background/login.png";
@@ -69,15 +69,11 @@ const Login = () => {
         })
     }
 
-
-
-
     useEffect(() => {
         singleProfile().then((data) => {
             setProfile(data.data);
         })
     }, [])
-
 
 
     const LoginForm = () => {
@@ -101,6 +97,7 @@ const Login = () => {
                             <input type={toggleType} {...register("password", { required: true })} placeholder='Password' />
                             {togglePassword ? <span onClick={() => showPass()}><FontAwesomeIcon icon={faEye} /> </span> : <span onClick={() => hidePass()}><FontAwesomeIcon icon={faEyeSlash} /></span>}
                         </div>
+                        <div className='loginPass'>
                         <label className="agreement">
                             <label className="tableCheckBox">
                                 <div className="contactCheck">
@@ -109,6 +106,8 @@ const Login = () => {
                             </label>
                             <span>Remember Me</span>
                         </label>
+                        <Link to="/forget-password">Forgot Password?</Link>
+                        </div>
                         <div className="loginBtn">
                             <button type='submit'>Login</button>
                         </div>

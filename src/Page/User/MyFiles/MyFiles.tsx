@@ -36,6 +36,7 @@ const MyFiles = () => {
     const [deleteShow, setDeleteShow] = useState(false);
     const handleDeleteClose = () => setDeleteShow(false);
     const [searchTerm, setSearchTerm] = useState('');
+    const [lightBoxVisible, setLightBoxVisible] = useState(false);
     // pagination number
     const [totalValue, setTotalValue] = useState<any>();
     const [limitValue, setLimitValue] = useState<any>();
@@ -217,8 +218,11 @@ const MyFiles = () => {
     const lightBox = (fileName: string) => {
         setLightBoxShow(true);
         setLightBoxFile(fileName);
+        setLightBoxVisible(true);
     }
-
+    const closeLightBox = () => {
+        setLightBoxVisible(false);
+      };
     return (
         <>
             <Layout>
@@ -294,7 +298,7 @@ const MyFiles = () => {
                 <UploadFile uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
                 <ShareFile shares={shares} setShares={setShares} sharesShow={sharesShow} setSharesShow={setSharesShow} filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
                 <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
-                <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={handleLightBoxClose} />
+             {lightBoxVisible && <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} /> } 
             </Layout>
         </>
     )

@@ -7,13 +7,14 @@ import "./LightBox.css";
 import { SlideshowLightbox } from 'lightbox.js-react'
 
 interface LightBoxShowProps {
-    handleLightBoxClose: () => void;
+    handleLightBoxClose?: () => void;
     lightBoxShow: boolean;
     setLightBoxShow: (type: boolean) => void;
     lightBoxFile: string;
 }
 
 const LightBox = ({ lightBoxFile, lightBoxShow, setLightBoxShow, handleLightBoxClose }: LightBoxShowProps) => {
+    
     return (
         <>
              <div className="lightbox-overlay" onClick={handleLightBoxClose}>
