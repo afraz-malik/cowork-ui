@@ -11,8 +11,6 @@ import { authenticate } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
 import { singleProfile } from '../../api/settings';
 import { DESKIE_API as API } from '../../config';
-import backgroundImg from "../../Assets/Images/background/login.png";
-import ChangePassword from '../../Component/ChangePassword/ChangePassword';
 
 const Login = () => {
     const navigate = useNavigate();
