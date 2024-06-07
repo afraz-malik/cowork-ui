@@ -2,18 +2,18 @@ import React, { useState, forwardRef, useEffect } from 'react';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
-import taskIcon from "../../Assets/Images/icon/task.png";
+import taskIcon from "../../Assets/Images/icon/task.svg";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import attachment from "../../Assets/Images/icon/attachment.png";
-import assign from "../../Assets/Images/icon/assign.png";
-import clock from "../../Assets/Images/icon/clock.png";
+import attachment from "../../Assets/Images/icon/attachment.svg";
+import assign from "../../Assets/Images/icon/assign.svg";
+import clock from "../../Assets/Images/icon/clock.svg";
 import DatePicker from 'react-datepicker';
 import { getSingleTask } from '../../api/task';
 import { DESKIE_API as API } from '../../config';
 import { singleMember } from '../../api/member';
 import blankUser from '../../Assets/Images/icon/blank-profile.jpg';
-import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 
 
 interface ViewTaskProps {
@@ -65,9 +65,20 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose }: ViewTaskPr
         setDueDate(selectedDate)
     }
 
+    const changeDateStyle = (value: string) => {
+        const [day, month, year] = value.split("/").map(Number);
+        const date = new Date(year, month - 1, day);
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const formattedDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        return formattedDate;
+    }
+
     const CustomDatePickerInput: React.FC<any> = forwardRef(({ value, onClick }, ref) => (
         <button className="taskDate" onClick={onClick}>
-            {value}
+            {changeDateStyle(value)}
             <FontAwesomeIcon icon={faChevronDown} />
         </button>
     ));
@@ -126,7 +137,7 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose }: ViewTaskPr
                                         {assignedMembers && assignedMembers.map((filePath: any, index: number) => (
                                             <>
                                                 {filePath ? <img key={index} src={`${API}/${filePath}`} alt="" />
-                                                    : <img src={memberIcon} alt='task' />}
+                                                    : <img className='default' src={memberIcon} alt='task' />}
                                             </>
                                         ))}
                                     </div>

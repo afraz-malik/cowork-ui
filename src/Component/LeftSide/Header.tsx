@@ -5,7 +5,7 @@ import bell from "../../Assets/Images/icon/bell-01.png";
 import circle from "../../Assets/Images/icon/info-circle.png";
 import avatar from "../../Assets/Images/icon/Avatar.png";
 import arrow from "../../Assets/Images/icon/downIcon.png";
-import userIcon from "../../Assets/Images/icon/assign.png";
+import userIcon from "../../Assets/Images/icon/assign.svg";
 import logout from "../../Assets/Images/icon/logout.png";
 import { Dropdown } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';

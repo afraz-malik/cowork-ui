@@ -6,9 +6,9 @@ import folder from "../../Assets/Images/icon/folder.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { DESKIE_API as API } from '../../config';
-import uploadFile from "../../Assets/Images/icon/uploadIcon.png";
-import fileFormat from "../../Assets/Images/icon/file-05.png";
-import trash from "../../Assets/Images/icon/red-trash.png";
+import uploadFile from "../../Assets/Images/icon/uploadIcon.svg";
+import fileFormat from "../../Assets/Images/icon/file-05.svg";
+import trash from "../../Assets/Images/icon/trash-02 (1).svg";
 import avatar from "../../Assets/Images/icon/Avatar.png";
 import { filesAdd, uploadFilesForChat } from '../../api/files';
 import { convertBytesToSize } from '../../CommonFunction/Function';

@@ -170,6 +170,7 @@ color: rgba(99, 102, 241, 1);
 
 .tableCheckBox input {
     opacity: 0;
+    width: 20px;
     /* position: absolute;
     opacity: 0;
     cursor: pointer;
