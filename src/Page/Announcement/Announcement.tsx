@@ -35,6 +35,8 @@ const Announcement = () => {
   const [uploadShow, setUploadShow] = useState(false);
   const handleUploadClose = () => setUploadShow(false);
   const [post, setPost] = useState("");
+  console.log('post',post);
+  
   const [count, setCount] = useState(0);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [postList, setPostList] = useState([]);

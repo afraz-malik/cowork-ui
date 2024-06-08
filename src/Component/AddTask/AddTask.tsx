@@ -44,17 +44,12 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
     const [isActive, setIsActive] = useState(false);
     const [searchMembers, setSearchMembers] = useState('');
     const [memberImage, setMemberImage] = useState("");
-
+    const company = localStorage.getItem("company");
+    const userInfo = company ? JSON.parse(company) : null;
 
     useEffect(() => {
         getMemberList(20, 1).then((data) => {
-
-            if (data.statusCode !== 200) {
-
-            }
-            else {
-                setMembers(data.members);
-            }
+            setMembers(data.members);
         })
     }, [searchMembers]);
 
@@ -138,7 +133,8 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
             "description": content,
             "assign": `${shares}`,
             "task_image": file,
-            "dueDate": dueDate
+            "dueDate": dueDate,
+            "created_by": userInfo.user.id
         }
 
         taskAdd(task).then((data) => {
@@ -147,7 +143,9 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
             setShareMember([]);
             setShares([]);
             setMembers([]);
-            setContent("")
+            setContent("");
+            setUploadedFiles([]);
+            setFile("");
         })
     }
 
