@@ -363,7 +363,7 @@ const Task = () => {
                     </Container>
                 </div>
                 <AddTask show={show} status={status} setShow={setShow} handleClose={handleClose} />
-                <ViewTask taskShow={taskShow} setTaskShow={setTaskShow} taskId={taskId} handleTaskClose={handleTaskClose} />
+                <ViewTask taskShow={taskShow} setTaskShow={setTaskShow} setTaskEditShow={setTaskEditShow} taskId={taskId} handleTaskClose={handleTaskClose} />
                 <DeleteModal deleteShow={deleteShow} deleteApi={taskRemove} handleDeleteClose={handleDeleteClose} />
                 <EditTask taskEditShow={taskEditShow} setTaskEditShow={setTaskEditShow} taskId={taskId} handleEditTaskClose={handleEditTaskClose} />
             </Layout >

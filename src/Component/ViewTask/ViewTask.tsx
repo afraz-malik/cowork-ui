@@ -1,87 +1,40 @@
-import React, { useState, forwardRef, useEffect } from 'react';
-import { Col, Container, Modal, Row } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
-import taskIcon from "../../Assets/Images/icon/task.svg";
-import ReactQuill from 'react-quill';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import taskIcon from "../../Assets/Images/icon/viewTask.svg";
 import 'react-quill/dist/quill.snow.css';
-import attachment from "../../Assets/Images/icon/attachment.svg";
-import assign from "../../Assets/Images/icon/assign.svg";
-import clock from "../../Assets/Images/icon/clock.svg";
-import DatePicker from 'react-datepicker';
+import attachment from "../../Assets/Images/icon/attachment.png";
+import downArrow from "../../Assets/Images/icon/chevron-down.svg";
 import { getSingleTask } from '../../api/task';
 import { DESKIE_API as API } from '../../config';
-import { singleMember } from '../../api/member';
-import blankUser from '../../Assets/Images/icon/blank-profile.jpg';
-import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
-
+import editPen from '../../Assets/Images/icon/edit-01.svg';
+import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import { convertBytesToSize } from '../../CommonFunction/Function';
+import featureImage from "../../Assets/Images/icon/feature-image.svg";
+import downloadImage from "../../Assets/Images/icon/download-01.svg";
+import moment from 'moment';
+import descriptionIcon from "../../Assets/Images/icon/align-left 1.svg";
 
 interface ViewTaskProps {
     handleTaskClose: () => void;
     taskShow: boolean;
     setTaskShow: (type: boolean) => void;
     taskId: string;
+    setTaskEditShow: (type: boolean) => void;
 }
 
-const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose }: ViewTaskProps) => {
+const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose, setTaskEditShow }: ViewTaskProps) => {
     const [content, setContent] = useState("");
     const [dueDate, setDueDate] = useState<any>(new Date());
     const [title, setTitle] = useState("");
     const [taskImage, setTaskImage] = useState("");
     const [assignedMembers, setAssignedMembers] = useState([]);
+    const [createDate, setCreateDate] = useState("");
+    const [createdBy, setCreatedBy] = useState("");
+    const [taskSize, setTaskSize] = useState("");
+    
 
-
-    var modules: any = {
-        toolbar: [
-            [{ size: ["small", false, "large", "huge"] }],
-            ["bold", "italic", "underline", "strike", "blockquote"],
-            [{ list: "ordered" }, { list: "bullet" }],
-            ["link"],
-            [
-                { list: "ordered" },
-                { list: "bullet" },
-                { indent: "-1" },
-                { indent: "+1" },
-                { align: [] }
-            ],
-            [{ "color": ["#000000", "#e60000", "#ff9900", "#ffff00", "#008a00", "#0066cc", "#9933ff", "#ffffff", "#facccc", "#ffebcc", "#ffffcc", "#cce8cc", "#cce0f5", "#ebd6ff", "#bbbbbb", "#f06666", "#ffc266", "#ffff66", "#66b966", "#66a3e0", "#c285ff", "#888888", "#a10000", "#b26b00", "#b2b200", "#006100", "#0047b2", "#6b24b2", "#444444", "#5c0000", "#663d00", "#666600", "#003700", "#002966", "#3d1466", 'custom-color'] }],
-        ]
-    };
-
-    var formats: any = [
-        "header", "height", "bold", "italic",
-        "underline", "strike", "blockquote",
-        "list", "color", "bullet", "indent",
-        "link", "align", "size",
-    ];
-
-    const handleProcedureContentChange = (content: string) => {
-        setContent(content)
-    };
-
-    const dueDateChange = (date: any) => {
-        const selectedDate = new Date(date);
-        selectedDate.setHours(0, 0, 0, 0);
-        setDueDate(selectedDate)
-    }
-
-    const changeDateStyle = (value: string) => {
-        const [day, month, year] = value.split("/").map(Number);
-        const date = new Date(year, month - 1, day);
-        const monthNames = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-        const formattedDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-        return formattedDate;
-    }
-
-    const CustomDatePickerInput: React.FC<any> = forwardRef(({ value, onClick }, ref) => (
-        <button className="taskDate" onClick={onClick}>
-            {changeDateStyle(value)}
-            <FontAwesomeIcon icon={faChevronDown} />
-        </button>
-    ));
 
     useEffect(() => {
         getSingleTask(taskId).then((data) => {
@@ -90,10 +43,35 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose }: ViewTaskPr
                 setTitle(data.data.title)
                 setTaskImage(data.data.task_image)
                 setDueDate(data.data.dueDate)
+                setCreateDate(data.data.created_at)
                 setAssignedMembers(data.data.assigned_images)
+                setCreatedBy(data.data.created_by_info)
+                setTaskSize(data.data.image_size)
+                
             }
         })
     }, [taskId])
+
+    const downloadFile = async () => {
+        const imageUrl = `${API}/${taskImage}`;
+        try {
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = taskImage;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        } catch (error) {
+            console.error('Error downloading the file:', error);
+        }
+    }
+
+    const editTask = () => {
+        setTaskShow(false)
+        setTaskEditShow(true)
+    }
 
 
     return (
@@ -106,56 +84,88 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose }: ViewTaskPr
                     <Container>
                         <Row>
                             <Col md={12}>
-                                <div className='addMemberHeading'>
-                                    <img src={taskIcon} alt="member" />
-                                    <p>View Task</p>
+                                <div className='viewTask'>
+                                    <div className='taskHeading'>
+                                        <img src={taskIcon} alt="taskIcon" />
+                                        <div className="">
+                                            <h5>{title}</h5>
+                                            <p>{moment(createDate).format('MMMM D, YYYY')}</p>
+                                        </div>
+                                    </div>
+                                    <div className='editTask'>
+                                        <button onClick={editTask}><img src={editPen} alt="editPen" /></button>
+                                    </div>
                                 </div>
                             </Col>
                         </Row>
                         <Row>
                             <Col md={12}>
-                                <div className="taskName">
-                                    <input type="text" value={title} className='form-control' placeholder='Task Title' />
-                                </div>
-                                <div className="taskDescription">
-                                    <h6>Description</h6>
-                                    <ReactQuill
-                                        theme="snow"
-                                        modules={modules}
-                                        formats={formats}
-                                        placeholder="Enter a description..."
-                                        onChange={handleProcedureContentChange}
-                                        value={content}
-                                    />
-                                </div>
-                                <div className="taskOptions">
-                                    <p><img src={assign} alt="assign" /> Assignee</p>
-                                    <button><FontAwesomeIcon icon={faPlus} /></button>
-                                </div>
-                                <div className="taskMemberList">
-                                    <div className="taskMember mt-2">
-                                        {assignedMembers && assignedMembers.map((filePath: any, index: number) => (
-                                            <>
-                                                {filePath ? <img key={index} src={`${API}/${filePath}`} alt="" />
-                                                    : <img className='default' src={memberIcon} alt='task' />}
-                                            </>
-                                        ))}
+                                <div className="taskOptionView">
+                                    <div className="taskOption">
+                                        <h6>ASSIGNED TO</h6>
+                                        <div className="taskMember mt-2">
+                                            {assignedMembers && assignedMembers.length ? <>{assignedMembers && assignedMembers.map((filePath: any, index: number) => (
+                                                <>
+                                                    {filePath ? <img key={index} src={`${API}/${filePath}`} alt="" />
+                                                        : <img src={memberIcon} alt='task' />}
+                                                </>
+                                            ))}</> : <p>No assign</p>}
+                                        </div>
+                                    </div>
+                                    <div className="taskOption">
+                                        <h6>DUE DATE</h6>
+                                        <div className="taskMember mt-2">
+                                            <div className="dueDate">
+                                                {moment(dueDate).format('MMMM D, YYYY')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="taskOption">
+                                        <h6>CREATED BY</h6>
+                                        <div className="taskMember mt-2">
+                                            {createdBy ? <img src={`${API}/${createdBy}`} alt="" />
+                                                : <img src={memberIcon} alt='task' />}
+                                        </div>
+                                    </div>
+                                    <div className="taskOption">
+                                        <h6>STATUS</h6>
+                                        <div className='filterDropdown taskDropdown'>
+                                            <Dropdown>
+                                                <Dropdown.Toggle>
+                                                    <button className='filterBtn'>Done <img src={downArrow} alt="down" /> </button>
+                                                </Dropdown.Toggle>
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Item>Pending</Dropdown.Item>
+                                                    <Dropdown.Item>Doing</Dropdown.Item>
+                                                    <Dropdown.Item>Done</Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="taskOptions">
-                                    <p><img src={clock} alt="clock" /> Due Date</p>
-                                    <button><FontAwesomeIcon icon={faPlus} /></button>
+                                <div className="descriptionTask">
+                                    <h6><img src={descriptionIcon} alt="attachment" />Description</h6>
+                                    <div className="description" dangerouslySetInnerHTML={{ __html: content }} />
                                 </div>
-                                <div className="dateShow">
-                                    <DatePicker selected={dueDate} onChange={dueDateChange} placeholderText="Select a date" dateFormat="MM/dd/yyyy" customInput={<CustomDatePickerInput />} />
-                                </div>
-                                <div className="taskOptions">
-                                    <p><img src={attachment} alt="attachment" /> Attachments</p>
-                                    <button><FontAwesomeIcon icon={faPlus} /></button>
-                                </div>
-                                <div className="taskFiles mt-3">
-                                    <img src={`${API}/${taskImage}`} alt="" width="250px" />
-                                </div>
+
+
+
+                                {taskImage ? <div className="attachmentFiles">
+                                    <h6><img src={attachment} alt="attachment" />Attachments</h6>
+                                    <div className="taskFilesView">
+                                        <div className="fileFormat">
+                                            <img src={featureImage} alt="file" />
+                                        </div>
+                                        <div className="fileName">
+                                            <p>{taskImage}</p>
+                                            <span>{convertBytesToSize(taskSize)}</span>
+                                        </div>
+                                        <div className="fileDelete" onClick={() => downloadFile()}>
+                                            <img src={downloadImage} alt="trash" /> Download
+                                        </div>
+                                    </div>
+                                </div> : ""}
+
                             </Col>
                         </Row>
                     </Container>

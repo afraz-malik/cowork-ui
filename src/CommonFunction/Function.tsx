@@ -40,34 +40,27 @@ export const getFileType = (extension: string) => {
 };
 // due date
 export function getDueDateStatus(dueDateString: any) {
-  // Parse the due date string into a Date object
   const dueDate = new Date(dueDateString);
-
-  // Get the current date and time
   const currentDate = new Date();
+  
+  // Zero out the hours, minutes, seconds, and milliseconds for accurate day comparison
+  dueDate.setHours(0, 0, 0, 0);
+  currentDate.setHours(0, 0, 0, 0);
 
-  // Calculate the difference in milliseconds
   const difference = dueDate.getTime() - currentDate.getTime();
-
-  // Convert difference to days
   const daysDifference = Math.floor(difference / (1000 * 60 * 60 * 24));
 
-  // Check if the due date is in the past or the future
   if (daysDifference < 0) {
-    // Due date is in the past
     if (daysDifference === -1) {
       return 'Yesterday';
     } else {
       return `${Math.abs(daysDifference)} days ago`;
     }
   } else if (daysDifference === 0) {
-    // Due date is today
     return 'Today';
   } else if (daysDifference === 1) {
-    // Due date is tomorrow
     return 'Tomorrow';
   } else {
-    // Due date is in the future, return the actual date
     return dueDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   }
 }
