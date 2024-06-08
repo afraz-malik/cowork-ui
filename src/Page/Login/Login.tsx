@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Login.css";
-import logo from "../../Assets/Images/logo/logo.png";
+import logo from "../../Assets/Images/logo/logo.svg";
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
@@ -11,8 +11,6 @@ import { authenticate } from '../../api/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { singleProfile } from '../../api/settings';
 import { DESKIE_API as API } from '../../config';
-import backgroundImg from "../../Assets/Images/background/login.png";
-import ChangePassword from '../../Component/ChangePassword/ChangePassword';
 
 const Login = () => {
     const navigate = useNavigate();

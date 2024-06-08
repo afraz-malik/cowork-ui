@@ -14,7 +14,7 @@ import { convertBytesToSize } from '../../CommonFunction/Function';
 import featureImage from "../../Assets/Images/icon/feature-image.svg";
 import downloadImage from "../../Assets/Images/icon/download-01.svg";
 import moment from 'moment';
-import descriptionIcon from "../../Assets/Images/icon/align-left 1.svg"
+import descriptionIcon from "../../Assets/Images/icon/align-left 1.svg";
 
 interface ViewTaskProps {
     handleTaskClose: () => void;

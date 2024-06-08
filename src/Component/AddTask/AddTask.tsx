@@ -2,25 +2,25 @@ import React, { useState, forwardRef, useRef, useEffect } from 'react'
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronLeft, faChevronRight, faClose, faPlus, faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
-import taskIcon from "../../Assets/Images/icon/task.png";
+import taskIcon from "../../Assets/Images/icon/task.svg";
 import { DESKIE_API as API } from '../../config';
 import "./AddTask.css";
-import attachment from "../../Assets/Images/icon/attachment.png";
-import assign from "../../Assets/Images/icon/assign.png";
-import clock from "../../Assets/Images/icon/clock.png";
+import attachment from "../../Assets/Images/icon/attachment.svg";
+import assign from "../../Assets/Images/icon/assign.svg";
+import clock from "../../Assets/Images/icon/clock.svg";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import UploadTask from './UploadTask';
-import uploadFile from "../../Assets/Images/icon/uploadIcon.png";
-import fileFormat from "../../Assets/Images/icon/file-05.png";
+import uploadFile from "../../Assets/Images/icon/uploadIcon.svg";
+import fileFormat from "../../Assets/Images/icon/file-05.svg";
 import { convertBytesToSize } from '../../CommonFunction/Function';
-import trash from "../../Assets/Images/icon/red-trash.png";
+import trash from "../../Assets/Images/icon/trash-02.svg";
 import { getMemberList, searchMember } from '../../api/member';
 import { showNotifications } from '../../CommonFunction/toaster';
 import { v4 as uuidv4 } from 'uuid';
 import { taskAdd } from '../../api/task';
-import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import DateCalender from '../DateCalender/DateCalender';
 
 interface AddTaskProps {
@@ -87,9 +87,20 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
         setDueDate(selectedDate)
     }
 
+    const changeDateStyle = (value: string) => {
+        const [day, month, year] = value.split("/").map(Number);
+        const date = new Date(year, month - 1, day);
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const formattedDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        return formattedDate;
+    }
+
     const CustomDatePickerInput: React.FC<any> = forwardRef(({ value, onClick }, ref) => (
         <button className="taskDate" onClick={onClick}>
-            {value}
+            {changeDateStyle(value)}
             <FontAwesomeIcon icon={faChevronDown} />
         </button>
     ));
@@ -230,7 +241,7 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
                                     {shareMember.map((filePath: any, index: number) => (
                                         <>
                                             {filePath.member_image ? <img key={index} src={`${API}/${filePath.member_image}`} alt="" />
-                                                : <img src={memberIcon} alt="" />}
+                                                : <img className='default' src={memberIcon} alt="" />}
                                         </>
                                     ))}
                                 </div>
@@ -238,29 +249,31 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
                                     <div className="memberInfos assignBox">
                                         <div className="dropdown">
                                             <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-                                                <div className='assignHeading'>
+                                                <div className='assignHeading' style={{marginBottom: "20px", paddingLeft: "16px", paddingRight: "16px"}}>
                                                     <p><img src={assign} alt="assign" /> Assignee</p>
                                                     <button onClick={() => setIsActive(!isActive)}><FontAwesomeIcon icon={faClose} /></button>
                                                 </div>
-                                                <div className='assignInput'>
+                                                <div className='assignInput' style={{paddingLeft: "16px", paddingRight: "16px"}}>
                                                     <FontAwesomeIcon icon={faSearch} />
                                                     <input type="text" placeholder='Search member' onChange={handleMemberChange} className='form-control' />
                                                 </div>
-                                                {filteredMembers && filteredMembers.map((data: any, index) =>
-                                                    <div className="item tableImage d-flex justify-content-between w-100">
-                                                        <div className='d-flex align-item-center'>
-                                                            {data.member_image ? <img src={`${API}/${data.member_image}`} alt="avatar" style={{ objectFit: "cover" }} />
-                                                                : <img src={memberIcon} alt="avatar" />}
-                                                            <p>{data.first_name} {data.last_name}</p>
-                                                        </div>
-                                                        <div className="memberCheck">
-                                                            <label className="tableCheckBox">
-                                                                <div className="contactCheck">
-                                                                    <input type="checkbox" name="agreement" onChange={() => shareList(data)} />
-                                                                    <span className="checkmark"></span></div>
-                                                            </label>
-                                                        </div>
-                                                    </div>)}
+                                                <div className='member-container'>
+                                                    {filteredMembers && filteredMembers.map((data: any, index) =>
+                                                        <div className="item tableImage d-flex justify-content-between w-100">
+                                                            <div className='d-flex align-items-center'>
+                                                                {data.member_image ? <img src={`${API}/${data.member_image}`} alt="avatar" style={{ objectFit: "cover" }} />
+                                                                    : <img className='default' src={memberIcon} alt="avatar" />}
+                                                                <p>{data.first_name} {data.last_name}</p>
+                                                            </div>
+                                                            <div className="memberCheck">
+                                                                <label className="tableCheckBox">
+                                                                    <div className="contactCheck">
+                                                                        <input type="checkbox" name="agreement" onChange={() => shareList(data)} />
+                                                                        <span className="checkmark"></span></div>
+                                                                </label>
+                                                            </div>
+                                                        </div>)}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -278,13 +291,13 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
                                     <button onClick={() => setUploadShow(true)}><FontAwesomeIcon icon={faPlus} /></button>
                                 </div>
                                 <div className="taskFiles mt-3">
-                                    <div ref={wrapperRef} className="drop-file-input">
+                                    {/* <div ref={wrapperRef} className="drop-file-input">
                                         <div className="drop-file-input__label">
                                             <img src={uploadFile} alt="" />
                                             <p><span>Click to upload</span> or drag and drop</p>
                                         </div>
                                         <input type="file" value="" onChange={onFileDrop} />
-                                    </div>
+                                    </div> */}
                                     {uploadedFiles && uploadedFiles.map((file: any, index: number) =>
                                         <div className="uploadFileShow">
                                             <div className="fileFormat">
@@ -300,7 +313,7 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
                                         </div>
                                     )}
                                 </div>
-                                <div className='taskBtn d-flex justify-content-end'>
+                                <div className='taskBtn d-flex justify-content-end mt-3'>
                                     <button onClick={taskCrete}>Add Task</button>
                                 </div>
                             </Col>

@@ -4,7 +4,7 @@ import qrImage from "../../Assets/Images/icon/wifiScan.png";
 import checkCircle from "../../Assets/Images/icon/check-circle-white.png";
 import { DESKIE_API as API } from '../../config';
 import { singleProfile } from '../../api/settings';
-import logo from "../../Assets/Images/logo/logo.png";
+import logo from "../../Assets/Images/logo/logo.svg";
 import { Dropdown } from 'react-bootstrap';
 import arrow from "../../Assets/Images/icon/downIcon.png";
 import { v4 as uuidv4 } from 'uuid';
