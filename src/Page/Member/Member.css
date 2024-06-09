@@ -8,6 +8,7 @@
 }
 
 .memberBox {
+    width: 100%;
     background-color: #fff;
     border-radius: 16px;
     -webkit-border-radius: 16px;

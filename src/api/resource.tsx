@@ -16,8 +16,8 @@ export const resourceAdd = async (body = {}) => {
 };
 
 // resource list
-export const resourceList = async (limit: number, page: number) => {
-    return get(`/resourceList?limit=${limit}&&page=${page}`);
+export const resourceList = async (limit: number, page: number, sort: string) => {
+    return get(`/resourceList?limit=${limit}&page=${page}&type=${sort}`);
 };
 
 // single resource
@@ -36,4 +36,16 @@ export const adminResourceList = async () => {
 // single resource
 export const resourceBook = async (id: string) => {
     return get(`/resourceBook/${id}`);
+};
+
+// resource update
+export const resourceUpdate = async (id: string,body = {}) => {
+    try {
+        const response = await axios.put(`${API}/resourceUpdate/${id}`, body,{headers: {
+            'Content-Type': 'multipart/form-data',
+          },});
+        return response.data;
+    } catch (error:any) {
+        return error.response.data;
+    }
 };

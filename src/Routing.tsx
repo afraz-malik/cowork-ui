@@ -31,6 +31,7 @@ import VisitorMember from './Component/ViewMember/VisitorMember';
 import ForgetPassword from './Page/ForgetPassword/ForgetPassword';
 import Resources from './Page/Resources/Resources';
 import ViewResource from './Component/ViewResource/ViewResource';
+import MemberResource from './Component/ViewResource/MemberResource';
 
 const Routing = () => {
     return (
@@ -72,6 +73,8 @@ const Routing = () => {
                     {/* member */}
                     <Route element={<UserRoute />}>
                         <Route path="/my-messenger" element={<Messenger />}></Route>
+                        <Route path="/my-resources" element={<Resources />}></Route>
+                        <Route path="/my-resources/:id" element={<MemberResource />}></Route>
                         <Route path="/my-feed" element={<Announcement />}></Route>
                         <Route path="/my-settings" element={<MySetting />}></Route>
                         <Route path="/my-invoice" element={<MyInvoice />}></Route>

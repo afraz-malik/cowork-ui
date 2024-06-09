@@ -4,28 +4,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import filter from '../../Assets/Images/icon/filter-lines.png';
-import { Container, Row, Table } from 'react-bootstrap';
+import { Container, Dropdown, Row, Table } from 'react-bootstrap';
 import Pagination from '../../Component/Pagination/Pagination';
 import AddResources from '../../Component/AddResources/AddResources';
 import { adminResourceList, resourceList } from '../../api/resource';
 import { DESKIE_API as API } from '../../config';
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import editPen from "../../Assets/Images/icon/edit-01.png";
 import ResourceBooking from '../../Component/ResourceBooking/ResourceBooking';
 import calenderIcon from "../../Assets/Images/icon/calendar-check-01.svg";
 import "./Resources.css";
 import { formatResourceDate } from '../../CommonFunction/Function';
+import EditResource from '../../Component/ViewResource/EditResource';
 
 
 const Resources = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathParts = location.pathname.split('/');
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [paymentShow, setPaymentShow] = useState(false);
   const handlePaymentClose = () => setPaymentShow(false);
-  const handlePaymentShow = () => setPaymentShow(true);
+  const [editShow, setEditShow] = useState(false);
+  const handleEditClose = () => setEditShow(false);
+  const [editInfo, setEditInfo] = useState({});
   const [resourceLists, setResourceLists] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState<number>(6);
@@ -37,9 +42,11 @@ const Resources = () => {
   const [nextButton, setNextButton] = useState<boolean>(false);
   const [pageValue, setPageValue] = useState<number>();
   const [bookingResult, setBookingResult] = useState<any[]>([]);
+  const [filterTag, setFilterTag] = useState('');
+
 
   useEffect(() => {
-    resourceList(limit, page).then((data) => {
+    resourceList(limit, page, filterTag).then((data) => {
       if (data.statusCode !== 200) {
 
       }
@@ -53,7 +60,7 @@ const Resources = () => {
     adminResourceList().then((data) => {
       setBookingResult(data)
     })
-  }, [show, limit, page]);
+  }, [show, limit, page,editShow,filterTag]);
 
   const nextPage = () => {
     setResult([])
@@ -65,10 +72,16 @@ const Resources = () => {
     setResult([])
     setPage(page - 1)
   }
-  const viewResource= (resourceId: string) => {
+
+  const viewResource = (resourceId: string) => {
     return navigate(`${resourceId}`)
   }
-    
+
+  const editResource = (resourceInfo: string) => {
+    setEditShow(true);
+    setEditInfo(resourceInfo);
+  }
+
   return (
     <Layout>
       <div className='mainContent'>
@@ -79,8 +92,22 @@ const Resources = () => {
                 <h6>All Resources</h6>
               </div>
               <div className='memberSearch'>
-                <button className='filterBtn'><img src={filter} alt='filter' /> Filter</button>
-                <button onClick={handleShow}><FontAwesomeIcon icon={faPlus} /> Add Resource</button>
+                <div className='filterDropdown taskDropdown'>
+                  <Dropdown>
+                    <Dropdown.Toggle>
+                      <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "all" ? "My Types" : filterTag === "workspace" ? "Workspace" : filterTag === "meeting" ? "Meeting Spaces" : filterTag === "equipment" ? "Equipment" : filterTag === "other" ? "Other" : "Filters"}</button>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => setFilterTag('all')}>All Types</Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('workspace')}>Workspace</Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('meeting')}>Meeting Space</Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('equipment')}>Equipment</Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('other')}>Other</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+                {pathParts[1] === "resources" ? <button onClick={handleShow}><FontAwesomeIcon icon={faPlus} /> Add Resource</button> : ""}
+
               </div>
             </div>
 
@@ -121,8 +148,8 @@ const Resources = () => {
                       {data.type === "other" ? <span className='other'>Other</span> : ""}
                     </td>
                     <td className='tableAction'>
-                      <button className='btn view' onClick={()=>viewResource(data.id)}><FontAwesomeIcon icon={faEye} /></button>
-                      <button className='btn edit'><img src={editPen} alt="edit" /></button>
+                      <button className='btn view' onClick={() => viewResource(data.id)}><FontAwesomeIcon icon={faEye} /></button>
+                      <button className='btn edit' onClick={()=>editResource(data)}><img src={editPen} alt="edit" /></button>
                     </td>
                   </tr>)}
                 </tbody>
@@ -134,20 +161,20 @@ const Resources = () => {
             <div className="bookingHeading">
               <h6><img src={calenderIcon} alt="edit" /> Upcoming Booking</h6>
             </div>
-            {bookingResult && bookingResult.map((resource)=><div className="bookingPerson">
+            {bookingResult && bookingResult.map((resource) => <div className="bookingPerson">
               <img src={`${API}/${resource.resource_image}`} alt="edit" />
               <div>
                 <p>{resource.resource_name} <span>({resource.creator_name})</span> </p>
-                <span>{formatResourceDate(resource.created_at)}</span>
+                <span>{formatResourceDate(resource.book_date)}</span>
               </div>
-              <button  onClick={()=>viewResource(resource.resource_id)}><FontAwesomeIcon icon={faEye} /></button>
+              <button onClick={() => viewResource(resource.resource_id)}><FontAwesomeIcon icon={faEye} /></button>
             </div>)}
-            
           </div>
         </div>
 
         <AddResources show={show} setShow={setShow} handleClose={handleClose} />
         <ResourceBooking paymentShow={paymentShow} setPaymentShow={setPaymentShow} handlePaymentClose={handlePaymentClose} />
+        <EditResource editInfo={editInfo} editShow={editShow} setEditShow={setEditShow} handleEditClose={handleEditClose} />
       </div>
     </Layout>
   )
