@@ -52,14 +52,14 @@ export function getDueDateStatus(dueDateString: any) {
 
   if (daysDifference < 0) {
     if (daysDifference === -1) {
-      return 'Yesterday';
+      return 'Due Yesterday';
     } else {
       return `${Math.abs(daysDifference)} days ago`;
     }
   } else if (daysDifference === 0) {
-    return 'Today';
+    return 'Due Today';
   } else if (daysDifference === 1) {
-    return 'Tomorrow';
+    return 'Due Tomorrow';
   } else {
     return dueDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   }

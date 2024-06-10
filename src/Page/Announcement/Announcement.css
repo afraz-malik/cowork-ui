@@ -82,7 +82,9 @@
     object-fit: contain;
     display: none;
 }
-
+.commentInput img{
+    cursor: pointer;
+}
 .commentInput .commentBox {
     background-color: rgba(248, 250, 251, 1);
     box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
@@ -792,14 +794,14 @@
 .commentReply {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .comment {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    align-items: center;
+    align-items: first baseline;
 }
 
 .commentReply {
@@ -808,7 +810,7 @@
     position: relative;
 }
 
-.commentReply::before,
+/* .commentReply::before,
 .commentReply::after {
     content: "";
     position: absolute;
@@ -816,7 +818,17 @@
     bottom: 17px;
     left: 17px;
     border-left: 1px solid rgba(208, 213, 221, 1);
+} */
+
+.commentReply::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 30px;
+    left: 17px;
+    border-left: 1px solid rgba(208, 213, 221, 1);
 }
+
 
 .commentReply::before {
     top: -2px;
