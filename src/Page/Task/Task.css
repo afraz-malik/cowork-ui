@@ -144,11 +144,11 @@
 .taskHeading p {
     font-family: "MyCustomFont";
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 800;
     line-height: 24px;
-    letter-spacing: 0em;
     text-align: left;
-    color: rgba(152, 162, 179, 1);
+    color: var(--Typography-SubHeading, #1D2939);
+    letter-spacing: 0em;
     margin-bottom: 0px;
 }
 
@@ -336,7 +336,7 @@
 
 .taskFilesView .fileName p {
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 24px;
     text-align: left;
     color: rgba(52, 64, 84, 1);
@@ -355,11 +355,12 @@
     display: flex;
     align-items: center;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 16px;
     text-align: left;
     color: rgba(99, 102, 241, 1);
     cursor: pointer;
+    margin-right: 1rem;
 }
 
 .taskFilesView .fileDelete img {
@@ -379,7 +380,7 @@
 .attachmentFiles h6,
 .descriptionTask h6 {
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 600;
     line-height: 28px;
     text-align: left;
     color: rgba(102, 112, 133, 1);
@@ -392,7 +393,7 @@
 
 .taskOption h6 {
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 500;
     line-height: 24px;
     text-align: left;
     color: rgba(152, 162, 179, 1)
