@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import taskIcon from "../../Assets/Images/icon/viewTask.svg";
 import 'react-quill/dist/quill.snow.css';
-import attachment from "../../Assets/Images/icon/attachment.png";
+import attachment from "../../Assets/Images/icon/attachment.svg";
 import downArrow from "../../Assets/Images/icon/chevron-down.svg";
 import { getSingleTask } from '../../api/task';
 import { DESKIE_API as API } from '../../config';
 import editPen from '../../Assets/Images/icon/edit-01.svg';
-import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import { convertBytesToSize } from '../../CommonFunction/Function';
 import featureImage from "../../Assets/Images/icon/feature-image.svg";
 import downloadImage from "../../Assets/Images/icon/download-01.svg";
@@ -81,7 +81,7 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose, setTaskEditS
                     <button className='closeModal' onClick={handleTaskClose}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
-                    <Container>
+                    <Container className='px-0'>
                         <Row>
                             <Col md={12}>
                                 <div className='viewTask'>
@@ -89,7 +89,7 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose, setTaskEditS
                                         <img src={taskIcon} alt="taskIcon" />
                                         <div className="">
                                             <h5>{title}</h5>
-                                            <p>{moment(createDate).format('MMMM D, YYYY')}</p>
+                                            <p style={{fontWeight: "400", color: "#98A2B3"}}>{moment(createDate).format('MMMM D, YYYY')}</p>
                                         </div>
                                     </div>
                                     <div className='editTask'>
@@ -107,7 +107,7 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose, setTaskEditS
                                             {assignedMembers && assignedMembers.length ? <>{assignedMembers && assignedMembers.map((filePath: any, index: number) => (
                                                 <>
                                                     {filePath ? <img key={index} src={`${API}/${filePath}`} alt="" />
-                                                        : <img src={memberIcon} alt='task' />}
+                                                        : <img className='default' src={memberIcon} alt='task' />}
                                                 </>
                                             ))}</> : <p>No assign</p>}
                                         </div>
@@ -124,7 +124,7 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose, setTaskEditS
                                         <h6>CREATED BY</h6>
                                         <div className="taskMember mt-2">
                                             {createdBy ? <img src={`${API}/${createdBy}`} alt="" />
-                                                : <img src={memberIcon} alt='task' />}
+                                                : <img className='default' src={memberIcon} alt='task' />}
                                         </div>
                                     </div>
                                     <div className="taskOption">
@@ -154,7 +154,7 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose, setTaskEditS
                                     <h6><img src={attachment} alt="attachment" />Attachments</h6>
                                     <div className="taskFilesView">
                                         <div className="fileFormat">
-                                            <img src={featureImage} alt="file" />
+                                            <img className='rounded-5 default' src={featureImage} alt="file" />
                                         </div>
                                         <div className="fileName">
                                             <p>{taskImage}</p>

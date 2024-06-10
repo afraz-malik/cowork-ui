@@ -145,3 +145,7 @@ body {
   -ms-border-radius: 90px;
   -o-border-radius: 90px;
 }
+
+.modal-content {
+  border-radius: 20px !important;
+}

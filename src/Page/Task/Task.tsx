@@ -238,7 +238,7 @@ const Task = () => {
                             <Col md={12}>
 
                                 <div className="allTaskFilter">
-                                    <p>All Tasks</p>
+                                    <p className="mb-0">All Tasks</p>
                                     <div className="d-flex">
                                         <div className='filterDropdown taskDropdown'>
                                             <Dropdown>
@@ -289,7 +289,7 @@ const Task = () => {
                                                         ref={provided.innerRef}
                                                         style={{
                                                             overflow: "auto",
-                                                            height: 'calc(100vh - 288px)',
+                                                            maxHeight: 'calc(100vh - 288px)',
                                                         }}
                                                     >
                                                         {column.tasks.map((task, index) => (
