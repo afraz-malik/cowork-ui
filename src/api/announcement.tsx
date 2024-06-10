@@ -16,52 +16,79 @@ export const postAdd = async (body = {}) => {
     }
 };
 // post list
-export const getPostList = async (userId:string) => {
+export const getPostList = async (userId: string) => {
     return get(`/postList/${userId}`);
 };
 // comment
-export const postComment = async (data={}) => {
-    return post(`/postComment`,data);
+export const postComment = async (body = {}) => {
+    try {
+        const response = await axios.post(`${API}/postComment`, body, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        });
+        return response.data;
+    } catch (error: any) {
+        return error.response?.data;
+    }
 };
 
 export const getPostComment = async (id: string) => {
     return get(`/getComment/${id}`);
 };
 
-export const replyComment = async (data={}) => {
-    return post(`/commentReply`,data);
+export const replyComment = async (body = {}) => {
+    try {
+        const response = await axios.post(`${API}/commentReply`, body, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        });
+        return response.data;
+    } catch (error: any) {
+        return error.response?.data;
+    }
 };
-export const commentCommentReply = async (data={}) => {
-    return post(`/commentCommentReply`,data);
+export const commentCommentReply = async (body = {}) => {
+    try {
+        const response = await axios.post(`${API}/commentCommentReply`, body, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        });
+        return response.data;
+    } catch (error: any) {
+        return error.response?.data;
+    }
 };
 // post likes
-export const likesPost = async (data={}) => {
-    return post(`/postLike`,data);
+export const likesPost = async (data = {}) => {
+    return post(`/postLike`, data);
 };
 // post likes update
-export const likesPostEdit = async (data={}) => {
-    return put(`/postLikeUpdate`,data);
+export const likesPostEdit = async (data = {}) => {
+    return put(`/postLikeUpdate`, data);
 };
 
 // comment likes
-export const commentLike = async (data={}) => {
-    return post(`/commentLike`,data);
+export const commentLike = async (data = {}) => {
+    return post(`/commentLike`, data);
 };
 // comment likes update
-export const commentLikeUpdate = async (data={}) => {
-    return put(`/commentLikeUpdate`,data);
+export const commentLikeUpdate = async (data = {}) => {
+    return put(`/commentLikeUpdate`, data);
 };
 
 // comment reply likes
-export const commentReplyLike = async (data={}) => {
-    return post(`/commentReplyLike`,data);
+export const commentReplyLike = async (data = {}) => {
+    return post(`/commentReplyLike`, data);
 };
 // comment reply likes update
-export const commentReplyLikeUpdate = async (data={}) => {
-    return put(`/commentReplyLikeUpdate`,data);
+export const commentReplyLikeUpdate = async (data = {}) => {
+    return put(`/commentReplyLikeUpdate`, data);
 };
 
 // post delete
-export const deletePost = async (id: string,body={}) => {
-    return put(`/deletePost/${id}`,body);
+export const deletePost = async (id: string, body = {}) => {
+    return put(`/deletePost/${id}`, body);
 };

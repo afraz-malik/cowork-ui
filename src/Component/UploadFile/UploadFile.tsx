@@ -39,6 +39,8 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
     const [lastName, setLastName] = useState("");
     const [userRole, setUserRole] = useState("");
     const [sharesList, setSharesList] = useState([]);
+    console.log('sharesList',sharesList);
+    
     const [loginId, setLoginId] = useState("");
     const [filteredSharesList, setFilteredSharesList] = useState([]);
 
@@ -72,7 +74,11 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
                     setSharesList(combinedData);
                 } else if (userRole === 'user') {
                     combinedData = [
-                        ...adminData.map((admin: any) => ({ ...admin, type: 'admin' })),
+                        ...adminData.map((admin: any) => ({ 
+                            ...admin, 
+                            type: 'admin', 
+                            member_image: admin.avatar
+                        }))
                     ];
                     combinedData = combinedData.filter((item: any) => item.id !== loginId);
                     setSharesList(combinedData);

@@ -18,6 +18,11 @@ export const getUsers = async () => {
 export const adminList = async () => {
     return get("/adminList")
 }
+// admin check
+
+export const adminCheck = async (id: string) => {
+    return get(`/adminCheck/${id}`)
+}
 
 // export const updateAdmin = async (email:string,body = {}) => {
 //     return put(`/adminUpdate/${email}`,body)

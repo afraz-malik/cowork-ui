@@ -31,14 +31,38 @@ import uploadIcon from "../../Assets/Images/post/add_photo_alternate.svg";
 import commentMessage from "../../Assets/Images/post/local_post_office.svg";
 
 const Announcement = () => {
+  // post
   const [file, setFile] = useState("");
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [uploadShow, setUploadShow] = useState(false);
   const handleUploadClose = () => setUploadShow(false);
+  // comment
+  const [commentFile, setCommentFile] = useState("");
+  const [uploadedCommentFiles, setUploadedCommentFiles] = useState<File[]>([]);
+  const [uploadCommentShow, setUploadCommentShow] = useState(false);
+  const handleUploadCommentClose = () => {
+    setUploadCommentShow(false);
+  }
+
+  // comment reply
+  const [commentReplyFile, setCommentReplyFile] = useState("");
+  const [uploadedReplyFiles, setUploadedReplyFiles] = useState<File[]>([]);
+  const [uploadReplyShow, setUploadReplyShow] = useState(false);
+  const handleUploadReplyClose = () => {
+    setUploadReplyShow(false);
+  }
+
+   // comment reply reply
+   const [doubleReplyFile, setDoubleReplyFile] = useState("");
+   const [uploadedDoubleFiles, setUploadedDoubleFiles] = useState<File[]>([]);
+   const [uploadDoubleShow, setUploadDoubleShow] = useState(false);
+   const handleUploadDoubleClose = () => {
+    setUploadDoubleShow(false);
+   }
+
+
   const [post, setPost] = useState("");
-  console.log('post',post);
-  
   const [count, setCount] = useState(0);
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [postList, setPostList] = useState([]);
   const [comment, setComment] = useState("");
   const [commentNext, setCommentNext] = useState("");
@@ -151,8 +175,7 @@ const Announcement = () => {
       return days === 1 ? "1 day ago" : days + " days ago";
     } else if (hours > 0) {
       let hourString = hours === 1 ? "1 hour" : hours + " hours";
-      let minuteString = remainingMinutes === 1 ? "1 minute" : remainingMinutes + " minutes";
-      return `${hourString} ${minuteString} ago`;
+      return `${hourString} ago`;
     } else if (minutes > 0) {
       return minutes === 1 ? "1 minute ago" : minutes + " minutes ago";
     } else {
@@ -165,8 +188,10 @@ const Announcement = () => {
       "id": uuidv4(),
       "user_id": auth.user.id,
       "post_id": post_id,
+      "comment_image": commentFile,
       "comment": comment
     }
+
     if (comment.length) {
       postComment(postInfo).then((data) => {
         if (data.statusCode !== 201) {
@@ -174,7 +199,7 @@ const Announcement = () => {
         }
         else {
           showNotifications('success', 'Comment add successfully');
-          setComment("Write your comment");
+          setComment("");
           setPlaceholder("");
           setCount(count + 1)
         }
@@ -188,6 +213,7 @@ const Announcement = () => {
       "user_id": auth.user.id,
       "post_id": post_id,
       "comment_id": comment_id,
+      "comment_image": commentReplyFile,
       "comment": commentReply
     }
     if (commentReply.length) {
@@ -212,6 +238,7 @@ const Announcement = () => {
       "comment_id": comment_id,
       "comment_reply_id": reply_id,
       "comment": commentNext,
+      "comment_image" : doubleReplyFile,
       "user_id": auth.user.id,
     }
     if (commentNext.length) {
@@ -394,7 +421,7 @@ const Announcement = () => {
     </div>
   );
 
-  const emojiButtonElement:any = (
+  const emojiButtonElement: any = (
     <div
       style={{
         display: 'flex',
@@ -414,7 +441,7 @@ const Announcement = () => {
   const closeLightBox = () => {
     setLightBoxVisible(false);
   };
-  
+
   return (
     <>
       <Layout>
@@ -474,7 +501,7 @@ const Announcement = () => {
                   <div className="post">
                     <div className="user">
                       <div className="postLogo">
-                        {data.userInfo ? 
+                        {data.userInfo ?
                           data.userInfo.member_image ? <img className="" alt="post" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }} src={`${API}/${data.userInfo.member_image}`} /> : <img src={avatar} className='avatar-icon default' alt="bell" style={{ objectFit: "cover" }} />
                           : <img className="vector-icon" alt="" src={`${API}/${darkIconImage ? darkIconImage : postLogo}`} />
                         }
@@ -527,6 +554,7 @@ const Announcement = () => {
                           <div className="commentText">
                             <h6>{comment.first_name} <span>{getTimeDifferenceString(comment.created_at)}</span></h6>
                             <p dangerouslySetInnerHTML={{ __html: comment.comment }} />
+                            {comment.comment_image ? <img src={`${API}/${comment.comment_image}`} width="150px" height="120px" style={{ borderRadius: "25px" }} alt="comment" /> : ""}
                           </div>
                           <div className="newComment">
                             <button onClick={() => setReplyAdd(comment.id)}>Reply</button>
@@ -548,6 +576,7 @@ const Announcement = () => {
                             <div className="commentText">
                               <h6>{reply.first_name} <span>{getTimeDifferenceString(reply.created_at)}</span></h6>
                               <p dangerouslySetInnerHTML={{ __html: reply.comment }} />
+                              {reply.comment_image ? <img src={`${API}/${reply.comment_image}`} width="150px" height="120px" style={{ borderRadius: "25px" }} alt="comment" /> : ""}
                             </div>
                             <div className="newComment">
                               <button onClick={() => setReplyCommentAdd(reply.id)}>Reply</button>
@@ -571,6 +600,7 @@ const Announcement = () => {
                               <div className="commentText">
                                 <h6>{nestedReply.first_name} <span>{getTimeDifferenceString(nestedReply.created_at)}</span></h6>
                                 <p dangerouslySetInnerHTML={{ __html: nestedReply.comment }} />
+                                {nestedReply.comment_image ? <img src={`${API}/${nestedReply.comment_image}`} width="150px" height="120px" style={{ borderRadius: "25px" }} alt="comment" /> : ""}
                               </div>
                             </div>
                           )}
@@ -579,8 +609,9 @@ const Announcement = () => {
                             {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
                               : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />}
                             <div className="commentInput">
-                              <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setCommentNext(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentReplyEnter(data.id, comment.id, reply.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
-                              <FontAwesomeIcon className="info-circle-icon" onClick={() => replyCommentReply(data.id, comment.id, reply.id)} icon={faPaperPlane} />
+                              <InputEmoji value={commentNext} onFocus={handleInputFocus} onChange={(e) => setCommentNext(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentReplyEnter(data.id, comment.id, reply.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
+                              <img src={uploadIcon} onClick={() => setUploadDoubleShow(true)} alt="upload" />&nbsp;
+                        <img onClick={() => replyCommentReply(data.id, comment.id, reply.id)}  src={commentMessage} alt="comment" />
                             </div>
                           </div> : ""}
 
@@ -593,8 +624,9 @@ const Announcement = () => {
                           {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
                             : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />}
                           <div className="commentInput">
-                            <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setCommentReply(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentEnter(data.id, comment.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
-                            <FontAwesomeIcon className="info-circle-icon" onClick={() => replyCommentPost(data.id, comment.id)} icon={faPaperPlane} />
+                            <InputEmoji value={commentReply} onFocus={handleInputFocus} onChange={(e) => setCommentReply(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentEnter(data.id, comment.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
+                            <img src={uploadIcon} onClick={() => setUploadReplyShow(true)} alt="upload" />&nbsp;
+                        <img onClick={() => replyCommentPost(data.id, comment.id)}  src={commentMessage} alt="comment" />
                           </div>
                         </div> : ""}
                         {/* reply comment */}
@@ -607,9 +639,9 @@ const Announcement = () => {
                         : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />
                       }
                       <div className="commentInput">
-                      {/* <CustomEmojiButton /> */}
-                        <InputEmoji  value={placeholder} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} buttonElement={emojiButtonElement} />
-                        <img src={uploadIcon} alt="upload" />&nbsp;
+                        {/* <CustomEmojiButton /> */}
+                        <InputEmoji value={comment} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} buttonElement={emojiButtonElement} />
+                        <img src={uploadIcon} onClick={() => setUploadCommentShow(true)} alt="upload" />&nbsp;
                         <img onClick={() => commentPost(data.id)} src={commentMessage} alt="comment" />
                       </div>
                     </div>
@@ -621,9 +653,16 @@ const Announcement = () => {
             </div>
           </div>
         </div>
-
+        {/* post */}
         <UploadFile setFile={setFile} uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
-        {lightBoxVisible &&  <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} /> }
+        {/* comment */}
+        <UploadFile setFile={setCommentFile} uploadedFiles={uploadedCommentFiles} setUploadedFiles={setUploadedCommentFiles} uploadShow={uploadCommentShow} setUploadShow={setUploadCommentShow} handleUploadClose={handleUploadCommentClose} />
+        {/* comment reply */}
+        <UploadFile setFile={setCommentReplyFile} uploadedFiles={uploadedReplyFiles} setUploadedFiles={setUploadedReplyFiles} uploadShow={uploadReplyShow} setUploadShow={setUploadReplyShow} handleUploadClose={handleUploadReplyClose} />
+        {/* comment reply reply */}
+        <UploadFile setFile={setDoubleReplyFile} uploadedFiles={uploadedDoubleFiles} setUploadedFiles={setUploadedDoubleFiles} uploadShow={uploadDoubleShow} setUploadShow={setUploadDoubleShow} handleUploadClose={handleUploadDoubleClose} />
+
+        {lightBoxVisible && <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} />}
 
       </Layout>
     </>

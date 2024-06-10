@@ -330,7 +330,7 @@ const Task = () => {
                                                                         </div> : ""}
 
                                                                         <div className="taskDate">
-                                                                            <p className={getDueDateStatus(task.dueDate) === "Yesterday" ? "pastDate" : getDueDateStatus(task.dueDate) === "Today" ? "dueDate" : "futureDate"}>
+                                                                            <p className={getDueDateStatus(task.dueDate) === "Due Yesterday" ? "pastDate" : getDueDateStatus(task.dueDate) === "Due Today" ? "dueDate" : "futureDate"}>
                                                                                 <FontAwesomeIcon icon={faClock} />
                                                                                 <span>{getDueDateStatus(task.dueDate)}</span>
                                                                             </p>

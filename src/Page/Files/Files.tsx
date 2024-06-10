@@ -31,6 +31,7 @@ import DeleteModal from '../../Component/DeleteModal/DeleteModal';
 import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import Pagination from '../../Component/Pagination/Pagination';
 import LightBox from '../../Component/LightBox/LightBox';
+import { adminCheck } from '../../api/admin';
 
 
 const Files = () => {
@@ -254,6 +255,14 @@ const Files = () => {
   const closeLightBox = () => {
     setLightBoxVisible(false);
   };
+
+  const adminFind = (id: string) => {
+    adminCheck(id).then((data) => {
+    console.log('check',data);
+    
+    });
+  };
+  
   return (
     <>
       <Layout>
