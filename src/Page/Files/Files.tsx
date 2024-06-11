@@ -341,7 +341,7 @@ const Files = () => {
                       <div className="avatars2">
                         {file.sharesList.map((share: any) =>
                           <>{share.image === "imageNull" ? <img className="avatar-icon36 default" alt="" src={memberIcon} />
-                            : <img className="avatar-icon36" alt="" src={`${API}/${share.image}`} />
+                            : <img className={`${share.type === 'admin' ? 'admin avatar-icon36' : 'avatar-icon36'}`} alt="" src={`${API}/${share.image}`} />
                           }</>
                         )}
                         <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>

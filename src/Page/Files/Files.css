@@ -876,8 +876,11 @@
 }
 
 .avatar-icon36 {
-  border: solid 1.5px #FFAB00;
   margin-left: -4px;
+}
+
+.avatar-icon36.admin {
+  border: solid 1.5px #FFAB00;
 }
 
 .avatar-icon36.default {
