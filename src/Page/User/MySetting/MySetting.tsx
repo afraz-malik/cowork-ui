@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Layout from '../../../Component/Layout/Layout'
 import MyAccount from './MyAccount';
+import "./MySetting.css";
 
 const MySetting = () => {
 
