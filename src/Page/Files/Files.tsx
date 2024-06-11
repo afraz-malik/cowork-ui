@@ -337,11 +337,11 @@ const Files = () => {
                     <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer", fontWeight: "800" }}>{file.nick_name.length <= 23 ? file.nick_name : file.nick_name.substring(0, 20) + '...'}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
-                    {file.member_images ? <td>
+                    {file.sharesList.length ? <td>
                       <div className="avatars2">
-                        {file.member_images && separateComma(file.member_images).map((share: any) =>
-                          <>{share === "imageNull" ? <img className="avatar-icon36 default" alt="" src={memberIcon} />
-                            : <img className="avatar-icon36" alt="" src={`${API}/${share}`} />
+                        {file.sharesList.map((share: any) =>
+                          <>{share.image === "imageNull" ? <img className="avatar-icon36 default" alt="" src={memberIcon} />
+                            : <img className="avatar-icon36" alt="" src={`${API}/${share.image}`} />
                           }</>
                         )}
                         <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
