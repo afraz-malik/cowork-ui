@@ -222,7 +222,7 @@ const MyFiles = () => {
     }
     const closeLightBox = () => {
         setLightBoxVisible(false);
-      };
+    };
     return (
         <>
             <Layout>
@@ -268,11 +268,11 @@ const MyFiles = () => {
                                         <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer" }}><img src={getFileType(file.extension)} alt="avatar" /> {file.nick_name}.{file.extension}</td>
                                         <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                                         <td>{convertBytesToSize(file.size)}</td>
-                                        {file.member_images ? <td>
+                                        {file.sharesList.length ? <td>
                                             <div className="avatars2">
-                                                {file.member_images && separateComma(file.member_images).map((share: any) =>
-                                                    <>{share === "imageNull" ? <img className="avatar-icon36" alt="" src={memberIcon} />
-                                                        : <img className="avatar-icon36" alt="" src={`${API}/${share}`} />
+                                                {file.sharesList.map((share: any) =>
+                                                    <>{share.image === "imageNull" ? <img className="avatar-icon36 default" alt="" src={memberIcon} />
+                                                        : <img className="avatar-icon36" alt="" src={`${API}/${share.image}`} />
                                                     }</>
                                                 )}
                                                 <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
@@ -285,9 +285,9 @@ const MyFiles = () => {
                                         <td className='tableAction'>
                                             <button className='btn download' onClick={() => handleDownloadClick(file.name)}><img src={download} alt="download" /></button>
                                             {file.delete ?
-                                            <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
-                                        :""}
-                                            </td>
+                                                <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
+                                                : ""}
+                                        </td>
                                     </tr>)}
                                 </tbody>
                             </Table>
@@ -298,7 +298,7 @@ const MyFiles = () => {
                 <UploadFile uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
                 <ShareFile shares={shares} setShares={setShares} sharesShow={sharesShow} setSharesShow={setSharesShow} filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
                 <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
-             {lightBoxVisible && <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} /> } 
+                {lightBoxVisible && <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} />}
             </Layout>
         </>
     )
