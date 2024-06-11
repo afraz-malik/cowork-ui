@@ -183,11 +183,12 @@ const Files = () => {
 
 
   const shareModal = (fileId: string, shareList: any) => {
+    console.log('call',shareList);
+    
     setFilesId(fileId);
     setShareShow(true);
     setSharesShow(shareList);
     setShares([]);
-
   }
 
   useEffect(() => {

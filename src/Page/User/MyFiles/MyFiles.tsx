@@ -275,9 +275,11 @@ const MyFiles = () => {
                                                         : <img className="avatar-icon36" alt="" src={`${API}/${share.image}`} />
                                                     }</>
                                                 )}
+                                                {file.delete ?
                                                 <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
                                                     +
                                                 </div>
+                                                : ""}
                                             </div>
                                         </td>
                                             : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id, file.shares)}>Share</button></td>

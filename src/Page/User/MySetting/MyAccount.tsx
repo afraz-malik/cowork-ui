@@ -9,7 +9,8 @@ import { DESKIE_API as API } from '../../../config';
 import { showNotifications } from '../../../CommonFunction/toaster';
 import { ToastContainer } from 'react-toastify';
 import memberIcon from "../../../Assets/Images/icon/memberLargeIcon.png";
-
+import uploadIcon from "../../../Assets/Images/icon/delete_svg.svg";
+import deleteIcon from "../../../Assets/Images/icon/upload_svg.svg";
 
 interface AccountProps {
     settingTab: (type: string) => void;
@@ -49,7 +50,7 @@ const MyAccount = ({ settingTab }: AccountProps) => {
 
     const adminUpdate = () => {
 
-        let member:any = {
+        let member: any = {
             "first_name": firstName,
             "last_name": lastName,
             "phone_number": phoneNumber,
@@ -57,7 +58,7 @@ const MyAccount = ({ settingTab }: AccountProps) => {
         }
         if (uploadedLogo) {
             member["member_image"] = uploadedLogo;
-          }
+        }
         updateMember(adminId, member).then((data) => {
             showNotifications("success", data.message);
         })
@@ -69,9 +70,9 @@ const MyAccount = ({ settingTab }: AccountProps) => {
         setUserImage("");
         setImageLogo("logo");
     }
-  return (
-    <>
-       <div className='mainContent'>
+    return (
+        <>
+            <div className='mainContent'>
                 <ToastContainer />
                 <div className="settingPage">
                     <div className="companyOptions">
@@ -81,14 +82,13 @@ const MyAccount = ({ settingTab }: AccountProps) => {
                     <div className="companyProfile">
                         <div className='profileHeading'>
                             <h6>Edit Personal Profile</h6>
-                            <p>Update your personal profile here.</p>
                         </div>
                         <div className='profileSave'>
                             <button className='cancel'>Cancel</button>
                             <button className='save' onClick={adminUpdate}>Save</button>
                         </div>
                     </div>
-                    <div className="companyName">
+                    {/* <div className="companyName">
                         <p>Profile Picture</p>
                         <div className='rightFileSetting'>
                             <div className="profileImageBox">
@@ -109,9 +109,31 @@ const MyAccount = ({ settingTab }: AccountProps) => {
                                 <input type="file" onChange={onFileLogoDrop} />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="contactDetails">
-                        <p>Contact Details</p>
+                        <div className="profileImageUpload">
+                            <div className="profileTitle">
+                                <p>Personal Profile Picture</p>
+                            </div>
+                            <div className="profileImgView">
+                                {imageLogo && imageLogo.length > 0 ? <img src={changeLogo} className='changeLogo' alt="change-logo" />
+                                    : <>
+                                        {logoFile && logoFile.length > 0 ? <img src={logoFile} className='changeLogo' alt="change-logo" />
+                                            : userImage.length ? <img src={`${API}/${userImage}`} className='changeLogo' alt="change-logo" /> : <img src={memberIcon} className='changeLogo' alt="change-logo" />
+                                        }
+                                    </>}
+                            </div>
+                            <div className="profileFooter">
+                            <div ref={wrapperRef} className="drop-file-input">
+                                <div className="drop-file-input__label">
+                                <img src={uploadIcon} className='uploadIcon' alt="delete" onClick={removeImage} />
+                                </div>
+                                <input type="file" onChange={onFileLogoDrop} />
+                            </div>
+                             
+                                <img src={deleteIcon} className='uploadIcon' alt="delete" onClick={removeImage} />
+                            </div>
+                        </div>
                         <div className='rightSideSetting'>
                             <div className="companyInput profileName">
                                 <span>First Name</span>
@@ -132,9 +154,9 @@ const MyAccount = ({ settingTab }: AccountProps) => {
                         </div>
                     </div>
                 </div>
-            </div>   
-    </>
-  )
+            </div>
+        </>
+    )
 }
 
 export default MyAccount

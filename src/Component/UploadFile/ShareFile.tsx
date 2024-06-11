@@ -24,6 +24,7 @@ interface ShareFileProps {
 }
 
 const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesShow, setSharesShow, setShares, shares}: ShareFileProps) => {
+ 
     const [userImage, setUserImage] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -53,21 +54,26 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesS
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const memberData = await getMemberList(10, 1);
-                const adminData = await adminList();
-                let combinedData: any = [];
-                if (userRole === 'admin') {
-                    combinedData = [
-                        ...memberData.members.map((member: any) => ({ ...member, type: 'member' })),
-                    ];
-                    setSharesList(combinedData);
-                } else if (userRole === 'user') {
-                    combinedData = [
-                        ...adminData.map((admin: any) => ({ ...admin, type: 'admin' })),
-                    ];
+                const [memberData, adminData] = await Promise.all([getMemberList(10, 1), adminList()]);
+                let combinedData:any = [
+                    ...memberData.members.map((member: any) => ({ ...member, type: 'member' })),
+                    ...adminData.map((admin: any) => ({
+                        ...admin,
+                        type: 'admin',
+                        member_image: admin.avatar
+                    }))
+                ];
+            
+                // Optional: Filter out items based on some criteria, for example, userRole and loginId
+                if (userRole === 'user') {
                     combinedData = combinedData.filter((item: any) => item.id !== loginId);
-                    setSharesList(combinedData);
                 }
+
+                if (userRole === 'admin') {
+                    combinedData = combinedData.filter((item: any) => item.id !== loginId);
+                }
+
+                setSharesList(combinedData);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -105,7 +111,7 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesS
     const updateShares = () => {
         if (shares) {
             const ids = shares.map((obj: any) => obj.id);
-            const share = `${ids}`;
+            const share = `${ids}`; 
             shareUpdate(filesId, { share }).then((data) => {
                 if (data.statusCode !== 200) {
                     showNotifications('error', data.message);
@@ -126,7 +132,7 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesS
 
         if (sharesShow?.length) {
             const shareList = sharesShow.split(',');
-            shareList.forEach((shareId: any) => {
+            shareList.forEach((shareId: any) => { 
                 const matchingShare = sharesList.find((share: any) => share.id === shareId);
                 if (matchingShare) {
                     setShares((prevShares: any) => {
