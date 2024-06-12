@@ -7,7 +7,7 @@ import message from "../../Assets/Images/post/message-dots-square.svg";
 import clickLove from "../../Assets/Images/post/heart(1).svg";
 import dotLine from "../../Assets/Images/post/dots-horizontal.svg";
 import avatar from "../../Assets/Images/icon/memberAvatar.svg";
-import uploadImage from "../../Assets/Images/post/image-03.png";
+import trashBlack from "../../Assets/Images/icon/trash-black.svg";
 import UploadFile from './UploadFile';
 import { v4 as uuidv4 } from 'uuid';
 import { commentCommentReply, commentLike, commentLikeUpdate, commentReplyLike, commentReplyLikeUpdate, deletePost, getPostList, likesPost, likesPostEdit, postAdd, replyComment } from '../../api/announcement';
@@ -31,13 +31,16 @@ import uploadIcon from "../../Assets/Images/post/add_photo_alternate.svg";
 import commentMessage from "../../Assets/Images/post/local_post_office.svg";
 
 const Announcement = () => {
+ 
+  const [uploadId, setUploadId] = useState("");
   // post
   const [file, setFile] = useState("");
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [uploadShow, setUploadShow] = useState(false);
   const handleUploadClose = () => setUploadShow(false);
   // comment
-  const [commentFile, setCommentFile] = useState("");
+  const [commentFile, setCommentFile] = useState<any>({});
+  const [commentFileId, setCommentFileId] = useState<any>({});
   const [uploadedCommentFiles, setUploadedCommentFiles] = useState<File[]>([]);
   const [uploadCommentShow, setUploadCommentShow] = useState(false);
   const handleUploadCommentClose = () => {
@@ -45,20 +48,22 @@ const Announcement = () => {
   }
 
   // comment reply
-  const [commentReplyFile, setCommentReplyFile] = useState("");
+  const [commentReplyFile, setCommentReplyFile] = useState<any>({});
+  const [commentReplyFileId, setCommentReplyFileId] = useState<any>({});
   const [uploadedReplyFiles, setUploadedReplyFiles] = useState<File[]>([]);
   const [uploadReplyShow, setUploadReplyShow] = useState(false);
   const handleUploadReplyClose = () => {
     setUploadReplyShow(false);
   }
 
-   // comment reply reply
-   const [doubleReplyFile, setDoubleReplyFile] = useState("");
-   const [uploadedDoubleFiles, setUploadedDoubleFiles] = useState<File[]>([]);
-   const [uploadDoubleShow, setUploadDoubleShow] = useState(false);
-   const handleUploadDoubleClose = () => {
+  // comment reply reply
+  const [doubleReplyFile, setDoubleReplyFile] = useState<any>({});
+  const [doubleReplyFileId, setDoubleReplyFileId] = useState<any>({});
+  const [uploadedDoubleFiles, setUploadedDoubleFiles] = useState<File[]>([]);
+  const [uploadDoubleShow, setUploadDoubleShow] = useState(false);
+  const handleUploadDoubleClose = () => {
     setUploadDoubleShow(false);
-   }
+  }
 
 
   const [post, setPost] = useState("");
@@ -191,8 +196,7 @@ const Announcement = () => {
       "comment_image": commentFile,
       "comment": comment
     }
-
-    if (comment.length) {
+    if (comment.length || commentFile.name.length) {
       postComment(postInfo).then((data) => {
         if (data.statusCode !== 201) {
           showNotifications('error', data.message);
@@ -201,7 +205,10 @@ const Announcement = () => {
           showNotifications('success', 'Comment add successfully');
           setComment("");
           setPlaceholder("");
-          setCount(count + 1)
+          setCount(count + 1);
+          setCommentFileId("");
+          setCommentFile("");
+          setUploadedCommentFiles([]);
         }
       })
     }
@@ -216,7 +223,7 @@ const Announcement = () => {
       "comment_image": commentReplyFile,
       "comment": commentReply
     }
-    if (commentReply.length) {
+    if (commentReply.length || commentReplyFile.name.length) {
       replyComment(postInfo).then((data) => {
         if (data.statusCode !== 201) {
           showNotifications('error', data.message);
@@ -226,6 +233,9 @@ const Announcement = () => {
           setCommentReply("");
           setPlaceholder("");
           setCount(count + 1)
+          setCommentReplyFileId("");
+          setCommentReplyFile("");
+          setUploadedReplyFiles([]);
         }
       })
     }
@@ -238,10 +248,10 @@ const Announcement = () => {
       "comment_id": comment_id,
       "comment_reply_id": reply_id,
       "comment": commentNext,
-      "comment_image" : doubleReplyFile,
+      "comment_image": doubleReplyFile,
       "user_id": auth.user.id,
     }
-    if (commentNext.length) {
+    if (commentNext.length || doubleReplyFile.name.length) {
       commentCommentReply(postInfo).then((data) => {
         if (data.statusCode !== 201) {
           showNotifications('error', data.message);
@@ -251,6 +261,9 @@ const Announcement = () => {
           setCommentNext("");
           setPlaceholder("");
           setCount(count + 1)
+          setDoubleReplyFileId("");
+          setDoubleReplyFile("");
+          setUploadedDoubleFiles([]);
         }
       })
     }
@@ -404,23 +417,7 @@ const Announcement = () => {
     console.log('Emoji button clicked');
   };
 
-  const CustomEmojiButton = () => (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        marginLeft: '10px', // Adjust margin as needed
-      }}
-    >
-      <img
-        src={emojiIcon}
-        alt="Custom Emoji"
-        style={{ width: '24px', height: '24px', cursor: 'pointer' }}
-        onClick={handleEmojiButtonClick}
-      />
-    </div>
-  );
-
+ 
   const emojiButtonElement: any = (
     <div
       style={{
@@ -609,9 +606,13 @@ const Announcement = () => {
                             {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
                               : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />}
                             <div className="commentInput">
-                              <InputEmoji value={commentNext} onFocus={handleInputFocus} onChange={(e) => setCommentNext(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentReplyEnter(data.id, comment.id, reply.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
-                              <img src={uploadIcon} onClick={() => setUploadDoubleShow(true)} alt="upload" />&nbsp;
-                        <img onClick={() => replyCommentReply(data.id, comment.id, reply.id)}  src={commentMessage} alt="comment" />
+                              <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setCommentNext(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentReplyEnter(data.id, comment.id, reply.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
+                              {doubleReplyFileId[reply.id] ? <div className='commentImg'>
+                                <p>{doubleReplyFileId[reply.id] && `${doubleReplyFileId[reply.id].slice(0, 5)}${doubleReplyFileId[reply.id].substring(doubleReplyFileId[reply.id].lastIndexOf('.'))}`}</p>
+                                <img src={trashBlack} alt="trash" onClick={() => { setDoubleReplyFile(""); setDoubleReplyFileId(""); setUploadedDoubleFiles([]) }} />
+                              </div> : ""}
+                              <img src={uploadIcon} onClick={() => { setUploadId(reply.id); setUploadDoubleShow(true) }} alt="upload" />&nbsp;
+                              <img onClick={() => replyCommentReply(data.id, comment.id, reply.id)} src={commentMessage} alt="comment" />
                             </div>
                           </div> : ""}
 
@@ -624,9 +625,13 @@ const Announcement = () => {
                           {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
                             : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />}
                           <div className="commentInput">
-                            <InputEmoji value={commentReply} onFocus={handleInputFocus} onChange={(e) => setCommentReply(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentEnter(data.id, comment.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
-                            <img src={uploadIcon} onClick={() => setUploadReplyShow(true)} alt="upload" />&nbsp;
-                        <img onClick={() => replyCommentPost(data.id, comment.id)}  src={commentMessage} alt="comment" />
+                            <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setCommentReply(e)} cleanOnEnter={true} onEnter={(text: any) => handleCommentEnter(data.id, comment.id)} shouldReturn={true} shouldConvertEmojiToImage={true} />
+                            {commentReplyFileId[comment.id] ? <div className='commentImg'>
+                              <p>{commentReplyFileId[comment.id] && `${commentReplyFileId[comment.id].slice(0, 5)}${commentReplyFileId[comment.id].substring(commentReplyFileId[comment.id].lastIndexOf('.'))}`}</p>
+                              <img src={trashBlack} alt="trash" onClick={() => { setCommentReplyFile(""); setCommentReplyFileId(""); setUploadedReplyFiles([]) }} />
+                            </div> : ""}
+                            <img src={uploadIcon} onClick={() => { setUploadId(comment.id); setUploadReplyShow(true) }} alt="upload" />&nbsp;
+                            <img onClick={() => replyCommentPost(data.id, comment.id)} src={commentMessage} alt="comment" />
                           </div>
                         </div> : ""}
                         {/* reply comment */}
@@ -640,8 +645,12 @@ const Announcement = () => {
                       }
                       <div className="commentInput">
                         {/* <CustomEmojiButton /> */}
-                        <InputEmoji value={comment} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} buttonElement={emojiButtonElement} />
-                        <img src={uploadIcon} onClick={() => setUploadCommentShow(true)} alt="upload" />&nbsp;
+                        <InputEmoji value={placeholder} onFocus={handleInputFocus} onChange={(e) => setComment(e)} cleanOnEnter={true} onEnter={(text: any) => handleEnter(text, data.id)} shouldReturn={true} shouldConvertEmojiToImage={true} buttonElement={emojiButtonElement} />
+                        {commentFileId[data.id] ? <div className='commentImg'>
+                          <p>{commentFileId[data.id] && `${commentFileId[data.id].slice(0, 5)}${commentFileId[data.id].substring(commentFileId[data.id].lastIndexOf('.'))}`}</p>
+                          <img src={trashBlack} alt="trash" onClick={() => { setCommentFile(""); setCommentFileId(""); setUploadedCommentFiles([]) }} />
+                        </div> : ""}
+                        <img src={uploadIcon} onClick={() => { setUploadId(data.id); setUploadCommentShow(true) }} alt="upload" />&nbsp;
                         <img onClick={() => commentPost(data.id)} src={commentMessage} alt="comment" />
                       </div>
                     </div>
@@ -656,11 +665,11 @@ const Announcement = () => {
         {/* post */}
         <UploadFile setFile={setFile} uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
         {/* comment */}
-        <UploadFile setFile={setCommentFile} uploadedFiles={uploadedCommentFiles} setUploadedFiles={setUploadedCommentFiles} uploadShow={uploadCommentShow} setUploadShow={setUploadCommentShow} handleUploadClose={handleUploadCommentClose} />
+        <UploadFile id={uploadId} setCommentFileId={setCommentFileId} setFile={setCommentFile} uploadedFiles={uploadedCommentFiles} setUploadedFiles={setUploadedCommentFiles} uploadShow={uploadCommentShow} setUploadShow={setUploadCommentShow} handleUploadClose={handleUploadCommentClose} />
         {/* comment reply */}
-        <UploadFile setFile={setCommentReplyFile} uploadedFiles={uploadedReplyFiles} setUploadedFiles={setUploadedReplyFiles} uploadShow={uploadReplyShow} setUploadShow={setUploadReplyShow} handleUploadClose={handleUploadReplyClose} />
+        <UploadFile id={uploadId} setCommentFileId={setCommentReplyFileId} setFile={setCommentReplyFile} uploadedFiles={uploadedReplyFiles} setUploadedFiles={setUploadedReplyFiles} uploadShow={uploadReplyShow} setUploadShow={setUploadReplyShow} handleUploadClose={handleUploadReplyClose} />
         {/* comment reply reply */}
-        <UploadFile setFile={setDoubleReplyFile} uploadedFiles={uploadedDoubleFiles} setUploadedFiles={setUploadedDoubleFiles} uploadShow={uploadDoubleShow} setUploadShow={setUploadDoubleShow} handleUploadClose={handleUploadDoubleClose} />
+        <UploadFile id={uploadId} setCommentFileId={setDoubleReplyFileId} setFile={setDoubleReplyFile} uploadedFiles={uploadedDoubleFiles} setUploadedFiles={setUploadedDoubleFiles} uploadShow={uploadDoubleShow} setUploadShow={setUploadDoubleShow} handleUploadClose={handleUploadDoubleClose} />
 
         {lightBoxVisible && <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} />}
 

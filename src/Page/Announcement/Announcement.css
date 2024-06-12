@@ -36,17 +36,20 @@
 .postingAs a.admin img {
     border: 2px solid rgba(255, 171, 0, 1) !important;
 }
-.trashPost .postDelete{
+
+.trashPost .postDelete {
     border: none !important;
     padding: 20px 16px !important;
     box-shadow: 0px 12px 30px 0px rgba(122, 122, 122, 0.14) !important;
 }
-.trashPost .postDelete a img{
+
+.trashPost .postDelete a img {
     width: 20px;
     height: 20px;
     margin-right: 4px;
 }
-.trashPost .postDelete a{
+
+.trashPost .postDelete a {
     font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 800;
@@ -56,18 +59,21 @@
     display: flex;
     align-items: center;
 }
+
 .custom-dropdown-toggle {
     background: none !important;
     border: none !important;
     box-shadow: none !important;
-  }
-  
-  .custom-dropdown-toggle:focus,
-  .custom-dropdown-toggle:hover,
-  .custom-dropdown-toggle:active {
+}
+
+.custom-dropdown-toggle:focus,
+.custom-dropdown-toggle:hover,
+.custom-dropdown-toggle:active {
     background: none !important;
-    box-shadow: none !important; /* Remove focus/hover/active shadow */
-  }
+    box-shadow: none !important;
+    /* Remove focus/hover/active shadow */
+}
+
 .message-emoji img {
     height: 1em;
     width: 1em;
@@ -82,9 +88,11 @@
     object-fit: contain;
     display: none;
 }
-.commentInput img{
+
+.commentInput img {
     cursor: pointer;
 }
+
 .commentInput .commentBox {
     background-color: rgba(248, 250, 251, 1);
     box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
@@ -467,7 +475,7 @@
 
 .default {
     background-color: var(--gray-100);
-    padding: 5px;  
+    padding: 5px;
 }
 
 .avatar-parent .commentInput {
@@ -484,6 +492,26 @@
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
 }
+
+.avatar-parent .commentInput p {
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 24px;
+    text-align: right;
+    color: rgba(16, 24, 40, 1);
+    text-wrap: nowrap;
+    margin-bottom: 0px;
+}
+
+.avatar-parent .commentInput .commentImg {
+    border-left: 1px solid rgba(234, 236, 240, 1);
+    border-right: 1px solid rgba(234, 236, 240, 1);
+    text-wrap: nowrap;
+    display: flex;
+    padding: 0px 8px;
+    margin-right: 5px;
+}
+
 
 .react-input-emoji--input,
 .react-input-emoji--placeholder {
@@ -905,7 +933,7 @@
     /* Occupy full width */
 }
 
-.react-input-emoji--button svg{
+.react-input-emoji--button svg {
     width: 20px !important;
 }
 
@@ -918,4 +946,3 @@
         width: 100%;
     }
 }
-
