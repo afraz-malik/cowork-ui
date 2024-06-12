@@ -183,8 +183,6 @@ const Files = () => {
 
 
   const shareModal = (fileId: string, shareList: any) => {
-    console.log('call',shareList);
-    
     setFilesId(fileId);
     setShareShow(true);
     setSharesShow(shareList);
@@ -216,7 +214,7 @@ const Files = () => {
   const prevPage = () => {
     setPage(page - 1)
   }
- 
+
   const lightBox = (fileName: string) => {
     setLightBoxShow(true);
     setLightBoxFile(fileName);
@@ -227,7 +225,7 @@ const Files = () => {
     member.nick_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     member.extension.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
+
   const handleSort = (columnName: string) => {
     if (sortBy === columnName) {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
@@ -237,13 +235,13 @@ const Files = () => {
     }
   };
 
-  const sortedFiles = [...filteredFiles].sort((a:any, b:any) => {
+  const sortedFiles = [...filteredFiles].sort((a: any, b: any) => {
     if (sortBy === 'name') {
       return a.nick_name.localeCompare(b.nick_name) * (sortOrder === 'asc' ? 1 : -1);
     } else if (sortBy === 'uploaded') {
       const dateA = new Date(a.created_at);
-    const dateB = new Date(b.created_at);
-    return (dateA.getTime() - dateB.getTime()) * (sortOrder === 'asc' ? 1 : -1);
+      const dateB = new Date(b.created_at);
+      return (dateA.getTime() - dateB.getTime()) * (sortOrder === 'asc' ? 1 : -1);
     } else if (sortBy === 'size') {
       const sizeA = parseFloat(a.size.replace(/[^\d.]/g, '')); // Remove non-numeric characters and parse
       const sizeB = parseFloat(b.size.replace(/[^\d.]/g, '')); // Remove non-numeric characters and parse
@@ -252,18 +250,12 @@ const Files = () => {
     return 0;
   });
 
- 
+
   const closeLightBox = () => {
     setLightBoxVisible(false);
   };
 
-  const adminFind = (id: string) => {
-    adminCheck(id).then((data) => {
-    console.log('check',data);
-    
-    });
-  };
-  
+
   return (
     <>
       <Layout>
@@ -300,9 +292,9 @@ const Files = () => {
                       <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "created" ? "My Files" : filterTag === "member" ? "Shared With Me" : filterTag === "all" ? "All Files" : "Filters"}</button>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                    <Dropdown.Item onClick={()=>setFilterTag('all')}>All Files</Dropdown.Item>
-                      <Dropdown.Item onClick={()=>setFilterTag('created')}>My Files</Dropdown.Item>
-                      <Dropdown.Item onClick={()=>setFilterTag('member')}>Shared With Me</Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('all')}>All Files</Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('created')}>My Files</Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('member')}>Shared With Me</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
@@ -319,9 +311,9 @@ const Files = () => {
                         <span className="checkmark"></span></div>
                     </label></th>
                     <th></th>
-                    <th onClick={() => handleSort('name')}>Name {sortBy === "name" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : "" }</th>
-                    <th onClick={() => handleSort('uploaded')}>Uploaded {sortBy === "uploaded" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : "" }</th>
-                    <th onClick={() => handleSort('size')}>Size {sortBy === "size" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : "" }</th>
+                    <th onClick={() => handleSort('name')}>Name {sortBy === "name" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : ""}</th>
+                    <th onClick={() => handleSort('uploaded')}>Uploaded {sortBy === "uploaded" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : ""}</th>
+                    <th onClick={() => handleSort('size')}>Size {sortBy === "size" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : ""}</th>
                     <th>Sharing</th>
                     <th>Actions</th>
                     <th></th>
@@ -338,16 +330,19 @@ const Files = () => {
                     <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer", fontWeight: "800" }}>{file.nick_name.length <= 23 ? file.nick_name : file.nick_name.substring(0, 20) + '...'}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
-                    {file.sharesList.length ? <td>
+                    {file.sharesList.length}
+                    {file.sharesList ? <td>
                       <div className="avatars2">
                         {file.sharesList.map((share: any) =>
                           <>{share.image === "imageNull" ? <img className="avatar-icon36 default" alt="" src={memberIcon} />
                             : <img className={`${share.type === 'admin' ? 'admin avatar-icon36' : 'avatar-icon36'}`} alt="" src={`${API}/${share.image}`} />
                           }</>
                         )}
-                        <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
-                          +
-                        </div>
+                        {file.delete ?
+                          <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
+                            +
+                          </div>
+                          : ""}
                       </div>
                     </td>
                       : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id, file.shares)}>Share</button></td>
@@ -359,9 +354,11 @@ const Files = () => {
                         : ""}
                     </td>
                     <td>
-                      <button className='btn start' onClick={() => favoriteAdd(file.id)}>
-                        {file.favorite === 0 ?  <img src={star} alt="download" /> : <img src={markStar} alt="download" />}
-                      </button>
+                      {file.delete ?
+                        <button className='btn start' onClick={() => favoriteAdd(file.id)}>
+                          {file.favorite === 0 ? <img src={star} alt="download" /> : <img src={markStar} alt="download" />}
+                        </button>
+                        : ""}
                     </td>
                   </tr>)}
                 </tbody>
@@ -373,7 +370,7 @@ const Files = () => {
         <UploadFile uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
         <ShareFile shares={shares} setShares={setShares} sharesShow={sharesShow} setSharesShow={setSharesShow} filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
         <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
-        {lightBoxVisible &&  <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow}  handleLightBoxClose={closeLightBox} /> }
+        {lightBoxVisible && <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} />}
       </Layout>
     </>
   )

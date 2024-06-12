@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../../Component/Layout/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Table } from 'react-bootstrap';
+import { Dropdown, Table } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../../config';
 import filter from '../../../Assets/Images/icon/filter-lines.png';
 import download from "../../../Assets/Images/icon/download-cloud-02.svg";
@@ -20,7 +20,7 @@ import { ToastContainer } from 'react-toastify';
 import { getMemberList } from '../../../api/member';
 import ShareFile from '../../../Component/UploadFile/ShareFile';
 import DeleteModal from '../../../Component/DeleteModal/DeleteModal';
-import memberIcon from "../../../Assets/Images/icon/memberAvatar.png";
+import memberIcon from "../../../Assets/Images/icon/memberAvatar.svg";
 import Pagination from '../../../Component/Pagination/Pagination';
 import LightBox from '../../../Component/LightBox/LightBox';
 
@@ -37,6 +37,7 @@ const MyFiles = () => {
     const handleDeleteClose = () => setDeleteShow(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [lightBoxVisible, setLightBoxVisible] = useState(false);
+    const [filterTag, setFilterTag] = useState('');
     // pagination number
     const [totalValue, setTotalValue] = useState<any>();
     const [limitValue, setLimitValue] = useState<any>();
@@ -60,7 +61,7 @@ const MyFiles = () => {
     }
 
     useEffect(() => {
-        getFilesList(limit, page, "all").then((data) => {
+        getFilesList(limit, page, filterTag).then((data) => {
             if (data.statusCode !== 200) {
 
             }
@@ -82,7 +83,7 @@ const MyFiles = () => {
             }
         })
 
-    }, [uploadShow, count, shareShow, page]);
+    }, [uploadShow, count, shareShow, page, filterTag]);
 
 
 
@@ -238,7 +239,19 @@ const MyFiles = () => {
                                     <input type="text" placeholder='Search files' onChange={(e) => setSearchTerm(e.target.value)} className='form-control' />
                                     <FontAwesomeIcon icon={faSearch} />
                                 </div>
-                                <button className='filterBtn'><img src={filter} alt='filter' /> Filter</button>
+                                <div className='filterDropdown taskDropdown'>
+                                    <Dropdown>
+                                        <Dropdown.Toggle>
+                                            <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "created" ? "My Files" : filterTag === "member" ? "Shared With Me" : filterTag === "all" ? "All Files" : "Filters"}</button>
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item onClick={() => setFilterTag('all')}>All Files</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => setFilterTag('created')}>My Files</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => setFilterTag('member')}>Shared With Me</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </div>
+                                {/* <button className='filterBtn'><img src={filter} alt='filter' /> Filter</button> */}
                                 <button onClick={() => fileUpload()}><FontAwesomeIcon icon={faPlus} /> Upload File</button>
                             </div>
                         </div>
@@ -276,10 +289,10 @@ const MyFiles = () => {
                                                     }</>
                                                 )}
                                                 {file.delete ?
-                                                <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
-                                                    +
-                                                </div>
-                                                : ""}
+                                                    <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
+                                                        +
+                                                    </div>
+                                                    : ""}
                                             </div>
                                         </td>
                                             : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id, file.shares)}>Share</button></td>

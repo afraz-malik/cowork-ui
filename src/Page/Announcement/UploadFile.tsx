@@ -17,17 +17,21 @@ interface UploadFileProps {
     setFile: (type: string) => void;
     uploadedFiles: any;
     setUploadedFiles: any;
+    setCommentFileId?: any;
+    id?: any;
 }
 
 
-const UploadFile = ({ setFile, uploadedFiles, setUploadedFiles, uploadShow, setUploadShow, handleUploadClose }: UploadFileProps) => {
+const UploadFile = ({ id,setFile, uploadedFiles, setUploadedFiles, uploadShow, setUploadShow, handleUploadClose, setCommentFileId }: UploadFileProps) => {
 
-    const [nickName, setNickName] = useState("");
-    // const [file, setFile] = useState("");
     const wrapperRef = useRef<HTMLInputElement>(null);
     const onFileDrop = (event: any) => {
         const imageFile = event.target.files && event.target.files[0];
-        setFile(event.target.files[0])
+        setFile(event.target.files[0]);
+        setCommentFileId((prevState:any) => ({
+            ...prevState,
+            [id]: event.target.files[0].name
+        }));
         if (imageFile && uploadedFiles.length === 0) {
             setUploadedFiles([imageFile]);
         }
