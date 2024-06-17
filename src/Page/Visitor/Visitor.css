@@ -130,9 +130,9 @@ text-align: left;
 color: rgba(16, 24, 40, 1);
 }
 .visitorList .reason a{
-    font-weight: 400;
+    font-weight: 600;
     text-decoration: none;
-    color: rgba(16, 24, 40, 1);
+    color: #6366F1;
 }
 .removeVisitor img{
     width: 20px !important;
@@ -141,3 +141,50 @@ color: rgba(16, 24, 40, 1);
 .visitorDownload{
     padding: 0px !important;
 }
+
+.memberList.visitorList table thead tr th:nth-child(1), 
+.memberList.visitorList table tbody tr td:nth-child(1),
+.memberList.visitorList table thead tr th:nth-child(6), 
+.memberList.visitorList table tbody tr td:nth-child(6) {
+  width: 6.25%;
+}
+
+.memberList.visitorList table thead tr th:nth-child(2), 
+.memberList.visitorList table tbody tr td:nth-child(2),
+.memberList.visitorList table thead tr th:nth-child(4), 
+.memberList.visitorList table tbody tr td:nth-child(4) {
+  width: 18.75%;
+  text-align: start;
+}
+
+.memberList.visitorList table thead tr th:nth-child(5), 
+.memberList.visitorList table tbody tr td:nth-child(5) {
+  width: 12.5%;
+}
+
+.memberList.visitorList table thead tr th:nth-child(3), 
+.memberList.visitorList table tbody tr td:nth-child(3) {
+  width: 37.5%;
+}
+
+.memberList.visitorList table thead tr th {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--Gray-600, #475467);
+}
+
+.memberList.visitorList table tbody tr td {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #475467;
+}
+
+.memberList.visitorList table tbody tr td:nth-child(2),
+.memberList.visitorList table tbody tr td:nth-child(5) {
+  font-weight: 700;
+  line-height: 30px;
+  color: #101828;
+}
+
