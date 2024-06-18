@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer } from 'react-toastify';
 import { getVisitorList, visitorDelete } from '../../api/visitor';
-import trashIcon from "../../Assets/Images/icon/trash-icon.png";
-import downloadIcon from "../../Assets/Images/icon/download-02.png";
+import trashIcon from "../../Assets/Images/icon/trash-icon.svg";
+import downloadIcon from "../../Assets/Images/icon/download-02.svg";
 import { showNotifications } from '../../CommonFunction/toaster';
 import { CSVLink } from 'react-csv';
 import { Link } from 'react-router-dom';
@@ -118,7 +118,7 @@ const VisitorList = () => {
     <>
       <Layout>
         <ToastContainer />
-        <div className='mainContent'>
+        <div className='mainContent' id='visitor-log'>
           <div className="memberBox">
             <div className="topLine">
               <div className='tableHeading'>
@@ -126,7 +126,7 @@ const VisitorList = () => {
               </div>
               <div className='memberSearch'>
                 <div className='searchInput'>
-                  <input type="text" placeholder='Search name' onChange={handleInputChange} className='form-control' />
+                  <input type="text" placeholder='Search visitors' onChange={handleInputChange} className='form-control' />
                   <FontAwesomeIcon icon={faSearch} />
                 </div>
                 <CSVLink className="visitorDownload" data={csvData} headers={headers} filename={"visitors.csv"}>
@@ -146,7 +146,7 @@ const VisitorList = () => {
                     </label></th>
                     <th>Name <FontAwesomeIcon icon={faArrowUp} /></th>
                     <th>Email Address</th>
-                    <th>Check In Date</th>
+                    <th>Time / Date</th>
                     <th>Reason</th>
                     <th>Actions</th>
                   </tr>
@@ -154,22 +154,23 @@ const VisitorList = () => {
                 <tbody>
                   {filteredVisitor && filteredVisitor.map((visitor: any, index: number) => <tr key={`refer` + index}>
                     <td><label className="tableCheckBox">
-                      <div className="contactCheck">
+                      <div className="contactCheck d-flex">
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
                     <td className='tableAction'>{visitor.name}</td>
                     <td className='tableAction'>{visitor.email}</td>
-                    <td className='tableAction'>{visitor.create_at_date}<br />{visitor.create_at_time}</td>
-                    <td className='tableAction reason'>{visitor.reason}
-                    {visitor.member_name ? <><br /><Link to={`/visitor/${visitor.member_id}`}> {visitor.member_name} </Link></> : ""}
-                    {visitor.admin_name ? <><br /><Link to="/settings"> {visitor.admin_name} </Link></> : ""}
+                    <td className='tableAction'><span style={{marginBottom: '1rem'}}>{visitor.create_at_date}</span><br />{visitor.create_at_time}</td>
+                    <td className='tableAction reason'>
+                      {visitor.reason}
+                      {visitor.member_name ? <><br /><Link to={`/visitor/${visitor.member_id}`}>({visitor.member_name})</Link></> : ""}
+                      {visitor.admin_name ? <><br /><Link to="/settings">({visitor.admin_name})</Link></> : ""}
                     </td>
                     <td className='tableAction'><button className='btn removeVisitor' onClick={() => deleteVisitor(visitor.id)}><img src={trashIcon} alt="trash" /></button></td>
                   </tr>)}
                 </tbody>
               </Table>
-              <Pagination page={page} paginationTitle="visitors" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={visitorList} />
+              <Pagination page={page} paginationTitle="items" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={visitorList} />
             </div>
           </div>
         </div>

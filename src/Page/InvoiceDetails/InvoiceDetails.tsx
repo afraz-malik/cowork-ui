@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons'
 import "./InvoiceDetails.css";
 import avatar from "../../Assets/Images/icon/Avatar.png";
-import download from "../../Assets/Images/icon/download-02.png";
+import download from "../../Assets/Images/icon/download-02.svg";
 import recordFile from "../../Assets/Images/icon/record.png";
 import emailFile from "../../Assets/Images/icon/mail-01.png";
 import voidFile from "../../Assets/Images/icon/void.png";
