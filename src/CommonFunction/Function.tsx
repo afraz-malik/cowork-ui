@@ -272,3 +272,28 @@ export function invoiceFormatTimes(timestamp:string) {
   
   return formattedDate;
 }
+
+
+export function formatResourceDate(dateString:string) {
+  const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const date = new Date(dateString);
+
+  const year = date.getFullYear();
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+
+  const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+
+  return `${month} ${day}, ${year}, ${hours}:${formattedMinutes} ${ampm}`;
+}
