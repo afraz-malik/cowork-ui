@@ -1,0 +1,662 @@
+.resourceDetail {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 24px;
+}
+
+.resourceDetail .resourceDescription,
+.resourceDetail .resourceImage {
+    width: 49%;
+}
+
+.resourceImage img {
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.resourceInfo {
+    border: 1px solid rgba(234, 236, 240, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.resourceMiniBox {
+    width: 100%;
+    display: flex;
+}
+
+.resourceMiniBox .resourceName {
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(234, 236, 240, 1);
+    width: 100%;
+}
+
+.resourceMiniBox .resourceRate {
+    padding: 16px 24px;
+    width: 100%;
+}
+
+.resourceMiniBox .resourceName:nth-child(2) {
+    border-left: 1px solid rgba(234, 236, 240, 1);
+    border-right: 1px solid rgba(234, 236, 240, 1);
+}
+
+.resourceMiniBox .resourceRate:nth-child(1) {
+    border-right: 1px solid rgba(234, 236, 240, 1);
+}
+
+.resourceMiniBox .resourceName h6,
+.resourceMiniBox .resourceRate h6 {
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+
+.resourceMiniBox .resourceName p,
+.resourceMiniBox .resourceRate p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+
+.bookingHeading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bookingHeading h6 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    text-align: left;
+    color: rgba(29, 41, 57, 1);
+    display: flex;
+    align-items: center;
+}
+
+.bookingHeading h6 img {
+    margin-right: 5px;
+}
+
+.bookingHeading button {
+    padding: 10px 14px;
+    border: 1px solid rgba(99, 102, 241, 1);
+    background-color: #fff;
+    color: rgba(99, 102, 241, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.resourceBooking {
+    padding: 16px 24px;
+    border: 1px solid rgba(234, 236, 240, 1);
+    width: 100%;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.bookingPerson {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid rgba(234, 236, 240, 1);
+    width: 100%;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.bookingPerson div {
+    flex-grow: 1;
+}
+
+.bookingPerson img {
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    object-fit: none;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.bookingPerson div p {
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(16, 24, 40, 1);
+}
+
+.bookingPerson div p span{
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(99, 102, 241, 1);
+}
+
+.bookingPerson div span {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: rgba(52, 64, 84, 1);
+}
+
+.bookingPerson button {
+    border: 1px solid #6366F1;
+    color: #6366F1;
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    background-color: #fff;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+
+
+/* tab panel */
+.tabResourcePanel {
+    background-color: #fff;
+    display: flex;
+    overflow: hidden;
+    padding: 40px 32px;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+
+.tabResourcePanel .tabHeading {
+    float: left;
+    width: 30%;
+    border-right: 1px solid rgba(234, 236, 240, 1);
+}
+
+.tabResourcePanel .tabHeading ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.tabResourcePanel .tabHeading ul li {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 22px;
+    cursor: pointer;
+}
+
+.tabResourcePanel .tabHeading ul li {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 22px;
+    cursor: pointer;
+}
+
+.tabResourcePanel .arrowLine {
+    margin-right: 12px;
+}
+
+.tabResourcePanel .arrowLine .checkCircle {
+    background-color: #fff;
+}
+
+.tabResourcePanel .arrowLine .checkCircle::after {
+    width: 2px;
+    height: 42px;
+    background-color: rgba(234, 236, 240, 1);
+    position: absolute;
+    top: 8px;
+    position: relative;
+    display: block;
+    content: "";
+    left: 11px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.tabResourcePanel .selected .arrowLine .checkCircle::after {
+    background-color: rgba(99, 102, 241, 1);
+}
+
+.tabResourcePanel .arrowLine .checkCircle:last-child::after {
+    background-color: rgb(255, 255, 255);
+}
+
+.tabResourcePanel .arrowHeading h6 {
+    margin-top: 6px;
+    font-family: "MyCustomFont";
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(52, 64, 84, 1);
+    margin-bottom: 4px;
+}
+
+.tabResourcePanel .arrowHeading p {
+    font-family: "MyCustomFont";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+
+.tabResourcePanel .selected .arrowHeading p,
+.tabResourcePanel .selected .arrowHeading h6 {
+    color: rgba(80, 82, 201, 1);
+}
+
+.tabResourcePanel .selected .arrowLine .checkCircle img {
+    box-shadow: 0px 0px 0px 4px rgba(244, 235, 255, 1);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+/* tab panel */
+.paymentInfo {
+    margin-left: 30px;
+    width: 100%;
+}
+
+.paymentDetails {
+    padding: 24px;
+    border: 1px solid rgba(234, 236, 240, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.paymentDetails .detailsHeading {
+    border-bottom: 1px solid rgba(234, 236, 240, 1);
+    padding-bottom: 15px;
+}
+
+.detailsHeading h6{
+    margin-top: 6px;
+  font-family: "MyCustomFont";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+}
+.detailsHeading h6 img{
+    margin-right: 5px;
+}
+
+.resourceShow {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+
+.resourceShow .leftResource {
+    width: 34%;
+}
+
+.resourceShow .rightResource {
+    width: 64%;
+}
+
+.resourceShow .leftResource {
+    border: 1px solid rgba(234, 236, 240, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.resourceShow .leftResource div {
+    padding: 16px;
+}
+.resourceShow .leftResource div h6{
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+.resourceShow .leftResource div p{
+    font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
+}
+
+.resourceShow .leftResource div:nth-child(1),
+.resourceShow .leftResource div:nth-child(2) {
+    border-bottom: 1px solid rgba(234, 236, 240, 1);
+}
+
+.resourceShow .rightResource img {
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.resourcesBtn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.resourcesBtn .cancel {
+    width: 98px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    padding: 12px 18px;
+    color: rgba(186, 199, 206, 1);
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 6px 30px 0px rgba(42, 55, 119, 0.06);
+    border: 1px solid rgba(186, 199, 206, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.resourcesBtn .continue {
+    margin-left: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    padding: 12px 18px;
+    color: rgb(255, 255, 255);
+    background: rgba(99, 102, 241, 1);
+    box-shadow: 0px 6px 30px 0px rgba(42, 55, 119, 0.06);
+    border: none;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.resourceSchedule {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+
+.resourceSchedule .leftSchedule,
+.resourceSchedule .rightSchedule {
+    width: 49%;
+}
+
+.resourceSchedule .leftSchedule {
+    height: auto !important;
+}
+
+.timeDropdown .dropdown .dropdown-toggle {
+    background-color: #fff !important;
+    border: 1px solid rgba(234, 236, 240, 1) !important;
+    padding: 4px 12px;
+    width: 140px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+}
+
+.timeDropdown .dropdown button .filterBtn {
+    border: none !important;
+    background-color: #fff !important;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 24px;
+    text-align: center;
+    color: rgba(52, 64, 84, 1);
+}
+
+.timeDropdown .dropdown button .filterBtn svg {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+
+.timeDropdown span {
+    margin: 0px 15px;
+}
+
+.chooseTime {
+    display: flex;
+    padding: 16px;
+    justify-content: space-between;
+    border: 1px solid rgba(234, 236, 240, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.chooseTime div {
+    min-width: 150px;
+    text-align: center;
+}
+
+.chooseTime div:nth-child(1) {
+    border-right: 1px solid rgba(234, 236, 240, 1);
+}
+
+.chooseTime div p,
+.timeChoose h6 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    color: rgba(52, 64, 84, 1);
+}
+
+.resourcePrice {
+    border: 1px solid rgba(234, 236, 240, 1);
+    padding: 0px 24px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.resourcePrice div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0px;
+}
+
+.resourcePrice div p {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    color: rgba(16, 24, 40, 1);
+    margin-bottom: 0px;
+}
+
+.resourcePrice div:nth-child(1) {
+    border-bottom: 1px solid rgba(234, 236, 240, 1);
+}
+
+.resourcePrice div:nth-child(2) p {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    color: rgba(99, 102, 241, 1);
+    margin-bottom: 0px;
+}
+
+.resourceInvoice {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.resourceInvoice h5 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    text-align: left;
+    color: rgba(52, 64, 84, 1);
+    margin-bottom: 0px;
+}
+
+.resourcePayment h6 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    text-align: left;
+    color: rgba(16, 24, 40, 1);
+    margin-bottom: 15px;
+}
+
+.resourcePayment .memberInput {
+    width: 49%;
+}
+
+.paymentFinish {
+    padding: 24px;
+    border: 1px solid rgba(234, 236, 240, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.paymentHeading {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(234, 236, 240, 1);
+    margin-bottom: 25px;
+}
+
+.paymentHeading p {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
+    text-align: center;
+    color: rgba(29, 41, 57, 1);
+}
+
+.payResourceInfo {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgba(234, 236, 240, 1);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.payResourceInfo div {
+    padding: 16px 24px;
+    flex: 1;
+}
+
+.payResourceInfo div:nth-child(2) {
+    border-left: 1px solid rgba(234, 236, 240, 1);
+    border-right: 1px solid rgba(234, 236, 240, 1);
+}
+
+.payResourceInfo div h6 {
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+
+.payResourceInfo div p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
+}
+
+.resourcePayImg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgLeft {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.imgLeft img {
+    margin-right: 15px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.imgLeft p {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    text-align: left;
+    color: rgba(16, 24, 40, 1);
+    margin-bottom: 0px;
+}

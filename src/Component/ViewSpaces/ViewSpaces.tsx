@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { ToastContainer } from 'react-toastify';
-import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap';
-import memberIcon from "../../Assets/Images/icon/member.png"
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
-import blankUser from "../../Assets/Images/icon/blank-profile.jpg";
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { singleSpaces } from '../../api/spaces';
 import { DESKIE_API as API } from '../../config';
 import penIcon from "../../Assets/Images/icon/pencil-01.png";

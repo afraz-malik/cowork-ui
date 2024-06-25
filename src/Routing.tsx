@@ -29,6 +29,8 @@ import Visitor from './Page/Visitor/Visitor';
 import VisitorList from './Page/VisitorList/VisitorList';
 import VisitorMember from './Component/ViewMember/VisitorMember';
 import ForgetPassword from './Page/ForgetPassword/ForgetPassword';
+import Resources from './Page/Resources/Resources';
+import ViewResource from './Component/ViewResource/ViewResource';
 
 const Routing = () => {
     return (
@@ -41,6 +43,8 @@ const Routing = () => {
                         <Route path="/member/:id" element={<ViewMember />}></Route>
                         <Route path="/visitor/:id" element={<VisitorMember />}></Route>
                         <Route path="/assets" element={<Spaces />}></Route>
+                        <Route path="/resources" element={<Resources />}></Route>
+                        <Route path="/resources/:id" element={<ViewResource />}></Route>
                         <Route path="/assets/:id" element={<ViewSpaces />}></Route>
                         <Route path="/feed" element={<Announcement />}></Route>
                         <Route path="/files" element={<Files />}></Route>
