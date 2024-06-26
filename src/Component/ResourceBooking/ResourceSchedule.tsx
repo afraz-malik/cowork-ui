@@ -9,7 +9,7 @@ import calenderIcon from "../../Assets/Images/icon/calendar.svg";
 import clockIcon from "../../Assets/Images/icon/clock.svg";
 import calenderBlue from "../../Assets/Images/icon/clockBlue.svg";
 import clockDark from "../../Assets/Images/icon/clockDark.svg";
-
+import { format, setHours, setMinutes, setSeconds, setMilliseconds } from 'date-fns';
 
 interface tabMemberProps {
   tabChoose: (tab: string, select: string) => void;
@@ -31,8 +31,21 @@ const ResourceSchedule = ({ setStartTime,setEndTime,setSelectedDate,startTime,en
 
 
   const handleDateClick = (info: any) => {
-    setSelectedDate(info.dateStr);
+    const nowDate = new Date()
+    const combinedDate = setMilliseconds(
+      setSeconds(
+        setMinutes(
+          setHours(info.date, nowDate.getHours()),
+          nowDate.getMinutes()
+        ),
+        nowDate.getSeconds()
+      ),
+      nowDate.getMilliseconds()
+    );
+    const formattedDate = format(combinedDate, "yyyy-MM-dd HH:mm:ss.SSS");
+    setSelectedDate(formattedDate);
   };
+
   const timeOptions = [
     { id: 1, label: '1 AM' },
     { id: 2, label: '2 AM' },

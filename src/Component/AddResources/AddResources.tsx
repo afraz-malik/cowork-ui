@@ -90,8 +90,6 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
       "public_rate": publicRate,
       "public_time": publicTime,
     }
-    console.log('resourceInfo',resourceInfo);
-    
     resourceAdd(resourceInfo).then((data) => {
       setShow(false)
     })

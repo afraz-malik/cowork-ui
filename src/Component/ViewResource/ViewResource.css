@@ -4,7 +4,14 @@
     align-items: start;
     padding: 24px;
 }
-
+.memberBook{
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+}
+.resourcesMember{
+    display: flex;
+    align-items: start;
+}
 .resourceDetail .resourceDescription,
 .resourceDetail .resourceImage {
     width: 49%;
@@ -27,23 +34,35 @@
     -o-border-radius: 12px;
 }
 
-.resourceMiniBox {
+.resourceMiniBox,
+.memberMiniBox {
     width: 100%;
     display: flex;
 }
+
 
 .resourceMiniBox .resourceName {
     padding: 16px 24px;
     border-bottom: 1px solid rgba(234, 236, 240, 1);
     width: 100%;
 }
+.inputField.resourceRate input{
+    padding-left: 180px;
+}
 
-.resourceMiniBox .resourceRate {
+.memberMiniBox .resourceRate {
     padding: 16px 24px;
     width: 100%;
 }
 
-.resourceMiniBox .resourceName:nth-child(2) {
+.resourceMiniBox .resourceRate,
+.memberMiniBox .resourceName {
+    padding: 16px 24px;
+    width: 100%;
+}
+
+.resourceMiniBox .resourceName:nth-child(2),
+.memberMiniBox .resourceName:nth-child(2) {
     border-left: 1px solid rgba(234, 236, 240, 1);
     border-right: 1px solid rgba(234, 236, 240, 1);
 }
@@ -53,7 +72,8 @@
 }
 
 .resourceMiniBox .resourceName h6,
-.resourceMiniBox .resourceRate h6 {
+.resourceMiniBox .resourceRate h6,
+.memberMiniBox .resourceName h6 {
     font-size: 14px;
     font-weight: 800;
     line-height: 24px;
@@ -62,7 +82,8 @@
 }
 
 .resourceMiniBox .resourceName p,
-.resourceMiniBox .resourceRate p {
+.resourceMiniBox .resourceRate p,
+.memberMiniBox .resourceName p {
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -135,7 +156,7 @@
     margin-right: 15px;
     width: 40px;
     height: 40px;
-    object-fit: none;
+    object-fit: cover;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -152,7 +173,7 @@
     color: rgba(16, 24, 40, 1);
 }
 
-.bookingPerson div p span{
+.bookingPerson div p span {
     margin-bottom: 0px;
     font-size: 14px;
     font-weight: 800;
@@ -313,17 +334,18 @@
     padding-bottom: 15px;
 }
 
-.detailsHeading h6{
+.detailsHeading h6 {
     margin-top: 6px;
-  font-family: "MyCustomFont";
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 16px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: rgba(52, 64, 84, 1);
+    font-family: "MyCustomFont";
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(52, 64, 84, 1);
 }
-.detailsHeading h6 img{
+
+.detailsHeading h6 img {
     margin-right: 5px;
 }
 
@@ -353,19 +375,21 @@
 .resourceShow .leftResource div {
     padding: 16px;
 }
-.resourceShow .leftResource div h6{
+
+.resourceShow .leftResource div h6 {
     font-size: 14px;
     font-weight: 800;
     line-height: 24px;
     text-align: left;
     color: rgba(71, 84, 103, 1);
 }
-.resourceShow .leftResource div p{
+
+.resourceShow .leftResource div p {
     font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
-  color: rgba(71, 84, 103, 1);
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, 1);
 }
 
 .resourceShow .leftResource div:nth-child(1),
@@ -659,4 +683,16 @@
     text-align: left;
     color: rgba(16, 24, 40, 1);
     margin-bottom: 0px;
+}
+
+.resourceImg {
+    width: 100%;
+}
+
+.resourceImg img {
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
 }
