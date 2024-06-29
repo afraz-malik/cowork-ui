@@ -696,3 +696,48 @@
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
 }
+
+.DemoWrapper .resourceInput label{
+    font-family: 'MyCustomFont';
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #1F2937;
+  margin-bottom: 7px;
+  margin-top: 15px;
+}
+
+.DemoWrapper .resourceInput input{
+    width: 100%;
+    border: 1px solid #D0D5DD;
+    color: #171A20;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+    padding: 10px 12px 10px 12px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    font-family: 'MyCustomFont';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: left;
+    position: relative;
+}
+.resourceCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.resourceCard .cvv,
+.resourceCard .expire{
+    width: 170px;
+}
+
+/* .resourceCard .expire{
+    width: 170px;
+} */

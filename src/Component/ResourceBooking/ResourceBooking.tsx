@@ -14,7 +14,8 @@ import ResourceDone from './ResourceDone';
 import { v4 as uuidv4 } from 'uuid';
 import { singleJwtMember } from '../../api/member';
 import { isAuthenticate } from '../../api/auth';
-import { resourceBooking } from '../../api/resource';
+import { resourceBooking, resourceInvoice } from '../../api/resource';
+import { getLastInvoice } from '../../api/invoice';
 
 interface AddResourcePaymentProps {
     handlePaymentClose: () => void;
@@ -23,17 +24,33 @@ interface AddResourcePaymentProps {
     resourceDetails?: any;
 }
 const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, resourceDetails }: AddResourcePaymentProps) => {
-  
+console.log('resourceDetails',resourceDetails);
+
     let auth = isAuthenticate();
     const [selectedTabs, setSelectedTabs] = useState<string[]>([]);
     const [startTime, setStartTime] = useState('Choose');
     const [endTime, setEndTime] = useState('Choose');
     const [selectedDate, setSelectedDate] = useState("Choose");
     const [authValue, setAuthValue] = useState(false);
+    console.log('authValue',authValue);
+    
     const [detailsTab, setDetailsTab] = useState(true);
     const [scheduleTab, setScheduleTab] = useState(false);
     const [billingTab, setBillingTab] = useState(false);
     const [finishTab, setFinishTab] = useState(false);
+    const [cardName, setCardName] = useState("");
+    const [street, setStreet] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [zip, setZip] = useState("");
+    const [invoiceId, setInvoiceId] = useState("");
+
+    useEffect(() => {
+        getLastInvoice().then((data) => {
+            setInvoiceId(`00${data.data}`)
+        })
+
+    }, []);
 
     const tabChoose = (tab: string, selectTab: string) => {
 
@@ -94,9 +111,35 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
             created_by: auth.user.id,
             invoice_add: authValue
         }
-        resourceBooking(resourceInfo).then((data) => {
-          setPaymentShow(false)
-          })
+        let resourceInv = {
+            id: uuidv4(),
+            invoiceId: invoiceId,
+            transaction_id: uuidv4(),
+            amount: resourceDetails.member_rate,
+            card_name: cardName,
+            street: street,
+            city: city,
+            state: state,
+            zip_code: zip,
+            created_by: auth.user.id,
+            resource_id: resourceDetails.id,
+            resource_book_id: uuidv4(),
+            status: "paid",
+        }
+
+        if (authValue) {
+            resourceBooking(resourceInfo).then((data) => {
+                setPaymentShow(false)
+            }) 
+        }
+        else{
+            resourceInvoice(resourceInv).then((data) => {
+                setPaymentShow(false)
+            })
+        }
+       
+        
+        
     }
 
 
@@ -178,7 +221,7 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                     <div className="paymentInfo">
                                         {detailsTab ? <ResourceDetails resourceDetail={resourceDetails} tabChoose={tabChoose} /> : ""}
                                         {scheduleTab ? <ResourceSchedule startTime={startTime} setStartTime={setStartTime} endTime={endTime} setEndTime={setEndTime} selectedDate={selectedDate} setSelectedDate={setSelectedDate} tabChoose={tabChoose} /> : ""}
-                                        {billingTab ? <ResourcePayment resourceDetail={resourceDetails} authValue={authValue} setAuthValue={setAuthValue} tabChoose={tabChoose} /> : ""}
+                                        {billingTab ? <ResourcePayment cardName={cardName} setCardName={setCardName} street={street} setStreet={setStreet} city={city} setCity={setCity} state={state} setState={setState} zip={zip} setZip={setZip} resourceDetail={resourceDetails} authValue={authValue} setAuthValue={setAuthValue} tabChoose={tabChoose} /> : ""}
                                         {finishTab ? <ResourceDone resourceBooked={resourceBooked} tabChoose={tabChoose} /> : ""}
                                     </div>
                                 </div>

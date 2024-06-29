@@ -39,3 +39,7 @@ export const paymentVoid = async (id: string,body={}) => {
 export const invoicesView = async (id: string) => {
     return put(`/invoicesView/${id}`);
 };
+
+export const invoicesResource = async (id: string) => {
+    return get(`/invoicesResource/${id}`);
+};

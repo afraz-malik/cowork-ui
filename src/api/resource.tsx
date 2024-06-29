@@ -49,3 +49,12 @@ export const resourceUpdate = async (id: string,body = {}) => {
         return error.response.data;
     }
 };
+
+// resourceBooking
+export const resourceInvoice = async (body={}) => {
+    return post(`/resourceInvoice`,body);
+};
+// resource Invoice List
+export const resourceInvoiceList = async () => {
+    return get(`/resourceInvoiceList`);
+};
