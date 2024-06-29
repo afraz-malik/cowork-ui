@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import memberAvatar from "../../Assets/Images/icon/memberAvatar.png";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from '../../Component/Pagination/Pagination';
+import { resourceInvoiceList } from '../../api/resource';
 
 const Billing = () => {
     const navigate = useNavigate();
@@ -44,18 +45,29 @@ const Billing = () => {
     // };
 
     useEffect(() => {
-        getInvoicesList(limit, page, invoiceTag).then((data) => {
-            if (data.statusCode !== 200) {
-
+        const fetchData = async () => {
+            try {
+                const [invoiceData, resourceInvoiceData] = await Promise.all([
+                    getInvoicesList(limit, page, invoiceTag),
+                    resourceInvoiceList()
+                ]);
+                console.log('mergedInvoices',resourceInvoiceData);
+                // Merging the invoice lists from both responses
+                const mergedInvoices = [...invoiceData.invoices, ...resourceInvoiceData.data];
+   
+    
+                // Updating the state with the merged data and other values from the first API response
+                setInvoiceList(mergedInvoices);
+                setTotalValue(invoiceData.total);
+                setLimitValue(invoiceData.limit);
+                setPageValue(invoiceData.page);
+            } catch (error) {
+                console.error("Error fetching data:", error);
             }
-            else {
-                setInvoiceList(data.invoices);
-                setTotalValue(data.total)
-                setLimitValue(data.limit)
-                setPageValue(data.page)
-            }
-        })
-       
+        };
+    
+        // Call the function to fetch data
+        fetchData();
     }, [invoiceTag,page,limit]);
 
  
@@ -187,7 +199,7 @@ const Billing = () => {
                                                 : <img src={spaceAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                             }
                                             {invoice.spaces_name ? invoice.spaces_name : "N/A"}</td>
-                                        <td>{moment(invoice.renewal_date).format("MMMM DD, YYYY")}</td>
+                                        <td>{moment(invoice.created_at).format("MMMM DD, YYYY")}</td>
                                         <td className='status'>
                                             {invoice.payment_status === "paid" ? <span className='paid'>Paid</span>
                                                 : invoice.payment_status === "void" ? <span className='unpaid'>Void</span>

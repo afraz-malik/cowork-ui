@@ -10,7 +10,7 @@ import emailFile from "../../Assets/Images/icon/mail-01.png";
 import voidFile from "../../Assets/Images/icon/void.png";
 import { useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { invoiceUpdate, singleInvoice } from '../../api/invoice';
+import { invoiceUpdate, invoicesResource, singleInvoice } from '../../api/invoice';
 import moment from 'moment';
 import { DESKIE_API as API } from '../../config';
 import { usePDF } from 'react-to-pdf';
@@ -27,6 +27,7 @@ import { invoiceFormatTimes } from '../../CommonFunction/Function';
 
 const InvoiceDetails = () => {
 
+
     const { id } = useParams();
     const location = useLocation();
     const [urlTag, sttUrlTag] = useState("");
@@ -35,6 +36,7 @@ const InvoiceDetails = () => {
     const [count, setCount] = useState(0);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [resourceList, setResourceList] = useState([]);
     const { toPDF, targetRef } = usePDF({ filename: `${invoiceDetail && invoiceDetail.invoice_id}.pdf` });
     let auth = isAuthenticate();
 
@@ -43,10 +45,18 @@ const InvoiceDetails = () => {
             singleInvoice(id).then((data) => {
                 setInvoiceDetail(data.data)
             })
+            invoicesResource(id).then((data) => {
+              console.log('invoice',data);
+              setResourceList(data)
+                // setInvoiceDetail(data.data)
+            })
         }
         const pathname = location.pathname;
         const invoiceDetails = pathname.split('/')[1];
-        sttUrlTag(invoiceDetails)
+        sttUrlTag(invoiceDetails);
+
+
+        
     }, [show, id, count]);
 
     const paymentView = () => {
@@ -174,6 +184,15 @@ const InvoiceDetails = () => {
                                         {invoiceDetail && invoiceDetail.amount ? <>${invoiceDetail.amount}</> : "N/A"}
                                     </div>
                                 </div>
+                                {resourceList && resourceList.map((resource:any)=><div className="itemList">
+                                    <div className="itemName">
+                                        {resource && resource.image ? <img src={`${API}/${resource && resource.image}`} alt="avatar" />
+                                            : <img src={spacesImage} alt="avatar" />} {resource && resource.name ? resource.name : "N/A"}
+                                    </div>
+                                    <div className="itemPrice">
+                                        {resource && resource.member_rate ? <>${resource.member_rate}</> : "N/A"}
+                                    </div>
+                                </div>)}
                                 <div className="itemTotal">
                                     <p>Total Amount <span>{invoiceDetail && invoiceDetail.amount ? <>${invoiceDetail.amount}</> : "N/A"}</span></p>
                                 </div>

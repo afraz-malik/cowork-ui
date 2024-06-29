@@ -70,6 +70,12 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
       setAmount(data.data && data.data.rate);
       setDiscountAmount(data.data && data.data.rate);
       setSpaceImage(data.data && data.data.space_image);
+      const today = new Date();
+      const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+      const daysRemaining = lastDayOfMonth.getDate() - today.getDate();
+      const rentForCurrentMonth = ((parseInt(data.data && data.data.rate) / 30) * daysRemaining).toFixed(2);
+      setDiscountAmount(rentForCurrentMonth.toString());
+      setRenewalDate(lastDayOfMonth)
     })
   }, [spaceId]);
 
@@ -159,39 +165,30 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
     setRenewalDate(selectedDate)
   }
 
-  const calculateRent = () => {
-    const today = new Date();
-    const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-    const daysRemaining = lastDayOfMonth.getDate() - today.getDate();
-    const rentForCurrentMonth = ((parseInt(amount) / 30) * daysRemaining).toFixed(2);
-    setDiscountAmount(rentForCurrentMonth.toString());
-    setRenewalDate(lastDayOfMonth)
-  }
-
 
   const handleTodayClick = () => {
     setRenewalDate(new Date());
-};
+  };
 
-const handleYesterdayClick = () => {
+  const handleYesterdayClick = () => {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     setRenewalDate(yesterday);
-};
+  };
 
-const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisabled, nextMonthButtonDisabled }: any) => (
+  const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisabled, nextMonthButtonDisabled }: any) => (
     <div>
-        <div className='calenderHeading'>
-            <button className='arrowLeft' onClick={decreaseMonth} disabled={prevMonthButtonDisabled}><FontAwesomeIcon icon={faChevronLeft} /></button>
-            <span className='calenderDate'>{date.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-            <button className='arrowRight' onClick={increaseMonth} disabled={nextMonthButtonDisabled}><FontAwesomeIcon icon={faChevronRight} /></button>
-        </div>
-        <div className='calenderBtn'>
-            <button onClick={handleYesterdayClick}>Yesterday</button>
-            <button onClick={handleTodayClick}>Today</button>
-        </div>
+      <div className='calenderHeading'>
+        <button className='arrowLeft' onClick={decreaseMonth} disabled={prevMonthButtonDisabled}><FontAwesomeIcon icon={faChevronLeft} /></button>
+        <span className='calenderDate'>{date.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+        <button className='arrowRight' onClick={increaseMonth} disabled={nextMonthButtonDisabled}><FontAwesomeIcon icon={faChevronRight} /></button>
+      </div>
+      <div className='calenderBtn'>
+        <button onClick={handleYesterdayClick}>Yesterday</button>
+        <button onClick={handleTodayClick}>Today</button>
+      </div>
     </div>
-);
+  );
 
   return (
     <>
@@ -236,7 +233,7 @@ const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisab
                           <div onClick={(e) => { setIsActive(!isActive); selectMember(data) }} className="item tableImage">
                             {data.member_image ? <img src={`${API}/${data.member_image}`} alt="avatar" style={{ objectFit: "cover" }} />
                               : <img src={memberIcon} alt="avatar" />}
-                           <p>{`${(data.first_name + ' ' + data.last_name).slice(0, 17)}${(data.first_name + ' ' + data.last_name).length > 17 ? '...' : ''}`}</p>
+                            <p>{`${(data.first_name + ' ' + data.last_name).slice(0, 17)}${(data.first_name + ' ' + data.last_name).length > 17 ? '...' : ''}`}</p>
                           </div>)}
                       </div>
                     </div>
@@ -273,30 +270,7 @@ const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisab
                       <div className="memberInput amount">
                         <span>$</span>
                         <input type="text" placeholder='Rate' value={discountAmount} onChange={(e) => setDiscountAmount(e.target.value)} className='form-control' />
-                        <button className='calculate' onClick={calculateRent}>Calculate Pro-Rated Rent</button>
-                      </div>
-                    </div>
-                    <div className="generateInvoice">
-                      <h6>Renewal Date</h6>
-                      <div className='calenderInput'>
-                        <div className='dueDateFormat'>
-                          <DatePicker selected={renewalDate} placeholderText="Select a date" onChange={dueDateChange} dateFormat="MM/dd/yyyy" customInput={<CustomDatePickerInput />} renderCustomHeader={CustomHeader}  />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="generateInvoice">
-                      <h6>Renewal Frequency</h6>
-                      <div className='memberInput'>
-                        <Dropdown onSelect={handleSelect}>
-                          <Dropdown.Toggle variant="" className="custom-toggle">
-                            {frequency === "daily" ? "Daily" : frequency === "weekly" ? "Weekly" : frequency === "monthly" ? "Monthly" : "Choose type"}
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item eventKey="daily">Daily</Dropdown.Item>
-                            <Dropdown.Item eventKey="weekly">Weekly</Dropdown.Item>
-                            <Dropdown.Item eventKey="monthly">Monthly</Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
+                        <button className='calculate'>(Automatically Prorated)</button>
                       </div>
                     </div>
                   </> : <></>}

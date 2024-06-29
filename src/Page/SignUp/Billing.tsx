@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import {Elements , useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 import { loadStripe } from '@stripe/stripe-js';
 import PaymentCard from './PaymentCard';
@@ -15,7 +15,7 @@ interface tabMemberProps {
 }
 
 const Billing = ({ tabChoose }: tabMemberProps) => {
- 
+
 
     return (
         <>
@@ -26,10 +26,10 @@ const Billing = ({ tabChoose }: tabMemberProps) => {
                     <input type="text" name="firstName" placeholder="Name on Card" className="form-control" />
                 </div>
                 <div className="stripePayment">
-                <Elements stripe={stripePromise}>
-              <PaymentCard/>
-                </Elements>
-                   
+                    <Elements stripe={stripePromise}>
+                        <PaymentCard />
+                    </Elements>
+
                 </div>
                 <div className="tabPanelBtn">
                     <button className='back' onClick={() => tabChoose("password", "billing")}><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
