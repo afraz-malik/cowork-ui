@@ -183,11 +183,11 @@ const Spaces = () => {
                                             {data.member_images ? <>
                                                 <div className="memberSpacesList">
                                                     {data.member_images && separateComma(data.member_images).map((member: any) =>
-                                                        <>
-                                                            {member ? <img className="avatar-icon36" alt="" src={`${API}/${member}`} />
-                                                                : <img className="avatar-icon36" alt="" src={memberAvatar} />
-                                                            }
-                                                        </>
+                                                         <>
+                                                         {member === "imgNull" ?  <img className="avatar-icon36" alt="" src={memberAvatar} />
+                                                         :<img className="avatar-icon36" alt="" src={`${API}/${member}`} />
+                                                         }
+                                                       </>
                                                     )}
                                                     <div className="plusMember" onClick={() => assignMembers(data.id)}>
                                                         <FontAwesomeIcon icon={faPlus} />

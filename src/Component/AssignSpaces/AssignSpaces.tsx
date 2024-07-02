@@ -112,9 +112,10 @@ const AssignSpaces = ({ memberId, assignShow, setAssignShow, handleAssignClose }
     setAmount(spaces.rate);
     setDiscountAmount(spaces.rate);
     const today = new Date();
-    const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 0);
     const daysRemaining = lastDayOfMonth.getDate() - today.getDate();
-    const rentForCurrentMonth = ((parseInt(spaces.rate) / 30) * daysRemaining).toFixed(2);
+    const daysInMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
+    const rentForCurrentMonth = ((parseInt(spaces.rate) / daysInMonth) * daysRemaining).toFixed(2);
     setDiscountAmount(rentForCurrentMonth.toString());
     setRenewalDate(lastDayOfMonth)
   };

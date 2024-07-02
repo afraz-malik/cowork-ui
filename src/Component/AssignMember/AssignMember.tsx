@@ -71,9 +71,10 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
       setDiscountAmount(data.data && data.data.rate);
       setSpaceImage(data.data && data.data.space_image);
       const today = new Date();
-      const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+      const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 0);
       const daysRemaining = lastDayOfMonth.getDate() - today.getDate();
-      const rentForCurrentMonth = ((parseInt(data.data && data.data.rate) / 30) * daysRemaining).toFixed(2);
+      const daysInMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
+      const rentForCurrentMonth = ((parseInt(data.data && data.data.rate) / daysInMonth) * daysRemaining).toFixed(2);
       setDiscountAmount(rentForCurrentMonth.toString());
       setRenewalDate(lastDayOfMonth)
     })

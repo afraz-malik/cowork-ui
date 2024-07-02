@@ -40,23 +40,26 @@ const InvoiceDetails = () => {
     const { toPDF, targetRef } = usePDF({ filename: `${invoiceDetail && invoiceDetail.invoice_id}.pdf` });
     let auth = isAuthenticate();
 
+    console.log('invoiceDetail',invoiceDetail);
+    console.log('resourceList',resourceList);
+
     useEffect(() => {
         if (id) {
             singleInvoice(id).then((data) => {
-                setInvoiceDetail(data.data)
+                setInvoiceDetail(data.data);
+                invoicesResource(data.data.member_id).then((data) => {
+                    setResourceList(data)
+                })
             })
-            invoicesResource(id).then((data) => {
-              console.log('invoice',data);
-              setResourceList(data)
-                // setInvoiceDetail(data.data)
-            })
+
         }
+
         const pathname = location.pathname;
         const invoiceDetails = pathname.split('/')[1];
         sttUrlTag(invoiceDetails);
 
 
-        
+
     }, [show, id, count]);
 
     const paymentView = () => {
@@ -175,16 +178,18 @@ const InvoiceDetails = () => {
                                     <p>Item</p>
                                     <p>Amount</p>
                                 </div>
-                                <div className="itemList">
+                                {invoiceDetail.spacesInfo && invoiceDetail.spacesInfo.map((spaces:any)=><div className="itemList">
                                     <div className="itemName">
-                                        {invoiceDetail && invoiceDetail.space_image ? <img src={`${API}/${invoiceDetail && invoiceDetail.space_image}`} alt="avatar" />
-                                            : <img src={spacesImage} alt="avatar" />} {invoiceDetail && invoiceDetail.space_name ? invoiceDetail.space_name : "N/A"}
+                                        {spaces.image ? <img src={`${API}/${spaces.image}`} alt="avatar" />
+                                        : <img src={spacesImage} alt="avatar" />} {spaces.name ? spaces.name : "N/A"}
                                     </div>
                                     <div className="itemPrice">
-                                        {invoiceDetail && invoiceDetail.amount ? <>${invoiceDetail.amount}</> : "N/A"}
+                                        {spaces.price ? <>${spaces.price}</> : "N/A"}
                                     </div>
-                                </div>
-                                {resourceList && resourceList.map((resource:any)=><div className="itemList">
+                                </div>)}
+                                
+                                {invoiceDetail && invoiceDetail.renewal_frequency === "resource" ? "" : <>
+                                    {resourceList && resourceList.map((resource: any) => <div className="itemList">
                                     <div className="itemName">
                                         {resource && resource.image ? <img src={`${API}/${resource && resource.image}`} alt="avatar" />
                                             : <img src={spacesImage} alt="avatar" />} {resource && resource.name ? resource.name : "N/A"}
@@ -193,14 +198,16 @@ const InvoiceDetails = () => {
                                         {resource && resource.member_rate ? <>${resource.member_rate}</> : "N/A"}
                                     </div>
                                 </div>)}
+                                </>}
+                              
                                 <div className="itemTotal">
-                                    <p>Total Amount <span>{invoiceDetail && invoiceDetail.amount ? <>${invoiceDetail.amount}</> : "N/A"}</span></p>
+                                    <p>Total Amount <span>{invoiceDetail && invoiceDetail.total_price ? <>${invoiceDetail.total_price}</> : "N/A"}</span></p>
                                 </div>
                                 <div className="itemTotal">
                                     <p className='d-flex'>Amount Owed <span>
-                                        {invoiceDetail && invoiceDetail.amount ?
-                                            <p className={(invoiceDetail && parseFloat((invoiceDetail.amount - invoiceDetail.payment_value).toFixed(2)) === 0 ? 'amountPaid' : 'amountUnpaid').toString()}>
-                                                ${parseFloat((invoiceDetail.amount - invoiceDetail.payment_value).toFixed(2)).toString()}
+                                        {invoiceDetail && invoiceDetail.total_price ?
+                                            <p className={(invoiceDetail && parseFloat((invoiceDetail.total_price - invoiceDetail.payment_value).toFixed(2)) === 0 ? 'amountPaid' : 'amountUnpaid').toString()}>
+                                                ${parseFloat((invoiceDetail.total_price - invoiceDetail.payment_value).toFixed(2)).toString()}
                                             </p>
                                             :
                                             "N/A"
@@ -219,7 +226,7 @@ const InvoiceDetails = () => {
                                     : <img src={memberImage} width="40px" height="40px" alt="avatar" style={{ borderRadius: "50%" }} />}
 
                                 <div>
-                                    <p>{invoiceDetail && invoiceDetail.first_name} {invoiceDetail && invoiceDetail.last_name}</p>
+                                    <p>{invoiceDetail && invoiceDetail.user_name}</p>
                                     <span>{invoiceDetail && invoiceDetail.email}</span>
                                 </div>
                             </div>
@@ -228,14 +235,14 @@ const InvoiceDetails = () => {
                             <h1>Note</h1>
                             <p>{invoiceDetail && invoiceDetail.notes ? <>{invoiceDetail.notes}</> : "No notes"}</p>
                         </div>
-                         <div className="invoicePoint invoiceDownload">
+                        <div className="invoicePoint invoiceDownload">
                             <p>Invoice History</p>
                             <ul className="list-ic vertical">
-                               {invoiceDetail && invoiceDetail.updated_date ? <li>
+                                {invoiceDetail && invoiceDetail.updated_date ? <li>
                                     <span className='blue'></span>
                                     <Link to="#">{invoiceDetail && invoiceDetail.payment_status === "paid" ? "Invoice paid" : "Partial paid"} <b>{invoiceDetail && invoiceFormatTimes(invoiceDetail.updated_date)}</b></Link>
-                                </li>: ""}
-                                
+                                </li> : ""}
+
                                 {/* <li>
                                     <span></span>
                                     <Link to="#">Invoice Edited <b>26 Apr 2024, 11:50 AM</b></Link>
@@ -248,7 +255,7 @@ const InvoiceDetails = () => {
                                     <span></span>
                                     <Link to="#">Invoice Viewed <b>{invoiceDetail && invoiceFormatTimes(invoiceDetail.invoice_view)}</b></Link>
                                 </li> : ""}
-                                
+
                                 <li>
                                     <span></span>
                                     <Link to="#">Invoice Sent <b>{invoiceDetail && invoiceFormatTimes(invoiceDetail.created_at)}</b></Link>
@@ -258,7 +265,7 @@ const InvoiceDetails = () => {
                                     <Link to="#">Invoice Generated <b>{invoiceDetail && invoiceFormatTimes(invoiceDetail.created_at)}</b></Link>
                                 </li>
                             </ul>
-                        </div> 
+                        </div>
                         <div className="invoiceDownload">
                             <p>Download Invoice</p>
                             <button onClick={() => toPDF()}><img src={download} alt="download" /> Download PDF</button>
