@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import bell from "../../Assets/Images/icon/bell-01.png";
+import bell from "../../Assets/Images/icon/bell-01.svg";
 import circle from "../../Assets/Images/icon/info-circle.png";
 import avatar from "../../Assets/Images/icon/Avatar.png";
-import arrow from "../../Assets/Images/icon/downIcon.png";
+import arrow from "../../Assets/Images/icon/downIcon.svg";
 import userIcon from "../../Assets/Images/icon/assign.svg";
 import logout from "../../Assets/Images/icon/logout.png";
 import { Dropdown } from 'react-bootstrap';
@@ -13,7 +13,7 @@ import { singleJwtMember } from '../../api/member';
 import { isAuthenticate } from '../../api/auth';
 import { DESKIE_API as API } from '../../config';
 import { Link } from 'react-router-dom';
-import memberIcon from '../../Assets/Images/icon/memberAvatar.png';
+import memberIcon from '../../Assets/Images/icon/memberAvatar.svg';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { notificationsList } from '../../api/notification';
 
@@ -77,6 +77,7 @@ const Header = ({ onValueChange }: any) => {
                     {urlParams === "messenger" ? <p>Messenger</p> : ""}
                     {urlParams === "feed" ? <p>Feed</p> : ""}
                     {urlParams === "settings" ? <p>Settings</p> : ""}
+                    {urlParams === "my-home" ? <p>Home</p> : ""}
                 </div>
                 <div className='rightNavbar'>
                     <button><img src={circle} alt="circle" /></button>
@@ -117,17 +118,17 @@ const Header = ({ onValueChange }: any) => {
                     
                     <button className='memberImg'>
                         {userImage && userImage.length ? <img src={`${API}/${userImage}`} style={{ objectFit: "cover" }} alt="logo" />
-                            : <img src={memberIcon} alt="bell" style={{ objectFit: "cover" }} />
+                            : <img className='default' src={memberIcon} alt="bell" style={{ objectFit: "cover" }} />
                         }
                     </button>
                     <Dropdown>
                         <Dropdown.Toggle>
-                            {firstName && firstName} <img src={arrow} alt="arrow" />
+                            {firstName && firstName} <img style={{marginLeft: "12px"}} src={arrow} alt="arrow" />
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <div className="navProfile">
                                 {userImage && userImage.length ? <img className='logo' src={`${API}/${userImage}`} style={{ objectFit: "cover" }} alt="logo" />
-                                    : <img className='logo' src={memberIcon} alt="bell" style={{ objectFit: "cover" }} />
+                                    : <img className='logo default' src={memberIcon} alt="bell" style={{ objectFit: "cover" }} />
                                 }
                                 <h6>{firstName && firstName} {lastName && lastName}</h6>
                                 <p>{userRole && userRole === "admin" ? "Admin" : "Member"}</p>

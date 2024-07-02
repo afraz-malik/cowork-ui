@@ -5,7 +5,7 @@ import Layout from '../../Component/Layout/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faArrowUpLong, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import more from "../../Assets/Images/icon/dots-vertical.png";
-import arrowDown from "../../Assets/Images/icon/downIcon.png";
+import arrowDown from "../../Assets/Images/icon/downIcon.svg";
 import { DESKIE_API as API } from '../../config';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
