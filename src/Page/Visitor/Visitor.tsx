@@ -6,7 +6,7 @@ import { DESKIE_API as API } from '../../config';
 import { singleProfile } from '../../api/settings';
 import logo from "../../Assets/Images/logo/logo.svg";
 import { Dropdown } from 'react-bootstrap';
-import arrow from "../../Assets/Images/icon/downIcon.png";
+import arrow from "../../Assets/Images/icon/downIcon.svg";
 import { v4 as uuidv4 } from 'uuid';
 import { visitorAdd } from '../../api/visitor';
 import { showNotifications } from '../../CommonFunction/toaster';
