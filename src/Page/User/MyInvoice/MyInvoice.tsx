@@ -28,7 +28,7 @@ const MyInvoice = () => {
     const handleClose = () => setShow(false);
     const [invoiceList, setInvoiceList] = useState<any>([]);
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState<number>(2);
+    const [limit, setLimit] = useState<number>(6);
     const [selectedValue, setSelectedValue] = useState(limit);
     const showResult = (value: number) => {
         setPage(1)
@@ -147,7 +147,7 @@ const MyInvoice = () => {
                                             {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                                 : <img src={memberAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                             }
-                                            {invoice.member_first_name} {invoice.member_last_name}
+                                            {invoice.user_name}
                                         </td>
                                         <td>
                                             {invoice.space_image ? <img src={`${API}/${invoice.space_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
@@ -160,7 +160,8 @@ const MyInvoice = () => {
                                             {/* {invoice.amount ? <span className='paid'>Paid</span>
                                          : <span className='unpaid'>Unpaid</span>} */}
                                         </td>
-                                        <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
+                                        {invoice.renewal_frequency === "resource" ? <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
+                                        : <td>{invoice.total_amount ? <>${invoice.total_amount}</> : "N/A"}</td>}
                                         <td className='billingAction'>
                                             <button className='btn download' onClick={() => paymentView(invoice.id)}><img src={more} alt="download" /></button>
                                         </td>

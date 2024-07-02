@@ -13,6 +13,7 @@ import calenderIcon from "../../Assets/Images/icon/calendar-check-01.svg"
 import ResourceBooking from '../ResourceBooking/ResourceBooking';
 import { formatResourceDate } from '../../CommonFunction/Function';
 import EditResource from './EditResource';
+import { ToastContainer } from 'react-toastify';
 
 
 const ViewResource = () => {
@@ -46,6 +47,7 @@ const ViewResource = () => {
       
     return (
         <Layout>
+            <ToastContainer />
             <div className='mainContent'>
                 <div className="invoiceHeading">
                     <nav aria-label="breadcrumb">

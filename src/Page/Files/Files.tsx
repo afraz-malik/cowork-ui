@@ -330,7 +330,6 @@ const Files = () => {
                     <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer", fontWeight: "800" }}>{file.nick_name.length <= 23 ? file.nick_name : file.nick_name.substring(0, 20) + '...'}.{file.extension}</td>
                     <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
                     <td>{convertBytesToSize(file.size)}</td>
-                    {file.sharesList.length}
                     {file.sharesList ? <td>
                       <div className="avatars2">
                         {file.sharesList.map((share: any) =>

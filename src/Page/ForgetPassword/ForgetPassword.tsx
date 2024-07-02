@@ -100,16 +100,16 @@ const ForgetPassword = () => {
                     <h6>Forgot Password</h6>
                     <div className="loginInput">
                         <label htmlFor="email">Email Address</label>
-                        <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' className='form-control' />
+                        <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter your email address' className='form-control' />
                     </div>
                     <div className="forgetBtn d-flex justify-content-end">
                         <button type='submit' onClick={emailSend}>Next</button>
                     </div>
                 </div> : ""}
                 {emailSent ? <div className="forgetBox">
-                    <h6>Forgot Password</h6>
+                    <h6 className='mb-2'>Password reset has been sent!</h6>
                     <p>Check your email to finish resetting your password</p>
-                    <div className="forgetBtn d-flex justify-content-center">
+                    <div className="forgetBtn d-flex justify-content-center" style={{marginTop: '44px'}}>
                         <Link to='/'>Back to Login</Link>
                     </div>
                 </div> : ""}
@@ -121,7 +121,7 @@ const ForgetPassword = () => {
                         <p>{memberInfo.email}</p>
                     </div>
                     <div className="loginInput">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">New Password</label>
                         <input
                             type={toggleType}
                             placeholder='Password'

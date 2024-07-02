@@ -50,15 +50,10 @@ const Member = () => {
 
   useEffect(() => {
     getMemberList(limit, page).then((data) => {
-      if (data.statusCode !== 200) {
-
-      }
-      else {
-        setMember(data.members);
-        setTotalValue(data.total)
-        setLimitValue(data.limit)
-        setPageValue(data.page)
-      }
+      setMember(data.members);
+      setTotalValue(data.total)
+      setLimitValue(data.limit)
+      setPageValue(data.page)
     })
   }, [show, updateShow, assignShow, limit, page]);
 
@@ -180,11 +175,11 @@ const Member = () => {
                       {data.space_images ? <>
                         <div className="memberSpacesList">
                           {data.space_images && separateComma(data.space_images).map((member: any) =>
-                            <>
-                              {member ? <img className="avatar-icon36" alt="" src={`${API}/${member}`} />
-                                : <img className="avatar-icon36" alt="" src={spaceAvatar} />
-                              }
-                            </>
+                             <>
+                             {member === "imgNull" ?  <img className="avatar-icon36" alt="" src={spaceAvatar} />
+                             :<img className="avatar-icon36" alt="" src={`${API}/${member}`} />
+                             }
+                           </>
                           )}
                           <div className="plusMember" onClick={() => assignMembers(data.id)}>
                             <FontAwesomeIcon icon={faPlus} />
