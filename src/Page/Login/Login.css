@@ -18,16 +18,17 @@
 .loginPass .agreement{
     margin-top: 0px;
 }
-.loginPass a{
-    text-decoration: none;
-font-family: "Avenir";
-font-size: 14px;
-font-weight: 800;
-line-height: 24px;
-text-align: center;
-color: rgba(99, 102, 241, 1);
 
+.loginPass a {
+    text-decoration: none;
+    font-family: "MyCustomFont";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: center;
+    color: rgba(99, 102, 241, 1);
 }
+
 .logo {
     text-align: center;
 }
@@ -41,7 +42,7 @@ color: rgba(99, 102, 241, 1);
 .loginForm {
     background-color: #fff;
     padding: 40px 32px;
-    width: 460px;
+    width: 535px;
     border-radius: 16px;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
@@ -112,6 +113,7 @@ color: rgba(99, 102, 241, 1);
     right: 13px;
     bottom: 13px;
     cursor: pointer;
+    color: #667085;
 }
 
 .loginBtn button {
