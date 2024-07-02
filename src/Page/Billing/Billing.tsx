@@ -21,6 +21,8 @@ const Billing = () => {
 
     const [invoiceTag, setInvoiceTag] = useState("");
     const [invoiceList, setInvoiceList] = useState<any>([]);
+    console.log('invoiceList',invoiceList);
+    
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState<number>(6);
     // pagination
@@ -45,29 +47,12 @@ const Billing = () => {
     // };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [invoiceData, resourceInvoiceData] = await Promise.all([
-                    getInvoicesList(limit, page, invoiceTag),
-                    resourceInvoiceList()
-                ]);
-                console.log('mergedInvoices',resourceInvoiceData);
-                // Merging the invoice lists from both responses
-                const mergedInvoices = [...invoiceData.invoices, ...resourceInvoiceData.data];
-   
-    
-                // Updating the state with the merged data and other values from the first API response
-                setInvoiceList(mergedInvoices);
-                setTotalValue(invoiceData.total);
-                setLimitValue(invoiceData.limit);
-                setPageValue(invoiceData.page);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-    
-        // Call the function to fetch data
-        fetchData();
+        getInvoicesList(limit, page, invoiceTag).then((data) => {
+            setInvoiceList(data.invoices);
+            setTotalValue(data.total)
+            setLimitValue(data.limit)
+            setPageValue(data.page)
+        })
     }, [invoiceTag,page,limit]);
 
  
@@ -173,8 +158,8 @@ const Billing = () => {
                                         </label></th>
                                         <th>ID <FontAwesomeIcon icon={faArrowUpLong} /></th>
                                         <th>Member <FontAwesomeIcon icon={faArrowUpLong} /></th>
-                                        <th>Assignment <FontAwesomeIcon icon={faArrowUpLong} /></th>
-                                        <th>Date <FontAwesomeIcon icon={faArrowUpLong} /></th>
+                                        <th>Items <FontAwesomeIcon icon={faArrowUpLong} /></th>
+                                        <th>Date Created <FontAwesomeIcon icon={faArrowUpLong} /></th>
                                         <th>Status <FontAwesomeIcon icon={faArrowUpLong} /></th>
                                         <th>Amount <FontAwesomeIcon icon={faArrowUpLong} /></th>
                                         <th>Actions</th>
@@ -192,7 +177,7 @@ const Billing = () => {
                                             {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                                 : <img src={memberAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                             }
-                                            {invoice.member_first_name} {invoice.member_last_name}
+                                            {invoice.user_name}
                                         </td>
                                         <td>
                                             {invoice.space_image ? <img src={`${API}/${invoice.space_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
@@ -205,7 +190,8 @@ const Billing = () => {
                                                 : invoice.payment_status === "void" ? <span className='unpaid'>Void</span>
                                                     : <span className='unpaid'>Unpaid</span>}
                                         </td>
-                                        <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
+                                        {invoice.renewal_frequency === "resource" ? <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
+                                        : <td>{invoice.total_amount ? <>${invoice.total_amount}</> : "N/A"}</td>}
                                         <td className='billingAction'>
                                             <button className='btn download'><img src={more} alt="download" /></button>
                                         </td>

@@ -15,7 +15,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { singleJwtMember } from '../../api/member';
 import { isAuthenticate } from '../../api/auth';
 import { resourceBooking, resourceInvoice } from '../../api/resource';
-import { getLastInvoice } from '../../api/invoice';
+import { getLastInvoice, invoiceAmountUpdate } from '../../api/invoice';
+import { memberAddSpaces } from '../../api/spaces';
+import { showNotifications } from '../../CommonFunction/toaster';
 
 interface AddResourcePaymentProps {
     handlePaymentClose: () => void;
@@ -24,7 +26,7 @@ interface AddResourcePaymentProps {
     resourceDetails?: any;
 }
 const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, resourceDetails }: AddResourcePaymentProps) => {
-console.log('resourceDetails',resourceDetails);
+    console.log('resourceDetails', resourceDetails);
 
     let auth = isAuthenticate();
     const [selectedTabs, setSelectedTabs] = useState<string[]>([]);
@@ -32,8 +34,8 @@ console.log('resourceDetails',resourceDetails);
     const [endTime, setEndTime] = useState('Choose');
     const [selectedDate, setSelectedDate] = useState("Choose");
     const [authValue, setAuthValue] = useState(false);
-    console.log('authValue',authValue);
-    
+    console.log('authValue', authValue);
+
     const [detailsTab, setDetailsTab] = useState(true);
     const [scheduleTab, setScheduleTab] = useState(false);
     const [billingTab, setBillingTab] = useState(false);
@@ -127,19 +129,43 @@ console.log('resourceDetails',resourceDetails);
             status: "paid",
         }
 
+        let invoiceInfo = {
+            "id": uuidv4(),
+            "spaces_id": resourceDetails.id,
+            "member_id": auth.user.id,
+            "amount": resourceDetails.member_rate,
+            "renewal_date": selectedDate,
+            "renewal_frequency": "resource",
+            "user_email": auth.user.email
+        }
+        let totalAmount = {
+            "amount": resourceDetails.member_rate,
+        }
+
         if (authValue) {
             resourceBooking(resourceInfo).then((data) => {
-                setPaymentShow(false)
-            }) 
-        }
-        else{
-            resourceInvoice(resourceInv).then((data) => {
-                setPaymentShow(false)
+                  setPaymentShow(false)
+            })
+            invoiceAmountUpdate(auth.user.id, totalAmount).then((data) => {
+                  setPaymentShow(false)
             })
         }
-       
-        
-        
+        else {
+
+
+            memberAddSpaces(invoiceInfo).then((data) => {
+                if (data.statusCode !== 200) {
+                    showNotifications("error", data.message);
+                }
+                else {
+                    resourceBooking(resourceInfo).then((data) => {
+                        showNotifications("success", data.message);
+                        setPaymentShow(false)
+                    })
+
+                }
+            })
+        }
     }
 
 
@@ -147,7 +173,7 @@ console.log('resourceDetails',resourceDetails);
     return (
         <>
             <Modal show={paymentShow} onHide={handlePaymentClose} centered size="xl">
-
+<ToastContainer />
                 <div className="addMemberForm">
                     <button className='closeModal' onClick={handlePaymentClose}>
                         <FontAwesomeIcon icon={faXmark} />

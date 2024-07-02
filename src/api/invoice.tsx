@@ -43,3 +43,8 @@ export const invoicesView = async (id: string) => {
 export const invoicesResource = async (id: string) => {
     return get(`/invoicesResource/${id}`);
 };
+
+// invoice view
+export const invoiceAmountUpdate = async (id: string,body={}) => {
+    return post(`/invoiceAmountUpdate/${id}`,body);
+};
