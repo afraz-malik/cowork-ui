@@ -23,14 +23,22 @@
     text-decoration: none;
 }
 
+.invoiceHeading .breadcrumb .breadcrumb-item.active::before {
+    color: #D0D5DD;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
 .invoiceHeading .breadcrumb .breadcrumb-item.active {
     font-family: "MyCustomFont";
     font-size: 14px;
-    font-weight: 500;
     line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
-    color: rgba(61, 63, 161, 1);
+    color: var(--Primary-700, #3D3FA1);
+    font-style: normal;
+    font-weight: 800;
 }
 
 .billingList .table-responsive {

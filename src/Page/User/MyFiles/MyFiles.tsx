@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown, Table } from 'react-bootstrap';
 import { DESKIE_API as API } from '../../../config';
-import filter from '../../../Assets/Images/icon/filter-lines.png';
+import filter from '../../../Assets/Images/icon/filter-lines.svg';
 import download from "../../../Assets/Images/icon/download-cloud-02.svg";
 import deleteIcon from "../../../Assets/Images/icon/trash-02.svg";
 import UploadFile from '../../../Component/UploadFile/UploadFile';

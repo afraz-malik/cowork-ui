@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { singleMember, updateMember } from '../../api/member';
 import { DESKIE_API as API } from '../../config';
-import imageInput from "../../Assets/Images/icon/imgButton.png";
+import imageInput from "../../Assets/Images/icon/imgButton.svg";
 import PhoneInput from 'react-phone-input-2';
 import memberBlank from "../../Assets/Images/icon/memberLargeIcon.png";
 import DeleteModal from '../DeleteModal/DeleteModal';
