@@ -75,7 +75,7 @@
 .resourceMiniBox .resourceRate h6,
 .memberMiniBox .resourceName h6 {
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 24px;
     text-align: left;
     color: rgba(71, 84, 103, 1);
@@ -107,7 +107,7 @@
 }
 
 .bookingHeading h6 img {
-    margin-right: 5px;
+    margin-right: 12px;
 }
 
 .bookingHeading button {
@@ -176,7 +176,7 @@
 .bookingPerson div p span {
     margin-bottom: 0px;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 24px;
     text-align: left;
     color: rgba(99, 102, 241, 1);

@@ -8,10 +8,16 @@
     margin-left: 30px;
     padding: 24px;
     border-radius: 16px;
+    border: 1px solid #EAECF0;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
     -ms-border-radius: 16px;
     -o-border-radius: 16px;
+}
+
+#resources .spaceList table tbody tr td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .resourceType span {

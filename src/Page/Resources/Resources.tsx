@@ -3,7 +3,7 @@ import Layout from '../../Component/Layout/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
-import filter from '../../Assets/Images/icon/filter-lines.png';
+import filter from '../../Assets/Images/icon/filter-lines.svg';
 import { Container, Dropdown, Row, Table } from 'react-bootstrap';
 import Pagination from '../../Component/Pagination/Pagination';
 import AddResources from '../../Component/AddResources/AddResources';
@@ -11,7 +11,7 @@ import { adminResourceList, resourceList } from '../../api/resource';
 import { DESKIE_API as API } from '../../config';
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import editPen from "../../Assets/Images/icon/edit-01.png";
+import editPen from "../../Assets/Images/icon/edit-01.svg";
 import ResourceBooking from '../../Component/ResourceBooking/ResourceBooking';
 import calenderIcon from "../../Assets/Images/icon/calendar-check-01.svg";
 import "./Resources.css";
@@ -84,7 +84,7 @@ const Resources = () => {
 
   return (
     <Layout>
-      <div className='mainContent'>
+      <div className='mainContent' id='resources'>
         <div className="resourcesPage">
           <div className="memberBox">
             <div className="topLine">
@@ -154,7 +154,7 @@ const Resources = () => {
                   </tr>)}
                 </tbody>
               </Table>
-              <Pagination page={page} paginationTitle="resource" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={resourceLists} />
+              <Pagination page={page} paginationTitle="items" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={resourceLists} />
             </div>
           </div>
           <div className="upcomingListResources">

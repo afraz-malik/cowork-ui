@@ -9,7 +9,7 @@ import Layout from '../../Component/Layout/Layout';
 import { DESKIE_API as API } from '../../config';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import ViewMember from '../../Component/ViewMember/ViewMember';
-import editPen from "../../Assets/Images/icon/edit-01.png";
+import editPen from "../../Assets/Images/icon/edit-01.svg";
 import EditMember from '../../Component/ViewMember/EditMember';
 import { separateComma } from '../../CommonFunction/Function';
 import AssignSpaces from '../../Component/AssignSpaces/AssignSpaces';

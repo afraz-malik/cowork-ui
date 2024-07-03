@@ -78,6 +78,7 @@ const Header = ({ onValueChange }: any) => {
                     {urlParams === "feed" ? <p>Feed</p> : ""}
                     {urlParams === "settings" ? <p>Settings</p> : ""}
                     {urlParams === "my-home" ? <p>Home</p> : ""}
+                    {pathArray.includes("resources") ? <p>Resources</p> : ""}
                 </div>
                 <div className='rightNavbar'>
                     <button><img src={circle} alt="circle" /></button>

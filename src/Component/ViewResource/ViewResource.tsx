@@ -73,11 +73,11 @@ const ViewResource = () => {
                                 <div className="resourceMiniBox">
                                     <div className="resourceName">
                                         <h6>Name</h6>
-                                        <p>{resourceDetails.name}</p>
+                                        <p className='mb-0'>{resourceDetails.name}</p>
                                     </div>
                                     <div className="resourceName">
                                         <h6>Capacity</h6>
-                                        <p>{resourceDetails.capacity}</p>
+                                        <p className='mb-0'>{resourceDetails.capacity}</p>
                                     </div>
                                     <div className="resourceName">
                                         <h6>Type</h6>
@@ -92,11 +92,11 @@ const ViewResource = () => {
                                 <div className="resourceMiniBox">
                                     <div className="resourceRate">
                                         <h6>Rate (Members)</h6>
-                                        <p>{resourceDetails.member_rate}</p>
+                                        <p className='mb-0'>{resourceDetails.member_rate}</p>
                                     </div>
                                     <div className="resourceRate">
                                         <h6>Rate (Guests)</h6>
-                                        <p>{resourceDetails.public_rate}</p>
+                                        <p className='mb-0'>{resourceDetails.public_rate}</p>
                                     </div>
                                 </div>
                             </div>

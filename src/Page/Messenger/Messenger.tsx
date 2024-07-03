@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import allMessage from "../../Assets/Images/icon/filter-lines.png";
+import allMessage from "../../Assets/Images/icon/filter-lines.svg";
 import FromMessage from './FromMessage';
 import ToMessage from "./ToMessage"
 import { SocketContext } from '../../CommonFunction/SocketContext';

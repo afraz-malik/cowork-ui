@@ -7,9 +7,9 @@ import Layout from '../../Component/Layout/Layout';
 import { DESKIE_API as API } from '../../config';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import AddSpace from '../../Component/AddSpace/AddSpace';
-import filter from '../../Assets/Images/icon/filter-lines.png';
+import filter from '../../Assets/Images/icon/filter-lines.svg';
 import { getSpacesList } from '../../api/spaces';
-import editPen from "../../Assets/Images/icon/edit-01.png"
+import editPen from "../../Assets/Images/icon/edit-01.svg"
 import EditSpaces from '../../Component/ViewSpaces/EditSpaces';
 import AssignMember from '../../Component/AssignMember/AssignMember';
 import { separateComma } from '../../CommonFunction/Function';
