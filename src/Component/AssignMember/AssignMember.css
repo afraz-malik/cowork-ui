@@ -36,8 +36,12 @@
     width: 0
 }
 
+#assignMember .addMemberHeading p {
+    font-size: 20px;
+}
+
 .authToggle .slider {
-    background-color: #ccc;
+    background-color: #F2F4F7;
     bottom: 0;
     cursor: pointer;
     left: 0;
@@ -106,7 +110,7 @@
 .generateInvoice h5 {
     font-family: "MyCustomFont";
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 26px;
     letter-spacing: 0em;
     text-align: left;
@@ -123,8 +127,18 @@
     color: rgba(52, 64, 84, 1);
 }
 
-.generateInvoice input {
-    min-width: 280px;
+#assignMember .memberInfos .dropdown-content {
+    padding: 20px 8px;
+    height: inherit;
+}
+
+#assignMember .member-container {
+    padding-left: 10px;
+    padding-right: 8px;
+}
+
+#assignMember .generateInvoice input {
+    width: 176px;
 }
 
 .generateInvoice .amount .calculate {
@@ -184,6 +198,10 @@
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
+}
+
+#assignMember .memberInfos {
+    width: calc((100% - 60px) / 2);
 }
 
 .memberInfos .dropdown {
@@ -294,6 +312,10 @@
     color: #98A2B3;
 }
 
+#assignMember .assignInput svg {
+    left: 20px;
+}
+
 .assignInput svg {
     position: absolute;
     color: rgba(102, 112, 133, 1) !important;
@@ -312,22 +334,22 @@
 }
 .invoiceSave button{
     background: #6366F1;
-  padding: 12px 16px;
-  border: none;
-  font-family: 'MyCustomFont';
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 16px;
-  letter-spacing: 0em;
-  text-align: center;
-  color: #fff;
-  border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
-  text-decoration: none;
-  margin-bottom: 0px;
-  display: flex;
-  align-items: center;
+    padding: 14px 18px;
+    border: none;
+    font-family: 'MyCustomFont';
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #fff;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    text-decoration: none;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
 }

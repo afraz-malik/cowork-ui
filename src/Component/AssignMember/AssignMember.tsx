@@ -2,7 +2,7 @@ import React, { useState, useEffect, forwardRef } from 'react'
 import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faXmark, faChevronDown, faSearch, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import assignmentIcon from "../../Assets/Images/icon/assignmentIcon.png";
+import assignmentIcon from "../../Assets/Images/icon/assignmentIcon1.svg";
 import "./AssignMember.css";
 import { memberAddSpaces, singleSpaces } from '../../api/spaces';
 import { DESKIE_API as API } from '../../config';
@@ -10,7 +10,7 @@ import { getMemberList } from '../../api/member';
 import { showNotifications } from '../../CommonFunction/toaster';
 import DatePicker from 'react-datepicker';
 import calenderIcon from "../../Assets/Images/icon/calendar.png";
-import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceIcon from "../../Assets/Images/icon/spaceAvatar.png";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -193,17 +193,17 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
 
   return (
     <>
-      <Modal show={assignShow} onHide={handleAssignClose} centered size="lg" className='assignModal'>
+      <Modal show={assignShow} onHide={handleAssignClose} centered size="lg" className='assignModal' id="assignMember">
         <div className="addMemberForm">
           <button className='closeModal' onClick={handleAssignClose}>
             <FontAwesomeIcon icon={faXmark} />
           </button>
-          <Container>
+          <Container className='px-0'>
             <Row>
               <Col md={12}>
                 <div className='addMemberHeading'>
                   <img src={assignmentIcon} alt="member" />
-                  <p>Create Assignment</p>
+                  <p>Assign</p>
                 </div>
               </Col>
               <Col md={12}>
@@ -214,7 +214,7 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
                         <div className='d-flex tableImage'>
                           {selectEmail.length ? <>
                             {memberImage ? <img src={`${API}/${memberImage}`} alt="avatar" style={{ objectFit: "cover" }} />
-                              : <img src={memberIcon} alt="avatar" />}
+                              : <img className='default' src={memberIcon} alt="avatar" />}
                             <div>
                               <p>{selectName.length > 20 ? selectName.substring(0, 20) + '...' : selectName}</p>
                               <span>{selectEmail.length > 20 ? selectEmail.substring(0, 20) + '...' : selectEmail}</span>
@@ -226,20 +226,22 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
                         <span><FontAwesomeIcon icon={faChevronDown} /></span>
                       </div>
                       <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-                        <div className='assignInput'>
+                        <div className='assignInput px-2'>
                           <FontAwesomeIcon icon={faSearch} />
                           <input type="text" placeholder='Search member' onChange={handleMemberChange} className='form-control' />
                         </div>
-                        {filteredMembers.map((data: any, index) =>
-                          <div onClick={(e) => { setIsActive(!isActive); selectMember(data) }} className="item tableImage">
-                            {data.member_image ? <img src={`${API}/${data.member_image}`} alt="avatar" style={{ objectFit: "cover" }} />
-                              : <img src={memberIcon} alt="avatar" />}
-                            <p>{`${(data.first_name + ' ' + data.last_name).slice(0, 17)}${(data.first_name + ' ' + data.last_name).length > 17 ? '...' : ''}`}</p>
-                          </div>)}
+                        <div className='member-container'>
+                          {filteredMembers.map((data: any, index) =>
+                            <div onClick={(e) => { setIsActive(!isActive); selectMember(data) }} className="item tableImage my-2">
+                              {data.member_image ? <img src={`${API}/${data.member_image}`} alt="avatar" style={{ objectFit: "cover" }} />
+                                : <img className='default' src={memberIcon} alt="avatar" />}
+                              <p>{`${(data.first_name + ' ' + data.last_name).slice(0, 17)}${(data.first_name + ' ' + data.last_name).length > 17 ? '...' : ''}`}</p>
+                            </div>)}
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className='arrowIcon'>
+                  <div className='arrowIcon mx-4'>
                     <FontAwesomeIcon icon={faChevronRight} />
                   </div>
                   <div className="memberInfos assignBox tableImage">
@@ -251,9 +253,9 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
               </Col>
               <Col md={12}>
                 <div className="assignName">
-                  <div className="generateInvoice">
-                    <h5>Generate Invoice?</h5>
-                    <div className="authToggle">
+                  <div className="generateInvoice my-0 d-flex align-items-center">
+                    <h5 className='mb-0'>Generate Invoice Today?</h5>
+                    <div className="authToggle mt-0">
                       {authValue === true ?
                         <label className="switch">
                           <input type="checkbox" onClick={authClick} defaultChecked />
@@ -266,7 +268,7 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
                     </div>
                   </div>
                   {authValue ? <>
-                    <div className="generateInvoice">
+                    <div className="generateInvoice mt-4 mb-0">
                       <h6>Amount Owed Today</h6>
                       <div className="memberInput amount">
                         <span>$</span>
@@ -275,9 +277,9 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
                       </div>
                     </div>
                   </> : <></>}
-                  <div className='invoiceSave'>
-                    <button type='submit' onClick={saveInvoice}>Save</button>
-                  </div>
+                </div>
+                <div className='invoiceSave mt-4'>
+                  <button type='submit' onClick={saveInvoice}>Save</button>
                 </div>
               </Col>
             </Row>
