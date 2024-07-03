@@ -61,7 +61,7 @@ const Header = ({ onValueChange }: any) => {
 
     const filteredNotify = notifyList.filter((notify: any) =>
         notify.invoice_id.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    );
 
     return (
         <>
@@ -69,7 +69,7 @@ const Header = ({ onValueChange }: any) => {
                 <div className='contentHeading'>
                     <button className="sb-button" onClick={handleClick}><FontAwesomeIcon icon={faBars} /></button>
                     {urlParams === "member" ? <p>Members</p> : ""}
-                    {urlParams === "assets" ? <p>Assets</p> : ""}
+                    {pathArray.includes("assets") ? <p>Assets</p> : ""}
                     {urlParams === "files" ? <p>Files</p> : ""}
                     {urlParams === "tickets" ? <p>Ticket</p> : ""}
                     {urlParams === "task" ? <p>Tasks</p> : ""}
@@ -81,7 +81,7 @@ const Header = ({ onValueChange }: any) => {
                     {pathArray.includes("resources") ? <p>Resources</p> : ""}
                 </div>
                 <div className='rightNavbar'>
-                    <button><img src={circle} alt="circle" /></button>
+                    <button className='d-flex align-items-center'><img src={circle} alt="circle" /></button>
                     <div className="notificationBox">
                         <Dropdown>
                             <Dropdown.Toggle>

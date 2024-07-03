@@ -16,6 +16,7 @@
     -moz-border-radius: 16px;
     -ms-border-radius: 16px;
     -o-border-radius: 16px;
+    border: 1px solid #EAECF0;
 }
 
 .table>thead {
@@ -24,7 +25,7 @@
 
 .topLine {
     padding: 0px 24px;
-    height: 85px;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;

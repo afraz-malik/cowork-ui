@@ -15,7 +15,7 @@ import AssignMember from '../../Component/AssignMember/AssignMember';
 import { separateComma } from '../../CommonFunction/Function';
 import { ToastContainer } from 'react-toastify';
 import blankUser from "../../Assets/Images/icon/blank-profile.jpg"
-import memberAvatar from "../../Assets/Images/icon/memberAvatar.png";
+import memberAvatar from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from '../../Component/Pagination/Pagination';
 import { Link ,useNavigate } from 'react-router-dom';
@@ -132,7 +132,7 @@ const Spaces = () => {
                                     <input type="text" placeholder='Search assets' onChange={handleInputChange} className='form-control' />
                                     <FontAwesomeIcon icon={faSearch} />
                                 </div>
-                                <button className='filterBtn'><img src={filter} alt='filter' /> Filter</button>
+                                <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' /> Filter</button>
                                 <button onClick={handleShow}><FontAwesomeIcon icon={faPlus} /> Add Asset</button>
                             </div>
                         </div>
@@ -175,7 +175,7 @@ const Spaces = () => {
                                             {data.tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
                                             {data.tag === "flex" ? <span className='flex'>Flex</span> : ""}
                                         </td>
-                                        <td>${data.rate}/mo</td>
+                                        <td className='rate'>${data.rate} <small>/mo</small></td>
                                         <td className='status'>
                                             {data.member_images ? <span className='unavailable'>Unavailable</span> : <span className='available'>Available</span>}
                                         </td>
@@ -184,7 +184,7 @@ const Spaces = () => {
                                                 <div className="memberSpacesList">
                                                     {data.member_images && separateComma(data.member_images).map((member: any) =>
                                                          <>
-                                                         {member === "imgNull" ?  <img className="avatar-icon36" alt="" src={memberAvatar} />
+                                                         {member === "imgNull" ?  <img className="avatar-icon36 default" alt="" src={memberAvatar} />
                                                          :<img className="avatar-icon36" alt="" src={`${API}/${member}`} />
                                                          }
                                                        </>
@@ -204,7 +204,7 @@ const Spaces = () => {
                                     </tr>)}
                                 </tbody>
                             </Table>
-                            <Pagination page={page} paginationTitle="assets" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={spaces} />
+                            <Pagination page={page} paginationTitle="items" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={spaces} />
                         </div>
 
                         <AddSpace show={show} setShow={setShow} handleClose={handleClose} />

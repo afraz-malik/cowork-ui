@@ -10,6 +10,10 @@
     width: 100%;
 }
 
+.spaceList table tbody tr .rate {
+    font-style: normal;
+}
+
 .spaceList table tbody tr td {
     vertical-align: middle;
 }
@@ -140,7 +144,7 @@
     height: 56px;
     vertical-align: middle;
     white-space: nowrap;
-    background-color: #F4F7F8;
+    background-color: #F9FAFB;
 }
 
 .status .unavailable {
@@ -199,8 +203,8 @@
 }
 
 .deskType .private {
-    color: #027A48;
-    background: #ECFDF3;
+    color: #175CD3;
+    background: #EFF8FF;
 }
 
 .deskType .dedicated {
@@ -284,14 +288,15 @@
 
 .tableLink a {
     text-decoration: none;
-    color: rgba(16, 24, 40, 1);
     font-family: 'MyCustomFont';
     font-size: 14px;
-    font-weight: 500;
     line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
     white-space: nowrap;
+    color: var(--Gray-900, #101828);
+    font-style: normal;
+    font-weight: 800;
 }
 
 .spacesDetailsBox {

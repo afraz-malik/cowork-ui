@@ -9,7 +9,7 @@ import spacesBlank from "../../Assets/Images/icon/spaceAvatar.png";
 import more from "../../Assets/Images/icon/dots-vertical.png";
 import { Link, useParams } from 'react-router-dom';
 import Layout from '../Layout/Layout';
-import penIcon from "../../Assets/Images/icon/pencil-01.png";
+import penIcon from "../../Assets/Images/icon/pencil-01.svg";
 import EditMember from './EditMember';
 import memberAvatar from "../../Assets/Images/icon/memberLargeIcon.png";
 import spacesIcon from "../../Assets/Images/icon/spaceAvatar.png";

@@ -4,7 +4,7 @@ import { resourceBook, singleResource } from '../../api/resource';
 import Layout from '../Layout/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons';
-import penIcon from "../../Assets/Images/icon/pencil-01.png";
+import penIcon from "../../Assets/Images/icon/pencil-01.svg";
 import spaceIcon from "../../Assets/Images/icon/spaceAvatar.png";
 import { DESKIE_API as API } from '../../config';
 import "./ViewResource.css"
