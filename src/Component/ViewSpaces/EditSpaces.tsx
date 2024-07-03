@@ -4,7 +4,7 @@ import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap';
 import memberIcon from "../../Assets/Images/icon/member.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
-import imageInput from "../../Assets/Images/icon/imgButton.png";
+import imageInput from "../../Assets/Images/icon/imgButton.svg";
 import { singleSpaces, updateSpaces } from '../../api/spaces';
 import { DESKIE_API as API } from '../../config';
 import spaceIcon from "../../Assets/Images/icon/spaceLargeIcon.png";

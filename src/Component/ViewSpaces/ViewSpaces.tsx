@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { singleSpaces } from '../../api/spaces';
 import { DESKIE_API as API } from '../../config';
-import penIcon from "../../Assets/Images/icon/pencil-01.png";
+import penIcon from "../../Assets/Images/icon/pencil-01.svg";
 import spaceIcon from "../../Assets/Images/icon/spaceAvatar.png";
 import Layout from '../Layout/Layout';
 import { Link, useParams } from 'react-router-dom';
@@ -51,7 +51,7 @@ const ViewSpaces = () => {
                                 <h6> {spacesDetails.name}</h6>
                             </div>
                             <div className="editBtn">
-                                <button onClick={() => spacesUpdate(spacesDetails.id)}><img src={penIcon} alt="edit" /> Edit Asset</button>
+                                <button style={{padding: "8px 16px"}} onClick={() => spacesUpdate(spacesDetails.id)}><img src={penIcon} alt="edit" /> Edit Asset</button>
                             </div>
                         </div>
                         <div className="spacesInfo">

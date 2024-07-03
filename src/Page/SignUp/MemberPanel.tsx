@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { DESKIE_API as API } from '../../config';
-import imageInput from "../../Assets/Images/icon/imgButton.png";
+import imageInput from "../../Assets/Images/icon/imgButton.svg";
 import blankUser from "../../Assets/Images/icon/blank-profile.jpg";
 import PhoneInput from 'react-phone-input-2';
 

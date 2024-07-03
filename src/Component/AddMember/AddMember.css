@@ -20,7 +20,7 @@
 }
 
 .inputFieldSidebar {
-    border-right: 1px solid #D0D5DD;
+    border-right: 1px solid #EAECF0;
 }
 
 .addMemberHeading {
@@ -61,6 +61,21 @@
 .memberInput .dropdown{
     display: block;
 }
+.memberInput input:focus {
+    border-radius: 12px;
+    border: 1px solid var(--Primary-300, #A1A3F7);
+    background: var(--Base-White, #FFF);
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px #F4EBFF !important;
+    align-self: stretch;
+}
+.memberInput input::placeholder {
+    color: var(--Gray-400, #98A2B3);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+}
+
 .memberInput input,
 .memberInput .dropdown button {
     width: 100%;
@@ -125,7 +140,7 @@
     background-color: none !important;
     border-color: none !important;
     outline: 0;
-    box-shadow: none !important;
+    /* box-shadow: none !important; */
 }
 
 .memberAddBtn {
@@ -146,11 +161,7 @@
     line-height: 24px;
     letter-spacing: 0em;
     text-align: center;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
+    border-radius: 12px;
 }
 
 .inputHeading p {

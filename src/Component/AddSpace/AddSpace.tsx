@@ -4,11 +4,11 @@ import { ToastContainer } from 'react-toastify';
 import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap';
 // import "./AddMember.css";
 import { v4 as uuidv4 } from 'uuid';
-import memberIcon from "../../Assets/Images/icon/member.png"
+import memberIcon from "../../Assets/Images/icon/assignmentIcon.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import spaceIcon from "../../Assets/Images/icon/spaceLargeIcon.png";
-import imageInput from "../../Assets/Images/icon/imgButton.png";
+import imageInput from "../../Assets/Images/icon/imgButton.svg";
 import { spacesAdd } from '../../api/spaces';
 import { showNotifications } from '../../CommonFunction/toaster';
 
@@ -73,12 +73,12 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
                     <button className='closeModal' onClick={handleClose}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
-                    <Container>
+                    <Container className='px-0'>
                         <Row>
                             <Col md={12}>
                                 <div className='addMemberHeading'>
                                     <img src={memberIcon} alt="member" />
-                                    <p>Add Assets</p>
+                                    <p>Asset Information</p>
                                 </div>
                             </Col>
                         </Row>
@@ -86,9 +86,9 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
                             <Row>
                                 <Col md={2} className='inputFieldSidebar'>
                                     <div className="imageUpload">
-                                        <div className="upload">
+                                        <div className="upload" style={{width: "inherit"}}>
                                             {file && file.length > 0 ? <img src={file} width="100px" height="100px" alt="shop" />
-                                                : <img src={spaceIcon} alt="" />
+                                                : <img src={spaceIcon} style={{width: "100px", height: "100px"}} alt="" />
                                             }
                                             <div className="round">
                                                 <input type="file" onChange={handleChange} />
@@ -115,7 +115,7 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
                                             <div className="memberInput sizeInput">
                                                 <label>Size</label>
                                                 <input type="number" {...register("size", { required: true })} placeholder='Size' className='form-control' required />
-                                                <button>Sqft</button>
+                                                <button>SQFT</button>
                                             </div>
                                             <div className="memberInput">
                                                 <label>Tag (Type)</label>
@@ -137,7 +137,7 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
                                         <Col md={12}>
                                             <div className="memberInput">
                                                 <label>Notes</label>
-                                                <input type="text" {...register("notes", { required: true })} placeholder='Notes' className='form-control' required />
+                                                <input type="text" {...register("notes", { required: true })} placeholder='Type notes' className='form-control' required />
                                             </div>
                                         </Col>
                                     </Row>

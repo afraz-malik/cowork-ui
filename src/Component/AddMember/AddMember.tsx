@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import memberIcon from "../../Assets/Images/icon/member.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import imageInput from "../../Assets/Images/icon/imgButton.png";
+import imageInput from "../../Assets/Images/icon/imgButton.svg";
 import PhoneInput from 'react-phone-input-2';
 import memberAvatar from "../../Assets/Images/icon/memberLargeIcon.png";
 import { singleProfile } from '../../api/settings';

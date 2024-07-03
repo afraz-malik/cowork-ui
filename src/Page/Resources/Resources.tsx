@@ -3,7 +3,7 @@ import Layout from '../../Component/Layout/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
-import filter from '../../Assets/Images/icon/filter-lines.png';
+import filter from '../../Assets/Images/icon/filter-lines.svg';
 import { Container, Dropdown, Row, Table } from 'react-bootstrap';
 import Pagination from '../../Component/Pagination/Pagination';
 import AddResources from '../../Component/AddResources/AddResources';
