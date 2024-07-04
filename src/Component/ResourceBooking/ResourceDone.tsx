@@ -3,7 +3,7 @@ import checkCircle from "../../Assets/Images/icon/check-circle.svg"
 import calenderIcon from "../../Assets/Images/icon/calendar.svg";
 import clockDark from "../../Assets/Images/icon/clockDark.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { DESKIE_API as API } from '../../config';
 import spaceIcon from "../../Assets/Images/icon/spaceAvatar.png";
@@ -36,7 +36,7 @@ const ResourceDone = ({selectedDate, startTime,endTime, resourceDetail, tabChoos
       <div className="paymentFinish">
         <div className="paymentHeading">
           <img src={checkCircle} alt="checkCircle" />
-          <p>Booking Confirmed!</p>
+          <p className='mt-3'>Booking Confirmed!</p>
         </div>
         <div className="resourcePayImg">
           <div className='imgLeft'>
@@ -49,18 +49,18 @@ const ResourceDone = ({selectedDate, startTime,endTime, resourceDetail, tabChoos
           <div className="chooseTime">
             <div>
               <img src={calenderIcon} alt="calender" />
-              <p>{formatResourceDate(selectedDate)}</p>
+              <p className='mb-0 mt-2'>{formatResourceDate(selectedDate)}</p>
             </div>
             <div>
               <img src={clockDark} alt="calender" />
-              <p>{startTime} - {endTime}</p>
+              <p className='mb-0 mt-2'>{startTime} - {endTime}</p>
             </div>
           </div>
         </div>
         <div className="payResourceInfo">
           <div>
             <h6>Capacity</h6>
-            <p>{resourceDetail.capacity} occupants</p>
+            <p className='mb-0 mt-3'>{resourceDetail.capacity} occupants</p>
           </div>
           <div>
             <h6>Type</h6>
@@ -73,13 +73,13 @@ const ResourceDone = ({selectedDate, startTime,endTime, resourceDetail, tabChoos
           </div>
           <div>
             <h6>Rate</h6>
-            <p>{resourceDetail.member_rate}</p>
+            <p className='mb-0 mt-3'>{resourceDetail.member_rate}</p>
           </div>
         </div>
       </div>
       <div className="resourcesBtn">
-        <button className='cancel' onClick={backPay}>Cancel</button>
-        <button className='continue' onClick={resourceBooked}>Continue <FontAwesomeIcon icon={faArrowRight} /></button>
+        <button className='cancel' onClick={backPay}><FontAwesomeIcon className='mr-2' icon={faArrowLeft} /> Back</button>
+        <button className='continue' onClick={resourceBooked}>Done</button>
       </div>
     </>
   )

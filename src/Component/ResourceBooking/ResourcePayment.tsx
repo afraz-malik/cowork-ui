@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import creditCard from "../../Assets/Images/icon/credit_card.svg";
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import CardSystem from './CardSystem';
 import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { loadStripe } from '@stripe/stripe-js';
@@ -60,7 +60,7 @@ const ResourcePayment = ({ cardName, startTime, endTime, setCardName, street, se
     <>
       <div className='resourcePay'>
         <div className="resourcePayHeading">
-          <h6><img src={creditCard} alt="credit" />  Payment</h6>
+          <h6 style={{marginBottom: '32px'}}><img src={creditCard} className='mr-2' alt="credit" />  Payment</h6>
         </div>
 
         {instantPay ? <>
@@ -74,9 +74,9 @@ const ResourcePayment = ({ cardName, startTime, endTime, setCardName, street, se
               <p>${(startTime ? findTimeGap(startTime, endTime) : 0) * parseInt(resourceDetail.member_rate)}</p>
             </div>
           </div>
-          <div className="resourceInvoice">
+          <div className="resourceInvoice mt-4">
             <h5>Add to my next invoice</h5>
-            <div className="authToggle">
+            <div className="authToggle mt-0">
               {authValue === true ?
                 <label className="switch">
                   <input type="checkbox" onClick={authClick} defaultChecked />
@@ -91,11 +91,12 @@ const ResourcePayment = ({ cardName, startTime, endTime, setCardName, street, se
         </> :
           <div className="resourcePayment">
             <div className="cardPayment">
+              <h6 className='mb-2'>Payment Details</h6>
               <Elements stripe={stripePromise}>
                 <CardSystem cardName={cardName} setCardName={setCardName} />
               </Elements>
             </div>
-            <h6>Billing Details</h6>
+            <h6 className='mb-2 mt-4'>Billing Details</h6>
             <div className='d-flex justify-content-between'>
               <div className="memberInput">
                 <label>Street Address</label>
@@ -121,12 +122,12 @@ const ResourcePayment = ({ cardName, startTime, endTime, setCardName, street, se
       </div>
       {instantPay ? <>
         <div className="resourcesBtn">
-          <button className='cancel' onClick={backSchedule}>Cancel</button>
+          <button className='cancel' onClick={backSchedule}><FontAwesomeIcon className='mr-2' icon={faArrowLeft} /> Back</button>
           <button className='continue' onClick={paymentFunction}>Continue <FontAwesomeIcon icon={faArrowRight} /></button>
         </div>
       </> : <div className="resourcesBtn">
-        <button className='cancel' onClick={() => setInstantPay(true)}>Cancel</button>
-        <button className='continue' onClick={payInvoice}>Continue <FontAwesomeIcon icon={faArrowRight} /></button>
+          <button className='cancel' onClick={backSchedule}><FontAwesomeIcon className='mr-2' icon={faArrowLeft} /> Back</button>
+          <button className='continue' onClick={payInvoice}>Continue <FontAwesomeIcon icon={faArrowRight} /></button>
       </div>}
     </>
   )

@@ -62,9 +62,9 @@ const CardSystem = ({cardName, setCardName}:cardInfo) => {
             <form onSubmit={handleSubmit} className="DemoWrapper">
                 <div className="resourceInput">
                     <label>Name on Card</label>
-                    <input className="form-control" value={cardName} onChange={(e)=>setCardName(e.target.value)} placeholder="name on card" />
+                    <input className="form-control" value={cardName} onChange={(e)=>setCardName(e.target.value)} placeholder="Name on card" />
                 </div>
-                <div className="cardNumber resourceCard">
+                <div className="cardNumber resourceCard mt-0">
                     <div className="cardInput">
                         <label>Card Number</label>
                         <CardNumberElement options={options} />

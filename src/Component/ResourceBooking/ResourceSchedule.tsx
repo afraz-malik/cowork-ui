@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { faArrowRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from 'react';
+import { faArrowRight, faChevronDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FullCalendar from '@fullcalendar/react';
 import monthGridPlugin from '@fullcalendar/daygrid';
@@ -96,7 +96,7 @@ const ResourceSchedule = ({ setStartTime,setEndTime,setSelectedDate,startTime,en
         <div className="detailsHeading">
           <h6><img  src={calenderBlue} alt="calender" /> Scheduling</h6>
         </div>
-        <div className="resourceSchedule mt-3">
+        <div className="resourceSchedule">
           <div className='leftSchedule'>
             <div className=" monthView">
               <FullCalendar
@@ -112,8 +112,8 @@ const ResourceSchedule = ({ setStartTime,setEndTime,setSelectedDate,startTime,en
                 dateClick={handleDateClick}
               />
             </div>
-            <div className="timeChoose mt-4">
-              <h6>Start and End Time</h6>
+            <div className="timeChoose mt-4 pt-2">
+              <h6 className='my-2'>Start and End Time</h6>
               <div className='timeDropdown'>
                 <Dropdown onSelect={handleStartSelect}>
                   <Dropdown.Toggle>
@@ -143,25 +143,25 @@ const ResourceSchedule = ({ setStartTime,setEndTime,setSelectedDate,startTime,en
               </div>
             </div>
           </div>
+          <div className='vertical-bar'></div>
           <div className="rightSchedule">
             <div className="chooseTime">
               <div>
               <img  src={calenderIcon} alt="calender" />
-              {selectedDate.length ?  <p>{formatResourceDate(selectedDate)}</p>  
-              :  <p>Choose</p> }
-               
+              {selectedDate.length ?  <p className='mb-0 mt-2'>{formatResourceDate(selectedDate)}</p>  
+              :  <p className='mb-0 mt-2'>Choose</p> }
               </div>
               <div>
               <img  src={clockDark} alt="calender" />
-                <p>{startTime} - {endTime}</p>
+                <p className='mb-0 mt-2'>{startTime} - {endTime}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="resourcesBtn">
-        <button className='cancel' onClick={backDetails}>Cancel</button>
-        <button className='continue' onClick={scheduleFunction}>Continue <FontAwesomeIcon icon={faArrowRight} /></button>
+        <button className='cancel' onClick={backDetails}><FontAwesomeIcon className='mr-2' icon={faArrowLeft} /> Back</button>
+        <button className='continue' onClick={scheduleFunction}>Continue <FontAwesomeIcon className='ml-2' icon={faArrowRight} /></button>
       </div>
     </>
   )

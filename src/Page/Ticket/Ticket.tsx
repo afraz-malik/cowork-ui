@@ -10,7 +10,7 @@ import AddSpace from '../../Component/AddSpace/AddSpace';
 import filter from '../../Assets/Images/icon/filter-lines.svg';
 import { getSpacesList } from '../../api/spaces';
 import ViewSpaces from '../../Component/ViewSpaces/ViewSpaces';
-import editPen from "../../Assets/Images/icon/edit-01.png"
+import editPen from "../../Assets/Images/icon/edit-01.svg"
 import "./Ticket.css";
 
 const Ticket = () => {

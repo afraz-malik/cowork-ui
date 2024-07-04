@@ -3,7 +3,7 @@ import { DESKIE_API as API } from '../../config';
 import spaceIcon from "../../Assets/Images/icon/spaceAvatar.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import bookingIcon from "../../Assets/Images/icon/booking.svg"
+import bookingIcon from "../../Assets/Images/icon/file-02.svg"
 
 interface tabMemberProps {
   tabChoose: (tab: string, select: string) => void;
@@ -19,15 +19,15 @@ const ResourceDetails = ({ tabChoose, resourceDetail }: tabMemberProps) => {
         <div className="detailsHeading">
           <h6><img src={bookingIcon} alt="bookingIcon" /> Details</h6>
         </div>
-        <div className="resourceShow mt-3">
+        <div className="resourceShow">
           <div className="leftResource">
             <div>
               <h6>Capacity</h6>
-              <p>{resourceDetail.capacity} occupants</p>
+              <p className='mb-0 mt-4'>{resourceDetail.capacity} occupants</p>
             </div>
             <div>
               <h6>Type</h6>
-              <div className='resourceType'>
+              <div className='resourceType border-0 p-0 mt-4'>
                 {resourceDetail.type === "meeting" ? <span className='meeting'>Meeting Space</span> : ""}
                 {resourceDetail.type === "equipment" ? <span className='equipment'>Equipment</span> : ""}
                 {resourceDetail.type === "workspace" ? <span className='workspace'>Workspace</span> : ""}
@@ -36,7 +36,7 @@ const ResourceDetails = ({ tabChoose, resourceDetail }: tabMemberProps) => {
             </div>
             <div>
               <h6>Rate</h6>
-              <p>{resourceDetail.member_rate}</p>
+              <p className='mb-0 mt-4'>{resourceDetail.member_rate}</p>
             </div>
           </div>
           <div className="rightResource">
@@ -49,7 +49,7 @@ const ResourceDetails = ({ tabChoose, resourceDetail }: tabMemberProps) => {
       </div>
       <div className="resourcesBtn">
         <button className='cancel'>Cancel</button>
-        <button className='continue' onClick={detailsFunction}>Continue <FontAwesomeIcon icon={faArrowRight} /></button>
+        <button className='continue' onClick={detailsFunction}>Continue <FontAwesomeIcon icon={faArrowRight} className='ml-2' /></button>
       </div>
     </>
   )

@@ -339,6 +339,10 @@
   -o-border-radius: 25px;
 }
 
+.paymentDetails .monthView  .fc .fc-toolbar.fc-header-toolbar {
+  border: none;
+}
+
 .monthView  .fc .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0em;
   border-left: 1px solid rgba(234, 236, 240, 1);

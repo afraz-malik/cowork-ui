@@ -3,10 +3,10 @@ import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap';
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
-import resourceIcon from "../../Assets/Images/icon/resourceIcon.svg";
-import stepCheck from "../../Assets/Images/icon/stepCheck.png";
-import stepDot from "../../Assets/Images/icon/stepDot.png";
-import stepBlank from "../../Assets/Images/icon/stepBlank.png";
+import resourceIcon from "../../Assets/Images/icon/booking.svg";
+import stepCheck from "../../Assets/Images/icon/stepCheck.svg";
+import stepDot from "../../Assets/Images/icon/stepDot.svg";
+import stepBlank from "../../Assets/Images/icon/stepBlank.svg";
 import ResourceDetails from './ResourceDetails';
 import ResourceSchedule from './ResourceSchedule';
 import ResourcePayment from './ResourcePayment';
@@ -181,8 +181,8 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
 
     return (
         <>
-            <Modal show={paymentShow} onHide={handlePaymentClose} centered size="xl">
-<ToastContainer />
+            <Modal show={paymentShow} onHide={handlePaymentClose} centered size="xl" id="newBooking">
+                <ToastContainer />
                 <div className="addMemberForm">
                     <button className='closeModal' onClick={handlePaymentClose}>
                         <FontAwesomeIcon icon={faXmark} />
@@ -190,7 +190,7 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                     <Container>
                         <Row>
                             <Col md={12}>
-                                <div className='addMemberHeading'>
+                                <div className='addMemberHeading mb-0'>
                                     <img src={resourceIcon} alt="member" />
                                     <p>New Booking</p>
                                 </div>
@@ -199,22 +199,22 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                 <div className="resourceBook tabResourcePanel">
                                     <div className='tabHeading'>
                                         <ul className="tablist">
-                                            <li className="">
+                                            <li className="mt-0">
                                                 <div className="arrowLine">
-                                                    <div className="checkCircle">
-                                                        {checkValueExist("details", selectedTabs) ? <img src={stepCheck} alt='stepCheck' /> :
+                                                    <div className={`checkCircle ${checkValueExist("details", selectedTabs) && 'checked'}`}>
+                                                        {checkValueExist("details", selectedTabs) ? <img className='checked' src={stepCheck} alt='stepCheck' /> :
                                                             <>{detailsTab ? <img src={stepDot} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
                                                         }
                                                     </div>
                                                 </div>
                                                 <div className="arrowHeading">
                                                     <h6>Details</h6>
-                                                    <p>Resource info</p>
+                                                    <p className={detailsTab ? 'selected' : ''}>Resource info</p>
                                                 </div>
                                             </li>
                                             <li className="">
                                                 <div className="arrowLine">
-                                                    <div className="checkCircle">
+                                                    <div className={`checkCircle ${checkValueExist("schedule", selectedTabs) && 'checked'}`}>
                                                         {checkValueExist("schedule", selectedTabs) ? <img src={stepCheck} alt='stepCheck' /> :
                                                             <>{scheduleTab ? <img src={stepDot} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
                                                         }
@@ -222,12 +222,12 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                                 </div>
                                                 <div className="arrowHeading">
                                                     <h6>Schedule</h6>
-                                                    <p>Date, time, etc</p>
+                                                    <p className={scheduleTab ? 'selected' : ''}>Date, time, etc</p>
                                                 </div>
                                             </li>
                                             <li className="">
                                                 <div className="arrowLine">
-                                                    <div className="checkCircle">
+                                                    <div className={`checkCircle ${checkValueExist("billing", selectedTabs) && 'checked'}`}>
                                                         {checkValueExist("billing", selectedTabs) ? <img src={stepCheck} alt='stepCheck' /> :
                                                             <>{billingTab ? <img src={stepDot} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
                                                         }
@@ -235,14 +235,14 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                                 </div>
                                                 <div className="arrowHeading">
                                                     <h6>Payment</h6>
-                                                    <p>Billing</p>
+                                                    <p className={billingTab ? 'selected' : ''}>Billing</p>
                                                 </div>
                                             </li>
                                             <li className="">
                                                 <div className="arrowLine">
-                                                    <div className="checkCircle">
+                                                    <div className={`checkCircle done ${checkValueExist("done", selectedTabs) && 'checked'}`}>
                                                         {checkValueExist("done", selectedTabs) ? <img src={stepCheck} alt='stepCheck' /> :
-                                                            <> {finishTab ? <img src={stepDot} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
+                                                            <> {finishTab ? <img src={stepCheck} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
                                                         }
 
                                                     </div>
