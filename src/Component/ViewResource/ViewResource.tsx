@@ -112,7 +112,7 @@ const ViewResource = () => {
                                     <img src={`${API}/${resource.creator_image}`} alt="edit" />
                                     <div>
                                         <p>{resource.creator_name}</p>
-                                        <span>{formatResourceDate(resource.book_date)}</span>
+                                        <span>{formatResourceDate(resource.book_date)}, {resource.start_time} - {resource.end_time}</span>
                                     </div>
                                     <button><FontAwesomeIcon icon={faEye} /></button>
                                 </div>)}

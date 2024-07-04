@@ -10,7 +10,7 @@ import emailFile from "../../Assets/Images/icon/mail-01.png";
 import voidFile from "../../Assets/Images/icon/void.png";
 import { useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { invoiceUpdate, invoicesResource, singleInvoice } from '../../api/invoice';
+import { invoiceItems, invoiceUpdate, invoicesResource, singleInvoice } from '../../api/invoice';
 import moment from 'moment';
 import { DESKIE_API as API } from '../../config';
 import { usePDF } from 'react-to-pdf';
@@ -32,6 +32,8 @@ const InvoiceDetails = () => {
     const location = useLocation();
     const [urlTag, sttUrlTag] = useState("");
     const [invoiceDetail, setInvoiceDetail] = useState<any>({});
+    const [resourceDetail, setResourceDetail] = useState<any>([]);
+    const [itemTotalPrice, setItemTotalPrice] = useState(0);
     const [show, setShow] = useState(false);
     const [count, setCount] = useState(0);
     const handleClose = () => setShow(false);
@@ -39,9 +41,6 @@ const InvoiceDetails = () => {
     const [resourceList, setResourceList] = useState([]);
     const { toPDF, targetRef } = usePDF({ filename: `${invoiceDetail && invoiceDetail.invoice_id}.pdf` });
     let auth = isAuthenticate();
-
-    console.log('invoiceDetail',invoiceDetail);
-    console.log('resourceList',resourceList);
 
     useEffect(() => {
         if (id) {
@@ -51,7 +50,11 @@ const InvoiceDetails = () => {
                     setResourceList(data)
                 })
             })
-
+            invoiceItems(id).then((data) => {
+                console.log('invoice items',data);
+                setResourceDetail(data.item_list);
+                setItemTotalPrice(data.total_amount);
+            })
         }
 
         const pathname = location.pathname;
@@ -178,36 +181,37 @@ const InvoiceDetails = () => {
                                     <p>Item</p>
                                     <p>Amount</p>
                                 </div>
-                                {invoiceDetail.spacesInfo && invoiceDetail.spacesInfo.map((spaces:any)=><div className="itemList">
-                                    <div className="itemName">
-                                        {spaces.image ? <img src={`${API}/${spaces.image}`} alt="avatar" />
-                                        : <img src={spacesImage} alt="avatar" />} {spaces.name ? spaces.name : "N/A"}
-                                    </div>
+                                {invoiceDetail && invoiceDetail.renewal_frequency === "monthly" ? <>
+                                    {resourceDetail && resourceDetail.map((resource: any) => <div className="itemList">
+                                      <div className="itemName">
+                                        {resource && resource.resource_image ? <img src={`${API}/${resource && resource.resource_image}`} alt="avatar" />
+                                            : <img src={spacesImage} alt="avatar" />} {resource && resource.resource_name ? resource.resource_name : "N/A"}
+                                    </div> 
                                     <div className="itemPrice">
-                                        {spaces.price ? <>${spaces.price}</> : "N/A"}
+                                        {resource && resource.amount ? <>${resource.amount}</> : "N/A"}
                                     </div>
-                                </div>)}
+                                </div> )}  </> : ""}
                                 
-                                {invoiceDetail && invoiceDetail.renewal_frequency === "resource" ? "" : <>
-                                    {resourceList && resourceList.map((resource: any) => <div className="itemList">
-                                    <div className="itemName">
-                                        {resource && resource.image ? <img src={`${API}/${resource && resource.image}`} alt="avatar" />
-                                            : <img src={spacesImage} alt="avatar" />} {resource && resource.name ? resource.name : "N/A"}
-                                    </div>
+                                {invoiceDetail && invoiceDetail.renewal_frequency === "resource" ? <>
+                                     <div className="itemList">
+                                     {resourceDetail && resourceDetail.map((resource: any) => <div className="itemName">
+                                        {resource && resource.resource_image ? <img src={`${API}/${resource && resource.resource_image}`} alt="avatar" />
+                                            : <img src={spacesImage} alt="avatar" />} {resource && resource.resource_name ? resource.resource_name : "N/A"}
+                                    </div> )} 
                                     <div className="itemPrice">
-                                        {resource && resource.member_rate ? <>${resource.member_rate}</> : "N/A"}
+                                        {invoiceDetail && invoiceDetail.amount ? <>${invoiceDetail.amount}</> : "N/A"}
                                     </div>
-                                </div>)}
-                                </>}
+                                </div> </> : ""}
+                                
                               
                                 <div className="itemTotal">
-                                    <p>Total Amount <span>{invoiceDetail && invoiceDetail.total_price ? <>${invoiceDetail.total_price}</> : "N/A"}</span></p>
+                                    <p>Total Amount <span>{itemTotalPrice && itemTotalPrice ? <>${itemTotalPrice}</> : "N/A"}</span></p>
                                 </div>
                                 <div className="itemTotal">
                                     <p className='d-flex'>Amount Owed <span>
-                                        {invoiceDetail && invoiceDetail.total_price ?
-                                            <p className={(invoiceDetail && parseFloat((invoiceDetail.total_price - invoiceDetail.payment_value).toFixed(2)) === 0 ? 'amountPaid' : 'amountUnpaid').toString()}>
-                                                ${parseFloat((invoiceDetail.total_price - invoiceDetail.payment_value).toFixed(2)).toString()}
+                                        {itemTotalPrice && itemTotalPrice ?
+                                            <p className={(invoiceDetail && parseFloat((itemTotalPrice - invoiceDetail.payment_value).toFixed(2)) === 0 ? 'amountPaid' : 'amountUnpaid').toString()}>
+                                                ${parseFloat((itemTotalPrice - invoiceDetail.payment_value).toFixed(2)).toString()}
                                             </p>
                                             :
                                             "N/A"

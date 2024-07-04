@@ -286,14 +286,69 @@ export function formatResourceDate(dateString:string) {
   const month = months[date.getMonth()];
   const day = date.getDate();
 
-  let hours = date.getHours();
-  const minutes = date.getMinutes();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
+  return `${month} ${day}, ${year}`;
+}
 
-  const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+const timeOptions = [
+  { value: 1, label: '1 AM' },
+  { value: 2, label: '2 AM' },
+  { value: 3, label: '3 AM' },
+  { value: 4, label: '4 AM' },
+  { value: 5, label: '5 AM' },
+  { value: 6, label: '6 AM' },
+  { value: 7, label: '7 AM' },
+  { value: 8, label: '8 AM' },
+  { value: 9, label: '9 AM' },
+  { value: 10, label: '10 AM' },
+  { value: 11, label: '11 AM' },
+  { value: 12, label: '12 PM' },
+  { value: 13, label: '1 PM' },
+  { value: 14, label: '2 PM' },
+  { value: 15, label: '3 PM' },
+  { value: 16, label: '4 PM' },
+  { value: 17, label: '5 PM' },
+  { value: 18, label: '6 PM' },
+  { value: 19, label: '7 PM' },
+  { value: 20, label: '8 PM' },
+  { value: 21, label: '9 PM' },
+  { value: 22, label: '10 PM' },
+  { value: 23, label: '11 PM' },
+  { value: 24, label: '12 AM' }
+];
+function getTimeValue(timeString: any) {
+  const time = timeString.trim().toUpperCase();
+  const isPM = time.includes('PM');
+  const hour = parseInt(time.match(/\d+/)[0], 10);
+  if (hour === 12) {
+    return isPM ? 12 : 0;
+  } else {
+    return isPM ? hour + 12 : hour;
+  }
+}
 
-  return `${month} ${day}, ${year}, ${hours}:${formattedMinutes} ${ampm}`;
+export function findTimeGap(startTime: any, endTime: any) {
+  const startTimeValue = getTimeValue(startTime);
+  const endTimeValue = getTimeValue(endTime);
+
+  console.log('startTimeValue:', startTimeValue); // Debug statement
+  console.log('endTimeValue:', endTimeValue); // Debug statement
+
+  const startIndex = timeOptions.findIndex((option: any) => option.value === startTimeValue);
+  const endIndex = timeOptions.findIndex((option: any) => option.value === endTimeValue);
+
+  console.log('startIndex:', startIndex); // Debug statement
+  console.log('endIndex:', endIndex); // Debug statement
+
+  if (startIndex === -1 || endIndex === -1) {
+    throw new Error('Invalid start or end time value');
+  }
+
+  let gap = 0;
+  if (endIndex >= startIndex) {
+    gap = endIndex - startIndex;
+  } else {
+    gap = (endIndex + timeOptions.length) - startIndex;
+  }
+
+  return gap;
 }

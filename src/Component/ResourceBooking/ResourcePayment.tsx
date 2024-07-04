@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CardSystem from './CardSystem';
 import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { loadStripe } from '@stripe/stripe-js';
+import { findTimeGap } from '../../CommonFunction/Function';
 const stripePromise = loadStripe(
   "pk_test_51IAFe8DEVQLSHbL2XRi6OOwhx3zOpXMWhs0XpBdh99RzfPDnOSTcavjTu0g9OlPQCQLf4sTU57uCggXpsSBS7bNT00bXuG3qiy"
 );
@@ -24,8 +25,10 @@ interface tabMemberProps {
   setState: any;
   zip: string;
   setZip: any;
+  startTime: string;
+  endTime: string;
 }
-const ResourcePayment = ({ cardName, setCardName, street, setStreet, city, setCity, state, setState, zip, setZip, tabChoose, authValue, setAuthValue, resourceDetail }: tabMemberProps) => {
+const ResourcePayment = ({ cardName, startTime, endTime, setCardName, street, setStreet, city, setCity, state, setState, zip, setZip, tabChoose, authValue, setAuthValue, resourceDetail }: tabMemberProps) => {
   const [instantPay, setInstantPay] = useState(true);
 
   const authClick = () => {
@@ -46,6 +49,13 @@ const ResourcePayment = ({ cardName, setCardName, street, setStreet, city, setCi
     tabChoose("schedule", "billing")
   }
 
+
+
+ 
+
+
+
+
   return (
     <>
       <div className='resourcePay'>
@@ -56,12 +66,12 @@ const ResourcePayment = ({ cardName, setCardName, street, setStreet, city, setCi
         {instantPay ? <>
           <div className="resourcePrice">
             <div>
-              <p>Duration: 1 {resourceDetail.member_time}</p>
+              <p>Duration: {startTime ? findTimeGap(startTime, endTime) : ""} {resourceDetail.member_time}</p>
               <p>${resourceDetail.member_rate}</p>
             </div>
             <div>
               <p>Total</p>
-              <p>${resourceDetail.member_rate}</p>
+              <p>${(startTime ? findTimeGap(startTime, endTime) : 0) * parseInt(resourceDetail.member_rate)}</p>
             </div>
           </div>
           <div className="resourceInvoice mt-4">
