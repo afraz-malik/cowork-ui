@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { faArrowRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FullCalendar from '@fullcalendar/react';
@@ -10,6 +10,7 @@ import clockIcon from "../../Assets/Images/icon/clock.svg";
 import calenderBlue from "../../Assets/Images/icon/clockBlue.svg";
 import clockDark from "../../Assets/Images/icon/clockDark.svg";
 import { format, setHours, setMinutes, setSeconds, setMilliseconds } from 'date-fns';
+import { formatResourceDate } from '../../CommonFunction/Function';
 
 interface tabMemberProps {
   tabChoose: (tab: string, select: string) => void;
@@ -46,31 +47,38 @@ const ResourceSchedule = ({ setStartTime,setEndTime,setSelectedDate,startTime,en
     setSelectedDate(formattedDate);
   };
 
+  useEffect(() => {
+    const nowDate = new Date();
+    const formattedDate = format(nowDate, "yyyy-MM-dd HH:mm:ss.SSS");
+    setSelectedDate(formattedDate);
+  }, [])
+  
+
   const timeOptions = [
-    { id: 1, label: '1 AM' },
-    { id: 2, label: '2 AM' },
-    { id: 3, label: '3 AM' },
-    { id: 4, label: '4 AM' },
-    { id: 5, label: '5 AM' },
-    { id: 6, label: '6 AM' },
-    { id: 7, label: '7 AM' },
-    { id: 8, label: '8 AM' },
-    { id: 9, label: '9 AM' },
-    { id: 10, label: '10 AM' },
-    { id: 11, label: '11 AM' },
-    { id: 12, label: '12 PM' },
-    { id: 13, label: '1 PM' },
-    { id: 14, label: '2 PM' },
-    { id: 15, label: '3 PM' },
-    { id: 16, label: '4 PM' },
-    { id: 17, label: '5 PM' },
-    { id: 18, label: '6 PM' },
-    { id: 19, label: '7 PM' },
-    { id: 20, label: '8 PM' },
-    { id: 21, label: '9 PM' },
-    { id: 22, label: '10 PM' },
-    { id: 23, label: '11 PM' },
-    { id: 24, label: '12 AM' }
+    { value: 1, label: '1 AM' },
+    { value: 2, label: '2 AM' },
+    { value: 3, label: '3 AM' },
+    { value: 4, label: '4 AM' },
+    { value: 5, label: '5 AM' },
+    { value: 6, label: '6 AM' },
+    { value: 7, label: '7 AM' },
+    { value: 8, label: '8 AM' },
+    { value: 9, label: '9 AM' },
+    { value: 10, label: '10 AM' },
+    { value: 11, label: '11 AM' },
+    { value: 12, label: '12 PM' },
+    { value: 13, label: '1 PM' },
+    { value: 14, label: '2 PM' },
+    { value: 15, label: '3 PM' },
+    { value: 16, label: '4 PM' },
+    { value: 17, label: '5 PM' },
+    { value: 18, label: '6 PM' },
+    { value: 19, label: '7 PM' },
+    { value: 20, label: '8 PM' },
+    { value: 21, label: '9 PM' },
+    { value: 22, label: '10 PM' },
+    { value: 23, label: '11 PM' },
+    { value: 24, label: '12 AM' }
   ];
 
   const handleStartSelect = (eventKey: any) => {
@@ -113,7 +121,7 @@ const ResourceSchedule = ({ setStartTime,setEndTime,setSelectedDate,startTime,en
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     {timeOptions.map((option) => (
-                      <Dropdown.Item eventKey={option.label} key={option.id}>
+                      <Dropdown.Item eventKey={option.label} key={option.value}>
                         {option.label}
                       </Dropdown.Item>
                     ))}
@@ -126,7 +134,7 @@ const ResourceSchedule = ({ setStartTime,setEndTime,setSelectedDate,startTime,en
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     {timeOptions.map((option) => (
-                      <Dropdown.Item eventKey={option.label} key={option.id}>
+                      <Dropdown.Item eventKey={option.label} key={option.value}>
                         {option.label}
                       </Dropdown.Item>
                     ))}
@@ -139,7 +147,9 @@ const ResourceSchedule = ({ setStartTime,setEndTime,setSelectedDate,startTime,en
             <div className="chooseTime">
               <div>
               <img  src={calenderIcon} alt="calender" />
-                <p>{selectedDate}</p> 
+              {selectedDate.length ?  <p>{formatResourceDate(selectedDate)}</p>  
+              :  <p>Choose</p> }
+               
               </div>
               <div>
               <img  src={clockDark} alt="calender" />

@@ -15,9 +15,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { singleJwtMember } from '../../api/member';
 import { isAuthenticate } from '../../api/auth';
 import { resourceBooking, resourceInvoice } from '../../api/resource';
-import { getLastInvoice, invoiceAmountUpdate } from '../../api/invoice';
+import { getLastInvoice, invoiceAmountUpdate, invoiceUpdate } from '../../api/invoice';
 import { memberAddSpaces } from '../../api/spaces';
 import { showNotifications } from '../../CommonFunction/toaster';
+import { findTimeGap } from '../../CommonFunction/Function';
 
 interface AddResourcePaymentProps {
     handlePaymentClose: () => void;
@@ -26,16 +27,13 @@ interface AddResourcePaymentProps {
     resourceDetails?: any;
 }
 const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, resourceDetails }: AddResourcePaymentProps) => {
-    console.log('resourceDetails', resourceDetails);
-
+  
     let auth = isAuthenticate();
     const [selectedTabs, setSelectedTabs] = useState<string[]>([]);
     const [startTime, setStartTime] = useState('Choose');
     const [endTime, setEndTime] = useState('Choose');
     const [selectedDate, setSelectedDate] = useState("Choose");
     const [authValue, setAuthValue] = useState(false);
-    console.log('authValue', authValue);
-
     const [detailsTab, setDetailsTab] = useState(true);
     const [scheduleTab, setScheduleTab] = useState(false);
     const [billingTab, setBillingTab] = useState(false);
@@ -107,53 +105,48 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
         let resourceInfo = {
             id: uuidv4(),
             resource_id: resourceDetails.id,
+            amount: findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate),
             book_date: selectedDate,
             start_time: startTime,
             end_time: endTime,
             created_by: auth.user.id,
             invoice_add: authValue
         }
-        let resourceInv = {
-            id: uuidv4(),
-            invoiceId: invoiceId,
-            transaction_id: uuidv4(),
-            amount: resourceDetails.member_rate,
-            card_name: cardName,
-            street: street,
-            city: city,
-            state: state,
-            zip_code: zip,
-            created_by: auth.user.id,
-            resource_id: resourceDetails.id,
-            resource_book_id: uuidv4(),
-            status: "paid",
-        }
 
-        let invoiceInfo = {
+        let invoiceResource = {
             "id": uuidv4(),
             "spaces_id": resourceDetails.id,
             "member_id": auth.user.id,
-            "amount": resourceDetails.member_rate,
+            "amount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate),
             "renewal_date": selectedDate,
             "renewal_frequency": "resource",
             "user_email": auth.user.email
         }
-        let totalAmount = {
-            "amount": resourceDetails.member_rate,
+        let invoiceMonthly = {
+            "id": uuidv4(),
+            "spaces_id": resourceDetails.id,
+            "member_id": auth.user.id,
+            "amount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate),
+            "renewal_date": selectedDate,
+            "renewal_frequency": "monthly",
+            "user_email": auth.user.email
         }
 
+        let paymentInfo = {
+            "id": uuidv4(),
+            "invoiceId": uuidv4(),
+            "userId": auth.user.id,
+            "amount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate),
+            "paymentDate": new Date(),
+            "method": "card",
+            "paymentNote": "",
+            "status": "paid",
+            "invoiceAmount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate)
+        }
+       
+      
         if (authValue) {
-            resourceBooking(resourceInfo).then((data) => {
-                  setPaymentShow(false)
-            })
-            invoiceAmountUpdate(auth.user.id, totalAmount).then((data) => {
-                  setPaymentShow(false)
-            })
-        }
-        else {
-
-
-            memberAddSpaces(invoiceInfo).then((data) => {
+            memberAddSpaces(invoiceMonthly).then((data) => {
                 if (data.statusCode !== 200) {
                     showNotifications("error", data.message);
                 }
@@ -162,7 +155,23 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                         showNotifications("success", data.message);
                         setPaymentShow(false)
                     })
-
+                }
+            })
+        }
+        else {
+            memberAddSpaces(invoiceResource).then((data) => {
+                if (data.statusCode !== 200) {
+                    showNotifications("error", data.message);
+                }
+                else {
+                    resourceBooking(resourceInfo).then((data) => {
+                        showNotifications("success", data.message);
+                        setPaymentShow(false)
+                    })
+                    invoiceUpdate(paymentInfo).then((data) => {
+                       console.log('pay',data);
+                       
+                    })
                 }
             })
         }
@@ -247,8 +256,8 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                     <div className="paymentInfo">
                                         {detailsTab ? <ResourceDetails resourceDetail={resourceDetails} tabChoose={tabChoose} /> : ""}
                                         {scheduleTab ? <ResourceSchedule startTime={startTime} setStartTime={setStartTime} endTime={endTime} setEndTime={setEndTime} selectedDate={selectedDate} setSelectedDate={setSelectedDate} tabChoose={tabChoose} /> : ""}
-                                        {billingTab ? <ResourcePayment cardName={cardName} setCardName={setCardName} street={street} setStreet={setStreet} city={city} setCity={setCity} state={state} setState={setState} zip={zip} setZip={setZip} resourceDetail={resourceDetails} authValue={authValue} setAuthValue={setAuthValue} tabChoose={tabChoose} /> : ""}
-                                        {finishTab ? <ResourceDone resourceBooked={resourceBooked} tabChoose={tabChoose} /> : ""}
+                                        {billingTab ? <ResourcePayment  startTime={startTime} endTime={endTime}  cardName={cardName} setCardName={setCardName} street={street} setStreet={setStreet} city={city} setCity={setCity} state={state} setState={setState} zip={zip} setZip={setZip} resourceDetail={resourceDetails} authValue={authValue} setAuthValue={setAuthValue} tabChoose={tabChoose} /> : ""}
+                                        {finishTab ? <ResourceDone selectedDate={selectedDate} startTime={startTime} endTime={endTime} resourceDetail={resourceDetails} resourceBooked={resourceBooked} tabChoose={tabChoose} /> : ""}
                                     </div>
                                 </div>
                             </Col>

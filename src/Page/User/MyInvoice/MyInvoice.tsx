@@ -128,7 +128,7 @@ const MyInvoice = () => {
                                         </label></th>
                                         <th>ID <FontAwesomeIcon icon={faArrowUpLong} /></th>
                                         <th>Member <FontAwesomeIcon icon={faArrowUpLong} /></th>
-                                        <th>Assignment <FontAwesomeIcon icon={faArrowUpLong} /></th>
+                                        <th>items <FontAwesomeIcon icon={faArrowUpLong} /></th>
                                         <th>Date <FontAwesomeIcon icon={faArrowUpLong} /></th>
                                         <th>Status <FontAwesomeIcon icon={faArrowUpLong} /></th>
                                         <th>Amount <FontAwesomeIcon icon={faArrowUpLong} /></th>

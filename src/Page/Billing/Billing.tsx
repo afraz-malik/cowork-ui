@@ -185,11 +185,14 @@ const Billing = () => {
                                             }
                                             {invoice.spaces_name ? invoice.spaces_name : "N/A"}</td>
                                         <td>{moment(invoice.created_at).format("MMMM DD, YYYY")}</td>
+                                        {invoice.renewal_frequency === "resource" ? <td className='status'>
+                                            <span className='paid'>Paid</span>
+                                        </td> :
                                         <td className='status'>
                                             {invoice.payment_status === "paid" ? <span className='paid'>Paid</span>
                                                 : invoice.payment_status === "void" ? <span className='unpaid'>Void</span>
                                                     : <span className='unpaid'>Unpaid</span>}
-                                        </td>
+                                        </td>}
                                         {invoice.renewal_frequency === "resource" ? <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
                                         : <td>{invoice.total_amount ? <>${invoice.total_amount}</> : "N/A"}</td>}
                                         <td className='billingAction'>
