@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import stepCheck from "../../Assets/Images/icon/stepCheck.png";
-import stepDot from "../../Assets/Images/icon/stepDot.png";
-import stepBlank from "../../Assets/Images/icon/stepBlank.png";
+import stepCheck from "../../Assets/Images/icon/stepCheck.svg";
+import stepDot from "../../Assets/Images/icon/stepDot.svg";
+import stepBlank from "../../Assets/Images/icon/stepBlank.svg";
 import MemberPanel from './MemberPanel';
 import PasswordPanel from './PasswordPanel';
 import Billing from './Billing';

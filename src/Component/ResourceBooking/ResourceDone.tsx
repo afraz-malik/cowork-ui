@@ -3,7 +3,7 @@ import checkCircle from "../../Assets/Images/icon/check-circle.svg"
 import calenderIcon from "../../Assets/Images/icon/calendar.svg";
 import clockDark from "../../Assets/Images/icon/clockDark.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -24,7 +24,7 @@ const ResourceDone = ({ tabChoose ,resourceBooked}: tabMemberProps) => {
       <div className="paymentFinish">
         <div className="paymentHeading">
           <img src={checkCircle} alt="checkCircle" />
-          <p>Booking Confirmed!</p>
+          <p className='mt-3'>Booking Confirmed!</p>
         </div>
         <div className="resourcePayImg">
           <div className='imgLeft'>
@@ -34,32 +34,32 @@ const ResourceDone = ({ tabChoose ,resourceBooked}: tabMemberProps) => {
           <div className="chooseTime">
             <div>
               <img src={calenderIcon} alt="calender" />
-              <p>asas</p>
+              <p className='mb-0 mt-2'>asas</p>
             </div>
             <div>
               <img src={clockDark} alt="calender" />
-              <p>2 AM - 15 PM</p>
+              <p className='mb-0 mt-2'>2 AM - 15 PM</p>
             </div>
           </div>
         </div>
         <div className="payResourceInfo">
           <div>
             <h6>Capacity</h6>
-            <p>8 occupants</p>
+            <p className='mb-0 mt-3'>8 occupants</p>
           </div>
           <div>
             <h6>Capacity</h6>
-            <p>8 occupants</p>
+            <p className='mb-0 mt-3'>8 occupants</p>
           </div>
           <div>
             <h6>Capacity</h6>
-            <p>8 occupants</p>
+            <p className='mb-0 mt-3'>8 occupants</p>
           </div>
         </div>
       </div>
       <div className="resourcesBtn">
-        <button className='cancel' onClick={backPay}>Cancel</button>
-        <button className='continue' onClick={resourceBooked}>Continue <FontAwesomeIcon icon={faArrowRight} /></button>
+        <button className='cancel' onClick={backPay}><FontAwesomeIcon className='mr-2' icon={faArrowLeft} /> Back</button>
+        <button className='continue' onClick={resourceBooked}>Done</button>
       </div>
     </>
   )

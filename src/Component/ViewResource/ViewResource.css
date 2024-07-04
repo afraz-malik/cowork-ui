@@ -167,7 +167,7 @@
 .bookingPerson div p {
     margin-bottom: 0px;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 24px;
     text-align: left;
     color: rgba(16, 24, 40, 1);
@@ -184,7 +184,7 @@
 
 .bookingPerson div span {
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 22px;
     text-align: left;
     color: rgba(52, 64, 84, 1);
@@ -211,7 +211,7 @@
     background-color: #fff;
     display: flex;
     overflow: hidden;
-    padding: 40px 32px;
+    padding-top: 32px;
     border-radius: 16px;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
@@ -221,7 +221,7 @@
 
 .tabResourcePanel .tabHeading {
     float: left;
-    width: 30%;
+    width: 22%;
     border-right: 1px solid rgba(234, 236, 240, 1);
 }
 
@@ -252,6 +252,10 @@
     background-color: #fff;
 }
 
+.tabResourcePanel .arrowLine .checkCircle.done:after {
+    height: 0;
+}
+
 .tabResourcePanel .arrowLine .checkCircle::after {
     width: 2px;
     height: 42px;
@@ -269,24 +273,24 @@
     -o-border-radius: 20px;
 }
 
-.tabResourcePanel .selected .arrowLine .checkCircle::after {
+.tabResourcePanel .arrowLine .checked::after {
     background-color: rgba(99, 102, 241, 1);
-}
-
-.tabResourcePanel .arrowLine .checkCircle:last-child::after {
-    background-color: rgb(255, 255, 255);
 }
 
 .tabResourcePanel .arrowHeading h6 {
     margin-top: 6px;
     font-family: "MyCustomFont";
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 16px;
     letter-spacing: 0em;
     text-align: left;
     color: rgba(52, 64, 84, 1);
     margin-bottom: 4px;
+}
+
+.tabResourcePanel .arrowHeading p.selected {
+    color: rgba(99, 102, 241, 1);
 }
 
 .tabResourcePanel .arrowHeading p {
@@ -296,7 +300,7 @@
     line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
-    color: rgba(71, 84, 103, 1);
+    color: rgba(71, 84, 103, 0.7);
 }
 
 .tabResourcePanel .selected .arrowHeading p,
@@ -315,7 +319,7 @@
 
 /* tab panel */
 .paymentInfo {
-    margin-left: 30px;
+    margin-left: 50px;
     width: 100%;
 }
 
@@ -331,14 +335,14 @@
 
 .paymentDetails .detailsHeading {
     border-bottom: 1px solid rgba(234, 236, 240, 1);
-    padding-bottom: 15px;
+    padding-bottom: 20px;
 }
 
 .detailsHeading h6 {
     margin-top: 6px;
     font-family: "MyCustomFont";
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 500;
     line-height: 16px;
     letter-spacing: 0em;
     text-align: left;
@@ -353,6 +357,7 @@
     display: flex;
     /* align-items: center; */
     justify-content: space-between;
+    margin-top: 32px;
 }
 
 .resourceShow .leftResource {
@@ -406,7 +411,7 @@
 }
 
 .resourcesBtn {
-    margin-top: 20px;
+    margin-top: 32px;
     display: flex;
     justify-content: end;
 }
@@ -449,10 +454,25 @@
     -o-border-radius: 12px;
 }
 
+.paymentDetails .vertical-bar {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.paymentDetails .timeChoose {
+    border-top: 1px solid var(--Brand-Divider, #EAECF0);
+}
+
+.vertical-bar {
+    background: var(--Brand-Divider, #EAECF0);
+    width: 1px;
+}
+
 .resourceSchedule {
     display: flex;
     /* align-items: center; */
     justify-content: space-between;
+    margin-top: 32px;
 }
 
 .resourceSchedule .leftSchedule,
@@ -480,10 +500,11 @@
     border: none !important;
     background-color: #fff !important;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 500;
     line-height: 24px;
     text-align: center;
-    color: rgba(52, 64, 84, 1);
+    color: var(--Gray-400, #98A2B3);
+    font-style: normal;
 }
 
 .timeDropdown .dropdown button .filterBtn svg {
@@ -493,6 +514,7 @@
 }
 
 .timeDropdown span {
+    color: #667085;
     margin: 0px 15px;
 }
 
@@ -517,12 +539,19 @@
     border-right: 1px solid rgba(234, 236, 240, 1);
 }
 
-.chooseTime div p,
-.timeChoose h6 {
+.chooseTime div p {
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
     color: rgba(52, 64, 84, 1);
+}
+
+.timeChoose h6 {
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 171.429% */
 }
 
 .resourcePrice {
@@ -539,7 +568,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 0px;
+    padding: 24px 0px;
 }
 
 .resourcePrice div p {
@@ -581,7 +610,7 @@
 
 .resourcePayment h6 {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 26px;
     text-align: left;
     color: rgba(16, 24, 40, 1);
@@ -641,7 +670,7 @@
 
 .payResourceInfo div h6 {
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 24px;
     text-align: left;
     color: rgba(71, 84, 103, 1);
@@ -697,19 +726,30 @@
     -o-border-radius: 12px;
 }
 
+.resourcePayment .memberInput label,
+.DemoWrapper .cardNumber label,
 .DemoWrapper .resourceInput label{
     font-family: 'MyCustomFont';
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #1F2937;
-  margin-bottom: 7px;
-  margin-top: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #1F2937;
+    margin-bottom: 7px;
+    margin-top: 15px;
 }
 
-.DemoWrapper .resourceInput input{
+.resourcePayment .memberInput input::placeholder,
+.DemoWrapper input::placeholder {
+    color: var(--Gray-400, #98A2B3);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+.DemoWrapper .resourceInput input {
     width: 100%;
     border: 1px solid #D0D5DD;
     color: #171A20;

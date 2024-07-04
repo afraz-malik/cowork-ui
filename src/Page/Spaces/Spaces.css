@@ -301,9 +301,10 @@
 
 .spacesDetailsBox {
     background-color: #fff;
+    border-radius: 12px;
 }
 
-.spacesDetailsBox .topLine .editBtn button {
+.spacesDetailsBox .editBtn button {
     border: 1px solid rgba(99, 102, 241, 1) !important;
     box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05) !important;
     font-family: "MyCustomFont";
@@ -315,7 +316,7 @@
     background-color: #fff !important;
 }
 
-.spacesDetailsBox .topLine .editBtn button img {
+.spacesDetailsBox .editBtn button img {
     margin-right: 7px;
 }
 

@@ -91,11 +91,11 @@ const ViewResource = () => {
                                 </div>
                                 <div className="resourceMiniBox">
                                     <div className="resourceRate">
-                                        <h6>Rate (Members)</h6>
+                                        <h6>Rate <span style={{fontWeight: '400'}}>(Members)</span></h6>
                                         <p className='mb-0'>{resourceDetails.member_rate}</p>
                                     </div>
                                     <div className="resourceRate">
-                                        <h6>Rate (Guests)</h6>
+                                        <h6>Rate <span style={{fontWeight: '400'}}>(Guests)</span></h6>
                                         <p className='mb-0'>{resourceDetails.public_rate}</p>
                                     </div>
                                 </div>
@@ -103,8 +103,10 @@ const ViewResource = () => {
 
                             <div className="resourceBooking mt-3">
                                 <div className="bookingHeading">
-                                    <h6><img src={calenderIcon} alt="edit" /> Upcoming Booking</h6>
-                                    <button onClick={handlePaymentShow}><FontAwesomeIcon icon={faPlus} /> New Booking</button>
+                                    <h6><img src={calenderIcon} alt="edit" /> Upcoming Bookings</h6>
+                                    <div className='editBtn'>
+                                        <button onClick={handlePaymentShow}><FontAwesomeIcon icon={faPlus} /> New Booking</button>
+                                    </div>
                                 </div>
                                 {bookList && bookList.map((resource) => <div className="bookingPerson">
                                     <img src={`${API}/${resource.creator_image}`} alt="edit" />
