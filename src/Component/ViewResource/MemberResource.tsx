@@ -88,7 +88,7 @@ const MemberResource = () => {
                                     <img src={`${API}/${resource.resource_image}`} alt="edit" />
                                     <div>
                                         <p>{resource.resource_name}</p>
-                                        <span>{formatResourceDate(resource.book_date)}</span>
+                                        <span>{formatResourceDate(resource.book_date)}, {resource.start_time} - {resource.end_time}</span>
                                     </div>
                                     <button><FontAwesomeIcon icon={faEye} /></button>
                                 </div>)}

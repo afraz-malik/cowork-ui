@@ -28,11 +28,11 @@ const ResourceDetails = ({ tabChoose, resourceDetail }: tabMemberProps) => {
             <div>
               <h6>Type</h6>
               <div className='resourceType'>
-                                            {resourceDetail.type === "meeting" ? <span className='meeting'>Meeting Space</span> : ""}
-                                            {resourceDetail.type === "equipment" ? <span className='equipment'>Equipment</span> : ""}
-                                            {resourceDetail.type === "workspace" ? <span className='workspace'>Workspace</span> : ""}
-                                            {resourceDetail.type === "other" ? <span className='other'>Other</span> : ""}
-                                        </div>
+                {resourceDetail.type === "meeting" ? <span className='meeting'>Meeting Space</span> : ""}
+                {resourceDetail.type === "equipment" ? <span className='equipment'>Equipment</span> : ""}
+                {resourceDetail.type === "workspace" ? <span className='workspace'>Workspace</span> : ""}
+                {resourceDetail.type === "other" ? <span className='other'>Other</span> : ""}
+              </div>
             </div>
             <div>
               <h6>Rate</h6>
