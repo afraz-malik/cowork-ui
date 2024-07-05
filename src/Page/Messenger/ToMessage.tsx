@@ -1,5 +1,5 @@
 import avatar from "../../Assets/Images/icon/blank-profile.jpg";
-import onlineShow from "../../Assets/Images/icon/online.png";
+import onlineShow from "../../Assets/Images/icon/online.svg";
 import { CHAT_FILE, CHAT_TEXT } from "../../CommonFunction/constant";
 import { convertTimeToReadable, fromNow } from "../../CommonFunction/Function";
 import { DESKIE_API as API } from '../../config';

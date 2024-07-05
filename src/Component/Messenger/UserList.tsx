@@ -2,7 +2,7 @@ import * as React from "react";
 import avatar from "../../Assets/Images/icon/blank-profile.jpg";
 import avatar1 from "../../Assets/Images/icon/Avatar.png";
 import avatar2 from "../../Assets/Images/icon/Avatar.png";
-import cuate from "../../Assets/Images/background/cuate.png";
+import cuate from "../../Assets/Images/background/cuate.svg";
 import { USER } from "../../CommonFunction/types";
 import { DESKIE_API as API } from '../../config';
 

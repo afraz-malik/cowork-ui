@@ -74,7 +74,7 @@ const Header = ({ onValueChange }: any) => {
                     {urlParams === "tickets" ? <p>Ticket</p> : ""}
                     {urlParams === "task" ? <p>Tasks</p> : ""}
                     {urlParams === "dashboard" ? <p>Dashboard</p> : ""}
-                    {urlParams === "messenger" ? <p>Messenger</p> : ""}
+                    {urlParams === "messenger" ? <p>Messages</p> : ""}
                     {urlParams === "feed" ? <p>Feed</p> : ""}
                     {urlParams === "settings" ? <p>Settings</p> : ""}
                     {urlParams === "my-home" ? <p>Home</p> : ""}
