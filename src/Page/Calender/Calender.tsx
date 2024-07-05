@@ -12,7 +12,7 @@ import MonthView from './MonthView';
 import { getTaskList } from '../../api/task';
 import moment from 'moment';
 import { DESKIE_API as API } from '../../config';
-import memberBlank from "../../Assets/Images/icon/memberAvatar.png";
+import memberBlank from "../../Assets/Images/icon/memberAvatar.svg";
 import { getTourList } from '../../api/tour';
 interface Task {
     title: string;
@@ -80,35 +80,20 @@ const Calender = () => {
     return (
         <>
             <Layout>
-                <div className='mainContent'>
-                    <div className='' style={{ position: 'relative', display: 'flex', background: 'white', height: 'calc(100vh - 139px)' }}>
+                <div className='mainContent' id="calendar">
+                    <div className='calendar' style={{ position: 'relative', display: 'flex', background: 'white', height: 'calc(100vh - 139px)' }}>
                         <div className='eventList'>
-                            <div className="addEvent">
+                            {/* <div className="addEvent">
                                 <button> <FontAwesomeIcon icon={faPlus} /> Add Event</button>
-                            </div>
-                            <div className="monthView">
+                            </div> */}
+                            <div className="monthView" style={{height: 'inherit'}}>
                                 <MonthView />
                             </div>
-                            <div className="eventUpcoming">
-                                <div className="eventHeading">
-                                    <p>Upcoming Events</p>
-                                    <button>See All</button>
-                                </div>
-                                {upcomingTasks && upcomingTasks.map((event: any) => <div className="eventDetails">
-                                    {event.task_image ? <img src={`${API}/${event.task_image}`} alt="event" />
-                                        : <img src={memberBlank} alt="event" />}
-                                    <div className='eventInfo'>
-                                        <p>{event.title}</p>
-                                        <div className='eventCategory'>
-                                            <button>Task</button>
-                                            <span> <FontAwesomeIcon icon={faCircle} /> {moment(event.dueDate).format('MMM D, YYYY')}</span>
-                                        </div>
-                                    </div>
-                                </div>)}
-                                <div className="eventFilters">
+                            <div className="eventUpcoming pb-0">
+                                <div className="eventFilters my-0">
                                     <h1>Filters</h1>
-                                    <div className="filterCheck">
-                                        <ul>
+                                    <div className="filterCheck mt-3">
+                                        <ul className='mb-0'>
                                             <li>
                                                 <div> <span className='filterColor filterBlack'></span> <p>Tours</p></div>
                                                 <label className="tableCheckBox filterCheckBox">
@@ -144,6 +129,25 @@ const Calender = () => {
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
+                            <div className='p-4'>
+                                <div className="eventHeading pb-3">
+                                    <p>Upcoming Events</p>
+                                    <button>See All</button>
+                                </div>
+                                {upcomingTasks && upcomingTasks.map((event: any) => <div className="eventDetails bg-white">
+                                    {event.task_image ? <img src={`${API}/${event.task_image}`} alt="event" />
+                                        : <img className='default' src={memberBlank} alt="event" />}
+                                    <div className='eventInfo w-100'>
+                                        <div className='eventCategory justify-content-between'>
+                                            <p>{event.title}</p>
+                                            <button>Task</button>
+                                        </div>
+                                        <div className='eventCategory'>
+                                            <span>{moment(event.dueDate).format('MMM D, YYYY')}</span>
+                                        </div>
+                                    </div>
+                                </div>)}
                             </div>
                         </div>
                         <div className="fullCalenderBox" style={{ width: '80%' }}>

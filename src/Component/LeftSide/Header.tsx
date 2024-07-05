@@ -70,6 +70,7 @@ const Header = ({ onValueChange }: any) => {
                     <button className="sb-button" onClick={handleClick}><FontAwesomeIcon icon={faBars} /></button>
                     {urlParams === "member" ? <p>Members</p> : ""}
                     {pathArray.includes("assets") ? <p>Assets</p> : ""}
+                    {pathArray.includes("calender") ? <p>Calendar</p> : ""}
                     {urlParams === "files" ? <p>Files</p> : ""}
                     {urlParams === "tickets" ? <p>Ticket</p> : ""}
                     {urlParams === "task" ? <p>Tasks</p> : ""}

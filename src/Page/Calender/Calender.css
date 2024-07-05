@@ -1,12 +1,23 @@
 .eventList {
   width: 30%;
   background-color: rgb(255, 255, 255);
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 .addEvent {
   width: 100%;
   border-bottom: 1px solid rgba(234, 236, 240, 1);
   padding: 23px;
+}
+
+#calendar .calendar {
+  box-shadow: 0px 23px 44px 0px rgba(176, 183, 195, 0.14);
+  border-radius: 12px;
+}
+
+#calendar .fullCalenderBox {
+  border-left: 1px solid rgba(234, 236, 240, 1);
 }
 
 .addEvent button {
@@ -37,12 +48,15 @@
 
 .eventUpcoming {
   padding: 24px;
+  border-top: 1px solid rgba(234, 236, 240, 1);
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
 }
 
 .eventHeading {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
 }
 
 .eventHeading p {
@@ -71,6 +85,7 @@
 .eventDetails {
   margin-top: 15px;
   background: rgba(244, 247, 248, 1);
+  border: 1px solid #EAECF0;
   padding: 16px;
   display: flex;
   align-items: center;
@@ -161,6 +176,11 @@
   letter-spacing: 0em;
   text-align: left;
   color: rgba(29, 41, 57, 1);
+}
+
+#calendar .filterCheck {
+  padding: 20px 0;
+  border-top: 1px solid rgba(234, 236, 240, 1);
 }
 
 .filterCheck ul {
@@ -343,9 +363,9 @@
   border: none;
 }
 
+.fullCalenderBox  .fc .fc-toolbar.fc-header-toolbar,
 .monthView  .fc .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0em;
-  border-left: 1px solid rgba(234, 236, 240, 1);
 }
 
 .fullCalenderBox .fc-col-header thead {
