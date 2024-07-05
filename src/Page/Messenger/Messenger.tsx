@@ -3,11 +3,11 @@ import React, { useState, useEffect, useRef, useContext, useCallback } from 'rea
 import "./Messenger.css";
 import Layout from '../../Component/Layout/Layout';
 import avatar from "../../Assets/Images/icon/blank-profile.jpg";
-import assign from "../../Assets/Images/icon/memberAvatar.png";
+import assign from "../../Assets/Images/icon/memberAvatar.svg";
 import emoji from "../../Assets/Images/icon/face-smile.png";
-import fileShare from "../../Assets/Images/icon/link-01.png";
-import onlineShow from "../../Assets/Images/icon/online.png";
-import more from "../../Assets/Images/icon/more.png"
+import fileShare from "../../Assets/Images/icon/attachment.svg";
+import onlineShow from "../../Assets/Images/icon/online.svg";
+import more from "../../Assets/Images/icon/more.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
@@ -289,7 +289,7 @@ const Messenger = () => {
                         <div className="contact">
                             {showDropdown ? <div className="contact1 chatter-select" onClick={() => handleFromSet(null)}>
                                 <div className="avatar-parent">
-                                <img className="" alt="" src={assign} />
+                                <img className="default" alt="" src={assign} />
                                         <div className="bogdan-krivenchenko">New Message</div>
                                 </div>
                             </div>: ""}
@@ -324,11 +324,11 @@ const Messenger = () => {
                         </div>
                     </div>
                     <div className="chat1">
-                        <div className="user-header dropdown">
+                        <div className="user-header dropdown align-content-center">
                             {showDropdown ?
                                 <div className="dropdown-content" ref={dropdownContent}>
                                     {dropdownUsers.map((e, i) => ( // dropdown
-                                        <div className='item' onClick={() => handleToUser(e)}>
+                                        <div className='item w-100' onClick={() => handleToUser(e)}>
                                             {e.avatar ? <img className='avatar-icon1' src={`${API}/${e.avatar}`} alt='' width={"48px"} />
                                                 : <img className='avatar-icon1' src={avatar} alt='' width={"48px"} />
                                             }
@@ -409,7 +409,7 @@ const Messenger = () => {
                                                     value={input}
                                                     onKeyDown={handleKeyPress}
                                                     onChange={(e) => setInput(e.target.value)}
-                                                    placeholder='Send a message...' />
+                                                    placeholder='Write your message' />
                                             </div>
                                             <FontAwesomeIcon className="info-circle-icon" onClick={messageStart} icon={faPaperPlane} />
                                             <img
