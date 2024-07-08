@@ -105,7 +105,8 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
       "amount": discountAmount ? discountAmount : amount,
       "renewal_date": renewalDate,
       "renewal_frequency": frequency,
-      "user_email": userInfo.user.email
+      "user_email": userInfo.user.email,
+       "invoice_type": "invoice"
     }
 
     memberAddSpaces(invoiceInfo).then((data) => {

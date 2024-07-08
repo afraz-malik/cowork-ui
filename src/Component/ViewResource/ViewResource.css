@@ -516,6 +516,10 @@
 height: 220px;
 overflow-y: auto;
 }
+.timeDropdown .dropdown-menu .disabled{
+    background-color: rgba(99, 102, 241, 1) !important;
+    color: white !important;
+}
 .timeDropdown span {
     color: #667085;
     margin: 0px 15px;

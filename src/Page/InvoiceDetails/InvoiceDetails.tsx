@@ -105,7 +105,6 @@ const InvoiceDetails = () => {
                     setCount(count + 1)
                     showNotifications('success', data.message)
                 }
-
             })
         }
 
@@ -209,6 +208,8 @@ const InvoiceDetails = () => {
                                 </div>
                                 <div className="itemTotal">
                                     <p className='d-flex'>Amount Owed <span>
+                                        {invoiceDetail && invoiceDetail.renewal_frequency === "resource" ? <p className='amountPaid'>$0</p> 
+                                        : <>
                                         {itemTotalPrice && itemTotalPrice ?
                                             <p className={(invoiceDetail && parseFloat((itemTotalPrice - invoiceDetail.payment_value).toFixed(2)) === 0 ? 'amountPaid' : 'amountUnpaid').toString()}>
                                                 ${parseFloat((itemTotalPrice - invoiceDetail.payment_value).toFixed(2)).toString()}
@@ -216,6 +217,7 @@ const InvoiceDetails = () => {
                                             :
                                             "N/A"
                                         }
+                                        </> }
                                     </span></p>
                                 </div>
                             </div>
