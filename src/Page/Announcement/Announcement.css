@@ -13,11 +13,13 @@
 }
 
 .postingAs a {
-    margin-top: 8px;
+    /* margin-top: 8px; */
     font-family: "MyCustomFont";
     font-size: 14px;
     font-weight: 800;
     line-height: 24px;
+    padding: 10px 10px;
+    border-radius: 4px;
     text-align: left;
     color: rgba(52, 64, 84, 1);
 }
@@ -39,14 +41,14 @@
 
 .trashPost .postDelete {
     border: none !important;
-    padding: 20px 16px !important;
+    padding: 20px 0px !important;
     box-shadow: 0px 12px 30px 0px rgba(122, 122, 122, 0.14) !important;
 }
 
 .trashPost .postDelete a img {
     width: 20px;
     height: 20px;
-    margin-right: 4px;
+    margin-right: 8px;
 }
 
 .trashPost .postDelete a {
@@ -213,6 +215,7 @@
     position: relative;
     line-height: 24px;
     font-weight: 600;
+    font-size: 14px;
 }
 
 .content1,
@@ -263,6 +266,7 @@
     line-height: 22px;
     font-weight: 500;
     color: var(--gray-400);
+    font-size: 12px;
 }
 
 .beehive-coworking-parent,
@@ -340,6 +344,7 @@
     position: relative;
     line-height: 24px;
     font-weight: 500;
+    font-size: 12px;
 }
 
 .feedback {
@@ -794,7 +799,7 @@
     height: 44px;
     font-family: 'MyCustomFont';
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 500;
     line-height: 16px;
     letter-spacing: 0em;
     padding: 12px 16px !important;
@@ -911,7 +916,7 @@
     border: none;
     font-family: "MyCustomFont";
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 24px;
     text-align: center;
     color: rgba(152, 162, 179, 1);

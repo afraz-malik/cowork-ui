@@ -554,8 +554,8 @@ const Announcement = () => {
                             {comment.comment_image ? <img src={`${API}/${comment.comment_image}`} width="150px" height="120px" style={{ borderRadius: "25px" }} alt="comment" /> : ""}
                           </div>
                           <div className="newComment">
-                            <button onClick={() => setReplyAdd(comment.id)}>Reply</button>
-                            <button onClick={comment.user_has_liked === null ? () => commentLikes(comment.id) : () => updateCommentLikes(comment.id, comment.user_has_liked)}>
+                            <button className='px-3' onClick={() => setReplyAdd(comment.id)}>Reply</button>
+                            <button style={{paddingLeft: '16px', paddingRight: '0'}} onClick={comment.user_has_liked === null ? () => commentLikes(comment.id) : () => updateCommentLikes(comment.id, comment.user_has_liked)}>
                               {comment.user_has_liked ? <img className="heart-icon" alt="" src={clickLove} />
                                 : <img className="heart-icon" alt="" src={blankLove} />} <br />
                               {comment.likes_count}
@@ -576,8 +576,8 @@ const Announcement = () => {
                               {reply.comment_image ? <img src={`${API}/${reply.comment_image}`} width="150px" height="120px" style={{ borderRadius: "25px" }} alt="comment" /> : ""}
                             </div>
                             <div className="newComment">
-                              <button onClick={() => setReplyCommentAdd(reply.id)}>Reply</button>
-                              <button onClick={reply.user_has_liked === null ? () => commentReplyLikes(reply.id) : () => updateCommentReplyLikes(reply.id, reply.user_has_liked)}>
+                              <button className='px-3' onClick={() => setReplyCommentAdd(reply.id)}>Reply</button>
+                              <button style={{paddingLeft: '16px', paddingRight: '0'}} onClick={reply.user_has_liked === null ? () => commentReplyLikes(reply.id) : () => updateCommentReplyLikes(reply.id, reply.user_has_liked)}>
                                 {reply.user_has_liked ? <img className="heart-icon" alt="" src={clickLove} />
                                   : <img className="heart-icon" alt="" src={blankLove} />} <br />
                                 {reply.likes_count}

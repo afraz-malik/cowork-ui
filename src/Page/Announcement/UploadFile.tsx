@@ -49,7 +49,7 @@ const UploadFile = ({ id,setFile, uploadedFiles, setUploadedFiles, uploadShow, s
                     <button className='closeModal' onClick={handleUploadClose}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
-                    <Container>
+                    <Container className='px-0'>
                         <Row>
                             <Col md={12}>
                                 <div className='addMemberHeading'>
