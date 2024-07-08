@@ -6,6 +6,7 @@ import circle from "../../Assets/Images/icon/info-circle.png";
 import avatar from "../../Assets/Images/icon/Avatar.png";
 import arrow from "../../Assets/Images/icon/downIcon.svg";
 import userIcon from "../../Assets/Images/icon/assign.svg";
+import invoiceDetail from "../../Assets/Images/icon/invoice-detail.svg";
 import logout from "../../Assets/Images/icon/logout.png";
 import { Dropdown } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -71,6 +72,9 @@ const Header = ({ onValueChange }: any) => {
                     {urlParams === "member" ? <p>Members</p> : ""}
                     {pathArray.includes("assets") ? <p>Assets</p> : ""}
                     {pathArray.includes("calender") ? <p>Calendar</p> : ""}
+                    {pathArray.includes("billing") ? <p>Billing</p> : ""}
+                    {pathArray.includes("invoice-details") ? <p><img className='mb-1' style={{marginRight: '16px'}} src={invoiceDetail} alt="invoiceDetail" /> Billing</p> : ""}
+                    {urlParams === "my-invoice" ? <p>Billing</p> : ""}
                     {urlParams === "files" ? <p>Files</p> : ""}
                     {urlParams === "tickets" ? <p>Ticket</p> : ""}
                     {urlParams === "task" ? <p>Tasks</p> : ""}

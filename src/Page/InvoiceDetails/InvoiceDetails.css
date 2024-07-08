@@ -15,7 +15,7 @@
 
 .invoiceInformation {
     display: flex;
-    margin-top: 25px;
+    margin-top: 12px;
 }
 
 .invoiceTop,
@@ -25,6 +25,11 @@
     align-items: center;
     padding: 26px 24px;
     border-bottom: 1px solid rgba(234, 236, 240, 1)
+}
+
+#invoice-detail .invoiceInfo .invoiceId {
+    border-right: 1px solid rgba(234, 236, 240, 1);
+    padding-left: 40px;
 }
 
 .invoiceInfo .invoiceId p {
@@ -76,6 +81,7 @@
 
 .invoiceTop .invoiceDate p span {
     font-weight: 400;
+    color: rgba(102, 112, 133, .7);
 }
 
 .invoiceItem {
@@ -355,6 +361,10 @@
 
 .invoiceDropdown .dropdown .dropdown-menu {
     min-width: 250px;
+    border-radius: 12px;
+    border: none;
+    background: var(--Base-White, #FFF);
+    box-shadow: 0px 0px 30px 0px rgba(122, 122, 122, 0.14);
 }
 
 .invoicePoint .list-ic a {
@@ -363,7 +373,7 @@
     padding-left: 15px;
     font-family: "MyCustomFont";
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 24px;
     text-align: left;
     display: flex;

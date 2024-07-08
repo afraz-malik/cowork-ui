@@ -390,10 +390,23 @@
   display: none;
 }
 
+.monthView .fc .fc-scroller {
+  overflow-y: hidden !important;
+}
+
+.monthView .fc .fc-toolbar-title {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.monthView .fc .fc-view-harness-active {
+  min-height: 270px;
+}
+
 .monthView .fc .fc-scroller-liquid-absolute {
   inset: 0px;
   position: absolute;
-  /* overflow: hidden !important; */
+  overflow: hidden !important;
 }
 
 .monthView .fc-theme-standard td,

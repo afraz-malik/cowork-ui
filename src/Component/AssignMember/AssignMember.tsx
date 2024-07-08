@@ -9,7 +9,7 @@ import { DESKIE_API as API } from '../../config';
 import { getMemberList } from '../../api/member';
 import { showNotifications } from '../../CommonFunction/toaster';
 import DatePicker from 'react-datepicker';
-import calenderIcon from "../../Assets/Images/icon/calendar.png";
+import calenderIcon from "../../Assets/Images/icon/calendar.svg";
 import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceIcon from "../../Assets/Images/icon/spaceAvatar.png";
 import { v4 as uuidv4 } from 'uuid';

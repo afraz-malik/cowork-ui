@@ -3,10 +3,10 @@ import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap'
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronLeft, faChevronRight, faXmark } from '@fortawesome/free-solid-svg-icons';
-import paymentIcon from "../../Assets/Images/icon/paymentIcon.png";
+import paymentIcon from "../../Assets/Images/icon/paymentIcon.svg";
 import memberIcon from "../../Assets/Images/icon/blank-profile.jpg";
 import DatePicker from 'react-datepicker';
-import calenderIcon from "../../Assets/Images/icon/calendar.png";
+import calenderIcon from "../../Assets/Images/icon/calendar.svg";
 import send from "../../Assets/Images/icon/send.png"
 import { invoiceUpdate, updatePayment } from '../../api/invoice';
 import { singleJwtMember } from '../../api/member';
@@ -153,7 +153,7 @@ const RecordPayment = ({ show, setShow, handleClose, invoiceId, invoiceDetail }:
                     <button className='closeModal' onClick={handleClose}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
-                    <Container>
+                    <Container className='px-0'>
                         <Row>
                             <Col md={12}>
                                 <div className='addMemberHeading'>

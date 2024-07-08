@@ -6,7 +6,7 @@ import { singleMember, memberSpaces, memberInvoice } from '../../api/member';
 import { DESKIE_API as API } from '../../config';
 import memberBlank from "../../Assets/Images/icon/memberAvatar.png";
 import spacesBlank from "../../Assets/Images/icon/spaceAvatar.png";
-import more from "../../Assets/Images/icon/dots-vertical.png";
+import more from "../../Assets/Images/icon/dots-vertical.svg";
 import { Link, useParams } from 'react-router-dom';
 import Layout from '../Layout/Layout';
 import penIcon from "../../Assets/Images/icon/pencil-01.svg";
