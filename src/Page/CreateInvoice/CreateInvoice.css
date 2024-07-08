@@ -42,7 +42,7 @@
 
 .invoiceInput label {
     font-family: 'MyCustomFont';
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 24px;
     letter-spacing: 0em;
@@ -94,6 +94,9 @@
     text-align: center;
     color: #fff;
     border-radius: 12px;
+    margin-top: 0;
+    margin-right: 24px;
+    margin-bottom: 24px;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     -ms-border-radius: 12px;
@@ -160,7 +163,7 @@
 
 .calenderInput label {
     font-family: 'MyCustomFont';
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 24px;
     letter-spacing: 0em;
@@ -297,4 +300,35 @@
 }
 .react-datepicker-popper .react-datepicker__triangle{
     display: none !important;
+}
+
+#new-invoice .topLine {
+    height: 69px;
+}
+
+#new-invoice .memberInput label {
+    font-size: 14px;
+}
+
+#new-invoice .place {
+    color: var(--Gray-400, #98A2B3);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+#new-invoice .assignName input,
+#new-invoice .calenderInput,
+#new-invoice .generateInvoice .memberInput .dropdown {
+    width: 200px;
+}
+
+#new-invoice textarea::placeholder {
+    color: var(--Gray-400, #98A2B3);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    border-radius: 8px;
 }

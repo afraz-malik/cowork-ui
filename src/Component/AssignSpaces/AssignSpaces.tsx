@@ -6,7 +6,7 @@ import assignmentIcon from "../../Assets/Images/icon/assignmentIcon.png";
 import { v4 as uuidv4 } from 'uuid';
 import { getSpacesList, memberAddSpaces } from '../../api/spaces';
 import { DESKIE_API as API } from '../../config';
-import calenderIcon from "../../Assets/Images/icon/calendar.png";
+import calenderIcon from "../../Assets/Images/icon/calendar.svg";
 import { showNotifications } from '../../CommonFunction/toaster';
 import { singleMember } from './../../api/member';
 import DatePicker from 'react-datepicker';

@@ -17,7 +17,7 @@ import DeleteModal from '../../Component/DeleteModal/DeleteModal';
 import ViewTask from '../../Component/ViewTask/ViewTask';
 import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import EditTask from '../../Component/ViewTask/EditTask';
-import calenderIcon from "../../Assets/Images/icon/calendar.png";
+import calenderIcon from "../../Assets/Images/icon/calendar.svg";
 
 
 interface TaskInterface {

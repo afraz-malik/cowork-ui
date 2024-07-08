@@ -3,14 +3,14 @@ import { Dropdown, Table } from 'react-bootstrap';
 import Layout from '../../../Component/Layout/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faArrowUpLong, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
-import more from "../../../Assets/Images/icon/dots-vertical.png";
+import more from "../../../Assets/Images/icon/dots-vertical.svg";
 import { DESKIE_API as API } from '../../../config';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { getInvoicesList, invoicesView } from '../../../api/invoice';
 import { useNavigate } from 'react-router-dom';
 import RecordPayment from '../../../Component/RecordPayment/RecordPayment';
-import memberAvatar from "../../../Assets/Images/icon/memberAvatar.png";
+import memberAvatar from "../../../Assets/Images/icon/memberAvatar.svg";
 import spaceAvatar from "../../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from '../../../Component/Pagination/Pagination';
 
@@ -91,23 +91,23 @@ const MyInvoice = () => {
      }
       
     return (
-        <>
+        <div id='my-billing'>
             <Layout>
                 <div className='mainContent'>
                     <div className="invoiceHeading">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb m-0 ms-2">
-                                <li className="breadcrumb-item">Finances</li>
-                                <li className="breadcrumb-item">Billing</li>
+                                {/* <li className="breadcrumb-item">Finances</li> */}
+                                <li className="breadcrumb-item px-0">My Billing</li>
                                 <li className="breadcrumb-item active" aria-current="page">All Invoices</li>
                             </ol>
                         </nav>
                     </div>
 
-                    <div className="memberBox">
+                    <div className="memberBox border-0">
                         <div className="topLine">
                             <div className='tableHeading'>
-                                <h6><FontAwesomeIcon icon={faArrowLeft} /> All Invoices</h6>
+                                <h6>All Invoices</h6>
                             </div>
                             <div className='memberSearch'>
                                 <div className='searchInput'>
@@ -145,7 +145,7 @@ const MyInvoice = () => {
                                         <td><Link to={`/my-invoice-details/${invoice.id}`} onClick={()=>invoice.invoice_view ? null : viewInvoice(invoice.id)}>#INV{invoice.invoice_id}</Link></td>
                                         <td>
                                             {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
-                                                : <img src={memberAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
+                                                : <img className='default' src={memberAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                             }
                                             {invoice.user_name}
                                         </td>
@@ -163,20 +163,20 @@ const MyInvoice = () => {
                                         {invoice.renewal_frequency === "resource" ? <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
                                         : <td>{invoice.total_amount ? <>${invoice.total_amount}</> : "N/A"}</td>}
                                         <td className='billingAction'>
-                                            <button className='btn download' onClick={() => paymentView(invoice.id)}><img src={more} alt="download" /></button>
+                                            <button className='btn download px-2' onClick={() => paymentView(invoice.id)}><img src={more} alt="download" /></button>
                                         </td>
                                     </tr>)}
 
                                 </tbody>
                             </Table>
-                            <Pagination page={page} paginationTitle="invoices" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={invoiceList} />
+                            <Pagination page={page} paginationTitle="Invoices" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={invoiceList} />
                         </div>
                     </div>
                 </div>
 
                 <RecordPayment invoiceId={invoiceKey} show={show} setShow={setShow} handleClose={handleClose} />
             </Layout>
-        </>
+        </div>
     )
 }
 
