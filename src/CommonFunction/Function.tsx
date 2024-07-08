@@ -42,7 +42,7 @@ export const getFileType = (extension: string) => {
 export function getDueDateStatus(dueDateString: any) {
   const dueDate = new Date(dueDateString);
   const currentDate = new Date();
-  
+
   // Zero out the hours, minutes, seconds, and milliseconds for accurate day comparison
   dueDate.setHours(0, 0, 0, 0);
   currentDate.setHours(0, 0, 0, 0);
@@ -209,11 +209,11 @@ export function multiplyBySixAndShowSeries(originalValue: number) {
 
 export function paginationNumber(total: any, limit: any) {
   const divisions = Math.ceil(total / limit);
-    const resultArray = [];
-    for (let i = 1; i <= divisions; i++) {
-        resultArray.push(i);
-    }
-    return resultArray;
+  const resultArray = [];
+  for (let i = 1; i <= divisions; i++) {
+    resultArray.push(i);
+  }
+  return resultArray;
 }
 
 export const messageFormatDate = (dateString: string) => {
@@ -225,9 +225,9 @@ export const messageFormatDate = (dateString: string) => {
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   // Helper function to check if two dates are the same day
-  const isSameDay = (d1: any, d2: any) => 
-    d1.getFullYear() === d2.getFullYear() && 
-    d1.getMonth() === d2.getMonth() && 
+  const isSameDay = (d1: any, d2: any) =>
+    d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
     d1.getDate() === d2.getDate();
 
   if (isSameDay(inputDate, today)) {
@@ -248,13 +248,13 @@ export const messageFormatDate = (dateString: string) => {
 };
 
 
-export function invoiceFormatTimes(timestamp:string) {
+export function invoiceFormatTimes(timestamp: string) {
   // Parse the input timestamp
   const date = new Date(timestamp);
 
   // Define arrays for month names and AM/PM
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", 
-                  "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+    "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
 
   // Get the components of the date
@@ -269,15 +269,15 @@ export function invoiceFormatTimes(timestamp:string) {
 
   // Format the date and time
   const formattedDate = `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
-  
+
   return formattedDate;
 }
 
 
-export function formatResourceDate(dateString:string) {
+export function formatResourceDate(dateString: string) {
   const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
   const date = new Date(dateString);
@@ -329,19 +329,8 @@ function getTimeValue(timeString: any) {
 export function findTimeGap(startTime: any, endTime: any) {
   const startTimeValue = getTimeValue(startTime);
   const endTimeValue = getTimeValue(endTime);
-
-  console.log('startTimeValue:', startTimeValue); // Debug statement
-  console.log('endTimeValue:', endTimeValue); // Debug statement
-
   const startIndex = timeOptions.findIndex((option: any) => option.value === startTimeValue);
   const endIndex = timeOptions.findIndex((option: any) => option.value === endTimeValue);
-
-  console.log('startIndex:', startIndex); // Debug statement
-  console.log('endIndex:', endIndex); // Debug statement
-
-  if (startIndex === -1 || endIndex === -1) {
-    throw new Error('Invalid start or end time value');
-  }
 
   let gap = 0;
   if (endIndex >= startIndex) {

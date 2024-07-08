@@ -32,7 +32,7 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
     const [selectedTabs, setSelectedTabs] = useState<string[]>([]);
     const [startTime, setStartTime] = useState('Choose');
     const [endTime, setEndTime] = useState('Choose');
-    const [selectedDate, setSelectedDate] = useState("Choose");
+    const [selectedDate, setSelectedDate] = useState<any>(new Date());
     const [authValue, setAuthValue] = useState(false);
     const [detailsTab, setDetailsTab] = useState(true);
     const [scheduleTab, setScheduleTab] = useState(false);
@@ -112,7 +112,6 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
             created_by: auth.user.id,
             invoice_add: authValue
         }
-
         let invoiceResource = {
             "id": uuidv4(),
             "spaces_id": resourceDetails.id,
@@ -120,7 +119,8 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
             "amount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate),
             "renewal_date": selectedDate,
             "renewal_frequency": "resource",
-            "user_email": auth.user.email
+            "user_email": auth.user.email,
+            "invoice_type": "resource"
         }
         let invoiceMonthly = {
             "id": uuidv4(),
@@ -129,9 +129,9 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
             "amount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate),
             "renewal_date": selectedDate,
             "renewal_frequency": "monthly",
-            "user_email": auth.user.email
+            "user_email": auth.user.email,
+            "invoice_type": "resource"
         }
-
         let paymentInfo = {
             "id": uuidv4(),
             "invoiceId": uuidv4(),
@@ -143,7 +143,9 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
             "status": "paid",
             "invoiceAmount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate)
         }
-       
+        let totalAmount = {
+            "amount": resourceDetails.member_rate,
+        }
       
         if (authValue) {
             memberAddSpaces(invoiceMonthly).then((data) => {
@@ -151,6 +153,9 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                     showNotifications("error", data.message);
                 }
                 else {
+                    invoiceAmountUpdate(auth.user.id, totalAmount).then((data) => {
+                        setPaymentShow(false)
+                  })
                     resourceBooking(resourceInfo).then((data) => {
                         showNotifications("success", data.message);
                         setPaymentShow(false)
