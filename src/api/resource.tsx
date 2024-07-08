@@ -58,3 +58,9 @@ export const resourceInvoice = async (body={}) => {
 export const resourceInvoiceList = async () => {
     return get(`/resourceInvoiceList`);
 };
+
+// resource Book Time
+export const resourceBookTime = async () => {
+    return get(`/resourceBookTime`);
+};
+

@@ -19,8 +19,7 @@ interface tabMemberProps {
   endTime: string;
 }
 const ResourceDone = ({selectedDate, startTime,endTime, resourceDetail, tabChoose ,resourceBooked}: tabMemberProps) => {
-  console.log('resourceDetail',resourceDetail);
-  
+
   const navigate = useNavigate();
   const doneFunction = () => {
     return navigate("/resources")
