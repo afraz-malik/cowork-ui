@@ -165,7 +165,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                         <button onClick={() => settingTab('users')}>Users</button>
                         <button onClick={() => settingTab('custom')}>Customization</button>
                     </div>
-                    <div className="companyProfile">
+                    <div className="companyProfile pb-0">
                         <div className='profileHeading'>
                             <h6>Company Profile</h6>
                             <p>Update your company’s info here.</p>
@@ -179,15 +179,15 @@ const Profile = ({ settingTab }: ProfileProps) => {
                     </div>
                     <div className="companyName">
                         <p>Company Name</p>
-                        <div className='rightSideSetting'>
+                        <div className='rightSideSetting col-8'>
                             <div className="memberInput">
-                                <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder='First Name' className='form-control' required />
+                                <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder='Enter your company name' className='form-control' required />
                             </div>
                         </div>
                     </div>
                     <div className="companyName">
                         <p>Company Logo (Light)</p>
-                        <div className='rightFileSetting'>
+                        <div className='rightFileSetting col-8'>
                             <div className="logoImageBox liteIcon">
                                 {lightLogoFile && lightLogoFile.length > 0 ? <img src={lightLogoFile} className='changeLogo' alt="change-logo" />
                                     : <img src={`${API}/${lightLogoImage}`} className='changeLogo' alt="change-logo" />
@@ -197,7 +197,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                             <div ref={wrapperRef} className="drop-file-input">
                                 <div className="drop-file-input__label">
                                     <img src={uploadFile} alt="" />
-                                    <p><span>Click to upload</span> or drag and drop</p>
+                                    {/* <p><span>Click to upload</span> or drag and drop</p> */}
                                 </div>
                                 <input type="file" onChange={onFileLogoLight} />
                             </div>
@@ -205,7 +205,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                     </div>
                     <div className="companyName">
                         <p>Company Logo (Dark)</p>
-                        <div className='rightFileSetting'>
+                        <div className='rightFileSetting col-8'>
                             <div className="logoImageBox darkIcon">
                                 {darkLogoFile && darkLogoFile.length > 0 ? <img src={darkLogoFile} className='changeLogo' alt="change-logo" />
                                     : <img src={`${API}/${darkLogoImage}`} className='changeLogo' alt="change-logo" />
@@ -215,7 +215,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                             <div ref={wrapperRef} className="drop-file-input">
                                 <div className="drop-file-input__label">
                                     <img src={uploadFile} alt="" />
-                                    <p><span>Click to upload</span> or drag and drop</p>
+                                    {/* <p><span>Click to upload</span> or drag and drop</p> */}
                                 </div>
                                 <input type="file" onChange={onFileLogoDark} />
                             </div>
@@ -223,7 +223,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                     </div>
                     <div className="companyName">
                         <p>Company Icon (Light)</p>
-                        <div className='rightFileSetting'>
+                        <div className='rightFileSetting col-8'>
                             <div className="iconImageBox liteIcon">
                                 {lightIconFile && lightIconFile.length > 0 ? <img src={lightIconFile} className='changeLogo' alt="change-logo" />
                                     : <img src={`${API}/${lightIconImage}`} className='changeLogo' alt="change-logo" />
@@ -233,7 +233,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                             <div ref={wrapperRef} className="drop-file-input">
                                 <div className="drop-file-input__label">
                                     <img src={uploadFile} alt="" />
-                                    <p><span>Click to upload</span> or drag and drop</p>
+                                    {/* <p><span>Click to upload</span> or drag and drop</p> */}
                                 </div>
                                 <input type="file" onChange={onFileIconLight} />
                             </div>
@@ -241,7 +241,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                     </div>
                     <div className="companyName">
                         <p>Company Icon (Dark)</p>
-                        <div className='rightFileSetting'>
+                        <div className='rightFileSetting col-8'>
                             <div className="iconImageBox darkIcon">
                                 {darkIconFile && darkIconFile.length > 0 ? <img src={darkIconFile} className='changeLogo' alt="change-logo" />
                                     : <img src={`${API}/${darkIconImage}`} className='changeLogo' alt="change-logo" />
@@ -251,7 +251,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                             <div ref={wrapperRef} className="drop-file-input">
                                 <div className="drop-file-input__label">
                                     <img src={uploadFile} alt="" />
-                                    <p><span>Click to upload</span> or drag and drop</p>
+                                    {/* <p><span>Click to upload</span> or drag and drop</p> */}
                                 </div>
                                 <input type="file" onChange={onFileIconDark} />
                             </div>
@@ -260,7 +260,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                     
                     <div className="companyName">
                         <p>Background Image</p>
-                        <div className='rightFileSetting'>
+                        <div className='rightFileSetting col-8'>
                             <div className="backgroundImageBox">
                                 {backFile && backFile.length > 0 ? <img src={backFile} className='changeBack' alt="change-logo" />
                                     : <img src={`${API}/${backgroundImage}`} className='changeBack' alt="change-logo" />
@@ -270,18 +270,18 @@ const Profile = ({ settingTab }: ProfileProps) => {
                             <div ref={wrapperRef} className="drop-file-input">
                                 <div className="drop-file-input__label">
                                     <img src={uploadFile} alt="" />
-                                    <p><span>Click to upload</span> or drag and drop</p>
+                                    {/* <p><span>Click to upload</span> or drag and drop</p> */}
                                 </div>
                                 <input type="file" onChange={onFileBackgroundDrop} />
                             </div>
                         </div>
                     </div>
                     <div className="contactDetails">
-                        <p>Company Details</p>
-                        <div className='rightSideSetting'>
+                        <p>Contact Details</p>
+                        <div className='rightSideSetting col-8'>
                             <div className="companyInput email">
-                                <span>Email</span>
-                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='_________@____.____' className='form-control' />
+                                <span className='col-3'>Email</span>
+                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter company email' className='form-control' />
                             </div>
                             <div className="mt-2 phone phoneInput">
                                 <label>Phone Number</label>
@@ -289,14 +289,14 @@ const Profile = ({ settingTab }: ProfileProps) => {
                             </div>
                             <div className="companyInput address mt-2">
                                 <span>Address</span>
-                                <textarea value={address} onChange={(e) => setAddress(e.target.value)} placeholder='' className='form-control'></textarea>
+                                <textarea value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Enter address' className='form-control' rows={3}></textarea>
                                 {/* <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder='' className='form-control' /> */}
                             </div>
                         </div>
                     </div>
                     <div className="socialProfile">
                         <p>Social Profiles</p>
-                        <div className='rightSideSetting'>
+                        <div className='rightSideSetting col-8'>
                             <div className="companyInput facebook">
                                 <span>www.facebook.com/</span>
                                 <input type="text" value={facebook} onChange={(e) => setFacebook(e.target.value)} placeholder='Enter Facebook username' className='form-control' />
@@ -307,7 +307,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
                             </div>
                             <div className="companyInput mt-2 linkedin">
                                 <span>www.linkedin.com/company/</span>
-                                <input type="text" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} placeholder='Enter Linkedin username' className='form-control' />
+                                <input type="text" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} placeholder='Enter LinkedIn username' className='form-control' />
                             </div>
                         </div>
                     </div>
