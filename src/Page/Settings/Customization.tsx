@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import dashboard from "../../Assets/Images/icon/dashboardIcon.png";
-import members from "../../Assets/Images/icon/membersIcon.png";
-import assets from "../../Assets/Images/icon/assetsIcon.png";
-import tasks from "../../Assets/Images/icon/taskIcon.png";
-import messenger from "../../Assets/Images/icon/messageIcon.png";
-import calender from "../../Assets/Images/icon/calenderIcon.png";
-import files from "../../Assets/Images/icon/filesIcon.png";
-import finance from "../../Assets/Images/icon/financeIcon.png";
+import dashboard from "../../Assets/Images/icon/dashboardIcon.svg";
+import members from "../../Assets/Images/icon/memberIcon.svg";
+import assets from "../../Assets/Images/icon/assetsIcon.svg";
+import tasks from "../../Assets/Images/icon/taskIcon.svg";
+import messenger from "../../Assets/Images/icon/messageIcon.svg";
+import calender from "../../Assets/Images/icon/calenderIcon.svg";
+import files from "../../Assets/Images/icon/filesIcon.svg";
+import finance from "../../Assets/Images/icon/financeIcon.svg";
 import settings from "../../Assets/Images/icon/settingIcon.png";
 
 
@@ -32,7 +32,7 @@ const Customization = ({ settingTab }: ProfileProps) => {
                         <button onClick={() => settingTab('users')}>Users</button>
                         <button className='activeBtn' onClick={() => settingTab('custom')}>Customization</button>
                     </div>
-                    <div className="companyProfile">
+                    <div className="companyProfile pb-0 mb-4">
                         <div className='profileHeading'>
                             <h6>Customization</h6>
                             <p>Enable or disable features for your space</p>
