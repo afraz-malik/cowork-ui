@@ -243,7 +243,7 @@ const Task = () => {
                                         <div className='filterDropdown taskDropdown'>
                                             <Dropdown>
                                                 <Dropdown.Toggle>
-                                                    <button className='filterBtn'><FontAwesomeIcon icon={faEye} /> <span className='mx-3'>All Tasks</span> <FontAwesomeIcon icon={faChevronDown} /></button>
+                                                    <button className='filterBtn'><FontAwesomeIcon icon={faEye} /> <span className='mx-2'>All Tasks</span> <FontAwesomeIcon icon={faChevronDown} /></button>
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
                                                     <Dropdown.Item>All Tasks</Dropdown.Item>
@@ -350,7 +350,7 @@ const Task = () => {
                                                         ))}
                                                         {provided.placeholder}
                                                         <div className="addTask">
-                                                            <button className='mt-0' onClick={() => addTask(column.title)}><FontAwesomeIcon icon={faPlus} /> Add a Task</button>
+                                                            <button className='mt-0' onClick={() => addTask(column.title)}><FontAwesomeIcon icon={faPlus} className='mr-2' /> Add a Task</button>
                                                         </div>
                                                     </div>
                                                 )}

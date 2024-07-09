@@ -185,6 +185,9 @@ color: rgba(16, 24, 40, 1);
 .memberList.visitorList table tbody tr td:nth-child(5) {
   font-weight: 700;
   line-height: 30px;
-  color: #101828;
+  color: #101828 !important;
 }
 
+#visitor .memberList.visitorList table tbody tr td {
+    color: #475467AA;
+}

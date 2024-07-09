@@ -257,7 +257,7 @@ const Files = () => {
 
 
   return (
-    <>
+    <div id='files'>
       <Layout>
         <ToastContainer />
         <div className='mainContent'>
@@ -291,7 +291,7 @@ const Files = () => {
                     <Dropdown.Toggle>
                       <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "created" ? "My Files" : filterTag === "member" ? "Shared With Me" : filterTag === "all" ? "All Files" : "Filters"}</button>
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className='px-1'>
                       <Dropdown.Item onClick={() => setFilterTag('all')}>All Files</Dropdown.Item>
                       <Dropdown.Item onClick={() => setFilterTag('created')}>My Files</Dropdown.Item>
                       <Dropdown.Item onClick={() => setFilterTag('member')}>Shared With Me</Dropdown.Item>
@@ -371,7 +371,7 @@ const Files = () => {
         <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
         {lightBoxVisible && <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} />}
       </Layout>
-    </>
+    </div>
   )
 }
 

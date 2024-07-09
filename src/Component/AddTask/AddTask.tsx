@@ -208,7 +208,7 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
                     <button className='closeModal' onClick={handleClose}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
-                    <Container>
+                    <Container className='px-0'>
                         <Row>
                             <Col md={12}>
                                 <div className='addMemberHeading'>
@@ -223,7 +223,7 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
                                     <input type="text" onChange={(e) => setTitle(e.target.value)} className='form-control' placeholder='Task Title' />
                                 </div>
                                 <div className="taskDescription">
-                                    <h6>Description</h6>
+                                    <h6 className='mt-4 mb-3'>Description</h6>
                                     <ReactQuill
                                         theme="snow"
                                         modules={modules}
@@ -233,7 +233,7 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
                                         value={content}
                                     />
                                 </div>
-                                <div className="taskOptions">
+                                <div className="taskOptions mt-4">
                                     <p><img src={assign} alt="assign" /> Assignee</p>
                                     <button onClick={(e) => { setIsActive(!isActive); }}><FontAwesomeIcon icon={faPlus} /></button>
                                 </div>
@@ -255,7 +255,7 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
                                                 </div>
                                                 <div className='assignInput' style={{paddingLeft: "16px", paddingRight: "16px"}}>
                                                     <FontAwesomeIcon icon={faSearch} />
-                                                    <input type="text" placeholder='Search member' onChange={handleMemberChange} className='form-control' />
+                                                    <input type="text" placeholder='Search admins' onChange={handleMemberChange} className='form-control' />
                                                 </div>
                                                 <div className='member-container'>
                                                     {filteredMembers && filteredMembers.map((data: any, index) =>
