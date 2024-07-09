@@ -52,3 +52,8 @@ export const invoiceAmountUpdate = async (id: string,body={}) => {
 export const invoiceItems = async (id: string) => {
     return get(`/invoiceItems/${id}`);
 };
+
+// invoiceMonthly
+export const invoiceMonthly = async () => {
+    return post(`/invoiceMonthly`);
+};
