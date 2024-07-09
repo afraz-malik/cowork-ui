@@ -73,6 +73,7 @@ const Header = ({ onValueChange }: any) => {
                     {pathArray.includes("assets") ? <p>Assets</p> : ""}
                     {pathArray.includes("calender") ? <p>Calendar</p> : ""}
                     {pathArray.includes("billing") ? <p>Billing</p> : ""}
+                    {pathArray.includes("visitor-log") ? <p>Visitors</p> : ""}
                     {pathArray.includes("invoice-details") ? <p><img className='mb-1' style={{marginRight: '16px'}} src={invoiceDetail} alt="invoiceDetail" /> Billing</p> : ""}
                     {urlParams === "my-invoice" ? <p>Billing</p> : ""}
                     {urlParams === "files" ? <p>Files</p> : ""}

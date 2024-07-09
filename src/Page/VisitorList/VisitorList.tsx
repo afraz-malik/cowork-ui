@@ -115,11 +115,11 @@ const VisitorList = () => {
   }));
 
   return (
-    <>
+    <div id='visitor'>
       <Layout>
         <ToastContainer />
         <div className='mainContent' id='visitor-log'>
-          <div className="memberBox">
+          <div className="memberBox border-0">
             <div className="topLine">
               <div className='tableHeading'>
                 <h6>All Visitors</h6>
@@ -175,7 +175,7 @@ const VisitorList = () => {
           </div>
         </div>
       </Layout>
-    </>
+    </div>
   )
 }
 

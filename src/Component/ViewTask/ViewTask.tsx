@@ -77,7 +77,7 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose, setTaskEditS
     return (
         <>
             <Modal show={taskShow} onHide={handleTaskClose} centered size="lg">
-                <div className="addMemberForm">
+                <div className="addMemberForm" style={{paddingBottom: "29px"}}>
                     <button className='closeModal' onClick={handleTaskClose}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
@@ -89,7 +89,7 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose, setTaskEditS
                                         <img src={taskIcon} alt="taskIcon" />
                                         <div className="">
                                             <h5>{title}</h5>
-                                            <p style={{fontWeight: "400", color: "#98A2B3"}}>{moment(createDate).format('MMMM D, YYYY')}</p>
+                                            <p style={{fontWeight: "400", color: "#98A2B3AA"}}>{moment(createDate).format('MMMM D, YYYY')}</p>
                                         </div>
                                     </div>
                                     <div className='editTask'>
@@ -134,7 +134,7 @@ const ViewTask = ({ taskShow, taskId, setTaskShow, handleTaskClose, setTaskEditS
                                                 <Dropdown.Toggle>
                                                     <button className='filterBtn'>Done <img src={downArrow} alt="down" /> </button>
                                                 </Dropdown.Toggle>
-                                                <Dropdown.Menu>
+                                                <Dropdown.Menu className='px-2'>
                                                     <Dropdown.Item>Pending</Dropdown.Item>
                                                     <Dropdown.Item>Doing</Dropdown.Item>
                                                     <Dropdown.Item>Done</Dropdown.Item>

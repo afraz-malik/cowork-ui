@@ -1577,6 +1577,8 @@
 
 .filesList table tbody tr td:nth-child(3) {
   width: 30%;
+  color: var(--Gray-900, #101828) !important;
+  font-weight: 800;
 }
 
 .filesList table tbody tr td:nth-child(4) {
@@ -1823,6 +1825,11 @@ color: rgba(71, 84, 103, 1);
   text-align: left;
   color: #344054;
   margin-bottom: 3px;
+}
+
+.shareMember .content ul input::placeholder,
+.fileNameType input::placeholder {
+  color: var(--Gray-400, #98A2B3AA);
 }
 
 .fileNameType input {
@@ -2121,4 +2128,9 @@ color: rgba(71, 84, 103, 1);
 .favoriteBox{
   width: 158px;
   cursor: pointer;
+}
+
+#visitor .topLine,
+#files .topLine {
+  height: 85px;
 }
