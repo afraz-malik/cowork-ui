@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import pen from "../../Assets/Images/icon/pen.png";
+import pen from "../../Assets/Images/icon/pen.svg";
 import SignatureModal from './SignatureModal';
 
 interface tabMemberProps {
@@ -40,19 +40,21 @@ const Agreement = ({ tabChoose, signatureAdd,memberId, dataURL, setDataURL, sign
         <>
             <div className="agreementInfo">
                 <h1>Membership Agreement</h1>
-                <div className="agreementText">
-                    <h6>Lorem Ipsum</h6>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                <div className='scroll-container my-3'>
+                    <div className="agreementText my-0 px-3 border-0">
+                        <h6>Lorem Ipsum</h6>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                    </div>
                 </div>
-                <div className="agreeCheck">
+                <div className="agreeCheck px-3 mb-3">
                     <label className="agreement">
                         <label className="tableCheckBox">
                             <div className="contactCheck">
                                 <input type="checkbox" name="agreement" />
                                 <span className="checkmark"></span></div>
                         </label>
-                        <span className='agreeText'>I agree</span>
+                        <span className='agreeText'>I agree to these membership terms, June 3rd 2024</span>
                     </label>
                 </div>
 
@@ -73,7 +75,7 @@ const Agreement = ({ tabChoose, signatureAdd,memberId, dataURL, setDataURL, sign
                     </div>
                 </div> : <div className="signBox" onClick={handleShow}>
                     <img src={pen} alt="pen" />
-                    <p>Click here to sign</p>
+                    <p className='mt-2 mb-0'>Click here to sign</p>
                 </div>}
 
                 <div className="tabPanelBtn">

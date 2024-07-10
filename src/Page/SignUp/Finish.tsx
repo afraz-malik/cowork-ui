@@ -1,7 +1,7 @@
 import React from 'react';
-import finish from "../../Assets/Images/background/finish.png";
+import finish from "../../Assets/Images/background/finish.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { loginAdmin } from '../../api/admin';
 import { showNotifications } from '../../CommonFunction/toaster';
@@ -41,7 +41,7 @@ const Finish = ({ tabChoose,email,password  }: tabMemberProps) => {
                 </div>
                 <div className="tabPanelBtn">
                     <button className='back' onClick={() => tabChoose("agreement", "done")}><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
-                    <button className='continue' onClick={handleButtonClick}>Finish <FontAwesomeIcon icon={faArrowRight} /></button>
+                    <button className='continue' onClick={handleButtonClick}>Finish</button>
                 </div>
             </div>
         </>

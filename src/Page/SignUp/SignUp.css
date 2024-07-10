@@ -32,13 +32,13 @@
     line-height: 26px;
     letter-spacing: 0em;
     text-align: center;
-    color: rgba(102, 112, 133, 1);
+    color: rgba(102, 112, 133, .7);
 }
 
 .welcomeText button {
     font-family: "MyCustomFont";
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 20px;
     letter-spacing: 0em;
     text-align: center;
@@ -98,6 +98,10 @@
     background-color: #fff;
 }
 
+.arrowLine .checkCircle.done:after {
+    height: 0;
+}
+
 .arrowLine .checkCircle::after {
     width: 2px;
     height: 42px;
@@ -115,24 +119,28 @@
     -o-border-radius: 20px;
 }
 
-.selected .arrowLine .checkCircle::after {
+.arrowLine .checked::after {
     background-color: rgba(99, 102, 241, 1);
-}
-
-.arrowLine .checkCircle:last-child::after {
-    background-color: rgb(255, 255, 255);
 }
 
 .arrowHeading h6 {
     margin-top: 6px;
     font-family: "MyCustomFont";
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 16px;
     letter-spacing: 0em;
     text-align: left;
     color: rgba(52, 64, 84, 1);
     margin-bottom: 4px;
+}
+
+.tabPanel .arrowHeading h6.selected {
+    color: #3D3FA1;
+}
+
+.tabPanel .arrowHeading p.selected {
+    color: rgba(99, 102, 241, 1);
 }
 
 .arrowHeading p {
@@ -312,12 +320,19 @@
     line-height: 26px;
     letter-spacing: 0em;
     text-align: left;
-    color: rgba(52, 64, 84, 1);
+    color: rgba(52, 64, 84, .7);
+}
+
+.agreeCheck .tableCheckBox .checkmark::after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;  
 }
 
 .agreeCheck .tableCheckBox .checkmark {
-    height: 22px;
-    width: 22px;
+    height: 16px;
+    width: 16px;
 }
 
 .agreeCheck .agreement {
@@ -349,7 +364,7 @@
 .signBox p {
     font-family: "MyCustomFont";
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 20px;
     letter-spacing: 0em;
     text-align: center;
@@ -388,7 +403,7 @@
     line-height: 24px;
     letter-spacing: 0em;
     text-align: center;
-    color: rgba(52, 64, 84, 1);
+    color: rgba(52, 64, 84, .7);
 }
 
 .signatureTab h1 {
@@ -408,7 +423,7 @@
 .signatureTab .nav-item a {
     font-family: "MyCustomFont";
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 26px;
     letter-spacing: 0em;
     text-align: left;
@@ -433,7 +448,7 @@
 .signaturePad .sigCanvas {
     width: 100%;
     height: 240px;
-    border: 1px solid rgba(152, 162, 179, 1);
+    border: 1px solid #EAECF0;
     border-radius: 12px;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
@@ -458,7 +473,7 @@
     line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
-    color: rgba(152, 162, 179, 1);
+    color: #344054;
 }
 
 .typeSignature input {
@@ -581,4 +596,47 @@
 }
 .cardInput{
     width: 48%;
+}
+
+.passwordInfo .loginInput label,
+.billingInfo .memberInput label,
+.profileInfo .memberInput label {
+    color: var(--Typography-Body, #344054);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.profileInfo .react-tel-input .form-control {
+    height: 46px !important;
+    border-radius: 12px !important;
+}
+
+.agreementInfo .agreement .tableCheckBox,
+.billingInfo .agreement .tableCheckBox {
+    width: 24px;
+}
+
+.agreementInfo .agreementText::-webkit-scrollbar {
+    width: 4px;
+}
+
+.agreementInfo .agreementText::-webkit-scrollbar-track {
+    background: inherit;
+}
+
+.agreementInfo .agreementText::-webkit-scrollbar-thumb {
+    background: #D0D5DD;
+    border-radius: 10px;
+    border: none;
+}
+
+.scroll-container {
+    padding: 8px;
+}
+
+.agreementInfo .scroll-container {
+    border: 1px solid rgba(234, 236, 240, 1);
+    border-radius: 12px;
 }

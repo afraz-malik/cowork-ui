@@ -42,8 +42,8 @@ const PasswordPanel = ({ tabChoose, confirmPassword, setConfirmPassword, passwor
             <div className="passwordInfo">
                 <h1>Set Password</h1>
 
-                <div className="loginInput">
-                    <label htmlFor="password">Password</label>
+                <div className="loginInput mt-4">
+                    <label htmlFor="password">New Password</label>
                     <input
                         type={toggleType}
                         placeholder='Password'
