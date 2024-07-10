@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Visitor.css";
-import qrImage from "../../Assets/Images/icon/wifiScan.png";
-import checkCircle from "../../Assets/Images/icon/check-circle-white.png";
+import qrImage from "../../Assets/Images/icon/wifiScan1.svg";
 import { DESKIE_API as API } from '../../config';
 import { singleProfile } from '../../api/settings';
 import logo from "../../Assets/Images/logo/logo.svg";
@@ -11,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { visitorAdd } from '../../api/visitor';
 import { showNotifications } from '../../CommonFunction/toaster';
 import { ToastContainer } from 'react-toastify';
-import checkIcon from "../../Assets/Images/icon/check-circle.png"
+import checkIcon from "../../Assets/Images/icon/check-circle1.svg"
 import { getMemberList } from '../../api/member';
 import { adminList } from '../../api/admin';
 
@@ -90,33 +89,33 @@ const Visitor = () => {
               <img src={`${API}/${profile.company_logo_dark}`} alt="logo" />
               : <img src={logo} alt="logo" />
             }
-            <h5>Guest Check-in</h5>
+            <h5 className='mt-3'>Visitor Check-in</h5>
           </div>
 
         </div>
       </div>
       {visitorOption ? <div className="visitorRight">
-        <h5>Scan <b>QR code</b> to check-in as a guest</h5>
+        <h5 className='mb-4'>Scan QR code to check-in as a guest</h5>
         <img src={qrImage} alt="qrImage" />
         <div className="orLine">
           <h2><span>or</span></h2>
         </div>
-        <button className='tapNext' onClick={manuallyOption}><img src={checkCircle} alt="check" /> TAP TO CHECK IN MANUALLY</button>
+        <button className='tapNext' onClick={manuallyOption}>Tap to Check in Manually</button>
       </div> : ""}
       {visitorInfo ? <div className="visitorRight">
         <div className="reasonVisit memberInput">
-          <label>Name</label>
+          <label className='mt-4'>Name</label>
           <input type="text" onChange={(e) => setName(e.target.value)} placeholder='Enter your name' className='form-control' required />
         </div>
         <div className="reasonVisit memberInput">
-          <label>Email</label>
+          <label className='mt-4'>Email</label>
           <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder='Enter your E-mail' className='form-control' required />
         </div>
         <div className="reasonVisit memberInput">
-          <label>Reason For Visit</label>
+          <label className='mt-4'>Reason For Visit</label>
           <Dropdown onSelect={handleSelect}>
             <Dropdown.Toggle id="dropdown-basic">
-              {selectedItem && selectedItem ? <>{selectedItem} <img src={arrow} alt="arrow" /></> : <>Choose <img src={arrow} alt="arrow" /></>}
+              {selectedItem && selectedItem ? <>{selectedItem} <img src={arrow} alt="arrow" /></> : <>Select a reason <img src={arrow} alt="arrow" /></>}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -129,10 +128,10 @@ const Visitor = () => {
           </Dropdown>
         </div>
         <div className="reasonVisit memberInput mb-2">
-          <label>I’m Here To See</label>
+          <label className='mt-4'>I’m Here To See</label>
           <Dropdown onSelect={handleRoleSelect}>
             <Dropdown.Toggle id="dropdown-basic">
-              {roleItem && roleItem ? <>{roleItem} <img src={arrow} alt="arrow" /></> : <>Nobody <img src={arrow} alt="arrow" /></>}
+              {roleItem && roleItem ? <>{roleItem} <img src={arrow} alt="arrow" /></> : <>Select a member <img src={arrow} alt="arrow" /></>}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -141,12 +140,12 @@ const Visitor = () => {
             </Dropdown.Menu>
           </Dropdown>
         </div>
-        <button className='tapNext mt-5' onClick={saveVisitor}><img src={checkCircle} alt="check" /> TAP TO CHECK IN</button>
+        <button className='tapNext mt-4' onClick={saveVisitor}>Submit</button>
       </div> : ""}
 
       {successCheck ? <div className="visitorRight">
         <div className="success text-center">
-          <img src={checkIcon} alt="check" />
+          <img className='mb-4' src={checkIcon} alt="check" />
           <h5>Welcome, {name}!</h5>
           <h4>{name} has been notified that you’re here.</h4>
         </div>
