@@ -27,7 +27,7 @@ interface AddResourcePaymentProps {
     resourceDetails?: any;
 }
 const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, resourceDetails }: AddResourcePaymentProps) => {
-  
+
     let auth = isAuthenticate();
     const [selectedTabs, setSelectedTabs] = useState<string[]>([]);
     const [startTime, setStartTime] = useState('Choose');
@@ -144,9 +144,9 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
             "invoiceAmount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate)
         }
         let totalAmount = {
-            "amount": resourceDetails.member_rate,
+            "amount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate)
         }
-      
+
         if (authValue) {
             memberAddSpaces(invoiceMonthly).then((data) => {
                 if (data.statusCode !== 200) {
@@ -155,7 +155,7 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                 else {
                     invoiceAmountUpdate(auth.user.id, totalAmount).then((data) => {
                         setPaymentShow(false)
-                  })
+                    })
                     resourceBooking(resourceInfo).then((data) => {
                         showNotifications("success", data.message);
                         setPaymentShow(false)
@@ -174,8 +174,8 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                         setPaymentShow(false)
                     })
                     invoiceUpdate(paymentInfo).then((data) => {
-                       console.log('pay',data);
-                       
+                        console.log('pay', data);
+
                     })
                 }
             })
@@ -260,8 +260,8 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                     </div>
                                     <div className="paymentInfo">
                                         {detailsTab ? <ResourceDetails resourceDetail={resourceDetails} tabChoose={tabChoose} /> : ""}
-                                        {scheduleTab ? <ResourceSchedule startTime={startTime} setStartTime={setStartTime} endTime={endTime} setEndTime={setEndTime} selectedDate={selectedDate} setSelectedDate={setSelectedDate} tabChoose={tabChoose} /> : ""}
-                                        {billingTab ? <ResourcePayment  startTime={startTime} endTime={endTime}  cardName={cardName} setCardName={setCardName} street={street} setStreet={setStreet} city={city} setCity={setCity} state={state} setState={setState} zip={zip} setZip={setZip} resourceDetail={resourceDetails} authValue={authValue} setAuthValue={setAuthValue} tabChoose={tabChoose} /> : ""}
+                                        {scheduleTab ? <ResourceSchedule resourceDetail={resourceDetails} startTime={startTime} setStartTime={setStartTime} endTime={endTime} setEndTime={setEndTime} selectedDate={selectedDate} setSelectedDate={setSelectedDate} tabChoose={tabChoose} /> : ""}
+                                        {billingTab ? <ResourcePayment startTime={startTime} endTime={endTime} cardName={cardName} setCardName={setCardName} street={street} setStreet={setStreet} city={city} setCity={setCity} state={state} setState={setState} zip={zip} setZip={setZip} resourceDetail={resourceDetails} authValue={authValue} setAuthValue={setAuthValue} tabChoose={tabChoose} /> : ""}
                                         {finishTab ? <ResourceDone selectedDate={selectedDate} startTime={startTime} endTime={endTime} resourceDetail={resourceDetails} resourceBooked={resourceBooked} tabChoose={tabChoose} /> : ""}
                                     </div>
                                 </div>

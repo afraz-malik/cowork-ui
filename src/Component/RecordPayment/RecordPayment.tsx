@@ -64,6 +64,7 @@ const RecordPayment = ({ show, setShow, handleClose, invoiceId, invoiceDetail }:
         let paymentInfo = {
             "id": uuidv4(),
             "invoiceId": invoiceId,
+            "invoiceNumber": invoiceDetail.invoice_id,
             "userId": auth.user.id,
             "amount": amount,
             "paymentDate": dueDate,
@@ -212,9 +213,7 @@ const RecordPayment = ({ show, setShow, handleClose, invoiceId, invoiceDetail }:
 
                             </Col>
                             <Col md={12} className='d-flex justify-content-end'>
-                                {invoiceDetail && invoiceDetail.payment_value ? <button className='invoiceBtn active' type='submit' onClick={paymentEdit}>Pay Now <img src={send} alt="send" /> </button>
-                                    : <button className='invoiceBtn active' type='submit' onClick={paymentAdd}>Pay Now <img src={send} alt="send" /> </button>}
-
+                            <button className='invoiceBtn active' type='submit' onClick={paymentAdd}>Pay Now <img src={send} alt="send" /> </button>
                             </Col>
                         </Row>
                     </Container>

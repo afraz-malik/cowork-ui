@@ -21,8 +21,8 @@ const Billing = () => {
 
     const [invoiceTag, setInvoiceTag] = useState("");
     const [invoiceList, setInvoiceList] = useState<any>([]);
-    console.log('invoiceList',invoiceList);
-    
+    console.log('invoiceList', invoiceList);
+
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState<number>(6);
     // pagination
@@ -35,7 +35,7 @@ const Billing = () => {
     const [nextButton, setNextButton] = useState<boolean>(false);
     const [tableId, setTableId] = useState<string[]>([]);
     const [pageValue, setPageValue] = useState<number>();
-    
+
     // const showResult = (value: number) => {
     //     setPage(1)
     //     setLimit(value)
@@ -53,9 +53,9 @@ const Billing = () => {
             setLimitValue(data.limit)
             setPageValue(data.page)
         })
-    }, [invoiceTag,page,limit]);
+    }, [invoiceTag, page, limit]);
 
- 
+
 
     const [searchTerm, setSearchTerm] = useState('');
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,11 +83,11 @@ const Billing = () => {
         if (pageCount === page) {
             setNextButton(false)
         }
-    }, [pageCount,page])
-    
+    }, [pageCount, page])
+
 
     // pagination
-   
+
     const nextPage = () => {
         setAllCheck(false)
         setResult([])
@@ -105,12 +105,12 @@ const Billing = () => {
 
     const monthInv = () => {
         invoiceMonthly().then((data) => {
-            console.log('inv',data);
-            
+            console.log('inv', data);
+
         })
     }
-    
-    
+
+
 
     return (
         <div id='billing'>
@@ -122,7 +122,7 @@ const Billing = () => {
                                 {/* <li className="breadcrumb-item">Finances</li> */}
                                 <li className="breadcrumb-item px-0"><Link to="/billing">Billing</Link></li>
                                 <li className="breadcrumb-item active" aria-current="page">All Invoices</li>
-                                {/* <button onClick={monthInv}>Month</button> */}
+                                 {/* <button onClick={monthInv}>Month</button>  */}
                             </ol>
                         </nav>
                     </div>
@@ -194,13 +194,13 @@ const Billing = () => {
                                         {invoice.renewal_frequency === "resource" ? <td className='status'>
                                             <span className='paid'>Paid</span>
                                         </td> :
-                                        <td className='status'>
-                                            {invoice.payment_status === "paid" ? <span className='paid'>Paid</span>
-                                                : invoice.payment_status === "void" ? <span className='void'>Void</span>
-                                                    : <span className='unpaid'>Unpaid</span>}
-                                        </td>}
+                                            <td className='status'>
+                                                {invoice.payment_status === "paid" ? <span className='paid'>Paid</span>
+                                                    : invoice.payment_status === "void" ? <span className='void'>Void</span>
+                                                        : <span className='unpaid'>Unpaid</span>}
+                                            </td>}
                                         {invoice.renewal_frequency === "resource" ? <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
-                                        : <td>{invoice.total_amount ? <>${invoice.total_amount}</> : "N/A"}</td>}
+                                            : <td>{invoice.total_amount ? <>${invoice.total_amount}</> : "N/A"}</td>}
                                         <td className='billingAction'>
                                             <button className='btn download px-2'><img src={more} alt="download" /></button>
                                         </td>
@@ -209,7 +209,7 @@ const Billing = () => {
                                 </tbody>
                             </Table>
                             <Pagination page={page} paginationTitle="Invoices" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={invoiceList} />
-                            
+
                         </div>
                     </div>
                 </div>

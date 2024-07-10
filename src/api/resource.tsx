@@ -60,7 +60,7 @@ export const resourceInvoiceList = async () => {
 };
 
 // resource Book Time
-export const resourceBookTime = async () => {
-    return get(`/resourceBookTime`);
+export const resourceBookTime = async (id:string) => {
+    return get(`/resourceBookTime/${id}`);
 };
 
