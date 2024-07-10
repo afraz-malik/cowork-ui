@@ -61,7 +61,7 @@ const PaymentCard = () => {
                     <label>Card Number</label>
                     <CardNumberElement options={options} />
                 </div>
-                <div className="cardNumber">
+                <div className="cardNumber mt-0">
                     <div className="cardInput">
                         <label>Expiration Date</label>
                         <CardExpiryElement options={options} />
@@ -71,14 +71,14 @@ const PaymentCard = () => {
                         <CardCvcElement options={options} />
                     </div>
                 </div>
-                <div className="agreeCheck mt-3">
+                <div className="agreeCheck px-3 mt-3">
                     <label className="agreement">
                         <label className="tableCheckBox">
                             <div className="contactCheck">
                                 <input type="checkbox" name="agreement" />
                                 <span className="checkmark"></span></div>
                         </label>
-                        <span className='agreeText'>I authorize BUZZ COWORKING to bill this card for membership and any additional fees. <Link to="/">Learn More</Link></span>
+                        <span className='agreeText'>I authorize Buzz Coworking to bill this card for my membership and any additional fees.</span>
                     </label>
                 </div>
             </form>

@@ -71,10 +71,10 @@ const SignatureModal = ({ show, setShow, handleClose,memberId, setDataURL, setDa
                             <Row>
                                 <Col sm={3}>
                                     <Nav variant="pills" className="flex-column signatureTab">
-                                        <Nav.Item>
+                                        <Nav.Item className='mb-2'>
                                             <Nav.Link eventKey="first" active={activeTab === "first"}>Draw Signature</Nav.Link>
                                         </Nav.Item>
-                                        <Nav.Item>
+                                        <Nav.Item className='mb-2'>
                                             <Nav.Link eventKey="second" active={activeTab === "second"}>Type Signature</Nav.Link>
                                         </Nav.Item>
                                     </Nav>
@@ -85,20 +85,20 @@ const SignatureModal = ({ show, setShow, handleClose,memberId, setDataURL, setDa
                                             <div className="signaturePad">
                                                 <p>Please sign the area below with your finger or mouse.</p>
                                                 <SignaturePad ref={padRef} canvasProps={{ className: "sigCanvas" }} />
-                                                <div className="tabPanelBtn">
+                                                <div className="tabPanelBtn mt-4">
                                                     <button className='back' onClick={clear}>Cancel</button>
                                                     <button className='continue' onClick={trim}>Continue</button>
                                                 </div>
                                             </div>
                                         </Tab.Pane>
                                         <Tab.Pane eventKey="second" active={activeTab === "second"}>
-                                            <div className="typeSignature">
-                                                <p>Type your full legal name below</p>
+                                            <div className="typeSignature px-4">
+                                                <p className='mb-0'>Type your full legal name below</p>
                                                 <input value={signName} onChange={(e) => setSignName(e.target.value)} className='form-control' type='text' />
-                                                <div className="tabPanelBtn">
-                                                    <button className='back' onClick={back}>Back</button>
-                                                    <button className='continue' onClick={saveSignature}>Save</button>
-                                                </div>
+                                            </div>
+                                            <div className="tabPanelBtn mt-4">
+                                                <button className='back' onClick={back}>Back</button>
+                                                <button className='continue' onClick={saveSignature}>Save</button>
                                             </div>
                                         </Tab.Pane>
                                     </Tab.Content>

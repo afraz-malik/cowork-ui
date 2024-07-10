@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { DESKIE_API as API } from '../../config';
 import imageInput from "../../Assets/Images/icon/imgButton.svg";
-import blankUser from "../../Assets/Images/icon/blank-profile.jpg";
+import blankUser from "../../Assets/Images/icon/user-02.svg";
 import PhoneInput from 'react-phone-input-2';
 
 interface tabMemberProps {
@@ -19,7 +19,7 @@ const MemberPanel = ({ tabChoose,memberInfo }: tabMemberProps) => {
         <>
             <div className="profileInfo">
                 <h1>Personal Info</h1>
-                <div className="imageUpload">
+                <div className="imageUpload mt-4">
                     <div className="memberImg">
                         {memberInfo.member_image ?  <img className='member' src={`${API}/${memberInfo.member_image}`} alt="" />
                         :  <img className='member' src={blankUser} alt="" />}

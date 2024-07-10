@@ -3,6 +3,9 @@ import stepCheck from "../../Assets/Images/icon/stepCheck.svg";
 import stepDot from "../../Assets/Images/icon/stepDot.svg";
 import stepBlank from "../../Assets/Images/icon/stepBlank.svg";
 import MemberPanel from './MemberPanel';
+import logo from "../../Assets/Images/logo/logo.svg";
+import { DESKIE_API as API } from '../../config';
+import { singleProfile } from '../../api/settings';
 import PasswordPanel from './PasswordPanel';
 import Billing from './Billing';
 import Agreement from './Agreement';
@@ -18,6 +21,7 @@ const RegistrationPanel = () => {
     const [finishTab, setFinishTab] = useState(false);
     const [selectedTabs, setSelectedTabs] = useState<string[]>([]);
     const [memberInfo, setMemberInfo] = useState<any>({});
+    const [profile, setProfile] = useState<any>();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [dataURL, setDataURL] = useState<string>("");
@@ -88,6 +92,9 @@ const RegistrationPanel = () => {
     const token: any = urlParams.get('token');
     // single member info load
     useEffect(() => {
+        singleProfile().then((data) => {
+            setProfile(data.data);
+        })
         singleJwtMember(token).then((data) => {
             setMemberInfo(data.data.data);
         })
@@ -110,73 +117,80 @@ const RegistrationPanel = () => {
 
 
     return (
-        <>
+        <div className='d-flex flex-column'>
+            <div className="logo mb-4">
+                {profile && profile.company_logo_dark ?
+                    <img src={`${API}/${profile.company_logo_dark}`} alt="logo" />
+                    : <img src={logo} alt="logo" />
+                }
+            </div>
+
             <div className="tabPanel">
                 <div className="tabHeading">
                     <ul className="tablist">
                         <li className="">
                             <div className="arrowLine">
-                                <div className="checkCircle">
-                                    {checkValueExist("member", selectedTabs) ? <img src={stepCheck} alt='stepCheck' /> :
+                                <div className={`checkCircle ${checkValueExist("member", selectedTabs) && 'checked'}`}>
+                                    {checkValueExist("member", selectedTabs) ? <img className='checked' src={stepCheck} alt='stepCheck' /> :
                                         <>{memberTab ? <img src={stepDot} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
                                     }
                                 </div>
                             </div>
                             <div className="arrowHeading">
-                                <h6>Personal Info</h6>
-                                <p>Tell us who you are</p>
+                                <h6 className={memberTab ? 'selected' : ''}>Personal Info</h6>
+                                <p className={memberTab ? 'selected' : ''}>About you</p>
                             </div>
                         </li>
                         <li className="">
                             <div className="arrowLine">
-                                <div className="checkCircle">
-                                    {checkValueExist("password", selectedTabs) ? <img src={stepCheck} alt='stepCheck' /> :
+                                <div className={`checkCircle ${checkValueExist("password", selectedTabs) && 'checked'}`}>
+                                    {checkValueExist("password", selectedTabs) ? <img className='checked' src={stepCheck} alt='stepCheck' /> :
                                         <>{passwordTab ? <img src={stepDot} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
                                     }
                                 </div>
                             </div>
                             <div className="arrowHeading">
-                                <h6>Set Password</h6>
-                                <p>Secure your account</p>
+                                <h6 className={passwordTab ? 'selected' : ''}>Set Password</h6>
+                                <p className={passwordTab ? 'selected' : ''}>Secure your account</p>
                             </div>
                         </li>
                         <li className="">
                             <div className="arrowLine">
-                                <div className="checkCircle">
-                                    {checkValueExist("billing", selectedTabs) ? <img src={stepCheck} alt='stepCheck' /> :
+                                <div className={`checkCircle ${checkValueExist("billing", selectedTabs) && 'checked'}`}>
+                                    {checkValueExist("billing", selectedTabs) ? <img className='checked' src={stepCheck} alt='stepCheck' /> :
                                         <>{billingTab ? <img src={stepDot} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
                                     }
                                 </div>
                             </div>
                             <div className="arrowHeading">
-                                <h6>Billing Info</h6>
-                                <p>Payment method</p>
+                                <h6 className={billingTab ? 'selected' : ''}>Billing Info</h6>
+                                <p className={billingTab ? 'selected' : ''}>Payment method</p>
                             </div>
                         </li>
                         <li className="">
                             <div className="arrowLine">
-                                <div className="checkCircle">
-                                    {checkValueExist("agreement", selectedTabs) ? <img src={stepCheck} alt='stepCheck' /> :
+                                <div className={`checkCircle ${checkValueExist("agreement", selectedTabs) && 'checked'}`}>
+                                    {checkValueExist("agreement", selectedTabs) ? <img className='checked' src={stepCheck} alt='stepCheck' /> :
                                         <> {agreementTab ? <img src={stepDot} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
                                     }
                                 </div>
                             </div>
                             <div className="arrowHeading">
-                                <h6>Membership Agreement</h6>
-                                <p>Read, sign, submit</p>
+                                <h6 className={agreementTab ? 'selected' : ''}>Membership Agreement</h6>
+                                <p className={agreementTab ? 'selected' : ''}>Read, sign, submit</p>
                             </div>
                         </li>
                         <li className="">
                             <div className="arrowLine">
-                                <div className="checkCircle">
+                                <div className={`checkCircle done ${checkValueExist("done", selectedTabs) && 'checked'}`}>
                                     {checkValueExist("done", selectedTabs) ? <img src={stepCheck} alt='stepCheck' /> :
-                                        <> {finishTab ? <img src={stepDot} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
+                                        <> {finishTab ? <img src={stepCheck} alt='stepCheck' /> : <img src={stepBlank} alt='stepCheck' />}</>
                                     }
 
                                 </div>
                             </div>
                             <div className="arrowHeading">
-                                <h6>Done!</h6>
+                                <h6 className={finishTab ? 'selected' : ''}>Done!</h6>
                             </div>
                         </li>
                     </ul>
@@ -189,7 +203,7 @@ const RegistrationPanel = () => {
                     {finishTab ? <Finish password={password} email={memberInfo.email} tabChoose={tabChoose} /> : ""}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -213,7 +213,7 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                                     </div>
                                                 </div>
                                                 <div className="arrowHeading">
-                                                    <h6>Details</h6>
+                                                    <h6 className={detailsTab ? 'selected' : ''}>Details</h6>
                                                     <p className={detailsTab ? 'selected' : ''}>Resource info</p>
                                                 </div>
                                             </li>
@@ -226,7 +226,7 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                                     </div>
                                                 </div>
                                                 <div className="arrowHeading">
-                                                    <h6>Schedule</h6>
+                                                    <h6 className={scheduleTab ? 'selected' : ''}>Schedule</h6>
                                                     <p className={scheduleTab ? 'selected' : ''}>Date, time, etc</p>
                                                 </div>
                                             </li>
@@ -239,7 +239,7 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                                     </div>
                                                 </div>
                                                 <div className="arrowHeading">
-                                                    <h6>Payment</h6>
+                                                    <h6 className={billingTab ? 'selected' : ''}>Payment</h6>
                                                     <p className={billingTab ? 'selected' : ''}>Billing</p>
                                                 </div>
                                             </li>
@@ -253,7 +253,7 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                                                     </div>
                                                 </div>
                                                 <div className="arrowHeading">
-                                                    <h6>Done!</h6>
+                                                    <h6 className={finishTab ? 'selected' : ''}>Done!</h6>
                                                 </div>
                                             </li>
                                         </ul>
