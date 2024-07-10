@@ -14,7 +14,7 @@ import PhoneInput from 'react-phone-input-2';
 import { v4 as uuidv4 } from 'uuid';
 import { showNotifications } from '../../CommonFunction/toaster';
 import { tourAdd, tourTime } from '../../api/tour';
-import confirmIcon from "../../Assets/Images/icon/check-circle.png"
+import confirmIcon from "../../Assets/Images/icon/check-circle.svg"
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
