@@ -9,7 +9,7 @@ import arrowDown from "../../Assets/Images/icon/downIcon.svg";
 import { DESKIE_API as API } from '../../config';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { getInvoicesList } from '../../api/invoice';
+import { getInvoicesList, invoiceMonthly } from '../../api/invoice';
 import { useNavigate } from 'react-router-dom';
 import memberAvatar from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
@@ -103,8 +103,13 @@ const Billing = () => {
         setPage(page - 1)
     }
 
-   
-
+    const monthInv = () => {
+        invoiceMonthly().then((data) => {
+            console.log('inv',data);
+            
+        })
+    }
+    
     
 
     return (
@@ -117,6 +122,7 @@ const Billing = () => {
                                 {/* <li className="breadcrumb-item">Finances</li> */}
                                 <li className="breadcrumb-item px-0"><Link to="/billing">Billing</Link></li>
                                 <li className="breadcrumb-item active" aria-current="page">All Invoices</li>
+                                {/* <button onClick={monthInv}>Month</button> */}
                             </ol>
                         </nav>
                     </div>

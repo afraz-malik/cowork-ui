@@ -51,7 +51,6 @@ const InvoiceDetails = () => {
                 })
             })
             invoiceItems(id).then((data) => {
-                console.log('invoice items',data);
                 setResourceDetail(data.item_list);
                 setItemTotalPrice(data.total_amount);
             })
