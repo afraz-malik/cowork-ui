@@ -6,8 +6,8 @@ import logo from "../../Assets/Images/logo/logo.svg";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import calenderIcon from "../../Assets/Images/icon/calendar-date.png";
-import calenderActiveIcon from "../../Assets/Images/icon/calendar-date-active.png";
+import calenderIcon from "../../Assets/Images/icon/calendar-date.svg";
+import calenderActiveIcon from "../../Assets/Images/icon/calendar-date-active.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import PhoneInput from 'react-phone-input-2';
@@ -101,7 +101,7 @@ const BookTour = () => {
         <section className='bookTour'>
             <ToastContainer />
             <div className="signUpBox">
-                <div className="logo">
+                <div className="logo mb-4">
                     {profile && profile.company_logo_dark ?
                         <img src={`${API}/${profile.company_logo_dark}`} alt="logo" />
                         : <img src={logo} alt="logo" />
@@ -109,11 +109,9 @@ const BookTour = () => {
                 </div>
                 {dateChoose ? <>
                     <div className="bookCalender">
-                        <h6>Book a tour!</h6>
-                        <h5>Select a date and time</h5>
+                        <h6>Book a Tour</h6>
                         <div className="selectBook">
                             <div className="selectDate tourView">
-                                <h6>Select Date</h6>
                                 <FullCalendar
                                     plugins={[dayGridPlugin, interactionPlugin]}
                                     initialView="dayGridMonth"
@@ -128,7 +126,6 @@ const BookTour = () => {
                                 />
                             </div>
                             <div className="selectTime">
-                                <h6>Select Time</h6>
                                 {selectDay ? <div className="selectedDate">
                                     <img src={calenderActiveIcon} alt="calender" />
                                     <div className='dateTime'>
@@ -173,18 +170,17 @@ const BookTour = () => {
                             </div>
                         </div>
                         <div className="bookTourBtn">
-                            <button className="back"><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
+                            {/* <button className="back"><FontAwesomeIcon icon={faArrowLeft} /> Back</button> */}
                             <button className="next" onClick={dateAdd}>Next <FontAwesomeIcon icon={faArrowRight} /></button>
                         </div>
                     </div>
                 </> : ""}
                 {tourInfo ? <><div className="bookInfo">
-                    <h6>Book a tour!</h6>
-                    <h5>Select a date and time</h5>
-                    <div className='selectTime'>
+                    <h6>Book a Tour</h6>
+                    <div className='selectTime mb-3'>
                         <div className="selectedDate">
                             <img src={calenderActiveIcon} alt="calender" />
-                            <div className='dateTime'>
+                            <div className='dateTime mb-0'>
                                 <div>
                                     <p>{selectDay}</p>
                                     <p>{selectDate}</p>
@@ -197,7 +193,7 @@ const BookTour = () => {
                     </div>
                     <div className="memberInput">
                         <label>Name</label>
-                        <input type="text" onChange={(e) => setName(e.target.value)} placeholder='Enter your name' className='form-control' required />
+                        <input type="text" onChange={(e) => setName(e.target.value)} placeholder='Enter name' className='form-control' required />
                     </div>
                     <div className="numberInput">
                         <label>Phone Number</label>
@@ -205,11 +201,11 @@ const BookTour = () => {
                     </div>
                     <div className="memberInput">
                         <label>Email</label>
-                        <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder='Email' className='form-control' required />
+                        <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder='Enter email address' className='form-control' required />
                     </div>
                     <div className="bookTourBtn">
                         <button className="back"><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
-                        <button className="next" onClick={saveTour}>Next <FontAwesomeIcon icon={faArrowRight} /></button>
+                        <button className="next" onClick={saveTour}>Submit</button>
                     </div>
                 </div></> : ""}
 
@@ -217,11 +213,11 @@ const BookTour = () => {
                     <div className='text-center mb-3'>
                         <img src={confirmIcon} alt="confirm" />
                     </div>
-                    <h6>Booking Confirmed!</h6>
-                    <div className='selectTime'>
+                    <h6>Tour Confirmed!</h6>
+                    <div className='selectTime mt-4'>
                         <div className="selectedDate">
                             <img src={calenderActiveIcon} alt="calender" />
-                            <div className='dateTime'>
+                            <div className='dateTime mb-0'>
                                 <div>
                                     <p>{selectDay}</p>
                                     <p>{selectDate}</p>
@@ -232,8 +228,8 @@ const BookTour = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="bookTourBtn">
-                        <Link to="/" className="next">Back to website <FontAwesomeIcon icon={faArrowRight} /></Link>
+                    <div className="bookTourBtn" style={{marginTop: '32px'}}>
+                        <Link to="/" className="next">Back to website</Link>
                     </div>
                 </div> : ""}
 

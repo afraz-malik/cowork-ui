@@ -39,9 +39,9 @@ const MyHome = () => {
 
   return (
     <Layout>
-      <div className='mainContent'>
+      <div className='mainContent' id='my-home'>
         <div className="memberHome">
-          <h5>Welcome Back, <span>{firstName} {lastName}</span></h5>
+          {/* <h5>Welcome Back, <span>{firstName} {lastName}</span></h5> */}
           <div className="memberDashboard">
             <div className="memberLeft">
               <div className="assetsTicket">
@@ -130,7 +130,7 @@ const MyHome = () => {
             <div className="memberRight">
               <div className="upcomingBook">
                 <h5><img src={assetsIcon} alt="assets" />Upcoming Bookings</h5>
-                <div className="bookingList">
+                <div className="bookingList p-3">
                   <img src={spacesIcon} alt="member" />
                   <div className="spacesInfo">
                     <h6>sadasd</h6>

@@ -195,7 +195,7 @@
     margin-left: 10px;
     font-family: "MyCustomFont";
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 26px;
     text-align: left;
     color: rgba(208, 213, 221, 1);
@@ -222,7 +222,7 @@
     font-weight: 600;
     line-height: 26px;
     text-align: left;
-    color: rgba(52, 64, 84, 1);
+    color: rgba(52, 64, 84, .9);
     margin-bottom: 0px;
 }
 
@@ -236,7 +236,7 @@
     font-family: "MyCustomFont";
     font-size: 14px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 20px;
     text-align: center;
     box-shadow: 0px 6px 30px 0px rgba(42, 55, 119, 0.06);
@@ -285,4 +285,9 @@
     -moz-border-radius: 12px;
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
+}
+
+.bookTour .fc .fc-highlight {
+    border-radius: 100px;
+    background: var(--Brand-Brand-Primary, #6366F1);
 }
