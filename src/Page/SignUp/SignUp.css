@@ -598,6 +598,8 @@
     width: 48%;
 }
 
+.bookTour .memberInput label,
+.bookTour .numberInput label,
 .passwordInfo .loginInput label,
 .billingInfo .memberInput label,
 .profileInfo .memberInput label {
