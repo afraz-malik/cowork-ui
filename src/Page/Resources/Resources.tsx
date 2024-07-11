@@ -159,7 +159,7 @@ const Resources = () => {
           </div>
           <div className="upcomingListResources">
             <div className="bookingHeading">
-              <h6><img src={calenderIcon} alt="edit" /> Upcoming Booking</h6>
+              <h6><img src={calenderIcon} alt="edit" /> Upcoming Bookings</h6>
             </div>
             {bookingResult && bookingResult.map((resource) => <div className="bookingPerson">
               <img src={`${API}/${resource.resource_image}`} alt="edit" />

@@ -37,7 +37,7 @@ const MemberResource = () => {
     return (
         <Layout>
             <div className='mainContent'>
-                <div className="resourcesMember">
+                <div className="resourcesMember memberResources">
                     <div className="memberBox">
                         <div className="topLine">
                             <div className="memberName">
@@ -45,19 +45,19 @@ const MemberResource = () => {
                                 <h6> {resourceDetails.name}</h6>
                             </div>
                             <div className="editBtn">
-                            <button onClick={handlePaymentShow}><FontAwesomeIcon icon={faPlus} /> Reserve</button>
+                            <button onClick={handlePaymentShow}>Reserve</button>
                             </div>
                         </div>
-                        <div className="resourceDescription">
+                        <div className="resourceDescription p-4">
                             <div className="resourceInfo">
                                 <div className="memberMiniBox">
                                     <div className="resourceName">
                                         <h6>Capacity</h6>
-                                        <p>{resourceDetails.capacity}</p>
+                                        <p className="mb-0 mt-3">{resourceDetails.capacity}</p>
                                     </div>
                                     <div className="resourceName">
                                         <h6>Type</h6>
-                                        <div className='resourceType'>
+                                        <div className='resourceType mb-0 mt-3'>
                                             {resourceDetails.type === "meeting" ? <span className='meeting'>Meeting Space</span> : ""}
                                             {resourceDetails.type === "equipment" ? <span className='equipment'>Equipment</span> : ""}
                                             {resourceDetails.type === "workspace" ? <span className='workspace'>Workspace</span> : ""}
@@ -65,8 +65,8 @@ const MemberResource = () => {
                                         </div>
                                     </div>
                                     <div className="resourceName">
-                                        <h6>Rate (Members)</h6>
-                                        <p>{resourceDetails.member_rate}</p>
+                                        <h6>Rate</h6>
+                                        <p className="mb-0 mt-3">{resourceDetails.member_rate}</p>
                                     </div>
                                 </div>
                             </div>
@@ -79,21 +79,17 @@ const MemberResource = () => {
                         </div>
                     </div>
                     <div className="upcomingListResources memberBook">
-                        <div className="resourceImage">
-                            <div className="resourceBooking mt-3">
-                                <div className="bookingHeading">
-                                    <h6><img src={calenderIcon} alt="edit" /> Upcoming Booking</h6>
-                                </div>
-                                {bookList && bookList.map((resource) => <div className="bookingPerson">
-                                    <img src={`${API}/${resource.resource_image}`} alt="edit" />
-                                    <div>
-                                        <p>{resource.resource_name}</p>
-                                        <span>{formatResourceDate(resource.book_date)}, {resource.start_time} - {resource.end_time}</span>
-                                    </div>
-                                    <button><FontAwesomeIcon icon={faEye} /></button>
-                                </div>)}
-                            </div>
+                        <div className="bookingHeading">
+                            <h6><img src={calenderIcon} alt="edit" /> Upcoming Bookings</h6>
                         </div>
+                        {bookList && bookList.map((resource) => <div className="bookingPerson">
+                            <img src={`${API}/${resource.resource_image}`} alt="edit" />
+                            <div>
+                                <p>{resource.resource_name}</p>
+                                <span>{formatResourceDate(resource.book_date)}, {resource.start_time} - {resource.end_time}</span>
+                            </div>
+                            <button><FontAwesomeIcon icon={faEye} /></button>
+                        </div>)}
                     </div>
                 </div>
                 <ResourceBooking resourceDetails={resourceDetails} paymentShow={paymentShow} setPaymentShow={setPaymentShow} handlePaymentClose={handlePaymentClose} />
