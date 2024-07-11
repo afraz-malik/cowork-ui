@@ -15,7 +15,7 @@ import { separateComma } from '../../CommonFunction/Function';
 import AssignSpaces from '../../Component/AssignSpaces/AssignSpaces';
 import { ToastContainer } from 'react-toastify';
 import PhoneInput from 'react-phone-input-2';
-import memberAvatar from "../../Assets/Images/icon/memberAvatar.png";
+import memberAvatar from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from './../../Component/Pagination/Pagination';
 import { Link,useNavigate } from 'react-router-dom';
@@ -116,18 +116,18 @@ const Member = () => {
 
 
   return (
-    <>
+    <div id='member'>
       <Layout>
         <ToastContainer />
         <div className='mainContent'>
           <div className="memberBox">
             <div className="topLine">
               <div className='tableHeading'>
-                <h6>All Members</h6>
+                <h6><FontAwesomeIcon icon={faArrowLeft} />All Members</h6>
               </div>
               <div className='memberSearch'>
                 <div className='searchInput'>
-                  <input type="text" placeholder='Search member' onChange={handleInputChange} className='form-control' />
+                  <input type="text" placeholder='Search members' onChange={handleInputChange} className='form-control' />
                   <FontAwesomeIcon icon={faSearch} />
                 </div>
                 <button onClick={handleShow}><FontAwesomeIcon icon={faPlus} /> Add Member</button>
@@ -161,7 +161,7 @@ const Member = () => {
                     <td>
                     {data.member_image ?
                           <><img src={`${API}/${data.member_image}`} alt="avatar" style={{ borderRadius: "50%", objectFit: "cover" }} /></>
-                          : <><img src={memberAvatar} alt="avatar" style={{ borderRadius: "50%" }} /> </>
+                          : <><img className="default" src={memberAvatar} alt="avatar" style={{ borderRadius: "50%" }} /> </>
                         }
                     </td>
                     <td className='tableLink'>
@@ -196,7 +196,7 @@ const Member = () => {
                   </tr>)}
                 </tbody>
               </Table>
-              <Pagination page={page} paginationTitle="members" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={member} />
+              <Pagination page={page} paginationTitle="items" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={member} />
             </div>
             <AddMember show={show} setShow={setShow} handleClose={handleClose} />
             <EditMember memberId={memberId} updateShow={updateShow} setUpdateShow={setUpdateShow} handleUpdateClose={handleUpdateClose} />
@@ -204,7 +204,7 @@ const Member = () => {
           </div>
         </div>
       </Layout>
-    </>
+    </div>
   )
 }
 

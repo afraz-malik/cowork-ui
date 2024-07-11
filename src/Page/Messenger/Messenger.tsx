@@ -4,8 +4,8 @@ import "./Messenger.css";
 import Layout from '../../Component/Layout/Layout';
 import avatar from "../../Assets/Images/icon/blank-profile.jpg";
 import assign from "../../Assets/Images/icon/memberAvatar.svg";
-import emoji from "../../Assets/Images/icon/face-smile.png";
-import fileShare from "../../Assets/Images/icon/attachment.svg";
+import emoji from "../../Assets/Images/icon/send.svg";
+import fileShare from "../../Assets/Images/icon/fileshare.svg";
 import onlineShow from "../../Assets/Images/icon/online.svg";
 import more from "../../Assets/Images/icon/more.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -411,16 +411,16 @@ const Messenger = () => {
                                                     onChange={(e) => setInput(e.target.value)}
                                                     placeholder='Write your message' />
                                             </div>
-                                            <FontAwesomeIcon className="info-circle-icon" onClick={messageStart} icon={faPaperPlane} />
                                             <img
+                                                onClick={() => setUploadShow(true)}
                                                 className="info-circle-icon"
                                                 alt=""
                                                 src={emoji}
                                             />
                                             <img
-                                                onClick={() => setUploadShow(true)}
                                                 className="info-circle-icon"
                                                 alt=""
+                                                onClick={messageStart}
                                                 src={fileShare}
                                             />
                                         </div>

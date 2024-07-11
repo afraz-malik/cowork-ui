@@ -19,7 +19,7 @@ const UserList = ({ ...props }) => {
       to.length === 0 ?
         <div className="messageImage">
           <img alt="message" loading="lazy" src={cuate} />
-          <p className="mt-3">No messages yet</p>
+          <p className="mt-3" style={{fontSize: '14px'}}>No messages yet</p>
         </div>
         :
         to.length === 1 ? (
