@@ -70,6 +70,7 @@ const Header = ({ onValueChange }: any) => {
                 <div className='contentHeading'>
                     <button className="sb-button" onClick={handleClick}><FontAwesomeIcon icon={faBars} /></button>
                     {urlParams === "member" ? <p>Members</p> : ""}
+                    {pathArray.includes("member") ? <p>Members</p> : ""}
                     {pathArray.includes("assets") ? <p>Assets</p> : ""}
                     {pathArray.includes("calender") ? <p>Calendar</p> : ""}
                     {pathArray.includes("billing") ? <p>Billing</p> : ""}

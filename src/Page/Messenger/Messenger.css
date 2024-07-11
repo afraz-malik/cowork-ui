@@ -780,6 +780,8 @@ margin-right: 15px;
 }
 
 .hihow-are-things-with-our-ill-wrapper {
+    max-width: 60%;
+    width: fit-content;
     align-self: stretch;
     border-radius: var(--br-xs);
     background: rgba(240, 244, 246, 1);
@@ -808,13 +810,11 @@ margin-right: 15px;
 
 .message,
 .message1 {
-    width: 430px;
     flex-direction: column;
     gap: var(--gap-9xs);
 }
 
 .message {
-    width: 502px;
     flex-direction: row;
     gap: var(--gap-5xl);
 }
@@ -894,7 +894,7 @@ margin-right: 15px;
 }
 
 .hi-im-working-on-the-final-sc-wrapper {
-    width: 430px;
+    max-width: 60%;
     border-radius: var(--br-xs);
     background-color: var(--brand-brand-primary);
     display: flex;
@@ -924,6 +924,7 @@ margin-right: 15px;
 .message8 {
     flex-direction: column;
     justify-content: flex-start;
+    align-items: end;
     gap: var(--gap-9xs);
 }
 
@@ -946,6 +947,7 @@ margin-right: 15px;
     flex-direction: column;
     justify-content: flex-start;
     padding: 10px var(--padding-13xl);
+    overflow-y: auto;
     /* margin-bottom: 15px; */
 }
 
@@ -1077,7 +1079,7 @@ margin-right: 15px;
     position: relative;
     height: calc(100vh - 140px);
     background-color: rgb(255, 255, 255);
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 
@@ -1220,6 +1222,14 @@ margin-right: 15px;
 
 .dropdown-content .item:hover {
     background-color: rgba(244, 247, 248, 1);
+}
+
+.chat .dropdown-content .item .label {
+    color: var(--Typography-Body, #344054);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
 }
 
 .dropdown-content .item .label {

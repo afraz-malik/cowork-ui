@@ -25,7 +25,7 @@
 
 .topLine {
     padding: 0px 24px;
-    height: 100px;
+    height: 85px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -185,7 +185,7 @@
 
 .memberList table tbody tr td:nth-child(4),
 .memberList table tbody tr td:nth-child(5) {
-    color: #475467;
+    color: #475467AA;
     font-family: 'MyCustomFont';
     font-size: 14px;
     font-weight: 400;
@@ -578,10 +578,10 @@
 .memberInfo .memberInfoBox p {
     font-family: "MyCustomFont";
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 24px;
     text-align: left;
-    color: rgba(71, 84, 103, 1);
+    color: rgba(71, 84, 103, .7);
     margin-bottom: 0px;
 }
 
@@ -933,8 +933,16 @@
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-    color: rgba(152, 162, 179, 1);
+    color: rgba(152, 162, 179, .7);
 
+}
+
+#member .react-tel-input .form-control {
+    color: #475467AA;
+}
+
+#view-member .topLine {
+    height: 114px;
 }
 
 @media (max-width: 778px) {

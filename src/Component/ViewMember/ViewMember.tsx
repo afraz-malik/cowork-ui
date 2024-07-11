@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { singleMember, memberSpaces, memberInvoice } from '../../api/member';
 import { DESKIE_API as API } from '../../config';
-import memberBlank from "../../Assets/Images/icon/memberAvatar.png";
+import memberBlank from "../../Assets/Images/icon/memberAvatar.svg";
 import spacesBlank from "../../Assets/Images/icon/spaceAvatar.png";
 import more from "../../Assets/Images/icon/dots-vertical.svg";
 import { Link, useParams } from 'react-router-dom';
@@ -46,7 +46,7 @@ const ViewMember = () => {
     }
 
     return (
-        <>
+        <div id='view-member'>
             <Layout>
                 <div className='mainContent'>
                     <div className="invoiceHeading">
@@ -67,7 +67,7 @@ const ViewMember = () => {
                                         : <><img src={memberAvatar} alt="avatar" style={{ borderRadius: "50%" }} /></>
                                     }
                                     <div>
-                                        <h6>{memberDetails.first_name} {memberDetails.last_name}</h6>
+                                        <h6 className='mb-1'>{memberDetails.first_name} {memberDetails.last_name}</h6>
                                         <p>Member</p>
                                     </div>
                                 </div>
@@ -75,12 +75,12 @@ const ViewMember = () => {
                             <div className="editBtn">
                                 {memberDetails.account_active === 1 ? "" : <span className='invite'>Invitation Pending</span> }
                                 
-                                <button className='edit' onClick={() => memberUpdate(memberDetails.id)}><img src={penIcon} alt="edit" /> Edit Member</button>
+                                <button className='edit py-2' onClick={() => memberUpdate(memberDetails.id)}><img src={penIcon} alt="edit" /> Edit Member</button>
                             </div>
                         </div>
                         <div className="memberInfo">
                             <div className="memberInfoBox">
-                                <h6>Signup Date</h6>
+                                <h6>Account Signup Date</h6>
                                 <p>{moment(memberDetails.created_at).format("MMMM DD, YYYY")}</p>
                             </div>
                             <div className="memberInfoBox" style={{ borderLeft: '1px solid  rgba(234, 236, 240, 1)', borderRight: '1px solid  rgba(234, 236, 240, 1)' }}>
@@ -88,7 +88,7 @@ const ViewMember = () => {
                                 <p>{memberDetails.phone_number}</p>
                             </div>
                             <div className="memberInfoBox">
-                                <h6>Email</h6>
+                                <h6>Email Address</h6>
                                 <p>{memberDetails.email}</p>
                             </div>
                             <div className="memberInfoBox">
@@ -136,7 +136,7 @@ const ViewMember = () => {
                                             <div className="invoiceHeading">
                                                 <div className="invoiceName">
                                                     <h6>{invoice.spaces_name ? invoice.spaces_name : "N/A"}</h6>
-                                                    <p> {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} alt="member" /> : <img src={memberBlank} alt="member" />} <span>{invoice.member_name}</span> </p>
+                                                    <p> {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} alt="member" /> : <img className='default' src={memberBlank} alt="member" />} <span>{invoice.member_name}</span> </p>
                                                 </div>
                                                 <div className="invoicePrice billingAction">
                                                     <p>${invoice.amount} <span>/{invoice.renewal_frequency === "monthly" ? "mo" : "we"}</span> </p>
@@ -186,7 +186,7 @@ const ViewMember = () => {
                                 </div> */}
                                 <div className="memberNotes">
                                     <h6>Notes</h6>
-                                    <p>{memberDetails.notes ? memberDetails.notes : "You haven’t added any notes for this user."}</p>
+                                    <p className='mb-0'>{memberDetails.notes ? memberDetails.notes : "You haven’t added any notes for this user."}</p>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +195,7 @@ const ViewMember = () => {
                 </div>
                 <EditMember memberId={memberId} updateShow={updateShow} setUpdateShow={setUpdateShow} handleUpdateClose={handleUpdateClose} />
             </Layout>
-        </>
+        </div>
     )
 }
 
