@@ -346,7 +346,7 @@ color: rgba(52, 64, 84, 1);
 
 #my-billing .dropdown-menu,
 #billing .dropdown-menu {
-    display: flex;
+    /* display: flex; */
     padding: 18px 14px;
     flex-direction: column;
     align-items: flex-start;
