@@ -84,7 +84,7 @@ const ResourceSchedule = ({ setStartTime, setEndTime, setSelectedDate, startTime
     const formattedDate = format(nowDate, "yyyy-MM-dd HH:mm:ss.SSS");
     setSelectedDate(formattedDate);
     resourceBookTime().then((data) => {
-      setBookingTime(data.data)
+      setBookingTime(data.data || [])
     })
 
 
@@ -161,7 +161,7 @@ const ResourceSchedule = ({ setStartTime, setEndTime, setSelectedDate, startTime
               />
             </div>
             <div className="timeChoose mt-4 pt-2">
-              <h6 className='my-2'>Start and End Time</h6>
+              <h6 className='my-2'>Start & End Time</h6>
               <div className='timeDropdown'>
                 <Dropdown onSelect={handleStartSelect}>
                   <Dropdown.Toggle>

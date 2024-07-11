@@ -2131,6 +2131,7 @@ color: rgba(71, 84, 103, 1);
 }
 
 #visitor .topLine,
+#resources .topLine,
 #files .topLine {
   height: 85px;
 }

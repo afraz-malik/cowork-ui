@@ -85,6 +85,7 @@ const Header = ({ onValueChange }: any) => {
                     {urlParams === "settings" ? <p>Settings</p> : ""}
                     {urlParams === "my-home" ? <p>Home</p> : ""}
                     {pathArray.includes("resources") ? <p>Resources</p> : ""}
+                    {pathArray.includes("my-resources") ? <p>My Bookings</p> : ""}
                 </div>
                 <div className='rightNavbar'>
                     <button className='d-flex align-items-center'><img src={circle} alt="circle" /></button>
