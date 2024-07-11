@@ -21,8 +21,9 @@ interface tabMemberProps {
   setStartTime: any;
   setEndTime: any;
   setSelectedDate: any;
+  resourceDetail: any;
 }
-const ResourceSchedule = ({ setStartTime, setEndTime, setSelectedDate, startTime, endTime, selectedDate, tabChoose }: tabMemberProps) => {
+const ResourceSchedule = ({ resourceDetail, setStartTime, setEndTime, setSelectedDate, startTime, endTime, selectedDate, tabChoose }: tabMemberProps) => {
   const scheduleFunction = () => {
     tabChoose("billing", "schedule")
   }
@@ -83,7 +84,7 @@ const ResourceSchedule = ({ setStartTime, setEndTime, setSelectedDate, startTime
     const nowDate = new Date();
     const formattedDate = format(nowDate, "yyyy-MM-dd HH:mm:ss.SSS");
     setSelectedDate(formattedDate);
-    resourceBookTime().then((data) => {
+    resourceBookTime(resourceDetail.id).then((data) => {
       setBookingTime(data.data)
     })
 
