@@ -82,9 +82,8 @@ const InvoiceDetails = () => {
             "paymentNote": "",
             "status": "void"
         }
-
-        if (invoiceDetail.payment_id) {
-            paymentVoid(invoiceDetail.payment_id, paymentInfo).then((data) => {
+        if (id) {
+            paymentVoid(id, paymentInfo).then((data) => {
                 if (data.statusCode !== 200) {
                     showNotifications('error', data.message)
                 }
@@ -94,18 +93,31 @@ const InvoiceDetails = () => {
                 }
             })
         }
-        else {
 
-            invoiceUpdate(voidInfo).then((data) => {
-                if (data.statusCode !== 200) {
-                    showNotifications('error', data.message)
-                }
-                else {
-                    setCount(count + 1)
-                    showNotifications('success', data.message)
-                }
-            })
-        }
+
+        // if (invoiceDetail.payment_id) {
+        //     paymentVoid(invoiceDetail.payment_id, paymentInfo).then((data) => {
+        //         if (data.statusCode !== 200) {
+        //             showNotifications('error', data.message)
+        //         }
+        //         else {
+        //             setCount(count + 1)
+        //             showNotifications('success', data.message)
+        //         }
+        //     })
+        // }
+        // else {
+
+        //     invoiceUpdate(voidInfo).then((data) => {
+        //         if (data.statusCode !== 200) {
+        //             showNotifications('error', data.message)
+        //         }
+        //         else {
+        //             setCount(count + 1)
+        //             showNotifications('success', data.message)
+        //         }
+        //     })
+        // }
 
     }
 
@@ -164,7 +176,10 @@ const InvoiceDetails = () => {
                                     </div>
                                     <div className="invoiceId col-3">
                                         <p>Status</p>
-                                        <h6 className='status mb-0'>{invoiceDetail && invoiceDetail.payment_status === "paid" ? <><span className='paid'>Paid</span></> : invoiceDetail && invoiceDetail.payment_status === "void" ? <span className='unpaid'>Void</span> : <span className='unpaid'>Unpaid</span>}</h6>
+                                        <h6 className='status mb-0'>
+                                            {invoiceDetail && invoiceDetail.status ? <span className='void'>{invoiceDetail.status}</span>
+                                                : <>{invoiceDetail && parseFloat(invoiceDetail.total_payment_amount) >= itemTotalPrice ? <span className='paid'>Paid</span> : <span className='unpaid'>Unpaid</span>}</>}
+                                        </h6>
                                     </div>
                                     <div className="invoiceId col-3">
                                         <p>Payment Date</p>
@@ -208,16 +223,13 @@ const InvoiceDetails = () => {
                                     </div>
                                     <div className="itemTotal">
                                         <p className='d-flex'>Remaining Balance <span>
-                                            {invoiceDetail && invoiceDetail.renewal_frequency === "resource" ? <p className='amountPaid'>$0</p>
-                                                : <>
-                                                    {itemTotalPrice && itemTotalPrice ?
-                                                        <p className={(invoiceDetail && parseFloat((itemTotalPrice - invoiceDetail.payment_value).toFixed(2)) === 0 ? 'amountPaid' : 'amountUnpaid').toString()}>
-                                                            ${parseFloat((itemTotalPrice - invoiceDetail.payment_value).toFixed(2)).toString()}
-                                                        </p>
-                                                        :
-                                                        "N/A"
-                                                    }
-                                                </>}
+                                        {itemTotalPrice && itemTotalPrice ?
+                                                    <p className={(invoiceDetail && parseFloat((itemTotalPrice - invoiceDetail.total_payment_amount).toFixed(2)) === 0 ? 'amountPaid' : 'amountUnpaid').toString()}>
+                                                        ${parseFloat((itemTotalPrice - invoiceDetail.total_payment_amount).toFixed(2)).toString()}
+                                                    </p>
+                                                    :
+                                                    "N/A"
+                                                }
                                         </span></p>
                                     </div>
                                 </div>

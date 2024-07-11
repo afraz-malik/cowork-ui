@@ -155,13 +155,18 @@ const MyInvoice = () => {
                                             }
                                             {invoice.spaces_name}</td>
                                         <td>{moment(invoice.renewal_date).format("MMMM DD, YYYY")}</td>
-                                        <td className='status'>
-                                            <span className='unpaid'>Unpaid</span>
-                                            {/* {invoice.amount ? <span className='paid'>Paid</span>
-                                         : <span className='unpaid'>Unpaid</span>} */}
-                                        </td>
+                                        {invoice.status ? <td className='status'>
+                                            <span className='void'>{invoice.status}</span>
+                                        </td> : <>
+                                            {invoice.renewal_frequency === "resource" ? <td className='status'>
+                                                {parseFloat(invoice.total_payment_amount) >= parseFloat(invoice.amount) ? <span className='paid'>Paid</span> : <span className='unpaid'>Unpaid</span>}
+                                            </td> :
+                                                <td className='status'>
+                                                    {parseFloat(invoice.total_payment_amount) >= parseFloat(invoice.total_amount) ? <span className='paid'>Paid</span> : <span className='unpaid'>Unpaid</span>}
+                                                </td>}
+                                        </>}
                                         {invoice.renewal_frequency === "resource" ? <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
-                                        : <td>{invoice.total_amount ? <>${invoice.total_amount}</> : "N/A"}</td>}
+                                            : <td>{invoice.total_amount ? <>${invoice.total_amount}</> : "N/A"}</td>}
                                         <td className='billingAction'>
                                             <button className='btn download px-2' onClick={() => paymentView(invoice.id)}><img src={more} alt="download" /></button>
                                         </td>

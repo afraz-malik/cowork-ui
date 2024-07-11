@@ -112,8 +112,9 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
             created_by: auth.user.id,
             invoice_add: authValue
         }
+        const invId = uuidv4();
         let invoiceResource = {
-            "id": uuidv4(),
+            "id": invId,
             "spaces_id": resourceDetails.id,
             "member_id": auth.user.id,
             "amount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate),
@@ -147,6 +148,8 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
             "amount": findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate)
         }
 
+
+
         if (authValue) {
             memberAddSpaces(invoiceMonthly).then((data) => {
                 if (data.statusCode !== 200) {
@@ -173,9 +176,23 @@ const ResourceBooking = ({ handlePaymentClose, paymentShow, setPaymentShow, reso
                         showNotifications("success", data.message);
                         setPaymentShow(false)
                     })
-                    invoiceUpdate(paymentInfo).then((data) => {
-                        console.log('pay', data);
+                    // invoiceUpdate(paymentInfo).then((data) => {
+                    //     console.log('pay', data);
+                    // })
 
+                    let paymentConfirm = {
+                        "id": uuidv4(),
+                        "invoiceId": invId,
+                        "invoiceNumber": data.invoice_id,
+                        "userId": auth.user.id,
+                        "amount": `${findTimeGap(startTime, endTime) * parseInt(resourceDetails.member_rate)}`,
+                        "paymentDate": new Date(),
+                        "method": "Visa",
+                        "paymentNote": "",
+                        "status": ""
+                    }
+                    invoiceUpdate(paymentConfirm).then((data) => {
+                        console.log('pay', data);
                     })
                 }
             })

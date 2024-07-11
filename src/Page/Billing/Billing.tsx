@@ -21,8 +21,7 @@ const Billing = () => {
 
     const [invoiceTag, setInvoiceTag] = useState("");
     const [invoiceList, setInvoiceList] = useState<any>([]);
-    console.log('invoiceList', invoiceList);
-
+    const [count, setCount] = useState(0);
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState<number>(6);
     // pagination
@@ -53,7 +52,7 @@ const Billing = () => {
             setLimitValue(data.limit)
             setPageValue(data.page)
         })
-    }, [invoiceTag, page, limit]);
+    }, [invoiceTag, page, limit, count]);
 
 
 
@@ -105,8 +104,7 @@ const Billing = () => {
 
     const monthInv = () => {
         invoiceMonthly().then((data) => {
-            console.log('inv', data);
-
+            setCount(count + 1)
         })
     }
 
@@ -122,7 +120,7 @@ const Billing = () => {
                                 {/* <li className="breadcrumb-item">Finances</li> */}
                                 <li className="breadcrumb-item px-0"><Link to="/billing">Billing</Link></li>
                                 <li className="breadcrumb-item active" aria-current="page">All Invoices</li>
-                                 {/* <button onClick={monthInv}>Month</button>  */}
+                                <button onClick={monthInv}>Month</button>
                             </ol>
                         </nav>
                     </div>
@@ -147,6 +145,7 @@ const Billing = () => {
                                             <Dropdown.Item onClick={() => setInvoiceTag("unpaid")}>UnPaid</Dropdown.Item>
                                             <Dropdown.Item onClick={() => setInvoiceTag("paid")}>Paid</Dropdown.Item>
                                             <Dropdown.Item onClick={() => setInvoiceTag("void")}>Void</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => setInvoiceTag("pending")}>Pending</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </div>
@@ -191,14 +190,16 @@ const Billing = () => {
                                             }
                                             {invoice.spaces_name ? invoice.spaces_name : "N/A"}</td>
                                         <td>{moment(invoice.created_at).format("MMMM DD, YYYY")}</td>
-                                        {invoice.renewal_frequency === "resource" ? <td className='status'>
-                                            <span className='paid'>Paid</span>
-                                        </td> :
-                                            <td className='status'>
-                                                {invoice.payment_status === "paid" ? <span className='paid'>Paid</span>
-                                                    : invoice.payment_status === "void" ? <span className='void'>Void</span>
-                                                        : <span className='unpaid'>Unpaid</span>}
-                                            </td>}
+                                        {invoice.status ? <td className='status'>
+                                            <span className='void'>{invoice.status}</span>
+                                        </td> : <>
+                                            {invoice.renewal_frequency === "resource" ? <td className='status'>
+                                                {parseFloat(invoice.total_payment_amount) >= parseFloat(invoice.amount) ? <span className='paid'>Paid</span> : <span className='unpaid'>Unpaid</span>}
+                                            </td> :
+                                                <td className='status'>
+                                                    {parseFloat(invoice.total_payment_amount) >= parseFloat(invoice.total_amount) ? <span className='paid'>Paid</span> : <span className='unpaid'>Unpaid</span>}
+                                                </td>}
+                                        </>}
                                         {invoice.renewal_frequency === "resource" ? <td>{invoice.amount ? <>${invoice.amount}</> : "N/A"}</td>
                                             : <td>{invoice.total_amount ? <>${invoice.total_amount}</> : "N/A"}</td>}
                                         <td className='billingAction'>

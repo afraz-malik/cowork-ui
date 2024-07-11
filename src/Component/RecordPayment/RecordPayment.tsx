@@ -69,7 +69,8 @@ const RecordPayment = ({ show, setShow, handleClose, invoiceId, invoiceDetail }:
             "amount": amount,
             "paymentDate": dueDate,
             "method": selectedTag,
-            "paymentNote": notes
+            "paymentNote": notes,
+            "status": ""
         }
         invoiceUpdate(paymentInfo).then((data) => {
             if (data.statusCode !== 200) {
