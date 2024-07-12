@@ -40,9 +40,11 @@
 }
 
 .trashPost .postDelete {
-    border: none !important;
-    padding: 20px 0px !important;
-    box-shadow: 0px 12px 30px 0px rgba(122, 122, 122, 0.14) !important;
+    border-radius: 12px;
+    background: var(--Base-White, #FFF);
+    border: none;
+    padding: 28px 0;
+    box-shadow: 0px 0px 30px 0px rgba(122, 122, 122, 0.14);
 }
 
 .trashPost .postDelete a img {
@@ -733,7 +735,7 @@
     display: flex;
     align-items: center;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 500;
     line-height: 16px;
     letter-spacing: 0em;
     text-align: center;
@@ -746,7 +748,7 @@
 }
 
 .postIconImage button img {
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 .trashPost .dropdown .dropdown-toggle {

@@ -453,9 +453,9 @@ const Announcement = () => {
                     : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />
                   }
                   <div className="input-with-label3">
-                    <div className="postEmoji">
+                    {/* <div className="postEmoji">
                       <img className="heart-icon" alt="emoji" src={emojiIcon} />
-                    </div>
+                    </div> */}
                     <div className="input3">
                       <textarea id="postTextarea" value={post} onChange={(e) => { setPost(e.target.value); autoResize(); }} placeholder="Write a new post" rows={3} />
                     </div>

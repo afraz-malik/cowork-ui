@@ -35,12 +35,14 @@ const ToMessage = ({ ...props }) => {
                         </div>
                         {/* <img className="avatar-icon1" alt="" src={`${API}/image/avatar/${props.avatar}`} /> */}
 
-                        {props.avatar ? <img className="avatar-icon1" alt="" src={`${API}/${props.avatar}`} />
-                            : <img className="avatar-icon1" alt="" src={avatar} />
-                        }
-                        {props.online_status ? (<div className="avatar-online-indicator">
-                            <img alt="" src={onlineShow} />
-                        </div>) : <></>}
+                        <div className="avatar">
+                            {props.avatar ? <img className="avatar-icon1" alt="" src={`${API}/${props.avatar}`} />
+                                : <img className="avatar-icon1" alt="" src={avatar} />
+                            }
+                            {props.online_status ? (<div className="avatar-online-indicator">
+                                <img alt="" src={onlineShow} />
+                            </div>) : <></>}
+                        </div>
                     </div>) : (
                         <div className="message7">
                             <div className="message8">

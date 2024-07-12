@@ -63,7 +63,7 @@ const UploadFile = ({ id,setFile, uploadedFiles, setUploadedFiles, uploadShow, s
                                 <div ref={wrapperRef} className="drop-file-input">
                                     <div className="drop-file-input__label">
                                         <img src={uploadFile} alt="" />
-                                        <p><span>Click to upload</span> or drag and drop</p>
+                                        <p className='mb-0'><span>Click to upload</span> or drag and drop</p>
                                         <h6>Maximum upload size <b>26 MB</b></h6>
                                     </div>
                                     <input type="file" value="" onChange={onFileDrop} />
