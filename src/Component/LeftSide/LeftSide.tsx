@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import adminIcon from "../../Assets/Images/icon/adminIcon.png";
 import { DESKIE_API as API } from '../../config';
 // sidebar image
-import help from "../../Assets/Images/icon/life-buoy-01.svg";
+import help from "../../Assets/Images/icon/lightbulb.svg";
 import { useNavigate } from 'react-router-dom';
 import { singleProfile } from '../../api/settings';
 import sidebarLogo from "../../Assets/Images/logo/logo.svg"
@@ -191,7 +191,7 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
                         <ul>
                             <li className="dropNavLink">
                                 <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#help-collapse" aria-expanded="false">
-                                    <img src={help} alt="dashboard" /> HelpDesk
+                                    <img className='mr-2' src={help} alt="dashboard" /> Submit Feedback
                                 </button>
                                 {/* <div className="collapse" id="help-collapse" >
                                     <ul className="btn-toggle-nav list-unstyled fw-normal small">

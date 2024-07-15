@@ -16,7 +16,7 @@
     padding: 24px 72px;
 }
 
-#addResource .rateChoose {
+.resourceBox .rateChoose {
     padding: 24px;
     border-radius: 12px;
     border: 1px solid var(--Brand-Divider, #EAECF0);
@@ -235,4 +235,15 @@
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+}
+
+.resourceAdd .typeCapacity .dropdownField span,
+.resourceAdd .typeCapacity .resourceRate span,
+.resourceAdd .resourceName span {
+    width: 30%;
+}
+
+.resourceAdd .typeCapacity .resourceRate input,
+.resourceAdd .resourceName input {
+    padding-left: calc(30% + 12px);
 }

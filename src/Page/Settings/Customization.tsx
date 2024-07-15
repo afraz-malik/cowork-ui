@@ -179,7 +179,7 @@ const Customization = ({ settingTab }: ProfileProps) => {
                                 </label>}
                         </div>
                     </div>
-                    <div className="settingCustom">
+                    <div className="settingCustom border-bottom-0 pb-0">
                         <div className="dashboardInfos">
                             <img src={settings} alt="" />
                             <div><p>Settings (Admin)</p><span>Space customization</span></div>
