@@ -231,6 +231,24 @@
     margin-left: 5px;
 }
 
+.addMemberForm .memberSpaces .memberInfos {
+    width: calc((100% - 60px) / 2);
+}
+
+.addMemberForm .memberSpaces .memberInfos .dropdown-content {
+    padding: 20px 8px;
+    height: inherit;
+}
+
+.addMemberForm .memberSpaces .memberInfos .dropdown-content .assignInput svg {
+    left: 20px;
+}
+
+.addMemberForm .memberSpaces .memberInfos .dropdown-content .member-container {
+    padding-left: 10px;
+    padding-right: 8px;
+}
+
 .memberInfos {
     display: flex;
     align-items: center;

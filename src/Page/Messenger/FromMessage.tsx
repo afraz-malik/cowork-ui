@@ -21,7 +21,7 @@ const FromMessage = ({ ...props }) => {
         <>
             {props.mode === CHAT_TEXT ? (
                 <div className="div24">
-                    <div className="message">
+                    <div className="message w-100">
                         <div className="avatar1">
                             {/* <img className="avatar-icon1" alt="" src={`${API}/image/avatar/${props.avatar}`} /> */}
                             {props.avatar ? <img className="avatar-icon1" alt="" src={`${API}/${props.avatar}`} />

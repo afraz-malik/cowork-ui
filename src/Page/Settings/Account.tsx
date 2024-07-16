@@ -125,7 +125,7 @@ const Account = ({ settingTab }: AccountProps) => {
                             </div>
                         </div>
                     </div>
-                    <div className="contactDetails">
+                    <div className="contactDetails border-bottom-0 pb-0">
                         <p>Contact Details</p>
                         <div className='rightSideSetting'>
                             <div className="companyInput profileName">

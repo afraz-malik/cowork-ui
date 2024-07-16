@@ -2,7 +2,7 @@ import React, { useState, useEffect, forwardRef } from 'react'
 import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faXmark, faChevronDown, faSearch, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import assignmentIcon from "../../Assets/Images/icon/assignmentIcon.png";
+import assignmentIcon from "../../Assets/Images/icon/assetsIcon.svg";
 import { v4 as uuidv4 } from 'uuid';
 import { getSpacesList, memberAddSpaces } from '../../api/spaces';
 import { DESKIE_API as API } from '../../config';
@@ -11,7 +11,7 @@ import { showNotifications } from '../../CommonFunction/toaster';
 import { singleMember } from './../../api/member';
 import DatePicker from 'react-datepicker';
 import { maskEmail } from '../../CommonFunction/Function';
-import memberIcon from "../../Assets/Images/icon/memberAvatar.png";
+import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceIcon from "../../Assets/Images/icon/spaceAvatar.png";
 
 interface AssignSpacesProps {
@@ -208,7 +208,7 @@ const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisab
           <button className='closeModal' onClick={handleAssignClose}>
             <FontAwesomeIcon icon={faXmark} />
           </button>
-          <Container>
+          <Container className='px-0'>
             <Row>
               <Col md={12}>
                 <div className='addMemberHeading'>
@@ -219,10 +219,8 @@ const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisab
               <Col md={12}>
                 <div className="memberSpaces">
                   <div className="memberInfos assignBox">
-
                     <div className="dropdown">
                       <div onClick={(e) => { setIsActive(!isActive); }} className="dropdown-btn" >
-                        {/* {selected} */}
                         <div className='d-flex tableImage'>
                           {selectName.length ? <>
                             {memberImage ? <img src={`${API}/${memberImage}`} alt="avatar" style={{ objectFit: "cover" }} />
@@ -234,40 +232,40 @@ const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisab
                           </> : <>
                             <div><p>Select Spaces</p></div>
                           </>}
-
                         </div>
                         <span><FontAwesomeIcon icon={faChevronDown} /></span>
-                        {/* <span className={isActive ? "fas fa-caret-up" : "fas fa-caret-down"} /> */}
                       </div>
                       <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-                        <div className='assignInput'>
+                        <div className='assignInput px-2'>
                           <FontAwesomeIcon icon={faSearch} />
                           <input type="text" placeholder='Search member' onChange={handleMemberChange} className='form-control' />
                         </div>
-                        {filteredSpaces.map((data: any, index) =>
-                          <div onClick={(e) => { setIsActive(!isActive); selectMember(data) }} className="item tableImage" >
-                            {data.space_image ? <img src={`${API}/${data.space_image}`} alt="avatar" style={{ objectFit: "cover" }} />
-                              : <img src={spaceIcon} alt="avatar" />}
-                           <p>{data.name.length > 17 ? data.name.slice(0, 17) + "..." : data.name}</p>
-                          </div>)}
+                        <div className='member-container'>
+                          {filteredSpaces.map((data: any, index) =>
+                            <div onClick={(e) => { setIsActive(!isActive); selectMember(data) }} className="item tableImage" >
+                              {data.space_image ? <img src={`${API}/${data.space_image}`} alt="avatar" style={{ objectFit: "cover" }} />
+                                : <img src={spaceIcon} alt="avatar" />}
+                            <p>{data.name.length > 17 ? data.name.slice(0, 17) + "..." : data.name}</p>
+                            </div>)}
+                          </div>
                       </div>
                     </div>
                   </div>
-                  <div className='arrowIcon'>
+                  <div className='arrowIcon mx-4'>
                     <FontAwesomeIcon icon={faChevronRight} />
                   </div>
                   <div className="memberInfos assignBox tableImage">
                     {spaceImage ? <img src={`${API}/${spaceImage}`} alt="avatar" style={{ objectFit: "cover" }} />
-                      : <img src={memberIcon} alt="avatar" />}
+                      : <img className='default' src={memberIcon} alt="avatar" />}
                     <div><p>{name}</p><span>{maskEmail(email)}</span></div>
                   </div>
                 </div>
               </Col>
               <Col md={12}>
                 <div className="assignName">
-                  <div className="generateInvoice">
-                    <h5>Generate Invoice?</h5>
-                    <div className="authToggle">
+                  <div className="generateInvoice my-0 d-flex align-items-center">
+                    <h5 className='mb-0'>Invoice Due Today?</h5>
+                    <div className="authToggle mt-0">
                       {authValue === true ?
                         <label className="switch">
                           <input type="checkbox" onClick={authClick} defaultChecked />
@@ -280,7 +278,7 @@ const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisab
                     </div>
                   </div>
                   {authValue ? <>
-                    <div className="generateInvoice">
+                    <div className="generateInvoice mt-4 mb-0">
                       <h6>Amount Owed Today</h6>
                       <div className="memberInput amount">
                         <span>$</span>
@@ -289,9 +287,9 @@ const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisab
                       </div>
                     </div>
                   </> : <></>}
-                  <div className='invoiceSave'>
-                    <button type='submit' onClick={saveInvoice}>Save</button>
-                  </div>
+                </div>
+                <div className='invoiceSave mt-4'>
+                  <button type='submit' onClick={saveInvoice}>Save</button>
                 </div>
               </Col>
             </Row>

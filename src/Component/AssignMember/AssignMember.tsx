@@ -255,7 +255,7 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
               <Col md={12}>
                 <div className="assignName">
                   <div className="generateInvoice my-0 d-flex align-items-center">
-                    <h5 className='mb-0'>Generate Invoice Today?</h5>
+                    <h5 className='mb-0'>Invoice Due Today?</h5>
                     <div className="authToggle mt-0">
                       {authValue === true ?
                         <label className="switch">
