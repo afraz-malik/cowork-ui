@@ -780,7 +780,6 @@ margin-right: 15px;
 }
 
 .hihow-are-things-with-our-ill-wrapper {
-    max-width: 60%;
     width: fit-content;
     align-self: stretch;
     border-radius: var(--br-xs);
@@ -812,6 +811,10 @@ margin-right: 15px;
 .message1 {
     flex-direction: column;
     gap: var(--gap-9xs);
+}
+
+.message1 {
+    max-width: 60%;
 }
 
 .message {
@@ -894,7 +897,6 @@ margin-right: 15px;
 }
 
 .hi-im-working-on-the-final-sc-wrapper {
-    max-width: 60%;
     border-radius: var(--br-xs);
     background-color: var(--brand-brand-primary);
     display: flex;
@@ -922,6 +924,7 @@ margin-right: 15px;
 }
 
 .message8 {
+    max-width: 60%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: end;
@@ -940,6 +943,7 @@ margin-right: 15px;
     flex-direction: row;
     justify-content: flex-end;
     color: var(--base-white);
+    position: relative;
 }
 
 .friday-january-26th-parent {

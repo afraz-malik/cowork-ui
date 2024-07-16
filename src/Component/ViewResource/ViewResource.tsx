@@ -58,7 +58,7 @@ const ViewResource = () => {
                     </nav>
                 </div>
                 <div className="spacesDetailsBox">
-                    <div className="topLine">
+                    <div className="topLine" style={{height: '100px'}}>
                         <div className="memberName">
                             <Link to={pathParts[1] === "resources" ? "/resources" : "/my-resources"} className='backDashboard'><FontAwesomeIcon icon={faArrowLeft} /></Link>
                             <h6> {resourceDetails.name}</h6>
@@ -102,8 +102,8 @@ const ViewResource = () => {
                             </div>
 
                             <div className="resourceBooking mt-3">
-                                <div className="bookingHeading">
-                                    <h6><img src={calenderIcon} alt="edit" /> Upcoming Bookings</h6>
+                                <div className="bookingHeading mt-2 mb-4">
+                                    <h6 className='mb-0'><img src={calenderIcon} alt="edit" /> Upcoming Bookings</h6>
                                     <div className='editBtn'>
                                         <button onClick={handlePaymentShow}><FontAwesomeIcon icon={faPlus} /> New Booking</button>
                                     </div>

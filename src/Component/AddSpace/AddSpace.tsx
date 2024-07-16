@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap';
 // import "./AddMember.css";
 import { v4 as uuidv4 } from 'uuid';
-import memberIcon from "../../Assets/Images/icon/assignmentIcon.svg"
+import memberIcon from "../../Assets/Images/icon/assetsIcon.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import spaceIcon from "../../Assets/Images/icon/spaceLargeIcon.png";
