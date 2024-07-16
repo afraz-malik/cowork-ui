@@ -113,12 +113,12 @@ const Visitor = () => {
         </div>
         <div className="reasonVisit memberInput">
           <label className='mt-4'>Reason For Visit</label>
-          <Dropdown onSelect={handleSelect}>
+          <Dropdown onSelect={handleSelect} className='bg-white'>
             <Dropdown.Toggle id="dropdown-basic">
-              {selectedItem && selectedItem ? <>{selectedItem} <img src={arrow} alt="arrow" /></> : <>Select a reason <img src={arrow} alt="arrow" /></>}
+              {selectedItem && selectedItem ? <>{selectedItem} <img src={arrow} alt="arrow" /></> : <div className='noneSelect d-flex w-100'>Select a reason <img src={arrow} alt="arrow" /></div>}
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            <Dropdown.Menu className='w-100'>
               <Dropdown.Item eventKey="Guest">Guest</Dropdown.Item>
               <Dropdown.Item eventKey="Delivery">Delivery</Dropdown.Item>
               <Dropdown.Item eventKey="Maintenance">Maintenance</Dropdown.Item>
@@ -129,12 +129,12 @@ const Visitor = () => {
         </div>
         <div className="reasonVisit memberInput mb-2">
           <label className='mt-4'>I’m Here To See</label>
-          <Dropdown onSelect={handleRoleSelect}>
+          <Dropdown onSelect={handleRoleSelect} className='bg-white'>
             <Dropdown.Toggle id="dropdown-basic">
-              {roleItem && roleItem ? <>{roleItem} <img src={arrow} alt="arrow" /></> : <>Select a member <img src={arrow} alt="arrow" /></>}
+              {roleItem && roleItem ? <>{roleItem} <img src={arrow} alt="arrow" /></> : <div className='noneSelect d-flex w-100'>Select a member <img src={arrow} alt="arrow" /></div>}
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            <Dropdown.Menu className='w-100'>
               {admin && admin.map((admin: any, index: number) => <Dropdown.Item eventKey={`${admin.id}|${admin.first_name} ${admin.last_name}`}>{admin.first_name} {admin.last_name}</Dropdown.Item>)}
               {member && member.map((member: any, index: number) => <Dropdown.Item eventKey={`${member.id}|${member.first_name} ${member.last_name}`}>{member.first_name} {member.last_name}</Dropdown.Item>)}
             </Dropdown.Menu>

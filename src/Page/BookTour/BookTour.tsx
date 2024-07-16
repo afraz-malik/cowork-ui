@@ -5,7 +5,7 @@ import { DESKIE_API as API } from '../../config';
 import logo from "../../Assets/Images/logo/logo.svg";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import calenderIcon from "../../Assets/Images/icon/calendar-date.svg";
 import calenderActiveIcon from "../../Assets/Images/icon/calendar-date-active.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,10 +17,12 @@ import { tourAdd, tourTime } from '../../api/tour';
 import confirmIcon from "../../Assets/Images/icon/check-circle.svg"
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { DayCellContentArg } from '@fullcalendar/core';
 
 const BookTour = () => {
     const [profile, setProfile] = useState<any>();
     const [selectDate, setSelectDate] = useState("");
+    const [selectedDate, setSelectedDate] = useState("");
     const [selectDay, setSelectDay] = useState("");
     const [selectTime, setSelectTime] = useState("");
     const [name, setName] = useState("");
@@ -45,6 +47,10 @@ const BookTour = () => {
 
     }, [])
 
+    const handleDateClick = (arg: DateClickArg) => {
+        setSelectedDate(arg.dateStr);
+    };
+
     const handleSelect = (info: any) => {
         setTourDate(info.startStr);
         const selectedDate = info.start;
@@ -59,7 +65,6 @@ const BookTour = () => {
         setSelectDay(dayOfWeek);
         setSelectDate(formattedDate);
         tourTime(info.startStr).then((data) => {
-            console.log('tour', data);
             setBookTourDate(data)
         })
     };
@@ -95,7 +100,23 @@ const BookTour = () => {
         })
     }
 
+    const dayCellClassNames = (arg: DayCellContentArg) => {
+        const formattedDate = arg.date.toISOString().substring(0, 10);
+        
+        if (!selectedDate && formattedDate === new Date(new Date().getTime() - 24 * 3600 * 1000).toISOString().substring(0, 10)) {
+            return ['selected-date'];
+        }
+        
+        if (selectedDate) {
+            const oneDayBefore = new Date(new Date(selectedDate).getTime() - 24 * 3600 * 1000).toISOString().substring(0, 10);
+            
+            if (formattedDate === oneDayBefore) {
+                return ['selected-date'];
+            }
+        }
 
+        return [];
+    };
 
     return (
         <section className='bookTour'>
@@ -117,7 +138,9 @@ const BookTour = () => {
                                     initialView="dayGridMonth"
                                     weekends={true}
                                     select={handleSelect}
+                                    dateClick={handleDateClick}
                                     selectable={true}
+                                    dayCellClassNames={dayCellClassNames}
                                     headerToolbar={{
                                         left: '',
                                         center: 'prev,title,next',
@@ -127,14 +150,16 @@ const BookTour = () => {
                             </div>
                             <div className="selectTime">
                                 {selectDay ? <div className="selectedDate">
-                                    <img src={calenderActiveIcon} alt="calender" />
                                     <div className='dateTime'>
-                                        <div>
-                                            <p>{selectDay}</p>
-                                            <p>{selectDate}</p>
-                                        </div>
-                                        <div>
-                                            <p>{selectTime}</p>
+                                        <img src={calenderActiveIcon} alt="calender" />
+                                        <div className='w-100 d-flex align-items-center justify-content-between' style={{marginLeft: '16px'}}>
+                                            <div>
+                                                <p>{selectDay}</p>
+                                                <p>{selectDate}</p>
+                                            </div>
+                                            <div>
+                                                <p>{selectTime}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> : <div className="chooseDate">
