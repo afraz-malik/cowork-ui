@@ -149,9 +149,9 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
                           <span>Type</span>
                           <Dropdown onSelect={handleSelect}>
                             <Dropdown.Toggle variant="" className="custom-toggle">
-                              {selectedType === "meeting" ? "Meeting Space" : selectedType === "equipment" ? "Equipment" : selectedType === "workspace" ? "Workspace" : selectedType === "other" ? "Other" : "Choose tag (type)"}
+                              {selectedType === "meeting" ? "Meeting Space" : selectedType === "equipment" ? "Equipment" : selectedType === "workspace" ? "Workspace" : selectedType === "other" ? "Other" : <div className='noneSelect'>Choose tag (type)</div>}
                             </Dropdown.Toggle>
-                            <Dropdown.Menu>
+                            <Dropdown.Menu className='w-100'>
                               <Dropdown.Item eventKey="meeting">Meeting Space</Dropdown.Item>
                               <Dropdown.Item eventKey="equipment">Equipment</Dropdown.Item>
                               <Dropdown.Item eventKey="workspace">Workspace</Dropdown.Item>
@@ -170,7 +170,7 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
                             <Dropdown.Toggle variant="" className="custom-toggle">
                               {selectedCapacity}
                             </Dropdown.Toggle>
-                            <Dropdown.Menu>
+                            <Dropdown.Menu className='w-100'>
                               {[...Array(10)].map((_, index) => (
                                 <Dropdown.Item key={index + 1} eventKey={index + 1}>{index + 1}</Dropdown.Item>
                               ))}
