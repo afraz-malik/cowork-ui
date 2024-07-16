@@ -366,3 +366,14 @@ color: rgba(52, 64, 84, 1);
 #billing .filterBtn img {
     margin-left: auto;
 }
+.cardNameAmount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cardNameAmount .resourceInput:nth-child(1){
+    width: 79%;
+}
+.cardNameAmount .resourceInput:nth-child(2){
+    width: 19%;
+}

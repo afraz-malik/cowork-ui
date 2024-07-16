@@ -26,6 +26,22 @@ const Finance = ({ settingTab }: FinanceProps) => {
                             <button className='save'>Save</button>
                         </div>
                     </div>
+                    {/* <div className="companyName">
+                        <p>Stripe Secret ID</p>
+                        <div className='rightSideSetting col-8'>
+                            <div className="memberInput">
+                                <input type="text" placeholder='Enter your company name' className='form-control' required />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="companyName">
+                        <p>Stripe Publish ID</p>
+                        <div className='rightSideSetting col-8'>
+                            <div className="memberInput">
+                                <input type="text" placeholder='Enter your company name' className='form-control' required />
+                            </div>
+                        </div>
+                    </div> */}
                 </div>
             </div>
         </>

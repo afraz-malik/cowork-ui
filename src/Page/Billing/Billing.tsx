@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import memberAvatar from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from '../../Component/Pagination/Pagination';
-import { resourceInvoiceList } from '../../api/resource';
 
 const Billing = () => {
     const navigate = useNavigate();
@@ -34,6 +33,9 @@ const Billing = () => {
     const [nextButton, setNextButton] = useState<boolean>(false);
     const [tableId, setTableId] = useState<string[]>([]);
     const [pageValue, setPageValue] = useState<number>();
+    const [cardName, setCardName] = useState("");
+
+
 
     // const showResult = (value: number) => {
     //     setPage(1)
@@ -120,11 +122,10 @@ const Billing = () => {
                                 {/* <li className="breadcrumb-item">Finances</li> */}
                                 <li className="breadcrumb-item px-0"><Link to="/billing">Billing</Link></li>
                                 <li className="breadcrumb-item active" aria-current="page">All Invoices</li>
-                                <button onClick={monthInv}>Month</button>
                             </ol>
                         </nav>
                     </div>
-
+                   
                     <div className="memberBox border-0">
                         <div className="topLine">
                             <div className='tableHeading'>
@@ -215,7 +216,7 @@ const Billing = () => {
                     </div>
                 </div>
 
-
+              
             </Layout>
         </div>
     )

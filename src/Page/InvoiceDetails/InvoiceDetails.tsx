@@ -24,6 +24,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { isAuthenticate } from '../../api/auth';
 import { ToastContainer } from 'react-toastify';
 import { invoiceFormatTimes } from '../../CommonFunction/Function';
+import BillPayment from '../Billing/BillPayment';
 
 const InvoiceDetails = () => {
 
@@ -41,7 +42,9 @@ const InvoiceDetails = () => {
     const [resourceList, setResourceList] = useState([]);
     const { toPDF, targetRef } = usePDF({ filename: `${invoiceDetail && invoiceDetail.invoice_id}.pdf` });
     let auth = isAuthenticate();
-
+    
+    const [paymentShow, setPaymentShow] = useState(false);
+    const handlePaymentClose = () => setPaymentShow(false);
     useEffect(() => {
         if (id) {
             singleInvoice(id).then((data) => {
@@ -93,32 +96,6 @@ const InvoiceDetails = () => {
                 }
             })
         }
-
-
-        // if (invoiceDetail.payment_id) {
-        //     paymentVoid(invoiceDetail.payment_id, paymentInfo).then((data) => {
-        //         if (data.statusCode !== 200) {
-        //             showNotifications('error', data.message)
-        //         }
-        //         else {
-        //             setCount(count + 1)
-        //             showNotifications('success', data.message)
-        //         }
-        //     })
-        // }
-        // else {
-
-        //     invoiceUpdate(voidInfo).then((data) => {
-        //         if (data.statusCode !== 200) {
-        //             showNotifications('error', data.message)
-        //         }
-        //         else {
-        //             setCount(count + 1)
-        //             showNotifications('success', data.message)
-        //         }
-        //     })
-        // }
-
     }
 
     return (
@@ -141,7 +118,7 @@ const InvoiceDetails = () => {
                                 <h6 className='d-flex'><Link className='backDashboard' to={`/${urlTag === "my-invoice-details" ? "my-invoice" : "billing"}`}><FontAwesomeIcon icon={faArrowLeft} /></Link>Invoice: #INV{invoiceDetail && invoiceDetail.invoice_id}</h6>
                             </div>
                             <div className='invoiceDropdown'>
-                                <Dropdown>
+                                {auth.user.userRole === "admin" ? <Dropdown>
                                     <Dropdown.Toggle>
                                         <FontAwesomeIcon icon={faPlus} /> Actions <FontAwesomeIcon icon={faChevronDown} />
                                     </Dropdown.Toggle>
@@ -153,6 +130,8 @@ const InvoiceDetails = () => {
                                         </div>
                                     </Dropdown.Menu>
                                 </Dropdown>
+                                : <button onClick={() => setPaymentShow(true)}>Pay Now</button>}
+                            
                             </div>
                         </div>
                     </div>
@@ -294,6 +273,7 @@ const InvoiceDetails = () => {
                 </div>
 
                 <RecordPayment invoiceId={id} show={show} setShow={setShow} handleClose={handleClose} invoiceDetail={invoiceDetail} />
+                <BillPayment invoiceId={id} invoiceDetail={invoiceDetail} paymentShow={paymentShow} setPaymentShow={setPaymentShow} handlePaymentClose={handlePaymentClose} />
             </Layout>
         </div>
     )

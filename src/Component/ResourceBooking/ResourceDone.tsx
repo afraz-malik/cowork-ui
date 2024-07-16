@@ -78,7 +78,7 @@ const ResourceDone = ({selectedDate, startTime,endTime, resourceDetail, tabChoos
       </div>
       <div className="resourcesBtn">
         <button className='cancel' onClick={backPay}><FontAwesomeIcon className='mr-2' icon={faArrowLeft} /> Back</button>
-        <button className='continue' onClick={resourceBooked}>Done</button>
+        <button className='continue' type='submit' onClick={resourceBooked}>Done</button>
       </div>
     </>
   )
