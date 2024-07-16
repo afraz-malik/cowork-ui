@@ -134,7 +134,7 @@ const EditResource = ({ editInfo, editShow, setEditShow, handleEditClose }: AddR
                                         <div className="profileTitle">
                                             <p>Resource Photo</p>
                                         </div>
-                                        <div className="profileImgView">
+                                        <div className="profileImgView d-flex">
                                             {/* {imageLogo && imageLogo.length > 0 ? <img src={changeLogo} className='changeLogo' alt="change-logo" />
                         : <>
                           {logoFile && logoFile.length > 0 ? <img src={logoFile} className='changeLogo' alt="change-logo" />
@@ -197,10 +197,10 @@ const EditResource = ({ editInfo, editShow, setEditShow, handleEditClose }: AddR
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="rateChoose">
-                                            <div className="generateInvoice">
-                                                <h5>Allow member bookings?</h5>
-                                                <div className="authToggle">
+                                        <div className="rateChoose my-3">
+                                            <div className="generateInvoice my-0">
+                                                <h5 className='mb-0'>Allow member bookings?</h5>
+                                                <div className="authToggle mt-0">
                                                     {authValue === true ?
                                                         <label className="switch">
                                                             <input type="checkbox" onClick={authClick} defaultChecked />
@@ -212,34 +212,34 @@ const EditResource = ({ editInfo, editShow, setEditShow, handleEditClose }: AddR
                                                         </label>}
                                                 </div>
                                             </div>
-                                        </div>
-                                        {authValue === true ?
-                                            <div className="dropdownInput">
-                                                <div className="dropdownRate mt-3">
-                                                    <span>Rate</span>
-                                                    <div className='rateNumber'>
-                                                        $<input className='form-control' value={memberRate} onChange={(e) => setMemberRate(e.target.value)} type='number' />
-                                                    </div>
+                                            {authValue === true ?
+                                                <div className="dropdownInput mt-4">
+                                                    <div className="dropdownRate mt-3">
+                                                    <span className='h-100 py-2'>Rate</span>
+                                                        <div className='rateNumber'>
+                                                            $<input className='form-control' value={memberRate} onChange={(e) => setMemberRate(e.target.value)} type='number' />
+                                                        </div>
 
-                                                    <div className="rateOption">
-                                                        <Dropdown onSelect={handleMemberSelect}>
-                                                            <Dropdown.Toggle variant="" className="custom-toggle">
-                                                                {memberTime === "hour" ? "Per Hour" : memberTime === "day" ? "Per Day" : "Choose time"} <FontAwesomeIcon icon={faSortDown} />
-                                                            </Dropdown.Toggle>
-                                                            <Dropdown.Menu>
-                                                                <Dropdown.Item eventKey="hour">Per Hour</Dropdown.Item>
-                                                                <Dropdown.Item eventKey="day">Per Day</Dropdown.Item>
-                                                            </Dropdown.Menu>
-                                                        </Dropdown>
+                                                        <div className="rateOption h-100 py-1">
+                                                            <Dropdown onSelect={handleMemberSelect}>
+                                                                <Dropdown.Toggle variant="" className="custom-toggle">
+                                                                    {memberTime === "hour" ? "Per Hour" : memberTime === "day" ? "Per Day" : "Choose time"} <FontAwesomeIcon icon={faSortDown} />
+                                                                </Dropdown.Toggle>
+                                                                <Dropdown.Menu>
+                                                                    <Dropdown.Item eventKey="hour">Per Hour</Dropdown.Item>
+                                                                    <Dropdown.Item eventKey="day">Per Day</Dropdown.Item>
+                                                                </Dropdown.Menu>
+                                                            </Dropdown>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            : ""}
+                                                : ""}
+                                        </div>
 
                                         <div className="rateChoose">
-                                            <div className="generateInvoice">
-                                                <h5>Allow public bookings?</h5>
-                                                <div className="authToggle">
+                      <div className="generateInvoice my-0">
+                        <h5 className='mb-0'>Allow public bookings?</h5>
+                        <div className="authToggle mt-0">
                                                     {publicValue === true ?
                                                         <label className="switch">
                                                             <input type="checkbox" onClick={publicClick} defaultChecked />
@@ -251,29 +251,29 @@ const EditResource = ({ editInfo, editShow, setEditShow, handleEditClose }: AddR
                                                         </label>}
                                                 </div>
                                             </div>
-                                        </div>
-                                        {publicValue === true ?
-                                            <div className="dropdownInput">
-                                                <div className="dropdownRate mt-3">
-                                                    <span>Rate</span>
-                                                    <div className='rateNumber'>
-                                                        $<input className='form-control' value={publicRate} onChange={(e) => setPublicRate(e.target.value)} type='number' />
-                                                    </div>
+                                            {publicValue === true ?
+                                            <div className="dropdownInput mt-4">
+                                                    <div className="dropdownRate mt-3">
+                                                        <span className='h-100 py-2'>Rate</span>
+                                                        <div className='rateNumber'>
+                                                            $<input className='form-control' value={publicRate} onChange={(e) => setPublicRate(e.target.value)} type='number' />
+                                                        </div>
 
-                                                    <div className="rateOption">
-                                                        <Dropdown onSelect={handlePublicSelect}>
-                                                            <Dropdown.Toggle variant="" className="custom-toggle">
-                                                                {publicTime === "hour" ? "Per Hour" : publicTime === "day" ? "Per Day" : "Choose time"} <FontAwesomeIcon icon={faSortDown} />
-                                                            </Dropdown.Toggle>
-                                                            <Dropdown.Menu>
-                                                                <Dropdown.Item eventKey="hour">Per Hour</Dropdown.Item>
-                                                                <Dropdown.Item eventKey="day">Per Day</Dropdown.Item>
-                                                            </Dropdown.Menu>
-                                                        </Dropdown>
+                                                        <div className="rateOption h-100 py-1">
+                                                            <Dropdown onSelect={handlePublicSelect}>
+                                                                <Dropdown.Toggle variant="" className="custom-toggle">
+                                                                    {publicTime === "hour" ? "Per Hour" : publicTime === "day" ? "Per Day" : "Choose time"} <FontAwesomeIcon icon={faSortDown} />
+                                                                </Dropdown.Toggle>
+                                                                <Dropdown.Menu>
+                                                                    <Dropdown.Item eventKey="hour">Per Hour</Dropdown.Item>
+                                                                    <Dropdown.Item eventKey="day">Per Day</Dropdown.Item>
+                                                                </Dropdown.Menu>
+                                                            </Dropdown>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            : ""}
+                                                : ""}
+                                        </div>
 
                                         <div className="resourceBtn">
                                             <button onClick={resourceCreate}>Save</button>
