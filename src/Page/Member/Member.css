@@ -917,7 +917,7 @@
     -o-border-radius: 12px;
 }
 
-.invoiceRight .memberNotes {
+.invoiceLeft .memberNotes {
     border: 1px solid rgba(234, 236, 240, 1);
     padding: 24px;
     border-radius: 12px;
@@ -927,6 +927,15 @@
     -o-border-radius: 12px;
 }
 
+.invoiceHistory .balance {
+    color: var(--Gray-600, #475467AA);
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.memberBooking p,
+.invoiceHistory p,
+.memberAssign p,
 .memberNotes p {
     font-family: "MyCustomFont";
     font-size: 14px;
