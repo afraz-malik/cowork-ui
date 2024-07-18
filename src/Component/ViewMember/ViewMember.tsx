@@ -52,7 +52,7 @@ const ViewMember = () => {
                     <div className="invoiceHeading">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb m-0 ms-2">
-                                <li className="breadcrumb-item"><Link to="/member">Member</Link></li>
+                                <li className="breadcrumb-item"><Link to="/member">Members</Link></li>
                                 <li className="breadcrumb-item active" aria-current="page">{memberDetails.first_name} {memberDetails.last_name}</li>
                             </ol>
                         </nav>
@@ -80,16 +80,16 @@ const ViewMember = () => {
                         </div>
                         <div className="memberInfo">
                             <div className="memberInfoBox">
-                                <h6>Account Signup Date</h6>
-                                <p>{moment(memberDetails.created_at).format("MMMM DD, YYYY")}</p>
-                            </div>
-                            <div className="memberInfoBox" style={{ borderLeft: '1px solid  rgba(234, 236, 240, 1)', borderRight: '1px solid  rgba(234, 236, 240, 1)' }}>
                                 <h6>Phone Number</h6>
                                 <p>{memberDetails.phone_number}</p>
                             </div>
-                            <div className="memberInfoBox">
+                            <div className="memberInfoBox" style={{ borderLeft: '1px solid  rgba(234, 236, 240, 1)', borderRight: '1px solid  rgba(234, 236, 240, 1)' }}>
                                 <h6>Email Address</h6>
                                 <p>{memberDetails.email}</p>
+                            </div>
+                            <div className="memberInfoBox">
+                                <h6>Account Signup Date</h6>
+                                <p>{moment(memberDetails.created_at).format("MMMM DD, YYYY")}</p>
                             </div>
                             <div className="memberInfoBox">
                                 <h6>Business Name</h6>
@@ -106,87 +106,92 @@ const ViewMember = () => {
                         </div>
                         <div className="memberInvoice">
                             <div className="invoiceLeft">
-                            {spacesList && spacesList.length ? 
-                                <div className="memberAssign">
-                                    <h6>{memberDetails.first_name}’s Assignments</h6>
-                                    {spacesList && spacesList.map((spaces: any) =>
-                                        <div className="invoiceHeading">
-                                            <div className="invoiceName">
-                                                <p>{spaces.spaces_image ? <img src={`${API}/${spaces.spaces_image}`} alt="member" /> : <img src={spacesIcon} alt="spaces" />} <span>{spaces.spaces_name}</span> </p>
-                                                <div className='deskType'>
-                                                    {spaces.spaces_tag === "private" ? <span className='private'>Private Office</span> : ""}
-                                                    {spaces.spaces_tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
-                                                    {spaces.spaces_tag === "flex" ? <span className='flex'>Flex</span> : ""}
-                                                </div>
-                                            </div>
-
-                                            <div className="invoicePrice billingAction">
-                                                <p>${spaces.amount} <span>/{spaces.renewal_frequency === "monthly" ? "mo" : "we"}</span> </p>
-                                                <button className='btn download'><img src={more} alt="download" /></button>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div> : ""}
-                                {invoiceList && invoiceList.length ?
-                                <div className="invoiceHistory">
-                                    <h6 className='mb-4'>{memberDetails.first_name}’s Invoice History</h6>
-                                    <div className="invoiceMemberList">
-                                    {invoiceList && invoiceList.map((invoice: any) =>
-                                        <div className="invoiceBox">
-                                            <div className="invoiceHeading">
-                                                <div className="invoiceName">
-                                                    <h6>{invoice.spaces_name ? invoice.spaces_name : "N/A"}</h6>
-                                                    <p> {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} alt="member" /> : <img className='default' src={memberBlank} alt="member" />} <span>{invoice.member_name}</span> </p>
-                                                </div>
-                                                <div className="invoicePrice billingAction">
-                                                    <p>${invoice.amount} <span>/{invoice.renewal_frequency === "monthly" ? "mo" : "we"}</span> </p>
-                                                    <button className='btn download'><img src={more} alt="download" /></button>
-                                                </div>
-                                            </div>
-                                            <div className="invoiceDetails">
-                                                <div className="assign">
-                                                    <h6>Assignment</h6>
-                                                    <p> {invoice.spaces_image ? <img src={`${API}/${invoice.spaces_image}`} alt="member" /> : <img src={spacesBlank} alt="member" />} <span>{invoice.spaces_name ? invoice.spaces_name : "N/A"}</span> </p>
-                                                </div>
-                                                <div className="assign">
-                                                    <h6>Due Date</h6>
-                                                    <p>{invoice.invoice_date ? <>{moment(invoice.invoice_date).format("MMMM DD, YYYY")}</> : "N/A"}</p>
-                                                </div>
-                                                <div className="assign">
-                                                    <h6>Status</h6>
-                                                    <p className='status'>
-                                                        {invoice.invoice_status === "paid" ? <span className='paid'>Paid</span>
-                                                            : invoice.invoice_status === "void" ? <span className='unpaid'>Void</span>
-                                                                : <span className='unpaid'>Unpaid</span>}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                    </div>
-                                </div> : ""}
-                            </div>
-                            <div className="invoiceRight">
-                                {/* <div className="memberBooking">
-                                    <h6>Upcoming Bookings</h6>
-                                    <div className="bookingList">
-                                        <img src={`${API}/${memberDetails.member_image}`} alt="member" />
-                                        <div className="spacesInfo">
-                                            <h6>{memberDetails.member_image}</h6>
-                                            <p>asa</p>
-                                        </div>
-                                    </div>
-                                    <div className="bookingList">
-                                        <img src={`${API}/${memberDetails.member_image}`} alt="member" />
-                                        <div className="spacesInfo">
-                                            <h6>{memberDetails.member_image}</h6>
-                                            <p>asa</p>
-                                        </div>
-                                    </div>
-                                </div> */}
                                 <div className="memberNotes">
                                     <h6>Notes</h6>
                                     <p className='mb-0'>{memberDetails.notes ? memberDetails.notes : "You haven’t added any notes for this user."}</p>
+                                </div>
+                                <div className="memberAssign mt-4">
+                                    <h6 className='mb-3'>{memberDetails.first_name}’s Active Assignments</h6>
+                                    {spacesList && spacesList.length ? 
+                                        spacesList && spacesList.map((spaces: any) =>
+                                            <div className="invoiceHeading">
+                                                <div className="invoiceName">
+                                                    <p>{spaces.spaces_image ? <img src={`${API}/${spaces.spaces_image}`} alt="member" /> : <img src={spacesIcon} alt="spaces" />} <span>{spaces.spaces_name}</span> </p>
+                                                    <div className='deskType'>
+                                                        {spaces.spaces_tag === "private" ? <span className='private'>Private Office</span> : ""}
+                                                        {spaces.spaces_tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
+                                                        {spaces.spaces_tag === "flex" ? <span className='flex'>Flex</span> : ""}
+                                                    </div>
+                                                </div>
+
+                                                <div className="invoicePrice billingAction">
+                                                    <p>${spaces.amount} <span>/{spaces.renewal_frequency === "monthly" ? "mo" : "we"}</span> </p>
+                                                    <button className='btn download'><img src={more} alt="download" /></button>
+                                                </div>
+                                            </div>
+                                        ) : <p className='mb-0'>No active assignments.</p>}
+                                </div>
+                                <div className="invoiceHistory mt-4">
+                                    <div className='mb-3 d-flex justify-content-between'>
+                                        <h6 className='mb-0'>{memberDetails.first_name}’s Invoice History</h6>
+                                        <p className='mb-0 balance'>Balance: ${"0.00"}</p>
+                                    </div>
+                                    {invoiceList && invoiceList.length ?
+                                        <div className="invoiceMemberList">
+                                            {invoiceList && invoiceList.map((invoice: any) =>
+                                                <div className="invoiceBox">
+                                                    <div className="invoiceHeading">
+                                                        <div className="invoiceName">
+                                                            <h6>{invoice.spaces_name ? invoice.spaces_name : "N/A"}</h6>
+                                                            <p> {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} alt="member" /> : <img className='default' src={memberBlank} alt="member" />} <span>{invoice.member_name}</span> </p>
+                                                        </div>
+                                                        <div className="invoicePrice billingAction">
+                                                            <p>${invoice.amount} <span>/{invoice.renewal_frequency === "monthly" ? "mo" : "we"}</span> </p>
+                                                            <button className='btn download'><img src={more} alt="download" /></button>
+                                                        </div>
+                                                    </div>
+                                                    <div className="invoiceDetails">
+                                                        <div className="assign">
+                                                            <h6>Assignment</h6>
+                                                            <p> {invoice.spaces_image ? <img src={`${API}/${invoice.spaces_image}`} alt="member" /> : <img src={spacesBlank} alt="member" />} <span>{invoice.spaces_name ? invoice.spaces_name : "N/A"}</span> </p>
+                                                        </div>
+                                                        <div className="assign">
+                                                            <h6>Due Date</h6>
+                                                            <p>{invoice.invoice_date ? <>{moment(invoice.invoice_date).format("MMMM DD, YYYY")}</> : "N/A"}</p>
+                                                        </div>
+                                                        <div className="assign">
+                                                            <h6>Status</h6>
+                                                            <p className='status'>
+                                                                {invoice.invoice_status === "paid" ? <span className='paid'>Paid</span>
+                                                                    : invoice.invoice_status === "void" ? <span className='unpaid'>Void</span>
+                                                                        : <span className='unpaid'>Unpaid</span>}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div> : <p className='mb-0'>No invoice history.</p>
+                                    }
+                                </div>
+                            </div>
+                            <div className="invoiceRight">
+                                <div className="memberBooking">
+                                    <h6 className='mb-3'>{memberDetails.first_name}’s Upcoming Bookings</h6>
+                                    <p className='mb-0'>No upcoming bookings.</p>
+                                    {/* <div className="bookingList">
+                                        <img src={`${API}/${memberDetails.member_image}`} alt="member" />
+                                        <div className="spacesInfo">
+                                            <h6>{memberDetails.member_image}</h6>
+                                            <p>asa</p>
+                                        </div>
+                                    </div>
+                                    <div className="bookingList">
+                                        <img src={`${API}/${memberDetails.member_image}`} alt="member" />
+                                        <div className="spacesInfo">
+                                            <h6>{memberDetails.member_image}</h6>
+                                            <p>asa</p>
+                                        </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

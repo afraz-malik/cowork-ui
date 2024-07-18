@@ -55,14 +55,46 @@ const ViewSpaces = () => {
                             </div>
                         </div>
                         <div className="spacesInfo">
-                            <div className="leftSpacesImage">
-                                {spacesDetails.space_image ?
-                                    <img src={`${API}/${spacesDetails.space_image}`} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                                    : <img src={spaceIcon} width="100px" height="100px" alt="shop" />
-                                }
-                            </div>
                             <div className="rightSpacesContent">
-                                <div className="spacesHeadingBox">
+                                <div className="resourceInfo">
+                                    <div className="resourceMiniBox">
+                                        <div className="resourceName">
+                                            <h6 className='mb-3'>Name</h6>
+                                            <p className='mb-0'>{spacesDetails.name}</p>
+                                        </div>
+                                        <div className="resourceName" style={{borderRight: 'none'}}>
+                                            <h6 className='mb-3'>Size</h6>
+                                            <p className='mb-0'>{spacesDetails.size}sqft</p>
+                                        </div>
+                                    </div>
+                                    <div className="resourceMiniBox">
+                                        <div className="resourceRate">
+                                            <h6 className='mb-3'>Rate <span style={{fontWeight: '400'}}>(Members)</span></h6>
+                                            <p className='mb-0'>${spacesDetails.rate} / mo</p>
+                                        </div>
+                                        <div className="resourceName border-bottom-0" style={{borderRight: 'none', borderLeft: 'none'}}>
+                                            <h6 className='mb-3'>Type</h6>
+                                            <span className='deskType'>
+                                                {spacesDetails.tag === "private" ? <span className='private'>Private Office</span> : ""}
+                                                {spacesDetails.tag === "dedicated" ? <span className='dedicated'>Dedicated Desk</span> : ""}
+                                                {spacesDetails.tag === "flex" ? <span className='flex'>Flex</span> : ""}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className='assignments resourceMiniBox'>
+                                        <div className="resourceRate">
+                                            <h6 className='mb-3'>Active Assignments</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='spacesDescription mt-4'>
+                                    <div className="spacesNotes">
+                                        <h6 className='mb-3'>Notes</h6>
+                                        <p className='mb-0'>{spacesDetails.notes}</p>
+                                    </div>
+                                </div>
+
+                                {/* <div className="spacesHeadingBox">
                                     <h6>{spacesDetails.name}
                                         <span className='deskType'>
                                             {spacesDetails.tag === "private" ? <span className='private'>Private Office</span> : ""}
@@ -91,7 +123,13 @@ const ViewSpaces = () => {
                                         <h6>Notes</h6>
                                         <p>{spacesDetails.notes}</p>
                                     </div>
-                                </div>
+                                </div> */}
+                            </div>
+                            <div className="leftSpacesImage">
+                                {spacesDetails.space_image ?
+                                    <img src={`${API}/${spacesDetails.space_image}`} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                    : <img src={spaceIcon} width="100px" height="100px" alt="shop" />
+                                }
                             </div>
                         </div>
                     </div>
