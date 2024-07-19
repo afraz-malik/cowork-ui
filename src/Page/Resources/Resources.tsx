@@ -134,7 +134,7 @@ const Resources = () => {
                         <span className="checkmark"></span></div>
                     </label></td>
                     <td>
-                      <div className='tableImage justify-content-center'>
+                      <div className='tableImage justify-content-center' style={{cursor: 'pointer'}} onClick={() => viewResource(data.id)}>
                         {data.image ?
                           <img src={`${API}/${data.image}`} alt="avatar" style={{ objectFit: "cover", borderRadius: "50%" }} />
                           : <img src={spaceAvatar} alt="avatar" style={{ borderRadius: "50%" }} />
