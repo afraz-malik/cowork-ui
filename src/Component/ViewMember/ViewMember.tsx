@@ -13,6 +13,7 @@ import penIcon from "../../Assets/Images/icon/pencil-01.svg";
 import EditMember from './EditMember';
 import memberAvatar from "../../Assets/Images/icon/memberLargeIcon.png";
 import spacesIcon from "../../Assets/Images/icon/spaceAvatar.png";
+import PhoneInput from 'react-phone-input-2';
 
 const ViewMember = () => {
     const { id } = useParams();
@@ -81,7 +82,7 @@ const ViewMember = () => {
                         <div className="memberInfo">
                             <div className="memberInfoBox">
                                 <h6>Phone Number</h6>
-                                <p>{memberDetails.phone_number}</p>
+                                <PhoneInput country={'us'} inputProps={{ readOnly: true }} disableCountryCode={true} value={memberDetails.phone_number} />
                             </div>
                             <div className="memberInfoBox" style={{ borderLeft: '1px solid  rgba(234, 236, 240, 1)', borderRight: '1px solid  rgba(234, 236, 240, 1)' }}>
                                 <h6>Email Address</h6>
@@ -97,7 +98,7 @@ const ViewMember = () => {
                             </div>
                             <div className="memberInfoBox" style={{ borderLeft: '1px solid  rgba(234, 236, 240, 1)', borderRight: '1px solid  rgba(234, 236, 240, 1)' }}>
                                 <h6>Business Phone</h6>
-                                <p>{memberDetails.business_phone}</p>
+                                <PhoneInput country={'us'} inputProps={{ readOnly: true }} disableCountryCode={false} value={memberDetails.business_phone} />
                             </div>
                             <div className="memberInfoBox">
                                 <h6>Business Email</h6>

@@ -158,7 +158,7 @@ const Member = () => {
                         <input type="checkbox" name="agreement" />
                         <span className="checkmark"></span></div>
                     </label></td>
-                    <td>
+                    <td style={{cursor: 'pointer'}} onClick={() => memberView(data.id)}>
                     {data.member_image ?
                           <><img src={`${API}/${data.member_image}`} alt="avatar" style={{ borderRadius: "50%", objectFit: "cover" }} /></>
                           : <><img className="default" src={memberAvatar} alt="avatar" style={{ borderRadius: "50%" }} /> </>

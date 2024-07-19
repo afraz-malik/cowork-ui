@@ -436,7 +436,9 @@
     margin-bottom: 0px;
 }
 
-.memberPhone .react-tel-input .form-control,.memberPhone .react-tel-input .form-control:focus {
+#view-member .react-tel-input .form-control,
+.memberPhone .react-tel-input .form-control,
+.memberPhone .react-tel-input .form-control:focus {
     height: auto !important;
     padding-left: 0px !important;
     border: none !important;
@@ -445,10 +447,24 @@
     box-shadow: none  !important;
 }
 
+#view-member .react-tel-input input {
+    font-family: "MyCustomFont";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(71, 84, 103, .7);
+    margin-bottom: 0px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#view-member .react-tel-input .selected-flag,
 .memberPhone .react-tel-input .selected-flag {
     display: none !important;
 }
 
+#view-member .react-tel-input .flag-dropdown,
 .memberPhone .react-tel-input .flag-dropdown {
     border: none !important;
 }
