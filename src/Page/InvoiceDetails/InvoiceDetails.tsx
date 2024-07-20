@@ -175,7 +175,7 @@ const InvoiceDetails = () => {
                                         <p>Amount</p>
                                     </div>
                                     {invoiceDetail && invoiceDetail.renewal_frequency === "monthly" ? <>
-                                        {resourceDetail && resourceDetail.map((resource: any) => <div className="itemList">
+                                        {resourceDetail && resourceDetail.map((resource: any,i:number) => <div key={`item`+i} className="itemList">
                                             <div className="itemName">
                                                 {resource && resource.resource_image ? <img src={`${API}/${resource && resource.resource_image}`} alt="avatar" />
                                                     : <img src={spacesImage} alt="avatar" />} {resource && resource.resource_name ? resource.resource_name : "N/A"}
@@ -187,7 +187,7 @@ const InvoiceDetails = () => {
 
                                     {invoiceDetail && invoiceDetail.renewal_frequency === "resource" ? <>
                                         <div className="itemList">
-                                            {resourceDetail && resourceDetail.map((resource: any) => <div className="itemName">
+                                            {resourceDetail && resourceDetail.map((resource: any,j:number) => <div key={`itemName`+j} className="itemName">
                                                 {resource && resource.resource_image ? <img src={`${API}/${resource && resource.resource_image}`} alt="avatar" />
                                                     : <img src={spacesImage} alt="avatar" />} {resource && resource.resource_name ? resource.resource_name : "N/A"}
                                             </div>)}
@@ -205,10 +205,7 @@ const InvoiceDetails = () => {
                                         {itemTotalPrice && itemTotalPrice ?
                                                     <p className={(invoiceDetail && parseFloat((itemTotalPrice - invoiceDetail.total_payment_amount).toFixed(2)) === 0 ? 'amountPaid' : 'amountUnpaid').toString()}>
                                                         ${parseFloat((itemTotalPrice - invoiceDetail.total_payment_amount).toFixed(2)).toString()}
-                                                    </p>
-                                                    :
-                                                    "N/A"
-                                                }
+                                                    </p> : "N/A" }
                                         </span></p>
                                     </div>
                                 </div>

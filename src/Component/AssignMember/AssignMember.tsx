@@ -106,7 +106,7 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
       "renewal_date": renewalDate,
       "renewal_frequency": frequency,
       "user_email": userInfo.user.email,
-       "invoice_type": "invoice"
+      "invoice_type": "invoice"
     }
 
     memberAddSpaces(invoiceInfo).then((data) => {
@@ -233,7 +233,7 @@ const AssignMember = ({ spaceId, assignShow, setAssignShow, handleAssignClose }:
                         </div>
                         <div className='member-container'>
                           {filteredMembers.map((data: any, index) =>
-                            <div onClick={(e) => { setIsActive(!isActive); selectMember(data) }} className="item tableImage my-2">
+                            <div key={`assignMember` + index} onClick={(e) => { setIsActive(!isActive); selectMember(data) }} className="item tableImage my-2">
                               {data.member_image ? <img src={`${API}/${data.member_image}`} alt="avatar" style={{ objectFit: "cover" }} />
                                 : <img className='default' src={memberIcon} alt="avatar" />}
                               <p>{`${(data.first_name + ' ' + data.last_name).slice(0, 17)}${(data.first_name + ' ' + data.last_name).length > 17 ? '...' : ''}`}</p>

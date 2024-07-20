@@ -379,6 +379,10 @@
     -o-transition: transform .35s ease;
 }
 
+.paginationDropdown .dropdown-menu{
+    min-width: 80px !important;
+}
+
 .paginationNumber button {
     width: 40px;
     height: 40px;

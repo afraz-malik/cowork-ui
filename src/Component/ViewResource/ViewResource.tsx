@@ -108,7 +108,7 @@ const ViewResource = () => {
                                         <button onClick={handlePaymentShow}><FontAwesomeIcon icon={faPlus} /> New Booking</button>
                                     </div>
                                 </div>
-                                {bookList && bookList.map((resource) => <div className="bookingPerson">
+                                {bookList && bookList.map((resource,i:number) => <div key={`viewResource`+i} className="bookingPerson">
                                     <img src={`${API}/${resource.creator_image}`} alt="edit" />
                                     <div>
                                         <p>{resource.creator_name}</p>

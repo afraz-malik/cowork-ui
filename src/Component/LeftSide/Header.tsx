@@ -3,23 +3,20 @@ import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import bell from "../../Assets/Images/icon/bell-01.svg";
 import circle from "../../Assets/Images/icon/info-circle.png";
-import avatar from "../../Assets/Images/icon/Avatar.png";
 import arrow from "../../Assets/Images/icon/downIcon.svg";
 import userIcon from "../../Assets/Images/icon/assign.svg";
 import invoiceDetail from "../../Assets/Images/icon/invoice-detail.svg";
 import logout from "../../Assets/Images/icon/logout.png";
 import { Dropdown } from 'react-bootstrap';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { singleJwtMember } from '../../api/member';
 import { isAuthenticate } from '../../api/auth';
 import { DESKIE_API as API } from '../../config';
 import { Link } from 'react-router-dom';
 import memberIcon from '../../Assets/Images/icon/memberAvatar.svg';
-import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { notificationsList } from '../../api/notification';
 
 const Header = ({ onValueChange }: any) => {
-    const navigate = useNavigate();
     const [collapsed, setCollapsed] = React.useState(false);
     const [userImage, setUserImage] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -52,7 +49,7 @@ const Header = ({ onValueChange }: any) => {
             }
         })
         notificationsList().then((data) => {
-            setNotifyList(data) 
+            setNotifyList(data)
         })
     }, []);
 
@@ -74,7 +71,7 @@ const Header = ({ onValueChange }: any) => {
                     {pathArray.includes("calender") ? <p>Calendar</p> : ""}
                     {pathArray.includes("billing") ? <p>Billing</p> : ""}
                     {pathArray.includes("visitor-log") ? <p>Visitors</p> : ""}
-                    {pathArray.includes("invoice-details") ? <p><img className='mb-1' style={{marginRight: '16px'}} src={invoiceDetail} alt="invoiceDetail" /> Billing</p> : ""}
+                    {pathArray.includes("invoice-details") ? <p>Billing</p> : ""}
                     {urlParams === "my-invoice" ? <p>Billing</p> : ""}
                     {urlParams === "files" ? <p>Files</p> : ""}
                     {urlParams === "tickets" ? <p>Ticket</p> : ""}
@@ -92,7 +89,7 @@ const Header = ({ onValueChange }: any) => {
                     <div className="notificationBox">
                         <Dropdown>
                             <Dropdown.Toggle>
-                            <img src={bell} alt="bell" />
+                                <img src={bell} alt="bell" />
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <div className="notifyHeading">
@@ -101,29 +98,27 @@ const Header = ({ onValueChange }: any) => {
                                 </div>
                                 {filteredNotify && filteredNotify.length ? <>
                                     <div className='searchInput mt-3'>
-                                    <input type="text" placeholder='Search notification' onChange={handleInputChange} className='form-control' />
-                                    <FontAwesomeIcon icon={faSearch} />
-                                </div>
-                                <div className="latestHeading">
-                                <h5>LATEST</h5>
-                                </div>
-                                <div className="latestNotify">
-                                    {filteredNotify && filteredNotify.map(((notify:any)=><Link className="notifyBox" to={`/${userRole === "admin" ? "invoice-details" : "my-invoice-details"}/${notify.id}`}>
-                                        <h6>You have a new invoice</h6>
-                                        <h5>Invoice : <span>#{notify.invoice_id}</span></h5>
-                                        <p>{notify.running_time} ago</p>
-                                    </Link>))}
-                                </div>
-                                </>:<>
-                                <div className="latestNotify text-center mt-5">
-                                <h6>No new notifications</h6>
-                                </div>
+                                        <input type="text" placeholder='Search notification' onChange={handleInputChange} className='form-control' />
+                                        <FontAwesomeIcon icon={faSearch} />
+                                    </div>
+                                    <div className="latestHeading">
+                                        <h5>LATEST</h5>
+                                    </div>
+                                    <div className="latestNotify">
+                                        {filteredNotify && filteredNotify.map(((notify: any, i) => <Link key={`notify` + i} className="notifyBox" to={`/${userRole === "admin" ? "invoice-details" : "my-invoice-details"}/${notify.id}`}>
+                                            <h6>You have a new invoice</h6>
+                                            <h5>Invoice : <span>#{notify.invoice_id}</span></h5>
+                                            <p>{notify.running_time} ago</p>
+                                        </Link>))}
+                                    </div>
+                                </> : <>
+                                    <div className="latestNotify text-center mt-5">
+                                        <h6>No new notifications</h6>
+                                    </div>
                                 </>}
-                                
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    
                     <button className='memberImg'>
                         {userImage && userImage.length ? <img src={`${API}/${userImage}`} style={{ objectFit: "cover" }} alt="logo" />
                             : <img className='default' src={memberIcon} alt="bell" style={{ objectFit: "cover" }} />

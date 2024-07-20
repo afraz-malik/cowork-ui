@@ -33,7 +33,7 @@ const Resources = () => {
   const [editInfo, setEditInfo] = useState({});
   const [resourceLists, setResourceLists] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState<number>(6);
+  const [limit, setLimit] = useState<number>(10);
   const [result, setResult] = useState<string[]>([]);
   const [totalValue, setTotalValue] = useState<number>(0);
   const [limitValue, setLimitValue] = useState<number>(0);
@@ -60,7 +60,7 @@ const Resources = () => {
     adminResourceList().then((data) => {
       setBookingResult(data)
     })
-  }, [show, limit, page,editShow,filterTag]);
+  }, [show, limit, page, editShow, filterTag]);
 
   const nextPage = () => {
     setResult([])
@@ -149,7 +149,7 @@ const Resources = () => {
                     </td>
                     <td className='tableAction'>
                       <button className='btn view' onClick={() => viewResource(data.id)}><FontAwesomeIcon icon={faEye} /></button>
-                      <button className='btn edit' onClick={()=>editResource(data)}><img src={editPen} alt="edit" /></button>
+                      <button className='btn edit' onClick={() => editResource(data)}><img src={editPen} alt="edit" /></button>
                     </td>
                   </tr>)}
                 </tbody>
@@ -161,7 +161,7 @@ const Resources = () => {
             <div className="bookingHeading">
               <h6><img src={calenderIcon} alt="edit" /> Upcoming Bookings</h6>
             </div>
-            {bookingResult && bookingResult.map((resource) => <div className="bookingPerson">
+            {bookingResult && bookingResult.map((resource, i) => <div key={`resource` + i} className="bookingPerson">
               <img src={`${API}/${resource.resource_image}`} alt="edit" />
               <div>
                 <p>{resource.resource_name} <span>({resource.creator_name})</span> </p>
