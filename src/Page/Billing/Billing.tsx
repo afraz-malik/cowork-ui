@@ -22,7 +22,7 @@ const Billing = () => {
     const [invoiceList, setInvoiceList] = useState<any>([]);
     const [count, setCount] = useState(0);
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState<number>(6);
+    const [limit, setLimit] = useState<number>(10);
     // pagination
     const [allCheck, setAllCheck] = useState(false);
     const [result, setResult] = useState<string[]>([]);
@@ -172,7 +172,7 @@ const Billing = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filteredInvoices && filteredInvoices.map((invoice: any) => <tr>
+                                    {filteredInvoices && filteredInvoices.map((invoice: any,i:number) => <tr key={`filtered`+i}>
                                         <td><label className="tableCheckBox">
                                             <div className="contactCheck">
                                                 <input type="checkbox" name="agreement" />

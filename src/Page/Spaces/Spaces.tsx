@@ -18,7 +18,7 @@ import blankUser from "../../Assets/Images/icon/blank-profile.jpg"
 import memberAvatar from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from '../../Component/Pagination/Pagination';
-import { Link ,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Spaces = () => {
     const navigate = useNavigate();
@@ -37,7 +37,7 @@ const Spaces = () => {
     const [totalValue, setTotalValue] = useState<any>();
     const [limitValue, setLimitValue] = useState<any>();
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState<number>(6);
+    const [limit, setLimit] = useState<number>(10);
     const pageCount = Math.ceil(totalValue / limitValue);
     const [prevButton, setPrevButton] = useState<boolean>(false);
     const [nextButton, setNextButton] = useState<boolean>(false);
@@ -72,9 +72,9 @@ const Spaces = () => {
         if (pageCount === page) {
             setNextButton(false)
         }
-    }, [pageCount,page])
+    }, [pageCount, page])
 
-   
+
 
     const showResult = (value: number) => {
         setPage(1)
@@ -112,7 +112,7 @@ const Spaces = () => {
         setPage(page + 1)
         setNextButton(true)
     }
-    
+
     const prevPage = () => {
         setPage(page - 1)
     }
@@ -182,12 +182,12 @@ const Spaces = () => {
                                         <td className='tableAction'>
                                             {data.member_images ? <>
                                                 <div className="memberSpacesList">
-                                                    {data.member_images && separateComma(data.member_images).map((member: any) =>
-                                                         <>
-                                                         {member === "imgNull" ?  <img className="avatar-icon36 default" alt="" src={memberAvatar} />
-                                                         :<img className="avatar-icon36" alt="" src={`${API}/${member}`} />
-                                                         }
-                                                       </>
+                                                    {data.member_images && separateComma(data.member_images).map((member: any, i: number) =>
+                                                        <div key={`memberImage` + i}>
+                                                            {member === "imgNull" ? <img className="avatar-icon36 default" alt="" src={memberAvatar} />
+                                                                : <img className="avatar-icon36" alt="" src={`${API}/${member}`} />
+                                                            }
+                                                        </div>
                                                     )}
                                                     <div className="plusMember" onClick={() => assignMembers(data.id)}>
                                                         <FontAwesomeIcon icon={faPlus} />

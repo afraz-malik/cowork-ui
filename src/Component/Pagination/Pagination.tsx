@@ -60,7 +60,7 @@ const Pagination = ({ paginationTitle, page, setPage, limit, setLimit, prevPage,
                         </Dropdown.Toggle>
                         <Dropdown.Menu role="menu" aria-labelledby="pageDropDown">
                             {limitDivided.map((number) => (
-                                <Dropdown.Item key={number} eventKey={number.toString()}>
+                                <Dropdown.Item key={`number`+number} eventKey={number.toString()}>
                                     {number}
                                 </Dropdown.Item>
                             ))}
@@ -70,9 +70,9 @@ const Pagination = ({ paginationTitle, page, setPage, limit, setLimit, prevPage,
                 </div>
                 <div className="paginationNumber">
                     <button onClick={() => prevPage()} className={prevButton === true ? "" : "disablePag"}><FontAwesomeIcon icon={faArrowLeft} /> Previous</button>
-                    {paginationDivided.map((number) => (
-                        <button onClick={() => setPage(number)}>{number}</button>
-                    ))}
+                    {paginationDivided.map((number) => 
+                        <button key={`page`+number} onClick={() => setPage(number)}>{number}</button>
+                    )}
                     <button onClick={() => nextPage()} className={nextButton === true ? "" : "disablePag"}>Next <FontAwesomeIcon icon={faArrowRight} /></button>
                 </div>
             </div>

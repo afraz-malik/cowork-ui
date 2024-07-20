@@ -1,4 +1,4 @@
-import { get} from "./base-api";
+import { get, post} from "./base-api";
 import axios from 'axios';
 import { DESKIE_API as API } from '../config';
 
@@ -45,3 +45,8 @@ export const customizationAdd = async (body = {}) => {
         return error.response?.data;
     }
 };
+// stripe Create
+export const stripeCreate = async (body={}) => {
+    return post(`/stripeCreate`,body);
+};
+

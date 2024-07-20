@@ -3,22 +3,20 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import { resourceBook, singleResource } from '../../api/resource';
 import Layout from '../Layout/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons';
-import penIcon from "../../Assets/Images/icon/pencil-01.svg";
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import spaceIcon from "../../Assets/Images/icon/spaceAvatar.png";
 import { DESKIE_API as API } from '../../config';
-import "./ViewResource.css"
+import "./ViewResource.css";
 import { faEye } from '@fortawesome/free-regular-svg-icons';
-import calenderIcon from "../../Assets/Images/icon/calendar-check-01.svg"
+import calenderIcon from "../../Assets/Images/icon/calendar-check-01.svg";
 import ResourceBooking from '../ResourceBooking/ResourceBooking';
 import { formatResourceDate } from '../../CommonFunction/Function';
 
 const MemberResource = () => {
+
     const { id } = useParams();
     const location = useLocation();
     const pathParts = location.pathname.split('/');
-
-
     const [resourceDetails, setResourceDetails] = useState<any>({});
     const [bookList, setBookList] = useState<any[]>([]);
     const [paymentShow, setPaymentShow] = useState(false);
@@ -45,7 +43,7 @@ const MemberResource = () => {
                                 <h6> {resourceDetails.name}</h6>
                             </div>
                             <div className="editBtn">
-                            <button onClick={handlePaymentShow}>Reserve</button>
+                                <button onClick={handlePaymentShow}>Reserve</button>
                             </div>
                         </div>
                         <div className="resourceDescription p-4">
@@ -82,7 +80,7 @@ const MemberResource = () => {
                         <div className="bookingHeading">
                             <h6><img src={calenderIcon} alt="edit" /> Upcoming Bookings</h6>
                         </div>
-                        {bookList && bookList.map((resource) => <div className="bookingPerson">
+                        {bookList && bookList.map((resource, i) => <div key={`book` + i} className="bookingPerson">
                             <img src={`${API}/${resource.resource_image}`} alt="edit" />
                             <div>
                                 <p>{resource.resource_name}</p>

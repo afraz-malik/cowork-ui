@@ -265,7 +265,7 @@ const Files = () => {
             <div className="text43">Favorites</div>
             <div className="file-2-parent">
               {favoriteList && favoriteList.map((favorite: any, index) =>
-                <div className={getFileExtension(favorite.extension)} onClick={() => lightBox(favorite.files_upload)}>
+                <div key={`favorite`+index} className={getFileExtension(favorite.extension)} onClick={() => lightBox(favorite.files_upload)}>
                   <div className='favorite'>
                     <img src={getFileType(favorite.extension)} alt="avatar" />
                   </div>
@@ -320,7 +320,7 @@ const Files = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {sortedFiles && sortedFiles.map((file: any, index) => <tr>
+                  {sortedFiles && sortedFiles.map((file: any, index) => <tr key={`sortedFile`+index}>
                     <td><label className="tableCheckBox">
                       <div className="contactCheck">
                         <input type="checkbox" name="agreement" />
@@ -332,10 +332,10 @@ const Files = () => {
                     <td>{convertBytesToSize(file.size)}</td>
                     {file.sharesList ? <td>
                       <div className="avatars2">
-                        {file.sharesList.map((share: any) =>
-                          <>{share.image === "imageNull" ? <img className="avatar-icon36 default" alt="" src={memberIcon} />
+                        {file.sharesList.map((share: any,i:number) =>
+                          <div key={`shareList`+i}>{share.image === "imageNull" ? <img className="avatar-icon36 default" alt="" src={memberIcon} />
                             : <img className={`${share.type === 'admin' ? 'admin avatar-icon36' : 'avatar-icon36'}`} alt="" src={`${API}/${share.image}`} />
-                          }</>
+                          }</div>
                         )}
                         {file.delete ?
                           <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>

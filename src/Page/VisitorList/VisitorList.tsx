@@ -16,7 +16,7 @@ const VisitorList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [visitorList, setVisitorList] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState<number>(6);
+  const [limit, setLimit] = useState<number>(10);
   const [totalValue, setTotalValue] = useState<number>(0);
   const [limitValue, setLimitValue] = useState<number>(0);
   const pageCount = Math.ceil(totalValue / limitValue);
@@ -72,6 +72,22 @@ const VisitorList = () => {
       setPageValue(data.page)
     })
   }, [limit, page, count]);
+
+  useEffect(() => {
+    if (pageCount > 1) {
+      setPrevButton(true)
+    }
+    if (page === 1) {
+      setPrevButton(false)
+    }
+    // next button
+    if (pageCount > 1) {
+      setNextButton(true)
+    }
+    if (pageCount === page) {
+      setNextButton(false)
+    }
+  }, [pageCount, page])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);

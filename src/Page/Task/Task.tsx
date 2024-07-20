@@ -337,10 +337,10 @@ const Task = () => {
                                                                         </div>
                                                                         <div className="taskMember">
                                                                             {task.assigned_members && task.assigned_members.split(',').map((filePath: any, index: number) => (
-                                                                                <>
+                                                                                <div key={`taskAssign`+index}>
                                                                                     {filePath.trim() ? <img key={index} src={`${API}/${filePath.trim()}`} alt="" />
                                                                                         : <img className='default' src={memberIcon} alt='task' />}
-                                                                                </>
+                                                                                </div>
                                                                             ))}
                                                                         </div>
                                                                     </div>

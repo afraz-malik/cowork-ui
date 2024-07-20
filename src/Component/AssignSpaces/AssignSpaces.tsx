@@ -176,30 +176,30 @@ const AssignSpaces = ({ memberId, assignShow, setAssignShow, handleAssignClose }
   }
 
 
-  
+
   const handleTodayClick = () => {
     setRenewalDate(new Date());
-};
+  };
 
-const handleYesterdayClick = () => {
+  const handleYesterdayClick = () => {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     setRenewalDate(yesterday);
-};
+  };
 
-const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisabled, nextMonthButtonDisabled }: any) => (
+  const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisabled, nextMonthButtonDisabled }: any) => (
     <div>
-        <div className='calenderHeading'>
-            <button className='arrowLeft' onClick={decreaseMonth} disabled={prevMonthButtonDisabled}><FontAwesomeIcon icon={faChevronLeft} /></button>
-            <span className='calenderDate'>{date.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-            <button className='arrowRight' onClick={increaseMonth} disabled={nextMonthButtonDisabled}><FontAwesomeIcon icon={faChevronRight} /></button>
-        </div>
-        <div className='calenderBtn'>
-            <button onClick={handleYesterdayClick}>Yesterday</button>
-            <button onClick={handleTodayClick}>Today</button>
-        </div>
+      <div className='calenderHeading'>
+        <button className='arrowLeft' onClick={decreaseMonth} disabled={prevMonthButtonDisabled}><FontAwesomeIcon icon={faChevronLeft} /></button>
+        <span className='calenderDate'>{date.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+        <button className='arrowRight' onClick={increaseMonth} disabled={nextMonthButtonDisabled}><FontAwesomeIcon icon={faChevronRight} /></button>
+      </div>
+      <div className='calenderBtn'>
+        <button onClick={handleYesterdayClick}>Yesterday</button>
+        <button onClick={handleTodayClick}>Today</button>
+      </div>
     </div>
-);
+  );
 
   return (
     <>
@@ -242,12 +242,12 @@ const CustomHeader = ({ date, decreaseMonth, increaseMonth, prevMonthButtonDisab
                         </div>
                         <div className='member-container'>
                           {filteredSpaces.map((data: any, index) =>
-                            <div onClick={(e) => { setIsActive(!isActive); selectMember(data) }} className="item tableImage" >
+                            <div key={`assignSpace` + index} onClick={(e) => { setIsActive(!isActive); selectMember(data) }} className="item tableImage" >
                               {data.space_image ? <img src={`${API}/${data.space_image}`} alt="avatar" style={{ objectFit: "cover" }} />
                                 : <img src={spaceIcon} alt="avatar" />}
-                            <p>{data.name.length > 17 ? data.name.slice(0, 17) + "..." : data.name}</p>
+                              <p>{data.name.length > 17 ? data.name.slice(0, 17) + "..." : data.name}</p>
                             </div>)}
-                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -65,7 +65,7 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
                                 </li>
                                 <li className={urlParams === "resources" ? "navLink activeMenu" : "navLink"}>
                                     <Link to="/resources"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_10553_24214)">
+                                        <g clipPath="url(#clip0_10553_24214)">
                                             <path d="M4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H8V4H20V16ZM13 14H15V11H18V9H15V6H13V9H10V11H13V14Z" fill={urlParams === "resources" ? "#FFFFFF" : "#98A2B3"} />
                                         </g>
                                         <defs>
@@ -87,7 +87,7 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
                                 </li>
                                 <li className={urlParams === "feed" ? "navLink activeMenu" : "navLink"}>
                                     <Link to="/feed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_9672_27170)">
+                                        <g clipPath="url(#clip0_9672_27170)">
                                             <path d="M6.18 20.0006C7.38398 20.0006 8.36 19.0246 8.36 17.8206C8.36 16.6166 7.38398 15.6406 6.18 15.6406C4.97602 15.6406 4 16.6166 4 17.8206C4 19.0246 4.97602 20.0006 6.18 20.0006Z" fill={urlParams === "feed" ? "#FFFFFF" : "#98A2B3"} />
                                             <path d="M4 4.4375V7.2675C11.03 7.2675 16.73 12.9675 16.73 19.9975H19.56C19.56 11.4075 12.59 4.4375 4 4.4375ZM4 10.0975V12.9275C7.9 12.9275 11.07 16.0975 11.07 19.9975H13.9C13.9 14.5275 9.47 10.0975 4 10.0975Z" fill={urlParams === "feed" ? "#FFFFFF" : "#98A2B3"} />
                                         </g>
@@ -147,7 +147,7 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
                                     </li>
                                     <li className={urlParams === "my-resources" ? "navLink activeMenu" : "navLink"}>
                                     <Link to="/my-resources"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_10553_24214)">
+                                        <g clipPath="url(#clip0_10553_24214)">
                                             <path d="M4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H8V4H20V16ZM13 14H15V11H18V9H15V6H13V9H10V11H13V14Z" fill={urlParams === "my-resources" ? "#FFFFFF" : "#98A2B3"} />
                                         </g>
                                         <defs>

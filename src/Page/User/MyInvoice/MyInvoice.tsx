@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Dropdown, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import Layout from '../../../Component/Layout/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight, faArrowUpLong, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpLong, faSearch } from '@fortawesome/free-solid-svg-icons';
 import more from "../../../Assets/Images/icon/dots-vertical.svg";
 import { DESKIE_API as API } from '../../../config';
 import moment from 'moment';
@@ -28,17 +28,12 @@ const MyInvoice = () => {
     const handleClose = () => setShow(false);
     const [invoiceList, setInvoiceList] = useState<any>([]);
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState<number>(6);
-    const [selectedValue, setSelectedValue] = useState(limit);
-    const showResult = (value: number) => {
-        setPage(1)
-        setLimit(value)
-    }
-    const handleSelect = (selectedValue: any) => {
-        const integerValue = parseInt(selectedValue);
-        showResult(integerValue);
-        setSelectedValue(selectedValue);
+    const [limit, setLimit] = useState<number>(10);
+    const [searchTerm, setSearchTerm] = useState('');
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value);
     };
+
 
     useEffect(() => {
         getInvoicesList(limit, page, "all").then((data) => {
@@ -51,19 +46,19 @@ const MyInvoice = () => {
 
     useEffect(() => {
         if (pageCount > 1) {
-          setPrevButton(true)
+            setPrevButton(true)
         }
         if (page === 1) {
-          setPrevButton(false)
+            setPrevButton(false)
         }
         // next button
         if (pageCount > 1) {
-          setNextButton(true)
+            setNextButton(true)
         }
         if (pageCount === page) {
-          setNextButton(false)
+            setNextButton(false)
         }
-      }, [pageCount, page])
+    }, [pageCount, page])
 
     const invoiceView = (invoiceId: string) => {
         return navigate(`/invoice-details/${invoiceId}`);
@@ -77,19 +72,27 @@ const MyInvoice = () => {
     const nextPage = () => {
         setPage(page + 1)
         setNextButton(true)
-      }
-    
-      const prevPage = () => {
-        setPage(page - 1)
-      }
+    }
 
-      const viewInvoice = (invoiceId: string) => {
+    const prevPage = () => {
+        setPage(page - 1)
+    }
+
+    const viewInvoice = (invoiceId: string) => {
         invoicesView(invoiceId).then((data) => {
- console.log('invoice',data);
- 
+            console.log('invoice', data);
+
         })
-     }
-      
+    }
+
+
+    const filteredInvoices = invoiceList.filter((member: any) => {
+        const fullName = `${member.member_first_name} ${member.member_last_name}`;
+        return fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            member.spaces_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            member.amount.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
     return (
         <div id='my-billing'>
             <Layout>
@@ -111,7 +114,7 @@ const MyInvoice = () => {
                             </div>
                             <div className='memberSearch'>
                                 <div className='searchInput'>
-                                    <input type="text" placeholder='Search billing' className='form-control' />
+                                    <input type="text" placeholder='Search billing' onChange={handleInputChange} className='form-control' />
                                     <FontAwesomeIcon icon={faSearch} />
                                 </div>
                                 {/* <Link to="/create-invoice"><FontAwesomeIcon icon={faPlus} /> Create New Invoice</Link> */}
@@ -136,13 +139,13 @@ const MyInvoice = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {invoiceList && invoiceList.map((invoice: any) => <tr>
+                                    {filteredInvoices && filteredInvoices.map((invoice: any, i: number) => <tr key={`myInvoices` + i}>
                                         <td><label className="tableCheckBox">
                                             <div className="contactCheck">
                                                 <input type="checkbox" name="agreement" onClick={() => invoiceView(invoice.id)} />
                                                 <span className="checkmark"></span></div>
                                         </label></td>
-                                        <td><Link to={`/my-invoice-details/${invoice.id}`} onClick={()=>invoice.invoice_view ? null : viewInvoice(invoice.id)}>#INV{invoice.invoice_id}</Link></td>
+                                        <td><Link to={`/my-invoice-details/${invoice.id}`} onClick={() => invoice.invoice_view ? null : viewInvoice(invoice.id)}>#INV{invoice.invoice_id}</Link></td>
                                         <td>
                                             {invoice.member_image ? <img src={`${API}/${invoice.member_image}`} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />
                                                 : <img className='default' src={memberAvatar} width="32px" height="32px" alt="avatar" style={{ borderRadius: "50%" }} />

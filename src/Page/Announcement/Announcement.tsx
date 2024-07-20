@@ -19,8 +19,6 @@ import arrow from "../../Assets/Images/icon/downArrowBlack.svg";
 import { singleJwtMember } from '../../api/member';
 import { isAuthenticate } from '../../api/auth';
 import { postComment } from './../../api/announcement';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import InputEmoji from "react-input-emoji";
 import { singleProfile } from '../../api/settings';
 import publish from "../../Assets/Images/icon/mail.svg";
@@ -493,8 +491,8 @@ const Announcement = () => {
               </div>
 
               {/* post list */}
-              {postList && postList.map((data: any) =>
-                <div className="post-parent">
+              {postList && postList.map((data: any,i) =>
+                <div key={`post`+i} className="post-parent">
                   <div className="post">
                     <div className="user">
                       <div className="postLogo">
@@ -540,8 +538,8 @@ const Announcement = () => {
                       </div>
                     </div>
                     {/* previous comment */}
-                    {data.comments && data.comments.map((comment: any) =>
-                      <div className='commentShow'>
+                    {data.comments && data.comments.map((comment: any,j:number) =>
+                      <div key={`comment`+j} className='commentShow'>
                         <div className="comment">
                           <div className="commentImg">
                             {comment.avatar ? <img src={`${API}/${comment.avatar}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
@@ -562,7 +560,7 @@ const Announcement = () => {
                             </button>
                           </div>
                         </div>
-                        {comment.commentReply && comment.commentReply.map((reply: any) => <>
+                        {comment.commentReply && comment.commentReply.map((reply: any,k:number) => <div key={`commentReply`+k}>
                           <div className="commentReply">
                             <div className="commentImg">
                               {/* {reply.id} */}
@@ -586,8 +584,8 @@ const Announcement = () => {
                           </div>
 
                           {/* comment comment */}
-                          {reply.replyCommentComment && reply.replyCommentComment.map((nestedReply: any) =>
-                            <div className="commentReply" style={{ marginLeft: "68px" }}>
+                          {reply.replyCommentComment && reply.replyCommentComment.map((nestedReply: any,l:number) =>
+                            <div key={`lastComment`+l} className="commentReply" style={{ marginLeft: "68px" }}>
                               <div className="commentImg">
                                 {/* {reply.id} */}
                                 {nestedReply.avatar ? <img src={`${API}/${nestedReply.avatar}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
@@ -616,7 +614,7 @@ const Announcement = () => {
                             </div>
                           </div> : ""}
 
-                        </>)}
+                        </div>)}
 
 
 

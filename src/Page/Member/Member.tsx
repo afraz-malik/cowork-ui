@@ -38,7 +38,7 @@ const Member = () => {
   const handleUpdateClose = () => setUpdateShow(false);
   const handleUpdateShow = () => setUpdateShow(true);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState<number>(6);
+  const [limit, setLimit] = useState<number>(10);
   const [allCheck, setAllCheck] = useState(false);
   const [result, setResult] = useState<string[]>([]);
   const [totalValue, setTotalValue] = useState<number>(0);
@@ -174,12 +174,12 @@ const Member = () => {
                     <td className='tableAction text-center'>
                       {data.space_images ? <>
                         <div className="memberSpacesList">
-                          {data.space_images && separateComma(data.space_images).map((member: any) =>
-                             <>
+                          {data.space_images && separateComma(data.space_images).map((member: any,i:number) =>
+                             <div key={`spaceImage`+i}>
                              {member === "imgNull" ?  <img className="avatar-icon36" alt="" src={spaceAvatar} />
                              :<img className="avatar-icon36" alt="" src={`${API}/${member}`} />
                              }
-                           </>
+                           </div>
                           )}
                           <div className="plusMember" onClick={() => assignMembers(data.id)}>
                             <FontAwesomeIcon icon={faPlus} />
