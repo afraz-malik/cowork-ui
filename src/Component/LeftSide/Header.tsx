@@ -85,7 +85,7 @@ const Header = ({ onValueChange }: any) => {
                     {pathArray.includes("my-resources") ? <p>My Bookings</p> : ""}
                 </div>
                 <div className='rightNavbar'>
-                    <button className='d-flex align-items-center'><img src={circle} alt="circle" /></button>
+                    {/* <button className='d-flex align-items-center'><img src={circle} alt="circle" /></button> */}
                     <div className="notificationBox">
                         <Dropdown>
                             <Dropdown.Toggle>
@@ -126,7 +126,7 @@ const Header = ({ onValueChange }: any) => {
                     </button>
                     <Dropdown>
                         <Dropdown.Toggle>
-                            {firstName && firstName} <img style={{ marginLeft: "12px" }} src={arrow} alt="arrow" />
+                            {firstName && firstName} {lastName && lastName} <img style={{marginLeft: "12px"}} src={arrow} alt="arrow" />
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <div className="navProfile">
