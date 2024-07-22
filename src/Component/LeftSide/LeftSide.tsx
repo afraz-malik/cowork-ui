@@ -1,124 +1,340 @@
-import React, { useState, useEffect } from 'react';
-import { Sidebar } from 'react-pro-sidebar';
+import React, { useState, useEffect } from "react";
+import { Sidebar } from "react-pro-sidebar";
 import "./LeftSide.css";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 import adminIcon from "../../Assets/Images/icon/adminIcon.png";
-import { DESKIE_API as API } from '../../config';
+import { DESKIE_API as API } from "../../config";
 // sidebar image
 import help from "../../Assets/Images/icon/lightbulb.svg";
-import { useNavigate } from 'react-router-dom';
-import { singleProfile } from '../../api/settings';
-import sidebarLogo from "../../Assets/Images/logo/logo.svg"
+import { useNavigate } from "react-router-dom";
+import { singleProfile } from "../../api/settings";
+import sidebarLogo from "../../Assets/Images/logo/logo.svg";
 
 interface CollapseProps {
-    collapsed: boolean;
-    setCollapsed: (value: boolean) => void;
+  collapsed: boolean;
+  setCollapsed: (value: boolean) => void;
 }
 const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
-    const [companyName, setCompanyName] = useState("");
-    const location = useLocation();
-    const pathArray = location.pathname.split('/');
-    const urlParams = pathArray[pathArray.length - 1];
-    const storeUserAuth = localStorage.getItem('company');
-    const userAuth = JSON.parse(storeUserAuth as string);
-    const [companyAddress, setCompanyAddress] = useState("");
-    const [darkIconImage, setDarkIconImage] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const location = useLocation();
+  const pathArray = location.pathname.split("/");
+  const urlParams = pathArray[pathArray.length - 1];
+  const storeUserAuth = localStorage.getItem("company");
+  const userAuth = JSON.parse(storeUserAuth as string);
+  const [companyAddress, setCompanyAddress] = useState("");
+  const [darkIconImage, setDarkIconImage] = useState("");
 
-    useEffect(() => {
-        singleProfile().then((data) => {
-            if (data.statusCode !== 200) {
+  useEffect(() => {
+    singleProfile().then((data) => {
+      if (data.statusCode !== 200) {
+      } else {
+        setCompanyName(data.data.company_name);
+        setDarkIconImage(data.data.company_logo_dark);
+        setCompanyAddress(data.data.address);
+      }
+    });
+  }, []);
+  return (
+    <div className="sideBar">
+      <Sidebar
+        onBackdropClick={() => setCollapsed(false)}
+        collapsed={collapsed}
+        width="280px"
+        collapsedWidth="0px"
+      >
+        <div className="sidebarBox">
+          <div>
+            <div className="sidebarLogo">
+              {darkIconImage ? (
+                <img src={`${API}/${darkIconImage}`} alt="admin" />
+              ) : (
+                // <img src={sidebarLogo} alt="admin" />
+                <img src={`${API}/${darkIconImage}`} alt="admin" />
+              )}
+            </div>
+            <div className="sidebarMenu" style={{ padding: "0px 15px" }}>
+              {userAuth && userAuth.user.role === "admin" ? (
+                <ul className="list-unstyled">
+                  <li
+                    className={
+                      urlParams === "dashboard"
+                        ? "navLink activeMenu"
+                        : "navLink"
+                    }
+                  >
+                    <Link to="/dashboard">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M21 9L14.5515 13.6061C14.3555 13.746 14.2576 13.816 14.1527 13.8371C14.0602 13.8557 13.9643 13.8478 13.8762 13.8142C13.7762 13.7762 13.691 13.691 13.5208 13.5208L10.4792 10.4792C10.309 10.309 10.2238 10.2238 10.1238 10.1858C10.0357 10.1522 9.9398 10.1443 9.84732 10.1629C9.74241 10.184 9.64445 10.254 9.44853 10.3939L3 15M7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z"
+                          stroke={
+                            urlParams === "dashboard" ? "#FFFFFF" : "#98A2B3"
+                          }
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li
+                    className={
+                      urlParams === "member" ? "navLink activeMenu" : "navLink"
+                    }
+                  >
+                    <Link to="/member">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z"
+                          stroke={
+                            urlParams === "member" ? "#FFFFFF" : "#98A2B3"
+                          }
+                          strokeWidth="1.75"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Members
+                    </Link>
+                  </li>
+                  <li
+                    className={
+                      urlParams === "assets" ? "navLink activeMenu" : "navLink"
+                    }
+                  >
+                    <Link to="/assets">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3 9H21M9 9L9 21M7.8 3H16.2C17.8802 3 18.7202 3 19.362 3.32698C19.9265 3.6146 20.3854 4.07354 20.673 4.63803C21 5.27976 21 6.11984 21 7.8V16.2C21 17.8802 21 18.7202 20.673 19.362C20.3854 19.9265 19.9265 20.3854 19.362 20.673C18.7202 21 17.8802 21 16.2 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V7.8C3 6.11984 3 5.27976 3.32698 4.63803C3.6146 4.07354 4.07354 3.6146 4.63803 3.32698C5.27976 3 6.11984 3 7.8 3Z"
+                          stroke={
+                            urlParams === "assets" ? "#FFFFFF" : "#98A2B3"
+                          }
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Assets
+                    </Link>
+                  </li>
+                  <li
+                    className={
+                      urlParams === "resources"
+                        ? "navLink activeMenu"
+                        : "navLink"
+                    }
+                  >
+                    <Link to="/resources">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clipPath="url(#clip0_10553_24214)">
+                          <path
+                            d="M4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H8V4H20V16ZM13 14H15V11H18V9H15V6H13V9H10V11H13V14Z"
+                            fill={
+                              urlParams === "resources" ? "#FFFFFF" : "#98A2B3"
+                            }
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_10553_24214">
+                            <rect width="24" height="24" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      Resources
+                    </Link>
+                  </li>
+                  <li
+                    className={
+                      urlParams === "task" ? "navLink activeMenu" : "navLink"
+                    }
+                  >
+                    <Link to="/task">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 10.9996L10.6422 15.8207C10.7734 15.8863 10.839 15.9191 10.9078 15.932C10.9687 15.9434 11.0313 15.9434 11.0922 15.932C11.161 15.9191 11.2266 15.8863 11.3578 15.8207L21 10.9996M1 15.9996L10.6422 20.8207C10.7734 20.8863 10.839 20.9191 10.9078 20.932C10.9687 20.9434 11.0313 20.9434 11.0922 20.932C11.161 20.9191 11.2266 20.8863 11.3578 20.8207L21 15.9996M1 5.99958L10.6422 1.17846C10.7734 1.11287 10.839 1.08008 10.9078 1.06717C10.9687 1.05574 11.0313 1.05574 11.0922 1.06717C11.161 1.08008 11.2266 1.11287 11.3578 1.17846L21 5.99958L11.3578 10.8207C11.2266 10.8863 11.161 10.9191 11.0922 10.932C11.0313 10.9434 10.9687 10.9434 10.9078 10.932C10.839 10.9191 10.7734 10.8863 10.6422 10.8207L1 5.99958Z"
+                          stroke={urlParams === "task" ? "#FFFFFF" : "#98A2B3"}
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Tasks
+                    </Link>
+                  </li>
+                  <li
+                    className={
+                      urlParams === "messenger"
+                        ? "navLink activeMenu"
+                        : "navLink"
+                    }
+                  >
+                    <Link to="/messenger">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7.5 12H7.51M12 12H12.01M16.5 12H16.51M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.1971 3.23374 14.3397 3.65806 15.3845C3.73927 15.5845 3.77988 15.6845 3.798 15.7653C3.81572 15.8443 3.8222 15.9028 3.82221 15.9839C3.82222 16.0667 3.80718 16.1569 3.77711 16.3374L3.18413 19.8952C3.12203 20.2678 3.09098 20.4541 3.14876 20.5888C3.19933 20.7067 3.29328 20.8007 3.41118 20.8512C3.54589 20.909 3.73218 20.878 4.10476 20.8159L7.66265 20.2229C7.84309 20.1928 7.9333 20.1778 8.01613 20.1778C8.09715 20.1778 8.15566 20.1843 8.23472 20.202C8.31554 20.2201 8.41552 20.2607 8.61549 20.3419C9.6603 20.7663 10.8029 21 12 21ZM8 12C8 12.2761 7.77614 12.5 7.5 12.5C7.22386 12.5 7 12.2761 7 12C7 11.7239 7.22386 11.5 7.5 11.5C7.77614 11.5 8 11.7239 8 12ZM12.5 12C12.5 12.2761 12.2761 12.5 12 12.5C11.7239 12.5 11.5 12.2761 11.5 12C11.5 11.7239 11.7239 11.5 12 11.5C12.2761 11.5 12.5 11.7239 12.5 12ZM17 12C17 12.2761 16.7761 12.5 16.5 12.5C16.2239 12.5 16 12.2761 16 12C16 11.7239 16.2239 11.5 16.5 11.5C16.7761 11.5 17 11.7239 17 12Z"
+                          stroke={
+                            urlParams === "messenger" ? "#FFFFFF" : "#98A2B3"
+                          }
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Messages
+                    </Link>
+                  </li>
+                  <li
+                    className={
+                      urlParams === "feed" ? "navLink activeMenu" : "navLink"
+                    }
+                  >
+                    <Link to="/feed">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clipPath="url(#clip0_9672_27170)">
+                          <path
+                            d="M6.18 20.0006C7.38398 20.0006 8.36 19.0246 8.36 17.8206C8.36 16.6166 7.38398 15.6406 6.18 15.6406C4.97602 15.6406 4 16.6166 4 17.8206C4 19.0246 4.97602 20.0006 6.18 20.0006Z"
+                            fill={urlParams === "feed" ? "#FFFFFF" : "#98A2B3"}
+                          />
+                          <path
+                            d="M4 4.4375V7.2675C11.03 7.2675 16.73 12.9675 16.73 19.9975H19.56C19.56 11.4075 12.59 4.4375 4 4.4375ZM4 10.0975V12.9275C7.9 12.9275 11.07 16.0975 11.07 19.9975H13.9C13.9 14.5275 9.47 10.0975 4 10.0975Z"
+                            fill={urlParams === "feed" ? "#FFFFFF" : "#98A2B3"}
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_9672_27170">
+                            <rect width="24" height="24" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      Feed
+                    </Link>
+                  </li>
 
-            }
-            else {
-                setCompanyName(data.data.company_name);
-                setDarkIconImage(data.data.company_logo_dark);
-                setCompanyAddress(data.data.address);
-            }
-        })
-    }, []);
-    return (
-        <div className='sideBar'>
-            <Sidebar onBackdropClick={() => setCollapsed(false)} collapsed={collapsed} width="280px" collapsedWidth="0px">
-                <div className="sidebarBox">
-                    <div>
-                        <div className="sidebarLogo">
-                            {darkIconImage ? <img src={`${API}/${darkIconImage}`} alt="admin" />
-                                : <img src={sidebarLogo} alt="admin" />}
-                        </div>
-                        <div className="sidebarMenu" style={{ padding: "0px 15px" }}>
-                            {userAuth && userAuth.user.role === "admin" ? <ul className="list-unstyled">
-                                <li className={urlParams === "dashboard" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/dashboard"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21 9L14.5515 13.6061C14.3555 13.746 14.2576 13.816 14.1527 13.8371C14.0602 13.8557 13.9643 13.8478 13.8762 13.8142C13.7762 13.7762 13.691 13.691 13.5208 13.5208L10.4792 10.4792C10.309 10.309 10.2238 10.2238 10.1238 10.1858C10.0357 10.1522 9.9398 10.1443 9.84732 10.1629C9.74241 10.184 9.64445 10.254 9.44853 10.3939L3 15M7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z" stroke={urlParams === "dashboard" ? "#FFFFFF" : "#98A2B3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                        Dashboard</Link>
-                                </li>
-                                <li className={urlParams === "member" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/member"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z" stroke={urlParams === "member" ? "#FFFFFF" : "#98A2B3"} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>Members</Link>
-                                </li>
-                                <li className={urlParams === "assets" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/assets"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3 9H21M9 9L9 21M7.8 3H16.2C17.8802 3 18.7202 3 19.362 3.32698C19.9265 3.6146 20.3854 4.07354 20.673 4.63803C21 5.27976 21 6.11984 21 7.8V16.2C21 17.8802 21 18.7202 20.673 19.362C20.3854 19.9265 19.9265 20.3854 19.362 20.673C18.7202 21 17.8802 21 16.2 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V7.8C3 6.11984 3 5.27976 3.32698 4.63803C3.6146 4.07354 4.07354 3.6146 4.63803 3.32698C5.27976 3 6.11984 3 7.8 3Z" stroke={urlParams === "assets" ? "#FFFFFF" : "#98A2B3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>Assets</Link>
-                                </li>
-                                <li className={urlParams === "resources" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/resources"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clipPath="url(#clip0_10553_24214)">
-                                            <path d="M4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H8V4H20V16ZM13 14H15V11H18V9H15V6H13V9H10V11H13V14Z" fill={urlParams === "resources" ? "#FFFFFF" : "#98A2B3"} />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_10553_24214">
-                                                <rect width="24" height="24" fill="white" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>Resources</Link>
-                                </li>
-                                <li className={urlParams === "task" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/task"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 10.9996L10.6422 15.8207C10.7734 15.8863 10.839 15.9191 10.9078 15.932C10.9687 15.9434 11.0313 15.9434 11.0922 15.932C11.161 15.9191 11.2266 15.8863 11.3578 15.8207L21 10.9996M1 15.9996L10.6422 20.8207C10.7734 20.8863 10.839 20.9191 10.9078 20.932C10.9687 20.9434 11.0313 20.9434 11.0922 20.932C11.161 20.9191 11.2266 20.8863 11.3578 20.8207L21 15.9996M1 5.99958L10.6422 1.17846C10.7734 1.11287 10.839 1.08008 10.9078 1.06717C10.9687 1.05574 11.0313 1.05574 11.0922 1.06717C11.161 1.08008 11.2266 1.11287 11.3578 1.17846L21 5.99958L11.3578 10.8207C11.2266 10.8863 11.161 10.9191 11.0922 10.932C11.0313 10.9434 10.9687 10.9434 10.9078 10.932C10.839 10.9191 10.7734 10.8863 10.6422 10.8207L1 5.99958Z" stroke={urlParams === "task" ? "#FFFFFF" : "#98A2B3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>Tasks</Link>
-                                </li>
-                                <li className={urlParams === "messenger" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/messenger"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.5 12H7.51M12 12H12.01M16.5 12H16.51M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.1971 3.23374 14.3397 3.65806 15.3845C3.73927 15.5845 3.77988 15.6845 3.798 15.7653C3.81572 15.8443 3.8222 15.9028 3.82221 15.9839C3.82222 16.0667 3.80718 16.1569 3.77711 16.3374L3.18413 19.8952C3.12203 20.2678 3.09098 20.4541 3.14876 20.5888C3.19933 20.7067 3.29328 20.8007 3.41118 20.8512C3.54589 20.909 3.73218 20.878 4.10476 20.8159L7.66265 20.2229C7.84309 20.1928 7.9333 20.1778 8.01613 20.1778C8.09715 20.1778 8.15566 20.1843 8.23472 20.202C8.31554 20.2201 8.41552 20.2607 8.61549 20.3419C9.6603 20.7663 10.8029 21 12 21ZM8 12C8 12.2761 7.77614 12.5 7.5 12.5C7.22386 12.5 7 12.2761 7 12C7 11.7239 7.22386 11.5 7.5 11.5C7.77614 11.5 8 11.7239 8 12ZM12.5 12C12.5 12.2761 12.2761 12.5 12 12.5C11.7239 12.5 11.5 12.2761 11.5 12C11.5 11.7239 11.7239 11.5 12 11.5C12.2761 11.5 12.5 11.7239 12.5 12ZM17 12C17 12.2761 16.7761 12.5 16.5 12.5C16.2239 12.5 16 12.2761 16 12C16 11.7239 16.2239 11.5 16.5 11.5C16.7761 11.5 17 11.7239 17 12Z" stroke={urlParams === "messenger" ? "#FFFFFF" : "#98A2B3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>Messages</Link>
-                                </li>
-                                <li className={urlParams === "feed" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/feed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clipPath="url(#clip0_9672_27170)">
-                                            <path d="M6.18 20.0006C7.38398 20.0006 8.36 19.0246 8.36 17.8206C8.36 16.6166 7.38398 15.6406 6.18 15.6406C4.97602 15.6406 4 16.6166 4 17.8206C4 19.0246 4.97602 20.0006 6.18 20.0006Z" fill={urlParams === "feed" ? "#FFFFFF" : "#98A2B3"} />
-                                            <path d="M4 4.4375V7.2675C11.03 7.2675 16.73 12.9675 16.73 19.9975H19.56C19.56 11.4075 12.59 4.4375 4 4.4375ZM4 10.0975V12.9275C7.9 12.9275 11.07 16.0975 11.07 19.9975H13.9C13.9 14.5275 9.47 10.0975 4 10.0975Z" fill={urlParams === "feed" ? "#FFFFFF" : "#98A2B3"} />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_9672_27170">
-                                                <rect width="24" height="24" fill="white" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>Feed</Link>
-                                </li>
-
-                                {/* <li className={urlParams === "tickets" ? "navLink activeMenu" : "navLink"}>
+                  {/* <li className={urlParams === "tickets" ? "navLink activeMenu" : "navLink"}>
                                     <Link to="/tickets"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M8 8V7M8 12.5V11.5M8 17V16M6.8 20H17.2C18.8802 20 19.7202 20 20.362 19.673C20.9265 19.3854 21.3854 18.9265 21.673 18.362C22 17.7202 22 16.8802 22 15.2V8.8C22 7.11984 22 6.27976 21.673 5.63803C21.3854 5.07354 20.9265 4.6146 20.362 4.32698C19.7202 4 18.8802 4 17.2 4H6.8C5.11984 4 4.27976 4 3.63803 4.32698C3.07354 4.6146 2.6146 5.07354 2.32698 5.63803C2 6.27976 2 7.11984 2 8.8V15.2C2 16.8802 2 17.7202 2.32698 18.362C2.6146 18.9265 3.07354 19.3854 3.63803 19.673C4.27976 20 5.11984 20 6.8 20Z" stroke={urlParams === "tickets" ? "#FFFFFF" : "#98A2B3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>Ticket</Link>
                                 </li> */}
-                                <li className={urlParams === "calender" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/calender"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z" stroke={urlParams === "calender" ? "#FFFFFF" : "#98A2B3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>Calendar</Link>
-                                </li>
-                                <li className={urlParams === "files" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/files"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13 7L11.8845 4.76892C11.5634 4.1268 11.4029 3.80573 11.1634 3.57116C10.9516 3.36373 10.6963 3.20597 10.4161 3.10931C10.0992 3 9.74021 3 9.02229 3H5.2C4.0799 3 3.51984 3 3.09202 3.21799C2.71569 3.40973 2.40973 3.71569 2.21799 4.09202C2 4.51984 2 5.0799 2 6.2V7M2 7H17.2C18.8802 7 19.7202 7 20.362 7.32698C20.9265 7.6146 21.3854 8.07354 21.673 8.63803C22 9.27976 22 10.1198 22 11.8V16.2C22 17.8802 22 18.7202 21.673 19.362C21.3854 19.9265 20.9265 20.3854 20.362 20.673C19.7202 21 18.8802 21 17.2 21H6.8C5.11984 21 4.27976 21 3.63803 20.673C3.07354 20.3854 2.6146 19.9265 2.32698 19.362C2 18.7202 2 17.8802 2 16.2V7Z" stroke={urlParams === "files" ? "#FFFFFF" : "#98A2B3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>Files</Link>
-                                </li>
-                                <li className={urlParams === "billing" ? "navLink activeMenu" : "navLink"}>
-                                    <Link to="/billing"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16 8.00007V4.50073C16 3.66899 16 3.25312 15.8248 2.99755C15.6717 2.77425 15.4346 2.62257 15.1678 2.57715C14.8623 2.52517 14.4847 2.69944 13.7295 3.04799L4.85901 7.14206C4.18551 7.45291 3.84875 7.60834 3.60211 7.84939C3.38406 8.06249 3.21762 8.32262 3.1155 8.6099C3 8.93486 3 9.30575 3 10.0475V15.0001M16.5 14.5001H16.51M3 11.2001L3 17.8001C3 18.9202 3 19.4802 3.21799 19.9081C3.40973 20.2844 3.71569 20.5903 4.09202 20.7821C4.51984 21.0001 5.07989 21.0001 6.2 21.0001H17.8C18.9201 21.0001 19.4802 21.0001 19.908 20.7821C20.2843 20.5903 20.5903 20.2844 20.782 19.9081C21 19.4802 21 18.9202 21 17.8001V11.2001C21 10.08 21 9.51992 20.782 9.09209C20.5903 8.71577 20.2843 8.40981 19.908 8.21806C19.4802 8.00007 18.9201 8.00007 17.8 8.00007L6.2 8.00007C5.0799 8.00007 4.51984 8.00007 4.09202 8.21806C3.7157 8.40981 3.40973 8.71577 3.21799 9.09209C3 9.51991 3 10.08 3 11.2001ZM17 14.5001C17 14.7762 16.7761 15.0001 16.5 15.0001C16.2239 15.0001 16 14.7762 16 14.5001C16 14.2239 16.2239 14.0001 16.5 14.0001C16.7761 14.0001 17 14.2239 17 14.5001Z" stroke={urlParams === "billing" ? "#FFFFFF" : "#98A2B3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>Finances</Link>
-                                    {/* <button className={urlParams === "billing" ? "btn btn-toggle align-items-center rounded collapsed" : "btn btn-toggle align-items-center rounded collapsed"} data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                  <li
+                    className={
+                      urlParams === "calender"
+                        ? "navLink activeMenu"
+                        : "navLink"
+                    }
+                  >
+                    <Link to="/calender">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z"
+                          stroke={
+                            urlParams === "calender" ? "#FFFFFF" : "#98A2B3"
+                          }
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Calendar
+                    </Link>
+                  </li>
+                  <li
+                    className={
+                      urlParams === "files" ? "navLink activeMenu" : "navLink"
+                    }
+                  >
+                    <Link to="/files">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13 7L11.8845 4.76892C11.5634 4.1268 11.4029 3.80573 11.1634 3.57116C10.9516 3.36373 10.6963 3.20597 10.4161 3.10931C10.0992 3 9.74021 3 9.02229 3H5.2C4.0799 3 3.51984 3 3.09202 3.21799C2.71569 3.40973 2.40973 3.71569 2.21799 4.09202C2 4.51984 2 5.0799 2 6.2V7M2 7H17.2C18.8802 7 19.7202 7 20.362 7.32698C20.9265 7.6146 21.3854 8.07354 21.673 8.63803C22 9.27976 22 10.1198 22 11.8V16.2C22 17.8802 22 18.7202 21.673 19.362C21.3854 19.9265 20.9265 20.3854 20.362 20.673C19.7202 21 18.8802 21 17.2 21H6.8C5.11984 21 4.27976 21 3.63803 20.673C3.07354 20.3854 2.6146 19.9265 2.32698 19.362C2 18.7202 2 17.8802 2 16.2V7Z"
+                          stroke={urlParams === "files" ? "#FFFFFF" : "#98A2B3"}
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Files
+                    </Link>
+                  </li>
+                  <li
+                    className={
+                      urlParams === "billing" ? "navLink activeMenu" : "navLink"
+                    }
+                  >
+                    <Link to="/billing">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16 8.00007V4.50073C16 3.66899 16 3.25312 15.8248 2.99755C15.6717 2.77425 15.4346 2.62257 15.1678 2.57715C14.8623 2.52517 14.4847 2.69944 13.7295 3.04799L4.85901 7.14206C4.18551 7.45291 3.84875 7.60834 3.60211 7.84939C3.38406 8.06249 3.21762 8.32262 3.1155 8.6099C3 8.93486 3 9.30575 3 10.0475V15.0001M16.5 14.5001H16.51M3 11.2001L3 17.8001C3 18.9202 3 19.4802 3.21799 19.9081C3.40973 20.2844 3.71569 20.5903 4.09202 20.7821C4.51984 21.0001 5.07989 21.0001 6.2 21.0001H17.8C18.9201 21.0001 19.4802 21.0001 19.908 20.7821C20.2843 20.5903 20.5903 20.2844 20.782 19.9081C21 19.4802 21 18.9202 21 17.8001V11.2001C21 10.08 21 9.51992 20.782 9.09209C20.5903 8.71577 20.2843 8.40981 19.908 8.21806C19.4802 8.00007 18.9201 8.00007 17.8 8.00007L6.2 8.00007C5.0799 8.00007 4.51984 8.00007 4.09202 8.21806C3.7157 8.40981 3.40973 8.71577 3.21799 9.09209C3 9.51991 3 10.08 3 11.2001ZM17 14.5001C17 14.7762 16.7761 15.0001 16.5 15.0001C16.2239 15.0001 16 14.7762 16 14.5001C16 14.2239 16.2239 14.0001 16.5 14.0001C16.7761 14.0001 17 14.2239 17 14.5001Z"
+                          stroke={
+                            urlParams === "billing" ? "#FFFFFF" : "#98A2B3"
+                          }
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Finances
+                    </Link>
+                    {/* <button className={urlParams === "billing" ? "btn btn-toggle align-items-center rounded collapsed" : "btn btn-toggle align-items-center rounded collapsed"} data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
                                         <img src={wallet02} alt="dashboard" />Finances
                                     </button>
                                     <div className={urlParams === "billing" ? "collapse show" : "collapse"} id="home-collapse">
@@ -199,13 +415,13 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
                                         <li><Link to="#"><img src={dashboard} alt="dashboard" /> Sub-menu</Link></li>
                                     </ul>
                                 </div> */}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </Sidebar>
+              </li>
+            </ul>
+          </div>
         </div>
-    )
-}
+      </Sidebar>
+    </div>
+  );
+};
 
-export default LeftSide
+export default LeftSide;
