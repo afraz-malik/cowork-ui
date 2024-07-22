@@ -120,7 +120,7 @@ const Header = ({ onValueChange }: any) => {
                         </Dropdown>
                     </div>
                     <button className='memberImg'>
-                        {userImage && userImage.length ? <img src={`${API}/${userImage}`} style={{ objectFit: "cover" }} alt="logo" />
+                        {userImage && userImage.length ? <img src={`${API}/${userImage}`} className={`${userRole === 'admin' && 'admin'}`} style={{ objectFit: "cover" }} alt="logo" />
                             : <img className='default' src={memberIcon} alt="bell" style={{ objectFit: "cover" }} />
                         }
                     </button>
