@@ -134,7 +134,7 @@ const EditResource = ({ editInfo, editShow, setEditShow, handleEditClose }: AddR
                                         <div className="profileTitle">
                                             <p>Resource Photo</p>
                                         </div>
-                                        <div className="profileImgView d-flex">
+                                        <div className="profileImgView d-flex justify-content-center">
                                             {/* {imageLogo && imageLogo.length > 0 ? <img src={changeLogo} className='changeLogo' alt="change-logo" />
                         : <>
                           {logoFile && logoFile.length > 0 ? <img src={logoFile} className='changeLogo' alt="change-logo" />
