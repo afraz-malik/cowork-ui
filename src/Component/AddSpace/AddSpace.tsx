@@ -137,7 +137,7 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
                                         <Col md={12}>
                                             <div className="memberInput">
                                                 <label>Notes</label>
-                                                <input type="text" {...register("notes", { required: false })} placeholder='Type notes' className='form-control' />
+                                                <input type="text" {...register("notes", { required: true })} placeholder='Type notes' className='form-control' required />
                                             </div>
                                         </Col>
                                     </Row>
