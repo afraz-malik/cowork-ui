@@ -162,8 +162,8 @@
 }
 
 .sidebarLogo img {
+    width: 173px;
     height: 33px;
-    object-fit: cover;
 }
 
 .sidebarLogo .arrow {

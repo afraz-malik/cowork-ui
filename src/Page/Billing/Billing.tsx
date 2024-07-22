@@ -143,7 +143,7 @@ const Billing = () => {
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
                                             <Dropdown.Item onClick={() => setInvoiceTag("all")}>All</Dropdown.Item>
-                                            <Dropdown.Item onClick={() => setInvoiceTag("unpaid")}>Unpaid</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => setInvoiceTag("unpaid")}>UnPaid</Dropdown.Item>
                                             <Dropdown.Item onClick={() => setInvoiceTag("paid")}>Paid</Dropdown.Item>
                                             <Dropdown.Item onClick={() => setInvoiceTag("void")}>Void</Dropdown.Item>
                                             <Dropdown.Item onClick={() => setInvoiceTag("pending")}>Pending</Dropdown.Item>

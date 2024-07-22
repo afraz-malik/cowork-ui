@@ -128,10 +128,7 @@ const Messenger = () => {
 
     // handle for clicking the "Enter"
     const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.key === "Enter") {
-            e.preventDefault()
-            messageStart()
-        }
+        if (e.key === "Enter") messageStart()
     }
 
 
