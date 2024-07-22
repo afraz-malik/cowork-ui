@@ -1,193 +1,193 @@
 .mainContent {
-    background: #F0F4F6;
-    /* min-height: 100vh; */
-    padding: 32px 32px 33px 32px;
-    width: 100%;
-    height: calc(100vh - 72px);
-    overflow-y: auto;
+  background: #f0f4f6;
+  /* min-height: 100vh; */
+  padding: 32px 32px 33px 32px;
+  width: 100%;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
 }
 
 .memberBox {
-    background-color: #fff;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  background-color: #fff;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 .topLine {
-    padding: 0px 24px;
-    height: 85px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #EAECF0;
-    flex-wrap: wrap;
-    width: 100%;
+  padding: 0px 24px;
+  height: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eaecf0;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .topLine h6 {
-    font-family: 'MyCustomFont';
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #101828;
-    margin-bottom: 2px;
+  font-family: "MyCustomFont";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #101828;
+  margin-bottom: 2px;
 }
 
 .topLine h6 svg {
-    color: rgba(102, 112, 133, 1);
-    margin-right: 12px;
+  color: rgba(102, 112, 133, 1);
+  margin-right: 12px;
 }
 
 .topLine button,
 .topLine a,
 .topLine a:hover {
-    background: #6366F1;
-    padding: 12px 16px;
-    border: none;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #fff;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    text-decoration: none;
-    margin-bottom: 0px;
-    display: flex;
-    align-items: center;
+  background: #6366f1;
+  padding: 12px 16px;
+  border: none;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #fff;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  text-decoration: none;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
 }
 
 .topLine button svg,
 .topLine a svg,
 .topLine a:hover svg {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .topLine .breadLink,
 .topLine .breadLink:hover {
-    font-family: 'MyCustomFont';
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #101828;
-    margin-bottom: 2px;
-    background-color: #fff;
-    padding: 0px;
+  font-family: "MyCustomFont";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #101828;
+  margin-bottom: 2px;
+  background-color: #fff;
+  padding: 0px;
 }
 
 .topLine .breadLink svg,
 .topLine .breadLink svg:hover {
-    color: rgba(102, 112, 133, 1) !important;
-    margin-right: 12px !important;
+  color: rgba(102, 112, 133, 1) !important;
+  margin-right: 12px !important;
 }
 
 .memberSearch {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .memberSearch input {
-    border: none;
-    box-shadow: 0px 1px 2px 0px #1018280D;
-    padding: 10px 30px 10px 12px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    font-family: 'MyCustomFont';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    position: relative;
-    background: #F4F7F8;
+  border: none;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  padding: 10px 30px 10px 12px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  font-family: "MyCustomFont";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  position: relative;
+  background: #f4f7f8;
 }
 
 .memberSearch .form-control:focus {
-    color: none !important;
-    background: #F4F7F8;
-    border-color: none !important;
-    outline: 0;
-    box-shadow: none !important;
+  color: none !important;
+  background: #f4f7f8;
+  border-color: none !important;
+  outline: 0;
+  box-shadow: none !important;
 }
 
 .searchInput {
-    position: relative;
-    margin-right: 12px;
+  position: relative;
+  margin-right: 12px;
 }
 
 .searchInput input {
-    min-width: 360px;
+  min-width: 360px;
 }
 
 .searchInput svg {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translate(0, -50%);
-    -webkit-transform: translate(0, -50%);
-    -moz-transform: translate(0, -50%);
-    -ms-transform: translate(0, -50%);
-    -o-transform: translate(0, -50%);
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
 }
 
 .memberList {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    height: calc(100vh - 224px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100vh - 224px);
 }
 
 .memberList .table-responsive {
-    width: 100%;
+  width: 100%;
 }
 
 .memberList table tbody tr td {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .memberList table tbody tr td:nth-child(3) {
-    color: #101828;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    white-space: nowrap;
+  color: #101828;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .memberList table tbody tr td:nth-child(4),
 .memberList table tbody tr td:nth-child(5) {
-    color: #475467;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    white-space: nowrap;
+  color: #475467;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .memberList table tbody tr td img {
-    width: 40px;
-    height: 40px;
-    margin-right: 6px;
+  width: 40px;
+  height: 40px;
+  margin-right: 6px;
 }
 
 /* .memberList table thead tr th .tableCheckBox,
@@ -196,742 +196,742 @@
 } */
 
 .tableAction .view {
-    border: 1px solid #6366F1;
-    color: #6366F1;
-    width: 40px;
-    height: 40px;
-    padding: 0px;
+  border: 1px solid #6366f1;
+  color: #6366f1;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
 }
 
 .tableAction .view:hover {
-    background-color: #6366F1;
-    color: #ffffff;
+  background-color: #6366f1;
+  color: #ffffff;
 }
 
 .tableAction .edit {
-    color: #667085;
-    width: 40px;
-    height: 40px;
-    padding: 0px;
-    text-align: center;
+  color: #667085;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+  text-align: center;
 }
 
 .tableAction .edit img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .tableAction .edit:hover {
-    color: #6366F1;
+  color: #6366f1;
 }
 
 .tableAction .assign {
-    width: 79px;
-    height: 40px;
-    border: 1px solid #6366F1;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #475467;
+  width: 79px;
+  height: 40px;
+  border: 1px solid #6366f1;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #475467;
 }
 
 .tableAction .assign:hover {
-    color: #ffffff;
-    background-color: #6366F1;
+  color: #ffffff;
+  background-color: #6366f1;
 }
 
 .memberList table thead tr,
 .memberList table thead tr th {
-    background-color: #F4F7F8;
+  background-color: #f4f7f8;
 }
 
 .memberList table thead tr th {
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #475467;
-    height: 56px;
-    vertical-align: middle;
-    white-space: nowrap;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #475467;
+  height: 56px;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .memberList table thead tr th:first-child,
 .memberList table tbody tr td:first-child {
-    width: 68px;
-    vertical-align: middle;
-    text-align: center;
+  width: 68px;
+  vertical-align: middle;
+  text-align: center;
 }
 .memberList table thead tr th:nth-child(2),
 .memberList table tbody tr td:nth-child(2) {
-    width: 94px;
-    text-align: center;
+  width: 94px;
+  text-align: center;
 }
 .memberList table thead tr th:nth-child(4) {
-    width: 284px;
-    text-align: left;
+  width: 284px;
+  text-align: left;
 }
 
 .memberList table thead tr th:nth-child(5) {
-    width: 206px;
-    text-align: left;
+  width: 206px;
+  text-align: left;
 }
 
 .memberList table thead tr th:nth-child(6) {
-    width: 206px;
-    text-align: left;
+  width: 206px;
+  text-align: left;
 }
 
 .memberList table thead tr th:nth-child(7) {
-    width: 116px;
-    text-align: center;
+  width: 116px;
+  text-align: center;
 }
 
 .memberList table tbody tr td:nth-child(7) {
-    width: 116px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
+  width: 116px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 /* pagination */
 .paginationBox {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-right: 24px;
-    padding-left: 24px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-right: 24px;
+  padding-left: 24px;
+  margin-bottom: 20px;
 }
 
 .tableNumber {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .tableNumber .paginationDropdown {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .paginationDropdown button {
-    width: 80px;
-    height: 40px;
-    text-align: left;
-    background-color: #fff;
-    color: #98A2B3;
-    font-weight: 500;
-    border: 1px solid #D0D5DD;
-    padding: 0px 12px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  width: 80px;
+  height: 40px;
+  text-align: left;
+  background-color: #fff;
+  color: #98a2b3;
+  font-weight: 500;
+  border: 1px solid #d0d5dd;
+  padding: 0px 12px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .paginationDropdown button:hover {
-    background-color: #fff;
-    color: #98A2B3;
-    border: 1px solid #D0D5DD;
+  background-color: #fff;
+  color: #98a2b3;
+  border: 1px solid #d0d5dd;
 }
 
 .paginationDropdown .dropdown-toggle:after {
-    display: inline-block;
-    margin-left: 0px;
-    vertical-align: none !important;
-    content: "";
-    border-top: none !important;
-    border-right: none !important;
-    border-bottom: none !important;
-    border-left: none !important;
+  display: inline-block;
+  margin-left: 0px;
+  vertical-align: none !important;
+  content: "";
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
 }
 
 .paginationDropdown .dropdown-toggle:before {
-    position: absolute;
-    right: 12px;
-    top: 16px;
-    display: inline-flex;
-    line-height: 0;
-    content: url("../../Assets/Images/icon/downIcon.png");
-    transform-origin: center;
-    transition: transform .35s ease;
-    -webkit-transition: transform .35s ease;
-    -moz-transition: transform .35s ease;
-    -ms-transition: transform .35s ease;
-    -o-transition: transform .35s ease;
+  position: absolute;
+  right: 12px;
+  top: 16px;
+  display: inline-flex;
+  line-height: 0;
+  content: url("../../Assets/Images/icon/downIcon.png");
+  transform-origin: center;
+  transition: transform 0.35s ease;
+  -webkit-transition: transform 0.35s ease;
+  -moz-transition: transform 0.35s ease;
+  -ms-transition: transform 0.35s ease;
+  -o-transition: transform 0.35s ease;
 }
 
 .paginationNumber button {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #D0D5DD;
-    color: #344054;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #fff;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d0d5dd;
+  color: #344054;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #fff;
 }
 
 .paginationNumber .disable {
-    pointer-events: none;
-    background-color: rgb(228, 228, 228);
+  pointer-events: none;
+  background-color: rgb(228, 228, 228);
 }
 
 .paginationNumber button:first-child,
 .paginationNumber button:last-child {
-    width: 120px;
+  width: 120px;
 }
 
 .paginationNumber button:first-child {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 .paginationNumber button:last-child {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .paginationNumber button:first-child svg {
-    font-size: 16px;
-    padding-right: 8px;
+  font-size: 16px;
+  padding-right: 8px;
 }
 
 .paginationNumber button:last-child svg {
-    font-size: 16px;
-    padding-left: 8px;
+  font-size: 16px;
+  padding-left: 8px;
 }
-
 
 .tableNumber p {
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #344054;
-    margin-bottom: 0px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #344054;
+  margin-bottom: 0px;
 }
 
-.memberPhone .react-tel-input .form-control,.memberPhone .react-tel-input .form-control:focus {
-    height: auto !important;
-    padding-left: 0px !important;
-    border: none !important;
-    background-color: transparent !important;
-    font-family: 'MyCustomFont' !important;
-    box-shadow: none  !important;
+.memberPhone .react-tel-input .form-control,
+.memberPhone .react-tel-input .form-control:focus {
+  height: auto !important;
+  padding-left: 0px !important;
+  border: none !important;
+  background-color: transparent !important;
+  font-family: "MyCustomFont" !important;
+  box-shadow: none !important;
 }
 
 .memberPhone .react-tel-input .selected-flag {
-    display: none !important;
+  display: none !important;
 }
 
 .memberPhone .react-tel-input .flag-dropdown {
-    border: none !important;
+  border: none !important;
 }
 
 .memberName {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .memberName img {
-    margin-right: 20px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  margin-right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .memberName h6 {
-    font-family: "MyCustomFont";
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 22px;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
-    margin-bottom: 0px;
+  font-family: "MyCustomFont";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  margin-bottom: 0px;
 }
 
 .memberName h5 svg {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .memberName p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 18px;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 0px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 0px;
 }
 
 .memberName .backDashboard,
 .memberName .backDashboard:hover,
 .tableHeading .backDashboard,
 .tableHeading .backDashboard:hover {
-    font-family: "MyCustomFont";
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 18px;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 0px;
-    background-color: #fff;
-    padding: 0px 8px;
-    display: flex;
+  font-family: "MyCustomFont";
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 0px;
+  background-color: #fff;
+  padding: 0px 8px;
+  display: flex;
 }
 
 .membersDetails {
-    background-color: #fff;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  background-color: #fff;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .membersDetails .topLine .editBtn {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .membersDetails .topLine .editBtn .edit {
-    border: 1px solid rgba(99, 102, 241, 1) !important;
-    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05) !important;
-    font-family: "MyCustomFont";
-    font-size: 12px !important;
-    font-weight: 600;
-    line-height: 16px !important;
-    text-align: left;
-    color: rgba(99, 102, 241, 1) !important;
-    background-color: #fff !important;
+  border: 1px solid rgba(99, 102, 241, 1) !important;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05) !important;
+  font-family: "MyCustomFont";
+  font-size: 12px !important;
+  font-weight: 600;
+  line-height: 16px !important;
+  text-align: left;
+  color: rgba(99, 102, 241, 1) !important;
+  background-color: #fff !important;
 }
 
 .membersDetails .topLine .editBtn .edit img {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .membersDetails .topLine .editBtn .invite {
-    margin-right: 10px;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    color: rgba(52, 64, 84, 1);
-    background: rgba(242, 244, 247, 1);
-    padding: 4px 14px;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  margin-right: 10px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  color: rgba(52, 64, 84, 1);
+  background: rgba(242, 244, 247, 1);
+  padding: 4px 14px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
-
+.membersDetails .topLine .editBtn .disableBtn {
+  margin-right: 10px;
+}
 .memberInfo {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .memberInfo .memberInfoBox {
-    width: 33.3%;
-    padding: 24px;
-    border-bottom: 1px solid rgba(234, 236, 240, 1);
+  width: 33.3%;
+  padding: 24px;
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
 }
 
 .memberInfo .memberInfoBox h6 {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
 }
 
 .memberInfo .memberInfoBox p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
-    margin-bottom: 0px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
+  margin-bottom: 0px;
 }
 
 .invoiceHistory {
-    margin-top: 20px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    padding: 20px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 20px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  padding: 20px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .invoiceMemberList {
-    max-height: 650px;
-    background-color: white;
-    overflow-y: auto;
+  max-height: 650px;
+  background-color: white;
+  overflow-y: auto;
 }
 
 .invoiceHistory h6,
 .memberAssign h6,
 .memberBooking h6,
 .memberNotes h6 {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 26px;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
+  font-family: "MyCustomFont";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
 }
 
 .invoiceHistory .invoiceBox {
-    margin-bottom: 15px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .invoiceHistory .invoiceHeading {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(234, 236, 240, 1);
-    padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
+  padding-bottom: 20px;
 }
 
 .invoiceHistory .invoiceBox .invoiceName {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .invoiceHistory .invoiceBox .invoiceName h6 {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(16, 24, 40, 1);
-    margin-right: 15px;
-    margin-bottom: 0px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(16, 24, 40, 1);
+  margin-right: 15px;
+  margin-bottom: 0px;
 }
 
 .invoiceHistory .invoiceBox .invoiceName p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(16, 24, 40, 1);
-    margin-bottom: 0px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(16, 24, 40, 1);
+  margin-bottom: 0px;
 }
 
 .invoiceHistory .invoiceBox .invoiceName p img {
-    margin-right: 15px;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  margin-right: 15px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .invoiceHistory .invoiceBox .invoiceName p span {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
-
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
 }
 
 .invoiceHistory .invoiceHeading .invoicePrice {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .invoiceHistory .invoiceHeading .invoicePrice p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
-    margin-bottom: 0px;
-    margin-right: 20px;
-    padding-right: 18px;
-    border-right: 1px solid rgba(234, 236, 240, 1);
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
+  margin-bottom: 0px;
+  margin-right: 20px;
+  padding-right: 18px;
+  border-right: 1px solid rgba(234, 236, 240, 1);
 }
 
 .invoiceHistory .invoiceHeading .invoicePrice p span {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 38px;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 38px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
 }
 
 .invoiceBox .invoiceDetails {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .invoiceBox .invoiceDetails .assign img {
-    margin-right: 15px;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  margin-right: 15px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .invoiceBox .invoiceDetails .assign h6 {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
-    margin-bottom: 15px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
+  margin-bottom: 15px;
 }
 
 .invoiceBox .invoiceDetails .assign p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
 }
 
 .invoiceBox .invoiceDetails .assign .status span {
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: center;
-    width: auto;
-    padding: 5px 10px;
-    margin-bottom: 0px;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  width: auto;
+  padding: 5px 10px;
+  margin-bottom: 0px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 .invoiceBox .invoiceDetails .assign .status .paid {
-    color: rgba(2, 122, 72, 1);
-    background: rgba(236, 253, 243, 1);
+  color: rgba(2, 122, 72, 1);
+  background: rgba(236, 253, 243, 1);
 }
 
 .invoiceBox .invoiceDetails .assign .status .unpaid {
-    color: #C01048;
-    background: #FFF1F3;
+  color: #c01048;
+  background: #fff1f3;
 }
 
 .invoiceBox .invoiceDetails .assign .status .draft {
-    color: rgba(52, 64, 84, 1);
-    background: rgba(242, 244, 247, 1);
+  color: rgba(52, 64, 84, 1);
+  background: rgba(242, 244, 247, 1);
 }
 
 .memberInvoice {
-    display: flex;
-    padding: 24px;
+  display: flex;
+  padding: 24px;
 }
 
 .memberInvoice .invoiceLeft {
-    width: 60%;
+  width: 60%;
 }
 
 .memberInvoice .invoiceRight {
-    width: 40%;
-    padding: 0px 20px 20px 20px;
+  width: 40%;
+  padding: 0px 20px 20px 20px;
 }
 
 .memberAssign {
-    border: 1px solid rgba(234, 236, 240, 1);
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .memberAssign .invoiceHeading {
-    margin-top: 15px;
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid rgba(234, 236, 240, 1);
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(234, 236, 240, 1);
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .memberAssign .invoiceHeading .invoiceName {
-    display: flex;
+  display: flex;
 }
 
 .memberAssign .invoiceHeading .invoiceName img {
-    margin-right: 15px;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  margin-right: 15px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .memberAssign .invoiceHeading .invoiceName p {
-    margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .memberAssign .invoiceHeading .invoiceName p span {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(16, 24, 40, 1);
-    margin-right: 15px;
-    margin-bottom: 0px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(16, 24, 40, 1);
+  margin-right: 15px;
+  margin-bottom: 0px;
 }
 
 .memberAssign .invoiceHeading .invoicePrice {
-    display: flex;
+  display: flex;
 }
 
 .memberAssign .invoiceHeading .invoicePrice p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
-    margin-bottom: 0px;
-    margin-right: 20px;
-    padding-right: 18px;
-    border-right: 1px solid rgba(234, 236, 240, 1);
-    display: flex;
-    align-items: center;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
+  margin-bottom: 0px;
+  margin-right: 20px;
+  padding-right: 18px;
+  border-right: 1px solid rgba(234, 236, 240, 1);
+  display: flex;
+  align-items: center;
 }
 
 .memberBooking .bookingList {
-    margin-top: 15px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
+  margin-top: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .memberBooking .bookingList img {
-    margin-right: 12px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  margin-right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .memberBooking .bookingList .spacesInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    text-align: left;
-    padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+  padding: 0px;
 }
 
 .memberBooking .bookingList .spacesInfo h6 {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
-    margin-bottom: 0px;
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  margin-bottom: 0px;
 }
 
 .memberBooking .bookingList .spacesInfo p {
-    font-family: "MyCustomFont";
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 22px;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 0px;
+  font-family: "MyCustomFont";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 0px;
 }
 
 .invoiceRight .memberBooking {
-    padding: 20px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .invoiceRight .memberNotes {
-    border: 1px solid rgba(234, 236, 240, 1);
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .memberNotes p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(152, 162, 179, 1);
-
+  font-family: "MyCustomFont";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(152, 162, 179, 1);
 }
 
 @media (max-width: 778px) {
-    .searchInput input {
-        min-width: 100%;
-    }
+  .searchInput input {
+    min-width: 100%;
+  }
 
-    .mainContent {
-        height: auto !important;
-        padding: 32px 10px 57px 10px;
-    }
+  .mainContent {
+    height: auto !important;
+    padding: 32px 10px 57px 10px;
+  }
 }

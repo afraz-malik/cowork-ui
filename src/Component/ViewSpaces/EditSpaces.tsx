@@ -158,7 +158,7 @@ const EditSpaces = ({ spacesId, updateShow, setUpdateShow, handleUpdateClose }: 
                                     <Col md={12}>
                                         <div className="memberInput">
                                             <label>Notes</label>
-                                            <input type="text" value={notes} onChange={(e)=>setNotes(e.target.value)} placeholder='Notes' className='form-control' />
+                                            <input type="text" required value={notes} onChange={(e)=>setNotes(e.target.value)} placeholder='Notes' className='form-control' />
                                         </div>
                                     </Col>
                                 </Row>

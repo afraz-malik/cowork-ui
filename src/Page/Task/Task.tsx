@@ -325,7 +325,7 @@ const Task = () => {
                                                                                 </Dropdown.Menu>
                                                                             </Dropdown>
                                                                         </div>
-                                                                        {task.task_image ? <div className="taskImg">
+                                                                        {task.task_image ? <div className="taskImg"> 
                                                                             <img src={`${API}/${task.task_image}`} alt='task' />
                                                                         </div> : ""}
 
