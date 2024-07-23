@@ -15,6 +15,7 @@ import { getMemberList } from "../../api/member";
 import { adminList } from "../../api/admin";
 import QRCode from "react-qr-code";
 
+
 const Visitor = () => {
   const [profile, setProfile] = useState<any>();
   const [name, setName] = useState("");
@@ -118,6 +119,7 @@ const Visitor = () => {
               viewBox={`0 0 256 256`}
             />
           </div>
+
           <div className="orLine">
             <h2>
               <span>or</span>

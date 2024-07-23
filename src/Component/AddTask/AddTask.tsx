@@ -39,21 +39,22 @@ interface AddTaskProps {
 }
 
 const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
-  const [content, setContent] = useState("");
-  const [dueDate, setDueDate] = useState<any>(new Date());
-  const [file, setFile] = useState("");
-  const [title, setTitle] = useState("");
-  const [members, setMembers] = useState([]);
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [shares, setShares] = useState<any>([]);
-  const [shareMember, setShareMember] = useState<any>([]);
-  const [uploadShow, setUploadShow] = useState(false);
-  const handleUploadClose = () => setUploadShow(false);
-  const [isActive, setIsActive] = useState(false);
-  const [searchMembers, setSearchMembers] = useState("");
-  const [memberImage, setMemberImage] = useState("");
-  const company = localStorage.getItem("company");
-  const userInfo = company ? JSON.parse(company) : null;
+
+    const [content, setContent] = useState("");
+    const [dueDate, setDueDate] = useState<any>(new Date().setDate(new Date().getDate() + 1));
+    const [file, setFile] = useState("");
+    const [title, setTitle] = useState("");
+    const [members, setMembers] = useState([]);
+    const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+    const [shares, setShares] = useState<any>([]);
+    const [shareMember, setShareMember] = useState<any>([]);
+    const [uploadShow, setUploadShow] = useState(false);
+    const handleUploadClose = () => setUploadShow(false);
+    const [isActive, setIsActive] = useState(false);
+    const [searchMembers, setSearchMembers] = useState('');
+    const [memberImage, setMemberImage] = useState("");
+    const company = localStorage.getItem("company");
+    const userInfo = company ? JSON.parse(company) : null;
 
   useEffect(() => {
     getMemberList(20, 1).then((data) => {
