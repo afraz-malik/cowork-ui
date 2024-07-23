@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import checkIcon from "../../Assets/Images/icon/check-circle1.svg";
 import { getMemberList } from "../../api/member";
 import { adminList } from "../../api/admin";
+import QRCode from "react-qr-code";
 
 const Visitor = () => {
   const [profile, setProfile] = useState<any>();
@@ -101,7 +102,22 @@ const Visitor = () => {
       {visitorOption ? (
         <div className="visitorRight">
           <h5 className="mb-4">Scan QR code to check-in as a guest</h5>
-          <img src={qrImage} alt="qrImage" />
+          {/* <img src={qrImage} alt="qrImage" /> */}
+          <div
+            style={{
+              height: "auto",
+              margin: "0 auto",
+              maxWidth: 190,
+              width: "100%",
+            }}
+          >
+            <QRCode
+              size={256}
+              style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+              value={`${API}/visitor`}
+              viewBox={`0 0 256 256`}
+            />
+          </div>
           <div className="orLine">
             <h2>
               <span>or</span>
