@@ -120,7 +120,7 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
                     <div className="profileTitle">
                       <p>Resource Photo</p>
                     </div>
-                    <div className="profileImgView">
+                    <div className="profileImgView d-flex justify-content-center">
                       {imageLogo && imageLogo.length > 0 ? <img src={changeLogo} className='changeLogo' alt="change-logo" />
                         : <>
                           {logoFile && logoFile.length > 0 ? <img src={logoFile} className='changeLogo' alt="change-logo" />

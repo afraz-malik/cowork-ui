@@ -423,13 +423,13 @@ const Task = () => {
                                         <p
                                           className={
                                             getDueDateStatus(task.dueDate) ===
-                                            "Due Yesterday"
+                                              "Due Yesterday"
                                               ? "pastDate"
                                               : getDueDateStatus(
-                                                  task.dueDate
-                                                ) === "Due Today"
-                                              ? "dueDate"
-                                              : "futureDate"
+                                                task.dueDate
+                                              ) === "Due Today"
+                                                ? "dueDate"
+                                                : "futureDate"
                                           }
                                         >
                                           <FontAwesomeIcon icon={faClock} />
@@ -446,22 +446,20 @@ const Task = () => {
                                                 <div key={`taskAssign${index}`}>
                                                   {data.image ? (
                                                     <img
-                                                      className={`${
-                                                        data?.role === "admin"
+                                                      className={`${data?.role === "admin"
                                                           ? "adminBorder"
                                                           : ""
-                                                      }`}
+                                                        }`}
                                                       key={index}
                                                       src={`${API}/${data.image}`}
                                                       alt=""
                                                     />
                                                   ) : (
                                                     <img
-                                                      className={`${
-                                                        data?.role === "admin"
+                                                      className={`${data?.role === "admin"
                                                           ? "adminBorder"
                                                           : ""
-                                                      } default`}
+                                                        } default`}
                                                       src={memberIcon}
                                                       alt="task"
                                                     />
