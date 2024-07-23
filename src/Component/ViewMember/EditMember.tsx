@@ -10,6 +10,7 @@ import imageInput from "../../Assets/Images/icon/imgButton.svg";
 import PhoneInput from 'react-phone-input-2';
 import memberBlank from "../../Assets/Images/icon/memberLargeIcon.png";
 import DeleteModal from '../DeleteModal/DeleteModal';
+import { showNotifications } from '../../CommonFunction/toaster';
 
 
 interface EditMemberProps {
@@ -85,6 +86,7 @@ const EditMember = ({ memberId, updateShow, setUpdateShow, handleUpdateClose }: 
         updateMember(memberId, member).then((data) => {
             setUpdateShow(false);
             setDeleteShow(false);
+            showNotifications("success", "Member Deleted", ' deleted successfully')
         })
     }
 

@@ -77,7 +77,7 @@ const EditSpaces = ({ spacesId, updateShow, setUpdateShow, handleUpdateClose }: 
         }
         updateSpaces(spacesId, spaces).then((data) => {
             setUpdateShow(false);
-            showNotifications("success","Spaces delete successfully!!");
+            showNotifications("success","Asset Deleted", ' deleted successfully');
         })
     }
 

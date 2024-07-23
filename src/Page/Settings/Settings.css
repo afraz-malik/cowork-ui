@@ -172,7 +172,7 @@
     padding-top: 12px;
     padding-bottom: 12px;
     padding-right: 12px;
-    padding-left: 26% !important;
+    padding-left: 250px !important;
     border-radius: 12px;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
@@ -220,12 +220,12 @@
 }
 
 .companyInput.address textarea {
-    padding-left: 26%;
+    padding-left: 250px;
     border-radius: 12px;
 }
 
 .companyInput span {
-    width: 24%;
+    width: 240px;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -365,7 +365,7 @@
 }
 
 #settings .phoneInput label {
-    width: 24%;
+    width: 240px;
     color: #475467;
 }
 
@@ -447,5 +447,5 @@
 }
 
 #settings .contactDetails .rightSideSetting .phoneInput .react-tel-input {
-    width: 76%;
+    width: calc(100% - 240px);
 }

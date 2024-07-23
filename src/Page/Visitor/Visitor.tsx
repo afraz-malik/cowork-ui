@@ -229,6 +229,9 @@ const Visitor = () => {
             <img className="mb-4" src={checkIcon} alt="check" />
             <h5>Welcome, {name}!</h5>
             <h4>{roleItem} has been notified that you’re here.</h4>
+            <button className="tapNext mt-4" onClick={saveVisitor}>
+              Finish
+            </button>
           </div>
         </div>
       ) : (

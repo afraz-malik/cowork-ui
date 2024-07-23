@@ -13,6 +13,7 @@ import deleteIcon from "../../Assets/Images/icon/upload_svg.svg";
 import "./AddResources.css";
 import { v4 as uuidv4 } from 'uuid';
 import { resourceAdd } from '../../api/resource';
+import { showNotifications } from '../../CommonFunction/toaster';
 
 interface AddResourcesProps {
   handleClose: () => void;
@@ -92,6 +93,7 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
     }
     resourceAdd(resourceInfo).then((data) => {
       setShow(false)
+      showNotifications('success', 'Resource Added', name + ' added successfully');
     })
   }
 

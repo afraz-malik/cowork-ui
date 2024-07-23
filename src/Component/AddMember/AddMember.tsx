@@ -71,7 +71,8 @@ const AddMember = ({ show, setShow, handleClose }: AddMemberProps) => {
                     showNotifications('error', data.message);
                 }
                 else {
-                    showNotifications('success', 'Member add and email send successfully');
+                    showNotifications('success', 'Member Added', companyName + ' added successfully');
+                    // showNotifications('success', 'Member add and email send successfully');
                     setValue('firstName', "")
                     setValue('firstName', "")
                     setValue('lastName', "")
