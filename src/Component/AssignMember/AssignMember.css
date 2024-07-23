@@ -264,6 +264,10 @@
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+    
+}
+
+.adminBorder {
     border: 2px solid rgba(255, 171, 0, 1);
 }
 

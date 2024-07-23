@@ -12,8 +12,8 @@ export const spacesAdd = async (body = {}) => {
     }
 };
 // spaces list
-export const getSpacesList = async (limit: number, page: number) => {
-    return get(`/spacesList?limit=${limit}&&page=${page}`);
+export const getSpacesList = async (limit: number, page: number, keywords? : string) => {
+    return get(`/spacesList?limit=${limit}&&page=${page}&&keyword=${keywords}`);
 };
 // single spaces
 export const singleSpaces = async (id:string) => {
