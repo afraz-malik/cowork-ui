@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export const showNotifications = (toastifyType: string, message: string) => {
+export const showNotifications = (toastifyType: string, message: string, subMessage?: string) => {
 
     const messageType = Array.isArray(message);
     let showMessage = message;
@@ -16,12 +16,27 @@ export const showNotifications = (toastifyType: string, message: string) => {
 
     switch (toastifyType) {
         case 'success':
-            toast.success(showMessage);
+            toast.success(
+                <div className='d-flex flex-column'>
+                    <div>{showMessage}</div>
+                    <div>{subMessage}</div>
+                </div>
+            );
             break;
         case 'error':
-            toast.error(showMessage);
+            toast.error(
+                <div className='d-flex flex-column'>
+                    <div>{showMessage}</div>
+                    <div>{subMessage}</div>
+                </div>
+            );
             break;
         default:
-            toast.info(showMessage);
+            toast.info(
+                <div className='d-flex flex-column'>
+                    <div>{showMessage}</div>
+                    <div>{subMessage}</div>
+                </div>
+            );
     }
 }   

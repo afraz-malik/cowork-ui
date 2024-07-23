@@ -47,7 +47,7 @@ const Login = () => {
                     setUserEmail(email);
                 }
                 else {
-                    showNotifications('success', 'Login Successfully');
+                    showNotifications('success', 'Login Successful', 'Welcome back');
                     authenticate(data, () => {
                         setTimeout(() => {
                             setValue("email", "", { shouldValidate: false });

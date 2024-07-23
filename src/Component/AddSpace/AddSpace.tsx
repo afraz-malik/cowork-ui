@@ -51,7 +51,8 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
                     showNotifications('error', 'Wrong information');
                 }
                 else {
-                    showNotifications('success', 'Assets add successfully!!');
+                    showNotifications('success', 'Asset Added', spaces.name + ' added successfully');
+                    // showNotifications('success', 'Assets add successfully!!');
                     setValue('name', "")
                     setValue('rate', "")
                     setValue('size', "")
