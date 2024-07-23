@@ -92,11 +92,11 @@ const ViewResource = () => {
                                 <div className="resourceMiniBox">
                                     <div className="resourceRate">
                                         <h6>Rate <span style={{fontWeight: '400'}}>(Members)</span></h6>
-                                        <p className='mb-0'>${resourceDetails.member_rate} / hour</p>
+                                        <p className='mb-0'>{resourceDetails?.member_rate ? "$" + resourceDetails.member_rate + "/ hour" : "N/A"}</p>
                                     </div>
                                     <div className="resourceRate">
                                         <h6>Rate <span style={{fontWeight: '400'}}>(Guests)</span></h6>
-                                        <p className='mb-0'>${resourceDetails.public_rate} / hour</p>
+                                        <p className='mb-0'>{resourceDetails?.public_rate ? "$" + resourceDetails.public_rate + "/ hour" : "N/A"}</p>
                                     </div>
                                 </div>
                             </div>

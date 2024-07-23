@@ -221,7 +221,7 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
                                     {userImage && userImage ? <img src={`${API}/${userImage}`} className={userRole === "admin" ? "adminBorder" : "adminBorderless"} alt="admin" /> : <img src={memberIcon} alt="" className={userRole === "admin" ? "adminBorder" : "adminBorderless"} />}
                                     <div className='adminName'>
                                         <p>{firstName} {lastName} (you)</p>
-                                        <span>{userRole === "admin" ? "ADMIN sd" : "MEMBER"}</span>
+                                        <span>{userRole === "admin" ? "ADMIN" : "MEMBER"}</span>
                                     </div>
                                 </div>
                                 <div className="shareMember">
