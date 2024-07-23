@@ -99,12 +99,21 @@ const ViewMember = () => {
                 ) : (
                   <span className="invite">Invitation Pending</span>
                 )}
+                
+                <button
+                  className="edit py-2"
+                  onClick={() => memberUpdate(memberDetails.id)}
+                >
+                  <img src={penIcon} alt="edit" /> Edit Member
+                </button>
+
                 <button
                   className="edit disableBtn"
                   //   onClick={() => memberUpdate(memberDetails.id)}
                 >
                   Disable Member
                 </button>
+
                 <button
                   className="edit py-2"
                   onClick={() => memberUpdate(memberDetails.id)}

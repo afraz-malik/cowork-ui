@@ -552,9 +552,11 @@
   text-align: left;
   color: rgba(99, 102, 241, 1) !important;
   background-color: #fff !important;
+  margin-right: 10px;
 }
 .membersDetails .topLine .editBtn .disableBtn {
-  margin-right: 10px;
+  color: #f04438 !important;
+  border: 1px solid #f04438 !important;
 }
 .membersDetails .topLine .editBtn .edit img {
   margin-right: 8px;

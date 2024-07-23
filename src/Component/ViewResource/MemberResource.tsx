@@ -64,7 +64,7 @@ const MemberResource = () => {
                                     </div>
                                     <div className="resourceName">
                                         <h6>Rate</h6>
-                                        <p className="mb-0 mt-3">{resourceDetails.member_rate}</p>
+                                        <p className="mb-0 mt-3">${resourceDetails.member_rate}</p>
                                     </div>
                                 </div>
                             </div>

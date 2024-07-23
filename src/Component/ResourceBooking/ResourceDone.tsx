@@ -72,7 +72,7 @@ const ResourceDone = ({selectedDate, startTime,endTime, resourceDetail, tabChoos
           </div>
           <div>
             <h6>Rate</h6>
-            <p className='mb-0 mt-3'>{resourceDetail.member_rate}</p>
+            <p className='mb-0 mt-3'>${resourceDetail.member_rate}</p>
           </div>
         </div>
       </div>
