@@ -32,7 +32,7 @@ interface AddTaskProps {
 
 const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
     const [content, setContent] = useState("");
-    const [dueDate, setDueDate] = useState<any>(new Date());
+    const [dueDate, setDueDate] = useState<any>(new Date().setDate(new Date().getDate() + 1));
     const [file, setFile] = useState("");
     const [title, setTitle] = useState("");
     const [members, setMembers] = useState([]);

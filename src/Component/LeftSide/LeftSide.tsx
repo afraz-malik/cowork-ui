@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Sidebar } from 'react-pro-sidebar';
 import "./LeftSide.css";
 import { Link, useLocation } from 'react-router-dom';
+import adminIcon from "../../Assets/Images/icon/adminIcon.png";
 import { DESKIE_API as API } from '../../config';
 // sidebar image
 import help from "../../Assets/Images/icon/lightbulb.svg";
