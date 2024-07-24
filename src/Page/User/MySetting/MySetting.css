@@ -1,61 +1,61 @@
 .profileImageUpload {
-    border: 1px solid rgba(208, 213, 221, 1);
-    margin-right: 32px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  border: 1px solid rgba(208, 213, 221, 1);
+  margin-right: 32px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .profileImageUpload .profileTitle {
-    border-bottom: 1px solid rgba(208, 213, 221, 1);
-    padding: 12px 24px;
+  border-bottom: 1px solid rgba(208, 213, 221, 1);
+  padding: 12px 24px;
 }
 
 .profileImageUpload .profileTitle p {
-    margin-bottom: 0px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: center;
-    color: rgba(71, 84, 103, 1);
-    text-wrap: nowrap;
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: rgba(71, 84, 103, 1);
+  text-wrap: nowrap;
 }
 
 .profileImageUpload .profileImgView {
-    padding: 24px;
-    text-align: center;
-    border-bottom: 1px solid rgba(208, 213, 221, 1);
+  padding: 24px;
+  text-align: center;
+  border-bottom: 1px solid rgba(208, 213, 221, 1);
 }
-.profileImageUpload .profileImgView img{
-    max-width: 120px;
-    max-height: 120px;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
+.profileImageUpload .profileImgView img {
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
 .profileImageUpload .profileFooter {
-    padding: 12px 24px;
-    display: flex;
-    justify-content: center;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
 }
 
 .profileImageUpload .profileFooter img {
-    margin: 0px 8px;
-    cursor: pointer;
+  margin: 0px 8px;
+  cursor: pointer;
 }
 
 .profileFooter .drop-file-input {
-    padding: 0px;
-    position: relative;
-    height: auto;
-    width: auto;
-    border: none;
+  padding: 0px;
+  position: relative;
+  height: auto;
+  width: auto;
+  border: none;
 }
 
 .profileFooter .drop-file-input .drop-file-input__label {
-    padding: 0px;
+  padding: 0px;
 }

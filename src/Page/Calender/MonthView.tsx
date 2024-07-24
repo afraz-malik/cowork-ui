@@ -1,18 +1,18 @@
-import React from 'react';
-import FullCalendar from '@fullcalendar/react';
-import monthGridPlugin from '@fullcalendar/daygrid';
+import React from 'react'
+import FullCalendar from '@fullcalendar/react'
+import monthGridPlugin from '@fullcalendar/daygrid'
 const MonthView = () => {
   return (
     <>
       <FullCalendar
         plugins={[monthGridPlugin]}
-        initialView="dayGridMonth"
+        initialView='dayGridMonth'
         weekends={true}
-        events=""
+        events=''
         headerToolbar={{
           left: '',
           center: 'prev,title,next',
-          right: ""
+          right: '',
         }}
       />
     </>

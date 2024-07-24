@@ -1,63 +1,63 @@
-import React, { useState, useEffect } from "react";
-import { Dropdown, Table } from "react-bootstrap";
-import "./Spaces.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useEffect } from 'react'
+import { Dropdown, Table } from 'react-bootstrap'
+import './Spaces.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowLeft,
   faArrowRight,
   faPlus,
   faSearch,
-} from "@fortawesome/free-solid-svg-icons";
-import Layout from "../../Component/Layout/Layout";
-import { DESKIE_API as API } from "../../config";
-import { faEye } from "@fortawesome/free-regular-svg-icons";
-import AddSpace from "../../Component/AddSpace/AddSpace";
-import filter from "../../Assets/Images/icon/filter-lines.svg";
-import { getSpacesList } from "../../api/spaces";
-import editPen from "../../Assets/Images/icon/edit-01.svg";
-import EditSpaces from "../../Component/ViewSpaces/EditSpaces";
-import AssignMember from "../../Component/AssignMember/AssignMember";
-import { separateComma } from "../../CommonFunction/Function";
-import blankUser from "../../Assets/Images/icon/blank-profile.jpg";
-import memberAvatar from "../../Assets/Images/icon/memberAvatar.svg";
-import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
-import Pagination from "../../Component/Pagination/Pagination";
-import { Link, useNavigate } from "react-router-dom";
+} from '@fortawesome/free-solid-svg-icons'
+import Layout from '../../Component/Layout/Layout'
+import { DESKIE_API as API } from '../../config'
+import { faEye } from '@fortawesome/free-regular-svg-icons'
+import AddSpace from '../../Component/AddSpace/AddSpace'
+import filter from '../../Assets/Images/icon/filter-lines.svg'
+import { getSpacesList } from '../../api/spaces'
+import editPen from '../../Assets/Images/icon/edit-01.svg'
+import EditSpaces from '../../Component/ViewSpaces/EditSpaces'
+import AssignMember from '../../Component/AssignMember/AssignMember'
+import { separateComma } from '../../CommonFunction/Function'
+import blankUser from '../../Assets/Images/icon/blank-profile.jpg'
+import memberAvatar from '../../Assets/Images/icon/memberAvatar.svg'
+import spaceAvatar from '../../Assets/Images/icon/spaceAvatar.png'
+import Pagination from '../../Component/Pagination/Pagination'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Spaces = () => {
-  const navigate = useNavigate();
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [assignShow, setAssignShow] = useState(false);
-  const handleAssignClose = () => setAssignShow(false);
-  const [spaces, setSpaces] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [spacesId, setSpacesId] = useState("");
-  const [spaceId, setSpaceId] = useState("");
-  const [updateShow, setUpdateShow] = useState(false);
-  const handleUpdateClose = () => setUpdateShow(false);
+  const navigate = useNavigate()
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  const [assignShow, setAssignShow] = useState(false)
+  const handleAssignClose = () => setAssignShow(false)
+  const [spaces, setSpaces] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [spacesId, setSpacesId] = useState('')
+  const [spaceId, setSpaceId] = useState('')
+  const [updateShow, setUpdateShow] = useState(false)
+  const handleUpdateClose = () => setUpdateShow(false)
 
-  const [totalValue, setTotalValue] = useState<any>();
-  const [limitValue, setLimitValue] = useState<any>();
-  const [page, setPage] = useState(1);
-  const [keywords, setKeywords] = useState("");
-  const [limit, setLimit] = useState<number>(10);
-  const pageCount = Math.ceil(totalValue / limitValue);
-  const [prevButton, setPrevButton] = useState<boolean>(false);
-  const [nextButton, setNextButton] = useState<boolean>(false);
-  const [pageValue, setPageValue] = useState<number>();
+  const [totalValue, setTotalValue] = useState<any>()
+  const [limitValue, setLimitValue] = useState<any>()
+  const [page, setPage] = useState(1)
+  const [keywords, setKeywords] = useState('')
+  const [limit, setLimit] = useState<number>(10)
+  const pageCount = Math.ceil(totalValue / limitValue)
+  const [prevButton, setPrevButton] = useState<boolean>(false)
+  const [nextButton, setNextButton] = useState<boolean>(false)
+  const [pageValue, setPageValue] = useState<number>()
 
   useEffect(() => {
     getSpacesList(limit, page, keywords).then((data) => {
       if (data.statusCode !== 200) {
       } else {
-        setSpaces(data && data.spaces);
-        setTotalValue(data && data.total);
-        setLimitValue(data && data.limit);
-        setPageValue(data && data.page);
+        setSpaces(data && data.spaces)
+        setTotalValue(data && data.total)
+        setLimitValue(data && data.limit)
+        setPageValue(data && data.page)
       }
-    });
+    })
   }, [
     show,
     page,
@@ -67,86 +67,86 @@ const Spaces = () => {
     updateShow,
     assignShow,
     keywords,
-  ]);
+  ])
 
   useEffect(() => {
     if (pageCount > 1) {
-      setPrevButton(true);
+      setPrevButton(true)
     }
     if (page === 1) {
-      setPrevButton(false);
+      setPrevButton(false)
     }
     // next button
     if (pageCount > 1) {
-      setNextButton(true);
+      setNextButton(true)
     }
     if (pageCount === page) {
-      setNextButton(false);
+      setNextButton(false)
     }
-  }, [pageCount, page]);
+  }, [pageCount, page])
 
   const showResult = (value: number) => {
-    setPage(1);
-    setLimit(value);
-  };
+    setPage(1)
+    setLimit(value)
+  }
 
   // view
   const spacesView = (spacesId: string) => {
-    setSpacesId(spacesId);
-    return navigate(`${spacesId}`);
-  };
+    setSpacesId(spacesId)
+    return navigate(`${spacesId}`)
+  }
 
   // update spaces
   const spacesUpdate = (spacesId: string) => {
-    setSpacesId(spacesId);
-    setUpdateShow(true);
-  };
+    setSpacesId(spacesId)
+    setUpdateShow(true)
+  }
 
   // search
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeywords(e.target.value);
-  };
+    setKeywords(e.target.value)
+  }
 
   const filteredSpaces = spaces?.filter((member: any) =>
     member.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  )
 
   const assignMembers = (spacesId: string) => {
-    setAssignShow(true);
-    setSpaceId(spacesId);
-  };
+    setAssignShow(true)
+    setSpaceId(spacesId)
+  }
 
   const nextPage = () => {
-    setPage(page + 1);
-    setNextButton(true);
-  };
+    setPage(page + 1)
+    setNextButton(true)
+  }
 
   const prevPage = () => {
-    setPage(page - 1);
-  };
+    setPage(page - 1)
+  }
 
   return (
     <>
       <Layout>
-        <div className="mainContent">
-          <div className="memberBox">
-            <div className="topLine">
-              <div className="tableHeading">
+        <div className='mainContent'>
+          <div className='memberBox'>
+            <div className='topLine'>
+              <div className='tableHeading'>
                 <h6>All Assets</h6>
               </div>
-              <div className="memberSearch">
-                <div className="searchInput">
+              <div className='memberSearch'>
+                <div className='searchInput'>
                   <input
-                    type="text"
-                    placeholder="Search assets"
+                    type='text'
+                    placeholder='Search assets'
                     value={keywords}
                     onChange={handleInputChange}
-                    className="form-control"
+                    className='form-control'
                   />
                   <FontAwesomeIcon icon={faSearch} />
                 </div>
-                <button className="filterBtn">
-                  <img className="mr-2" src={filter} alt="filter" /> Filter
+                <button className='filterBtn'>
+                  <img className='mr-2' src={filter} alt='filter' /> Filter
                 </button>
                 <button onClick={handleShow}>
                   <FontAwesomeIcon icon={faPlus} /> Add Asset
@@ -154,15 +154,15 @@ const Spaces = () => {
               </div>
             </div>
 
-            <div className="spaceList">
+            <div className='spaceList'>
               <Table responsive hover>
                 <thead>
                   <tr>
                     <th>
-                      <label className="tableCheckBox">
-                        <div className="contactCheck">
-                          <input type="checkbox" name="agreement" />
-                          <span className="checkmark"></span>
+                      <label className='tableCheckBox'>
+                        <div className='contactCheck'>
+                          <input type='checkbox' name='agreement' />
+                          <span className='checkmark'></span>
                         </div>
                       </label>
                     </th>
@@ -180,85 +180,85 @@ const Spaces = () => {
                     filteredSpaces.map((data: any, index) => (
                       <tr key={`refer` + index}>
                         <td>
-                          <label className="tableCheckBox">
-                            <div className="contactCheck">
-                              <input type="checkbox" name="agreement" />
-                              <span className="checkmark"></span>
+                          <label className='tableCheckBox'>
+                            <div className='contactCheck'>
+                              <input type='checkbox' name='agreement' />
+                              <span className='checkmark'></span>
                             </div>
                           </label>
                         </td>
                         <td>
                           <div
-                            className="tableImage justify-content-center"
-                            style={{ cursor: "pointer" }}
+                            className='tableImage justify-content-center'
+                            style={{ cursor: 'pointer' }}
                             onClick={() => spacesView(data.id)}
                           >
                             {data.space_image ? (
                               <img
                                 src={`${API}/${data.space_image}`}
-                                alt="avatar"
+                                alt='avatar'
                                 style={{
-                                  objectFit: "cover",
-                                  borderRadius: "50%",
+                                  objectFit: 'cover',
+                                  borderRadius: '50%',
                                 }}
                               />
                             ) : (
                               <img
                                 src={spaceAvatar}
-                                alt="avatar"
-                                style={{ borderRadius: "50%" }}
+                                alt='avatar'
+                                style={{ borderRadius: '50%' }}
                               />
-                            )}{" "}
+                            )}{' '}
                           </div>
                         </td>
-                        <td className="tableLink">
+                        <td className='tableLink'>
                           <Link to={`${data.id}`}>{data.name}</Link>
                         </td>
-                        <td className="deskType">
-                          {data.tag === "private" ? (
-                            <span className="private">Private Office</span>
+                        <td className='deskType'>
+                          {data.tag === 'private' ? (
+                            <span className='private'>Private Office</span>
                           ) : (
-                            ""
+                            ''
                           )}
-                          {data.tag === "dedicated" ? (
-                            <span className="dedicated">Dedicated Desk</span>
+                          {data.tag === 'dedicated' ? (
+                            <span className='dedicated'>Dedicated Desk</span>
                           ) : (
-                            ""
+                            ''
                           )}
-                          {data.tag === "flex" ? (
-                            <span className="flex">Flex</span>
+                          {data.tag === 'flex' ? (
+                            <span className='flex'>Flex</span>
                           ) : (
-                            ""
+                            ''
                           )}
                         </td>
-                        <td className="rate">
+                        <td className='rate'>
                           ${data.rate} <small>/mo</small>
                         </td>
-                        <td className="status">
+                        <td className='status'>
                           {data.member_images ? (
-                            <span className="unavailable">Unavailable</span>
+                            <span className='unavailable'>Unavailable</span>
                           ) : (
-                            <span className="available">Available</span>
+                            <span className='available'>Available</span>
                           )}
                         </td>
-                        <td className="tableAction">
+                        <td className='tableAction'>
                           {data.member_images ? (
                             <>
-                              <div className="memberSpacesList">
+                              <div className='memberSpacesList'>
                                 {data.member_images &&
                                   separateComma(data.member_images).map(
                                     (member: any, i: number) => (
                                       <div key={`memberImage` + i}>
-                                        {member === "imgNull" ? (
+                                        {member === 'imgNull' ? (
                                           <img
-                                            className="avatar-icon36 default"
-                                            alt=""
+                                            className='avatar-icon36 default'
+                                            alt=''
                                             src={memberAvatar}
                                           />
                                         ) : (
                                           <img
-                                            className="avatar-icon36"
-                                            alt=""
+                                            className='avatar-icon36'
+                                            alt=''
                                             src={`${API}/${member}`}
                                           />
                                         )}
@@ -266,7 +266,7 @@ const Spaces = () => {
                                     )
                                   )}
                                 <div
-                                  className="plusMember"
+                                  className='plusMember'
                                   onClick={() => assignMembers(data.id)}
                                 >
                                   <FontAwesomeIcon icon={faPlus} />
@@ -275,25 +275,25 @@ const Spaces = () => {
                             </>
                           ) : (
                             <button
-                              className="btn assign"
+                              className='btn assign'
                               onClick={() => assignMembers(data.id)}
                             >
                               Assign
                             </button>
                           )}
                         </td>
-                        <td className="tableAction">
+                        <td className='tableAction'>
                           <button
-                            className="btn view"
+                            className='btn view'
                             onClick={() => spacesView(data.id)}
                           >
                             <FontAwesomeIcon icon={faEye} />
                           </button>
                           <button
-                            className="btn edit"
+                            className='btn edit'
                             onClick={() => spacesUpdate(data.id)}
                           >
-                            <img src={editPen} alt="edit" />
+                            <img src={editPen} alt='edit' />
                           </button>
                         </td>
                       </tr>
@@ -302,7 +302,7 @@ const Spaces = () => {
               </Table>
               <Pagination
                 page={page}
-                paginationTitle="items"
+                paginationTitle='items'
                 setPage={setPage}
                 limit={limit}
                 setLimit={setLimit}
@@ -333,7 +333,7 @@ const Spaces = () => {
         </div>
       </Layout>
     </>
-  );
-};
+  )
+}
 
-export default Spaces;
+export default Spaces

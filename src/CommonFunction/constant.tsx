@@ -8,4 +8,4 @@ export const CHAT_SINGLE = 0
 
 // ICON
 
-export const GROUP_ICON = "/group.svg"
+export const GROUP_ICON = '/group.svg'

@@ -1,64 +1,80 @@
-import React,{useState} from 'react'
-import { stripeCreate } from '../../api/settings';
-import { showNotifications } from '../../CommonFunction/toaster';
+import React, { useState } from 'react'
+import { stripeCreate } from '../../api/settings'
+import { showNotifications } from '../../CommonFunction/toaster'
 
 interface FinanceProps {
-    settingTab: (type: string) => void;
+  settingTab: (type: string) => void
 }
 
 const Finance = ({ settingTab }: FinanceProps) => {
-    const [secretId,setSecretId]=useState("")
-    const [publishId,setPublishId]=useState("")
-    const stripeAdd = ()=>{
-        let stripeInfo={
-            "secret_id":secretId,
-            "publish_id":publishId
-        }
-        stripeCreate(stripeInfo).then((data) => {
-            showNotifications('success', "Stripe Update Successfully !!");
-        });
+  const [secretId, setSecretId] = useState('')
+  const [publishId, setPublishId] = useState('')
+  const stripeAdd = () => {
+    let stripeInfo = {
+      secret_id: secretId,
+      publish_id: publishId,
     }
-    return (
-        <>
-            <div className='mainContent'>
-                <div className="settingPage">
-                    <div className="companyOptions">
-                    <button onClick={() => settingTab('account')}>Personal Profile</button>
-                        <button className='activeBtn' onClick={() => settingTab('profile')}>Company Profile</button>
-                        <button onClick={() => settingTab('finance')}>Finances</button>
-                        <button onClick={() => settingTab('users')}>Users</button>
-                        <button onClick={() => settingTab('custom')}>Customization</button>
-                    </div>
-                    <div className="companyProfile">
-                        <div className='profileHeading'>
-                            <h6>Company Finance</h6>
-                            <p>Update your company’s info here.</p>
-                        </div>
-                        <div className='profileSave'>
-                            <button className='cancel'>Cancel</button>
-                            <button className='save' onClick={stripeAdd}>Save</button>
-                        </div>
-                    </div>
-                    <div className="companyName">
-                        <p>Stripe Secret ID</p>
-                        <div className='rightSideSetting col-8'>
-                            <div className="memberInput">
-                                <input type="text" placeholder='Enter your company name' className='form-control' required />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="companyName">
-                        <p>Stripe Publish ID</p>
-                        <div className='rightSideSetting col-8'>
-                            <div className="memberInput">
-                                <input type="text" placeholder='Enter your company name' className='form-control' required />
-                            </div>
-                        </div>
-                    </div> 
-                </div>
+    stripeCreate(stripeInfo).then((data) => {
+      showNotifications('success', 'Stripe Update Successfully !!')
+    })
+  }
+  return (
+    <>
+      <div className='mainContent'>
+        <div className='settingPage'>
+          <div className='companyOptions'>
+            <button onClick={() => settingTab('account')}>
+              Personal Profile
+            </button>
+            <button className='activeBtn' onClick={() => settingTab('profile')}>
+              Company Profile
+            </button>
+            <button onClick={() => settingTab('finance')}>Finances</button>
+            <button onClick={() => settingTab('users')}>Users</button>
+            <button onClick={() => settingTab('custom')}>Customization</button>
+          </div>
+          <div className='companyProfile'>
+            <div className='profileHeading'>
+              <h6>Company Finance</h6>
+              <p>Update your company’s info here.</p>
             </div>
-        </>
-    )
+            <div className='profileSave'>
+              <button className='cancel'>Cancel</button>
+              <button className='save' onClick={stripeAdd}>
+                Save
+              </button>
+            </div>
+          </div>
+          <div className='companyName'>
+            <p>Stripe Secret ID</p>
+            <div className='rightSideSetting col-8'>
+              <div className='memberInput'>
+                <input
+                  type='text'
+                  placeholder='Enter your company name'
+                  className='form-control'
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div className='companyName'>
+            <p>Stripe Publish ID</p>
+            <div className='rightSideSetting col-8'>
+              <div className='memberInput'>
+                <input
+                  type='text'
+                  placeholder='Enter your company name'
+                  className='form-control'
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default Finance

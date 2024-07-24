@@ -1,334 +1,337 @@
 .createInvoice {
-    background-color: #fff;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  background-color: #fff;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 .invoiceForm {
-    padding: 26px 24px;
+  padding: 26px 24px;
 }
 
 .invoiceInput {
-    position: relative;
+  position: relative;
 }
 
 .invoiceInput .dropdown {
-    display: block;
+  display: block;
 }
 
 .invoiceInput .dropdown button {
-    width: 100%;
-    border: 1px solid #D0D5DD;
-    color: #171A20;
-    box-shadow: 0px 1px 2px 0px #1018280D;
-    padding: 10px 12px 10px 12px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    font-family: 'MyCustomFont';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    position: relative;
-    z-index: 99;
+  width: 100%;
+  border: 1px solid #d0d5dd;
+  color: #171a20;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  padding: 10px 12px 10px 12px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  position: relative;
+  z-index: 99;
 }
 
 .invoiceInput label {
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #1F2937;
-    margin-bottom: 7px;
-    margin-top: 15px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #1f2937;
+  margin-bottom: 7px;
+  margin-top: 15px;
 }
 
 .invoiceInput svg {
-    position: absolute;
-    right: 0px;
-    bottom: 4px;
-    padding: 12px 12px 11px 12px;
-    z-index: 1;
+  position: absolute;
+  right: 0px;
+  bottom: 4px;
+  padding: 12px 12px 11px 12px;
+  z-index: 1;
 }
 
 .invoiceBtn {
-    margin-top: 15px;
-    background: rgba(186, 199, 206, 1);
-    box-shadow: 0px 6px 30px 0px rgba(218, 228, 233, 0.16);
-    padding: 14px 16px;
-    border: none;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: rgba(255, 255, 255, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 15px;
+  background: rgba(186, 199, 206, 1);
+  box-shadow: 0px 6px 30px 0px rgba(218, 228, 233, 0.16);
+  padding: 14px 16px;
+  border: none;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .invoiceBtn.active {
-    margin-top: 15px;
-    background: #6366F1;
-    box-shadow: 0px 6px 30px 0px rgba(218, 228, 233, 0.16);
-    padding: 14px 16px;
-    border: none;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #fff;
-    border-radius: 12px;
-    margin-top: 0;
-    margin-right: 24px;
-    margin-bottom: 24px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 15px;
+  background: #6366f1;
+  box-shadow: 0px 6px 30px 0px rgba(218, 228, 233, 0.16);
+  padding: 14px 16px;
+  border: none;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #fff;
+  border-radius: 12px;
+  margin-top: 0;
+  margin-right: 24px;
+  margin-bottom: 24px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .dueDateFormat {
-    align-items: center;
-    display: flex;
+  align-items: center;
+  display: flex;
 }
 
 .dueDateFormat .react-datepicker-wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 .react-datepicker__input-container {
-    display: inline-block;
-    position: relative;
-    width: 100%;
+  display: inline-block;
+  position: relative;
+  width: 100%;
 }
 
 .dueDateFormat .calenderBox {
-    height: 47px;
+  height: 47px;
 }
 
 .calenderBox,
 .calenderShowBox {
-    align-items: center;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    color: #747679;
-    display: flex;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 18px;
-    position: relative;
-    background: #fff;
-    border: 1px solid #d2d2d2;
-    padding: 9px 20px;
-    width: 100%;
+  align-items: center;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  color: #747679;
+  display: flex;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  position: relative;
+  background: #fff;
+  border: 1px solid #d2d2d2;
+  padding: 9px 20px;
+  width: 100%;
 }
 
 .dueDateFormat p {
-    color: #747679;
-    font-family: MyCustomFont;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 18px;
-    margin-bottom: 0;
-    position: absolute;
-    z-index: 99;
+  color: #747679;
+  font-family: MyCustomFont;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin-bottom: 0;
+  position: absolute;
+  z-index: 99;
 }
 
 .calenderBox img {
-    position: absolute;
-    right: 20px;
+  position: absolute;
+  right: 20px;
 }
 
 .calenderInput label {
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #1F2937;
-    margin-bottom: 7px;
-    margin-top: 15px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #1f2937;
+  margin-bottom: 7px;
+  margin-top: 15px;
 }
 
 .react-datepicker-popper {
-    line-height: 0;
-    z-index: 99999 !important;
+  line-height: 0;
+  z-index: 99999 !important;
 }
 
 .invoiceDrop {
-    width: 100% !important;
-    border: 1px solid red;
-    min-height: 49px;
-    align-items: center;
-    padding: 0px 12px;
-    border: 1px solid #D0D5DD;
-    box-shadow: 0px 1px 2px 0px #1018280D;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  width: 100% !important;
+  border: 1px solid red;
+  min-height: 49px;
+  align-items: center;
+  padding: 0px 12px;
+  border: 1px solid #d0d5dd;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .invoiceDrop img {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 .invoiceDrop p {
-    line-height: 15px;
+  line-height: 15px;
 }
 
 /* calender time */
 
 .react-datepicker {
-    border: none !important;
-    box-shadow: 0px 0px 1px 1px rgb(227, 227, 227);
+  border: none !important;
+  box-shadow: 0px 0px 1px 1px rgb(227, 227, 227);
 }
 
 .react-datepicker__header {
-    background-color: #fff !important;
-    border-bottom: none !important;
+  background-color: #fff !important;
+  border-bottom: none !important;
 }
 
 .calenderHeading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 18px;
 }
 
 .calenderHeading .arrowLeft,
 .calenderHeading .arrowRight {
-    background-color: #fff;
-    border: none;
-    font-size: 16px;
-    color: rgba(102, 112, 133, 1);
-    margin-top: 15px;
+  background-color: #fff;
+  border: none;
+  font-size: 16px;
+  color: rgba(102, 112, 133, 1);
+  margin-top: 15px;
 }
 
 .calenderHeading .calenderDate {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 26px;
-    margin-top: 15px;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  margin-top: 15px;
+  color: rgba(29, 41, 57, 1);
 }
 
 .calenderBtn {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 24px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 24px;
 }
 
 .calenderBtn button {
-    background-color: #fff;
-    border: 1px solid rgba(208, 213, 221, 1);
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-    text-align: center;
-    color: rgba(52, 64, 84, 1);
-    padding: 8px 14px;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid rgba(208, 213, 221, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  color: rgba(52, 64, 84, 1);
+  padding: 8px 14px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
 
 .react-datepicker__week .react-datepicker__day,
 .react-datepicker__day-names .react-datepicker__day-name {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    /* text-align: center; */
-    padding: 10px 2px;
-    width: 42px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  /* text-align: center; */
+  padding: 10px 2px;
+  width: 42px;
 }
 
 .react-datepicker__day-names .react-datepicker__day-name {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    padding: 10px 2px;
-    width: 32px;
-    color: rgba(102, 112, 133, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 10px 2px;
+  width: 32px;
+  color: rgba(102, 112, 133, 1);
 }
 
-.react-datepicker__day--keyboard-selected , .react-datepicker__day--selected {
-    background-color: rgba(99, 102, 241, 1) !important;
-    color: rgb(255, 255, 255) !important;
-    border-radius: 25px !important;
-    -webkit-border-radius: 25px !important;
-    -moz-border-radius: 25px !important;
-    -ms-border-radius: 25px !important;
-    -o-border-radius: 25px !important;
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__day--selected {
+  background-color: rgba(99, 102, 241, 1) !important;
+  color: rgb(255, 255, 255) !important;
+  border-radius: 25px !important;
+  -webkit-border-radius: 25px !important;
+  -moz-border-radius: 25px !important;
+  -ms-border-radius: 25px !important;
+  -o-border-radius: 25px !important;
 }
-.react-datepicker-popper .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle{
-    display: none !important;
+.react-datepicker-popper
+  .react-datepicker-popper[data-placement^='bottom']
+  .react-datepicker__triangle {
+  display: none !important;
 }
-.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle{
-    display: none !important;
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle {
+  display: none !important;
 }
-.react-datepicker-popper .react-datepicker__triangle{
-    display: none !important;
+.react-datepicker-popper .react-datepicker__triangle {
+  display: none !important;
 }
 
 #new-invoice .topLine {
-    height: 69px;
+  height: 69px;
 }
 
 #new-invoice .memberInput label {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 #new-invoice .place {
-    color: var(--Gray-400, #98A2B3);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px;
+  color: var(--Gray-400, #98a2b3);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
 }
 
 #new-invoice .assignName input,
 #new-invoice .calenderInput,
 #new-invoice .generateInvoice .memberInput .dropdown {
-    width: 200px;
+  width: 200px;
 }
 
 #new-invoice textarea::placeholder {
-    color: var(--Gray-400, #98A2B3);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px;
-    border-radius: 8px;
+  color: var(--Gray-400, #98a2b3);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  border-radius: 8px;
 }

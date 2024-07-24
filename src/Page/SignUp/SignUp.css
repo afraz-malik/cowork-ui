@@ -1,7 +1,7 @@
 .signUpSection {
   min-height: 100vh;
   background: rgba(249, 250, 251, 1);
-  background-image: url("../../Assets//Images/background/memberSignUp.png");
+  background-image: url('../../Assets//Images/background/memberSignUp.png');
   background-size: 100% 50%;
   background-position: top;
   background-repeat: no-repeat;
@@ -16,7 +16,7 @@
 }
 
 .welcomeText h6 {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 36px;
   font-weight: 700;
   line-height: 50px;
@@ -26,7 +26,7 @@
 }
 
 .welcomeText p {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -36,7 +36,7 @@
 }
 
 .welcomeText button {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -110,7 +110,7 @@
   top: 8px;
   position: relative;
   display: block;
-  content: "";
+  content: '';
   left: 11px;
   border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -125,7 +125,7 @@
 
 .arrowHeading h6 {
   margin-top: 6px;
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 16px;
@@ -144,7 +144,7 @@
 }
 
 .arrowHeading p {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -178,7 +178,7 @@
 .passwordInfo h1,
 .billingInfo h1,
 .agreementInfo h1 {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 24px;
   font-weight: 700;
   line-height: 36px;
@@ -199,7 +199,7 @@
 
 .tabPanelBtn .continue {
   margin-left: 24px;
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -224,7 +224,7 @@
 
 .tabPanelBtn .backBtn {
   width: 98px;
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -251,7 +251,7 @@
 .tabPanelBtn .skip {
   margin-left: 24px;
   width: 98px;
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -309,7 +309,7 @@
 }
 
 .agreementText h6 {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 16px;
   font-weight: 700;
   line-height: 26px;
@@ -319,7 +319,7 @@
 }
 
 .agreementText p {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -367,7 +367,7 @@
 }
 
 .signBox p {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -391,7 +391,7 @@
 
 .finishText h6 {
   margin-top: 25px;
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 16px;
   font-weight: 700;
   line-height: 26px;
@@ -401,7 +401,7 @@
 }
 
 .finishText p {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -411,7 +411,7 @@
 }
 
 .signatureTab h1 {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 24px;
   font-weight: 700;
   line-height: 36px;
@@ -425,7 +425,7 @@
 }
 
 .signatureTab .nav-item a {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 16px;
   font-weight: 500;
   line-height: 26px;
@@ -440,7 +440,7 @@
 }
 
 .signaturePad p {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -471,7 +471,7 @@
 }
 
 .typeSignature p {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -508,7 +508,7 @@
 }
 
 .signShow .signatureName {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -529,7 +529,7 @@
 
 .signChange button {
   background-color: #fff;
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -541,7 +541,7 @@
 }
 
 .passMatch {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -551,7 +551,7 @@
 }
 .disable {
   margin-left: 24px;
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -589,7 +589,7 @@
   margin-top: 15px;
 }
 .cardNumber label {
-  font-family: "MyCustomFont";
+  font-family: 'MyCustomFont';
   font-size: 15px;
   font-weight: 500;
   line-height: 24px;

@@ -1,94 +1,93 @@
-
-import { get, post, put } from "./base-api";
-import axios from 'axios';
-import { DESKIE_API as API } from '../config';
+import { get, post, put } from './base-api'
+import axios from 'axios'
+import { DESKIE_API as API } from '../config'
 // admin login
 export const postAdd = async (body = {}) => {
-    try {
-        const response = await axios.post(`${API}/postCreate`, body, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
-        });
-        return response.data;
-    } catch (error: any) {
-        return error.response?.data;
-    }
-};
+  try {
+    const response = await axios.post(`${API}/postCreate`, body, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    return response.data
+  } catch (error: any) {
+    return error.response?.data
+  }
+}
 // post list
 export const getPostList = async (userId: string) => {
-    return get(`/postList/${userId}`);
-};
+  return get(`/postList/${userId}`)
+}
 // comment
 export const postComment = async (body = {}) => {
-    try {
-        const response = await axios.post(`${API}/postComment`, body, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
-        });
-        return response.data;
-    } catch (error: any) {
-        return error.response?.data;
-    }
-};
+  try {
+    const response = await axios.post(`${API}/postComment`, body, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    return response.data
+  } catch (error: any) {
+    return error.response?.data
+  }
+}
 
 export const getPostComment = async (id: string) => {
-    return get(`/getComment/${id}`);
-};
+  return get(`/getComment/${id}`)
+}
 
 export const replyComment = async (body = {}) => {
-    try {
-        const response = await axios.post(`${API}/commentReply`, body, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
-        });
-        return response.data;
-    } catch (error: any) {
-        return error.response?.data;
-    }
-};
+  try {
+    const response = await axios.post(`${API}/commentReply`, body, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    return response.data
+  } catch (error: any) {
+    return error.response?.data
+  }
+}
 export const commentCommentReply = async (body = {}) => {
-    try {
-        const response = await axios.post(`${API}/commentCommentReply`, body, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
-        });
-        return response.data;
-    } catch (error: any) {
-        return error.response?.data;
-    }
-};
+  try {
+    const response = await axios.post(`${API}/commentCommentReply`, body, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    return response.data
+  } catch (error: any) {
+    return error.response?.data
+  }
+}
 // post likes
 export const likesPost = async (data = {}) => {
-    return post(`/postLike`, data);
-};
+  return post(`/postLike`, data)
+}
 // post likes update
 export const likesPostEdit = async (data = {}) => {
-    return put(`/postLikeUpdate`, data);
-};
+  return put(`/postLikeUpdate`, data)
+}
 
 // comment likes
 export const commentLike = async (data = {}) => {
-    return post(`/commentLike`, data);
-};
+  return post(`/commentLike`, data)
+}
 // comment likes update
 export const commentLikeUpdate = async (data = {}) => {
-    return put(`/commentLikeUpdate`, data);
-};
+  return put(`/commentLikeUpdate`, data)
+}
 
 // comment reply likes
 export const commentReplyLike = async (data = {}) => {
-    return post(`/commentReplyLike`, data);
-};
+  return post(`/commentReplyLike`, data)
+}
 // comment reply likes update
 export const commentReplyLikeUpdate = async (data = {}) => {
-    return put(`/commentReplyLikeUpdate`, data);
-};
+  return put(`/commentReplyLikeUpdate`, data)
+}
 
 // post delete
 export const deletePost = async (id: string, body = {}) => {
-    return put(`/deletePost/${id}`, body);
-};
+  return put(`/deletePost/${id}`, body)
+}

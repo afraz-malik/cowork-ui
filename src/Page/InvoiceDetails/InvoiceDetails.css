@@ -1,461 +1,459 @@
 .invoiceView {
-    background-color: #fff;
-    width: 60%;
-    margin-right: 20px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  background-color: #fff;
+  width: 60%;
+  margin-right: 20px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .rightInvoice {
-    width: 39%;
+  width: 39%;
 }
 
 .invoiceInformation {
-    display: flex;
-    margin-top: 12px;
+  display: flex;
+  margin-top: 12px;
 }
 
 .invoiceTop,
 .invoiceInfo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 26px 24px;
-    border-bottom: 1px solid rgba(234, 236, 240, 1)
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 24px;
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
 }
 
 #invoice-detail .invoiceInfo .invoiceId {
-    border-right: 1px solid rgba(234, 236, 240, 1);
-    padding-left: 40px;
+  border-right: 1px solid rgba(234, 236, 240, 1);
+  padding-left: 40px;
 }
 
 .invoiceInfo .invoiceId p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 4px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 4px;
 }
 
 .invoiceInfo .invoiceId h6 {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(16, 24, 40, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(16, 24, 40, 1);
 }
 
 .invoiceTop .invoiceId h1 {
-    font-family: "MyCustomFont";
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(102, 112, 133, 1);
+  font-family: 'MyCustomFont';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(102, 112, 133, 1);
 }
 
 .invoiceTop .invoiceId h1 span {
-    font-weight: 400;
-    color: rgba(29, 41, 57, 1);
+  font-weight: 400;
+  color: rgba(29, 41, 57, 1);
 }
 
 .invoiceTop .invoiceDate p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(102, 112, 133, 1);
-    margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(102, 112, 133, 1);
+  margin-bottom: 0px;
 }
 
 .invoiceTop .invoiceDate p span {
-    font-weight: 400;
-    color: rgba(102, 112, 133, .7);
+  font-weight: 400;
+  color: rgba(102, 112, 133, 0.7);
 }
 
 .invoiceItem {
-    padding: 26px 24px;
+  padding: 26px 24px;
 }
 
 .invoiceItem .itemHeading {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .invoiceItem .itemHeading p {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
-    letter-spacing: 0em;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0em;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 0px;
 }
 
 .itemList {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
-    margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  margin-bottom: 25px;
 }
 
 .itemList .itemName {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
 }
 
 .itemList .itemName img {
-    margin-right: 10px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .itemList .itemPrice {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
 }
 
 .itemTotal {
-    display: flex;
-    justify-content: end;
-    border-top: 1px solid rgba(234, 236, 240, 1);
-    padding-top: 24px;
+  display: flex;
+  justify-content: end;
+  border-top: 1px solid rgba(234, 236, 240, 1);
+  padding-top: 24px;
 }
 
 .itemTotal p {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
 }
 
 .itemTotal p span {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
-    margin-left: 32px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  margin-left: 32px;
 }
 
 .invoiceMember {
-    background-color: #fff;
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .invoiceMember h1 {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 27px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 27px;
 }
 
 .invoiceMember .memberDetails {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .invoiceMember .memberDetails p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
-    margin-bottom: 2px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  margin-bottom: 2px;
 }
 
 .invoiceMember .memberDetails span {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(152, 162, 179, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(152, 162, 179, 1);
 }
 
 .invoiceMember .memberDetails img {
-    width: 40px;
-    height: 40px;
-    margin-right: 8px;
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
 }
 
 .invoiceNotes {
-    margin-top: 25px;
-    background-color: #fff;
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 25px;
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .invoiceNotes h1 {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 27px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 27px;
 }
 
 .invoiceNotes p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(152, 162, 179, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(152, 162, 179, 1);
 }
 
 .invoiceDownload {
-    margin-top: 25px;
-    background-color: #fff;
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 25px;
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .invoiceDownload p {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 20px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 20px;
 }
 
 .invoiceDownload button {
-    margin-top: 25px;
-    border: none;
-    box-shadow: 0px 6px 30px 0px rgba(42, 55, 119, 0.06);
-    background: rgba(99, 102, 241, 1);
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #fff;
-    white-space: nowrap;
+  margin-top: 25px;
+  border: none;
+  box-shadow: 0px 6px 30px 0px rgba(42, 55, 119, 0.06);
+  background: rgba(99, 102, 241, 1);
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #fff;
+  white-space: nowrap;
 }
 
 .invoiceId .status span {
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: center;
-    width: auto;
-    padding: 5px 10px;
-    margin-bottom: 0px;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  width: auto;
+  padding: 5px 10px;
+  margin-bottom: 0px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 .invoiceId .status .paid {
-    color: rgba(2, 122, 72, 1);
-    background: rgba(236, 253, 243, 1);
+  color: rgba(2, 122, 72, 1);
+  background: rgba(236, 253, 243, 1);
 }
 
 .invoiceId .status .unpaid {
-    color: rgba(185, 56, 21, 1);
-    background: rgba(255, 244, 237, 1);
+  color: rgba(185, 56, 21, 1);
+  background: rgba(255, 244, 237, 1);
 }
 
 .amountPaid {
-    color: rgba(2, 122, 72, 1) !important;
-    background: rgba(236, 253, 243, 1) !important;
+  color: rgba(2, 122, 72, 1) !important;
+  background: rgba(236, 253, 243, 1) !important;
 }
 
 .amountUnpaid {
-    color: rgba(185, 56, 21, 1) !important;
-    background: rgba(255, 244, 237, 1) !important;
+  color: rgba(185, 56, 21, 1) !important;
+  background: rgba(255, 244, 237, 1) !important;
 }
 
 .invoiceDropdown .dropdown-toggle svg {
-    margin: 0px 6px;
+  margin: 0px 6px;
 }
 
 .invoiceDropdown .dropdown-toggle::after {
-    display: none !important;
+  display: none !important;
 }
 
 .invoiceDropdown .invoiceActions button {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    background-color: #fff;
-    display: flex;
-    align-items: center;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  background-color: #fff;
+  display: flex;
+  align-items: center;
 }
 
 .invoiceDropdown .invoiceActions button img {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .invoiceDropdown .dropdown .dropdown-menu {
-    min-width: 250px;
-    border-radius: 12px;
-    border: none;
-    background: var(--Base-White, #FFF);
-    box-shadow: 0px 0px 30px 0px rgba(122, 122, 122, 0.14);
+  min-width: 250px;
+  border-radius: 12px;
+  border: none;
+  background: var(--Base-White, #fff);
+  box-shadow: 0px 0px 30px 0px rgba(122, 122, 122, 0.14);
 }
 
 .invoicePoint .list-ic a {
-    color: rgba(102, 112, 133, 1);
-    text-decoration: none;
-    padding-left: 15px;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-   cursor: default;
+  color: rgba(102, 112, 133, 1);
+  text-decoration: none;
+  padding-left: 15px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  cursor: default;
 }
 
 .invoicePoint .list-ic a b {
-    font-family: "MyCustomFont";
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 20px;
-    text-align: left;
-    color: rgba(152, 162, 179, 1);
+  font-family: 'MyCustomFont';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: rgba(152, 162, 179, 1);
 }
 
 .invoicePoint .list-ic li {
-    position: relative;
+  position: relative;
 }
 
 .invoicePoint .list-ic li span {
-    display: inline-block;
-    font-weight: 800;
-    width: 10px;
-    height: 10px;
-    text-align: center;
-    line-height: 2em;
-    border-radius: 1em;
-    background: rgba(99, 102, 241, 1);
-    color: white;
-    position: relative;
-    z-index: 9;
-    border: 5px solid rgba(99, 102, 241, 1);
+  display: inline-block;
+  font-weight: 800;
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 1em;
+  background: rgba(99, 102, 241, 1);
+  color: white;
+  position: relative;
+  z-index: 9;
+  border: 5px solid rgba(99, 102, 241, 1);
 }
-.invoicePoint .list-ic li span.blue{
-    background: rgba(18, 183, 106, 1);
-    border: 5px solid rgba(18, 183, 106, 1);
+.invoicePoint .list-ic li span.blue {
+  background: rgba(18, 183, 106, 1);
+  border: 5px solid rgba(18, 183, 106, 1);
 }
 .invoicePoint .list-ic li::before {
-    content: '';
-    position: absolute;
-    background: rgba(234, 236, 240, 1);
-    z-index: 1;
+  content: '';
+  position: absolute;
+  background: rgba(234, 236, 240, 1);
+  z-index: 1;
 }
 
-
 .invoicePoint .list-ic.vertical {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .invoicePoint .list-ic.vertical li {
-    list-style-type: none;
-    text-align: left;
-    display: flex;
+  list-style-type: none;
+  text-align: left;
+  display: flex;
   align-items: center;
   margin-bottom: 25px;
 }
 
-
 .invoicePoint .list-ic.vertical li:before {
-    top: -25px;
-    left: 6px;
-    width: 2px;
-    height: 23px;
-    position: relative;
-    display: block;
+  top: -25px;
+  left: 6px;
+  width: 2px;
+  height: 23px;
+  position: relative;
+  display: block;
 }
 
 .invoicePoint .list-ic li:first-child:before {
-   background-color: transparent;
+  background-color: transparent;
 }
 
 .invoicePoint .list-ic .active {
-    background: dodgerblue;
+  background: dodgerblue;
 }
 
-.invoicePoint .list-ic .active~li {
-    background: lightblue;
+.invoicePoint .list-ic .active ~ li {
+  background: lightblue;
 }
 
-.invoicePoint .list-ic .active~li::before {
-    background: lightblue;
+.invoicePoint .list-ic .active ~ li::before {
+  background: lightblue;
 }

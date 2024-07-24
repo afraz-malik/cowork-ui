@@ -1,301 +1,298 @@
 .bookTour {
-    align-items: center;
-    background: #f9fafb;
-    background-position-x: 0%;
-    background-position-y: 0%;
-    background-repeat: repeat;
-    background-image: none;
-    background-size: auto;
-    background-image: url("../../Assets//Images/background/memberSignUp.png");
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: 100% 50%;
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  align-items: center;
+  background: #f9fafb;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-repeat: repeat;
+  background-image: none;
+  background-size: auto;
+  background-image: url('../../Assets//Images/background/memberSignUp.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 50%;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .bookTour .bookCalender {
-    min-width: 850px;
-    background-color: #fff;
-    padding: 32px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  min-width: 850px;
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .bookTour .bookCalender h6,
 .bookTour .bookInfo h6 {
-    font-family: "MyCustomFont";
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 32px;
-    text-align: center;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+  color: rgba(29, 41, 57, 1);
 }
 
 .bookTour .bookCalender h5,
 .bookTour .bookInfo h5 {
-    font-family: "MyCustomFont";
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 32px;
-    text-align: center;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+  color: rgba(29, 41, 57, 1);
 }
 
 .bookTour .bookCalender .selectBook {
-    display: flex;
-    width: 100%;
-    margin-top: 32px;
+  display: flex;
+  width: 100%;
+  margin-top: 32px;
 }
 
 .bookTour .bookCalender .selectBook .selectDate {
-    width: 57%;
-    border-right: 1px solid rgba(234, 236, 240, 1);
-    margin-right: 24px;
-    padding-right: 24px;
-    height: 100%;
+  width: 57%;
+  border-right: 1px solid rgba(234, 236, 240, 1);
+  margin-right: 24px;
+  padding-right: 24px;
+  height: 100%;
 }
 
 .bookTour .bookCalender .selectBook .selectTime {
-    width: 43%;
-
+  width: 43%;
 }
 
 .bookTour .bookCalender .selectBook .selectDate h6,
 .bookTour .bookCalender .selectBook .selectTime h6 {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 26px;
-    text-align: left;
-    color: rgba(102, 112, 133, 1);
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: left;
+  color: rgba(102, 112, 133, 1);
 }
 
 .bookTour .fc-theme-standard td,
 .bookTour .fc-theme-standard th {
-    border: none;
+  border: none;
 }
-
 
 .tourView {
-    height: 350px;
+  height: 350px;
 }
 
-
 .tourView .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
-    min-height: 2em;
-    position: relative;
-    display: none;
+  min-height: 2em;
+  position: relative;
+  display: none;
 }
 
 .tourView .fc .fc-scroller-liquid-absolute {
-    inset: 0px;
-    position: absolute;
-    /* overflow: hidden !important; */
+  inset: 0px;
+  position: absolute;
+  /* overflow: hidden !important; */
 }
 
 .tourView .fc-theme-standard td,
 .tourView .fc-theme-standard th {
-    border: none;
+  border: none;
 }
 
 .tourView .fc-theme-standard .fc-scrollgrid {
-    border: none;
+  border: none;
 }
 
 .tourView .fc .fc-toolbar.fc-header-toolbar {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .tourView .fc-toolbar-chunk {
-    width: 100%;
-    display: contents;
+  width: 100%;
+  display: contents;
 }
 
 .tourView .fc-toolbar-chunk div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .tourView .fc-header-toolbar {
-    padding: 0px;
+  padding: 0px;
 }
 
 .selectTime .pickTime {
-    border: 1px solid rgba(234, 236, 240, 1);
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .selectTime .pickTime h4 {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(0, 0, 0, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(0, 0, 0, 1);
 }
 
 .selectTime .pickTime button {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: center;
-    color: rgba(52, 64, 84, 1);
-    padding: 4px 12px;
-    background-color: rgba(242, 244, 247, 1);
-    border: none;
-    margin-top: 16px;
-    margin-right: 16px;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  color: rgba(52, 64, 84, 1);
+  padding: 4px 12px;
+  background-color: rgba(242, 244, 247, 1);
+  border: none;
+  margin-top: 16px;
+  margin-right: 16px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 .selectTime .pickTime .activeTime {
-    background-color: rgba(99, 102, 241, 1);
-    color: rgb(255, 255, 255);
+  background-color: rgba(99, 102, 241, 1);
+  color: rgb(255, 255, 255);
 }
-.selectTime .pickTime .booked{
-    color: rgb(214, 214, 214);
-    position: relative;
+.selectTime .pickTime .booked {
+  color: rgb(214, 214, 214);
+  position: relative;
 }
-.selectTime .pickTime .booked::after{
-    content: "";
-    width: 45px;
-    height: 2px;
-    position: absolute;
-    top: 17px;
-    left: 11px;
-    background-color: rgb(214, 214, 214);
+.selectTime .pickTime .booked::after {
+  content: '';
+  width: 45px;
+  height: 2px;
+  position: absolute;
+  top: 17px;
+  left: 11px;
+  background-color: rgb(214, 214, 214);
 }
-
 
 .selectTime .chooseDate {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .selectTime .chooseDate p {
-    margin-left: 10px;
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
-    text-align: left;
-    color: rgba(208, 213, 221, 1);
-    margin-bottom: 0px;
+  margin-left: 10px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: left;
+  color: rgba(208, 213, 221, 1);
+  margin-bottom: 0px;
 }
 
 .selectTime .selectedDate {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .selectTime .selectedDate .dateTime {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 15px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .selectTime .selectedDate .dateTime p {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 26px;
-    text-align: left;
-    color: rgba(52, 64, 84, .9);
-    margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: left;
+  color: rgba(52, 64, 84, 0.9);
+  margin-bottom: 0px;
 }
 
 .bookTourBtn {
-    margin-top: 20px;
-    display: flex;
-    justify-content: end;
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
 }
 
-.bookTourBtn button ,.bookTourBtn a{
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: 500;
-    line-height: 20px;
-    text-align: center;
-    box-shadow: 0px 6px 30px 0px rgba(42, 55, 119, 0.06);
-    padding: 14px 22px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+.bookTourBtn button,
+.bookTourBtn a {
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  box-shadow: 0px 6px 30px 0px rgba(42, 55, 119, 0.06);
+  padding: 14px 22px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .bookTourBtn .back {
-    color: rgba(99, 102, 241, 1);
-    border: 1px solid rgba(99, 102, 241, 1);
-    background: rgb(255, 255, 255);
+  color: rgba(99, 102, 241, 1);
+  border: 1px solid rgba(99, 102, 241, 1);
+  background: rgb(255, 255, 255);
 }
 
 .bookTourBtn .next {
-    border: none;
-    margin-left: 25px;
-    color: white;
-    background: rgba(99, 102, 241, 1);
+  border: none;
+  margin-left: 25px;
+  color: white;
+  background: rgba(99, 102, 241, 1);
 }
 
 .bookTourBtn .disable {
-    background: rgba(186, 199, 206, 1);
-    color: white;
+  background: rgba(186, 199, 206, 1);
+  color: white;
 }
 
 .bookTour .bookInfo {
-    min-width: 450px;
-    background-color: #fff;
-    padding: 32px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  min-width: 450px;
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
-.bookInfo .selectTime{
-    margin-top: 20px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+.bookInfo .selectTime {
+  margin-top: 20px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .bookTour .fc .fc-highlight {
-    border-radius: 50%;
-    background: var(--Brand-Brand-Primary, #6366F1);
+  border-radius: 50%;
+  background: var(--Brand-Brand-Primary, #6366f1);
 }
 
 .bookTour .selected-date.fc-day-today,
 .bookTour .selected-date {
-    background-color: #6366F1 !important;
-    border-radius: 50%;
+  background-color: #6366f1 !important;
+  border-radius: 50%;
 }
 
 .bookTour .selected-date .fc-scrollgrid-sync-inner a {
-    color: #ffffff;
+  color: #ffffff;
 }

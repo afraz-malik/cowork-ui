@@ -1,174 +1,174 @@
 .visitorSection {
-    min-height: 100vh;
-    display: flex;
+  min-height: 100vh;
+  display: flex;
 }
 
 .visitorLeft {
-    min-height: 100vh;
+  min-height: 100vh;
 
-    width: 60%;
+  width: 60%;
 }
 
 .visitorImage {
-    background: rgba(249, 250, 251, 1);
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    width: 100% !important;
-    padding: 50px;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    min-height: 100vh;
+  background: rgba(249, 250, 251, 1);
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  width: 100% !important;
+  padding: 50px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .visitorLeft h5 {
-    font-family: "MyCustomFont";
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 62px;
-    text-align: left;
-    color: white;
+  font-family: 'MyCustomFont';
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 62px;
+  text-align: left;
+  color: white;
 }
 
 .visitorRight {
-    padding: 40px;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  padding: 40px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .orLine {
-    display: block;
-    width: 300px;
-    margin: 40px 0px;
+  display: block;
+  width: 300px;
+  margin: 40px 0px;
 }
 
 .orLine h2 {
-    width: 100%;
-    text-align: center;
-    border-bottom: 1px solid #475467AA;
-    line-height: 0.1em;
-    margin: 10px 0 20px;
-    font-size: 16px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #475467aa;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  font-size: 16px;
 }
 
 .orLine h2 span {
-    background: #fff;
-    color: #475467AA;
-    padding: 0 10px;
-    font-family: "MyCustomFont";
+  background: #fff;
+  color: #475467aa;
+  padding: 0 10px;
+  font-family: 'MyCustomFont';
 }
 
 .visitorRight h5 {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
-    text-align: center;
-    color: rgba(29, 41, 57, 0.7);
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: center;
+  color: rgba(29, 41, 57, 0.7);
 }
 
 .visitorRight .tapNext {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 16px;
-    text-align: center;
-    color: white;
-    margin-bottom: 0px;
-    box-shadow: 0px 6px 30px 0px rgba(42, 55, 119, 0.06);
-    background: rgba(99, 102, 241, 1);
-    padding: 12px 16px;
-    border: none;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+  color: white;
+  margin-bottom: 0px;
+  box-shadow: 0px 6px 30px 0px rgba(42, 55, 119, 0.06);
+  background: rgba(99, 102, 241, 1);
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .reasonVisit .dropdown-toggle::after {
-    display: none !important;
+  display: none !important;
 }
 
 .reasonVisit .dropdown-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.visitorRight .success h5{
-font-family: "MyCustomFont";
-font-size: 24px;
-font-weight: 600;
-line-height: 36px;
-text-align: center;
-color: rgba(29, 41, 57, 1);
+.visitorRight .success h5 {
+  font-family: 'MyCustomFont';
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  text-align: center;
+  color: rgba(29, 41, 57, 1);
 }
-.visitorRight .success h4{
-font-family: "MyCustomFont";
-font-size: 16px;
-font-weight: 500;
-line-height: 26px;
-text-align: center;
-color: rgba(29, 41, 57, 0.7);
+.visitorRight .success h4 {
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: center;
+  color: rgba(29, 41, 57, 0.7);
 }
-.visitorList table tbody tr td:nth-child(6){
-display: revert !important;
+.visitorList table tbody tr td:nth-child(6) {
+  display: revert !important;
 }
-.visitorList .reason{
-font-family: "MyCustomFont";
-font-size: 14px;
-font-weight: 500;
-line-height: 24px;
-text-align: left;
-color: rgba(16, 24, 40, 1);
+.visitorList .reason {
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(16, 24, 40, 1);
 }
-.visitorList .reason a{
-    font-weight: 600;
-    text-decoration: none;
-    color: #6366F1;
+.visitorList .reason a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #6366f1;
 }
-.removeVisitor img{
-    width: 20px !important;
-    height: 20px !important;
+.removeVisitor img {
+  width: 20px !important;
+  height: 20px !important;
 }
-.visitorDownload{
-    padding: 0px !important;
+.visitorDownload {
+  padding: 0px !important;
 }
 
-.memberList.visitorList table thead tr th:nth-child(1), 
+.memberList.visitorList table thead tr th:nth-child(1),
 .memberList.visitorList table tbody tr td:nth-child(1),
-.memberList.visitorList table thead tr th:nth-child(6), 
+.memberList.visitorList table thead tr th:nth-child(6),
 .memberList.visitorList table tbody tr td:nth-child(6) {
   width: 6.25%;
 }
 
-.memberList.visitorList table thead tr th:nth-child(2), 
+.memberList.visitorList table thead tr th:nth-child(2),
 .memberList.visitorList table tbody tr td:nth-child(2),
-.memberList.visitorList table thead tr th:nth-child(4), 
+.memberList.visitorList table thead tr th:nth-child(4),
 .memberList.visitorList table tbody tr td:nth-child(4) {
   width: 18.75%;
   text-align: start;
 }
 
-.memberList.visitorList table thead tr th:nth-child(5), 
+.memberList.visitorList table thead tr th:nth-child(5),
 .memberList.visitorList table tbody tr td:nth-child(5) {
   width: 12.5%;
 }
 
-.memberList.visitorList table thead tr th:nth-child(3), 
+.memberList.visitorList table thead tr th:nth-child(3),
 .memberList.visitorList table tbody tr td:nth-child(3) {
   width: 37.5%;
 }
 
 .memberList.visitorList table thead tr th {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 24px;
-    color: var(--Gray-600, #475467);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--Gray-600, #475467);
 }
 
 .memberList.visitorList table tbody tr td {
@@ -186,26 +186,26 @@ color: rgba(16, 24, 40, 1);
 }
 
 #visitor .memberList.visitorList table tbody tr td {
-    color: #475467AA;
+  color: #475467aa;
 }
 
 .visitorSection .memberInput input,
 .visitorSection .memberInput .dropdown {
-    width: 320px;
+  width: 320px;
 }
 
 .visitorSection .memberInput .dropdown button {
-    background-color: white;
+  background-color: white;
 }
 
 .noneSelect {
-    color: #98A2B3AA;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px;
+  color: #98a2b3aa;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
 }
 
 .visitorSection .memberInput .dropdown button .noneSelect img {
-    margin-left: auto;
+  margin-left: auto;
 }

@@ -1,214 +1,215 @@
 .generateInvoice {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 16px;
-    margin-bottom: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 35px;
 }
 
 .authToggle {
-    align-items: center;
-    display: flex;
-    margin-top: 8px
+  align-items: center;
+  display: flex;
+  margin-top: 8px;
 }
 
 .authToggle p {
-    color: #a0a0a0;
-    font-family: MyCustomFont;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 17px;
-    margin-bottom: 0
+  color: #a0a0a0;
+  font-family: MyCustomFont;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  margin-bottom: 0;
 }
 
 .authToggle .switch {
-    display: inline-block;
-    height: 24px;
-    margin: 0 7px;
-    position: relative;
-    width: 44px
+  display: inline-block;
+  height: 24px;
+  margin: 0 7px;
+  position: relative;
+  width: 44px;
 }
 
 .authToggle .switch input {
-    height: 0;
-    opacity: 0;
-    width: 0
+  height: 0;
+  opacity: 0;
+  width: 0;
 }
 
 #assignMember .addMemberHeading p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .authToggle .slider {
-    background-color: #F2F4F7;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s
+  background-color: #f2f4f7;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
 }
 
 .authToggle .slider:before {
-    background-color: #fff;
-    bottom: 2px;
-    content: "";
-    height: 20px;
-    left: 2px;
-    position: absolute;
-    transition: .4s;
-    width: 20px
+  background-color: #fff;
+  bottom: 2px;
+  content: '';
+  height: 20px;
+  left: 2px;
+  position: absolute;
+  transition: 0.4s;
+  width: 20px;
 }
 
-.authToggle input:checked+.slider {
-    background-color: rgba(80, 82, 201, 1);
+.authToggle input:checked + .slider {
+  background-color: rgba(80, 82, 201, 1);
 }
 
-.authToggle input:focus+.slider {
-    box-shadow: 0 0 1px rgba(80, 82, 201, 1);
+.authToggle input:focus + .slider {
+  box-shadow: 0 0 1px rgba(80, 82, 201, 1);
 }
 
-.authToggle input:checked+.slider:before {
-    transform: translateX(20px);
-    -webkit-transform: translateX(20px);
-    -moz-transform: translateX(20px);
-    -ms-transform: translateX(20px);
-    -o-transform: translateX(20px);
+.authToggle input:checked + .slider:before {
+  transform: translateX(20px);
+  -webkit-transform: translateX(20px);
+  -moz-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  -o-transform: translateX(20px);
 }
 
 .authToggle .slider.round {
-    border-radius: 34px
+  border-radius: 34px;
 }
 
 .authToggle .slider.round:before {
-    border-radius: 50%
+  border-radius: 50%;
 }
 
 .assignName {
-    margin-top: 25px;
-    padding: 24px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 25px;
+  padding: 24px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .generateInvoice .amount span {
-    position: absolute;
-    top: 0px;
-    height: 47px;
+  position: absolute;
+  top: 0px;
+  height: 47px;
 }
 
 .generateInvoice .amount input {
-    padding-left: 25px !important;
+  padding-left: 25px !important;
 }
 
 .generateInvoice h5 {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
 }
 
 .generateInvoice h6 {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
 }
 
 #assignMember .memberInfos .dropdown-content {
-    padding: 20px 8px;
-    height: inherit;
+  padding: 20px 8px;
+  height: inherit;
 }
 
 #assignMember .member-container {
-    padding-left: 10px;
-    padding-right: 8px;
+  padding-left: 10px;
+  padding-right: 8px;
 }
 
 #assignMember .generateInvoice input {
-    width: 176px;
+  width: 176px;
 }
 
 .generateInvoice .amount .calculate {
-    cursor: pointer;
-    position: relative;
-    border: none;
-    padding: 2px 0px;
-    margin-top: 4px;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(152, 162, 179, 1);
-    text-decoration: none;
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  padding: 2px 0px;
+  margin-top: 4px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(152, 162, 179, 1);
+  text-decoration: none;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
 }
 
-.generateInvoice .calenderInput,.generateInvoice .memberInput .dropdown{
-    width: 280px;
+.generateInvoice .calenderInput,
+.generateInvoice .memberInput .dropdown {
+  width: 280px;
 }
 
 .memberSpaces {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .memberSpaces .arrowIcon {
-    color: rgba(102, 112, 133, 1);
+  color: rgba(102, 112, 133, 1);
 }
 
 .assignModal .modal-dialog {
-    width: 750px;
+  width: 750px;
 }
 
 /* dropdown */
 .assignBox {
-    border: 1px solid rgba(234, 236, 240, 1);
-    padding: 10px 12px;
-    width: 323px;
-    min-height: 70px;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  padding: 10px 12px;
+  width: 323px;
+  min-height: 70px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
 
 #assignMember .memberInfos {
-    width: calc((100% - 60px) / 2);
+  width: calc((100% - 60px) / 2);
 }
 
 .memberInfos .dropdown {
-    margin: 0 auto;
-    z-index: 10000;
-    width: 300px;
-    position: relative;
+  margin: 0 auto;
+  z-index: 10000;
+  width: 300px;
+  position: relative;
 }
 
 /* .memberInfos .dropdown,
@@ -217,140 +218,140 @@
 } */
 
 .memberInfos .dropdown .dropdown-btn {
-    cursor: pointer;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: white;
-    border-radius: 5px;
-    color: #777;
-    font-weight: 500;
-    width: 100%;
+  cursor: pointer;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-radius: 5px;
+  color: #777;
+  font-weight: 500;
+  width: 100%;
 }
 
 .memberInfos .dropdown-content {
-    position: absolute;
-    top: 130%;
-    left: 0;
-    width: 100%;
-    height: 350px;
-    overflow-y: clip;
-    padding: 24px 8px;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.07);
-    background-color: #fff;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  position: absolute;
+  top: 130%;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  overflow-y: clip;
+  padding: 24px 8px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.07);
+  background-color: #fff;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .memberInfos .dropdown-content .item {
-    padding: 5px 0px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+  padding: 5px 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .memberInfos .dropdown-content .item img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border: 2px solid rgba(255, 171, 0, 1);
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border: 2px solid rgba(255, 171, 0, 1);
 }
 
 .memberInfos .dropdown-content .item p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
 }
 
 .memberInfos .dropdown-content .item:hover {
-    background: #fcfcfc;
+  background: #fcfcfc;
 }
 
 .memberInfos .dropdown .dropdown-btn span svg {
-    color: rgba(102, 112, 133, 1)
+  color: rgba(102, 112, 133, 1);
 }
 
 .assignInput {
-    position: relative;
+  position: relative;
 }
 
 .assignInput input {
-    border: 1px solid rgba(208, 213, 221, 1);
-    box-shadow: 0px 1px 2px 0px #1018280D;
-    padding: 10px 10px 10px 33px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    font-family: 'MyCustomFont';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    position: relative;
-    width: 100%;
-    color: rgba(152, 162, 179, 1);
+  border: 1px solid rgba(208, 213, 221, 1);
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  padding: 10px 10px 10px 33px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  position: relative;
+  width: 100%;
+  color: rgba(152, 162, 179, 1);
 }
 
 .assignInput input::placeholder {
-    color: #98A2B3aa;
-    font-weight: 500;
+  color: #98a2b3aa;
+  font-weight: 500;
 }
 
 #assignMember .assignInput svg {
-    left: 20px;
+  left: 20px;
 }
 
 .assignInput svg {
-    position: absolute;
-    color: rgba(102, 112, 133, 1) !important;
-    z-index: 9999;
-    left: 26px;
-    top: 50%;
-    transform: translate(0, -50%);
-    -webkit-transform: translate(0, -50%);
-    -moz-transform: translate(0, -50%);
-    -ms-transform: translate(0, -50%);
-    -o-transform: translate(0, -50%);
+  position: absolute;
+  color: rgba(102, 112, 133, 1) !important;
+  z-index: 9999;
+  left: 26px;
+  top: 50%;
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
 }
-.invoiceSave{
-    display: flex;
-    justify-content: end;
+.invoiceSave {
+  display: flex;
+  justify-content: end;
 }
-.invoiceSave button{
-    background: #6366F1;
-    padding: 14px 18px;
-    border: none;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #fff;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    text-decoration: none;
-    margin-bottom: 0px;
-    display: flex;
-    align-items: center;
+.invoiceSave button {
+  background: #6366f1;
+  padding: 14px 18px;
+  border: none;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #fff;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  text-decoration: none;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
 }

@@ -1,232 +1,231 @@
 .dashboardStatus {
-    box-shadow: 0px 23px 44px 0px rgba(176, 183, 195, 0.14);
-    background: rgba(255, 255, 255, 1);
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  box-shadow: 0px 23px 44px 0px rgba(176, 183, 195, 0.14);
+  background: rgba(255, 255, 255, 1);
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .dashboardStatus .statusHeading {
-    display: flex;
-    align-items: end;
+  display: flex;
+  align-items: end;
 }
 
 .dashboardStatus .statusHeading img {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .dashboardStatus .statusHeading p {
-    font-family: "MyCustomFont";
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
-    margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  margin-bottom: 0px;
 }
 
 .statusContent p {
-    margin-top: 15px;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 0px;
+  margin-top: 15px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 0px;
 }
 
 .statusNumber p {
-    margin-top: 5px;
-    font-family: "MyCustomFont";
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 36px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
-    margin-bottom: 0px;
+  margin-top: 5px;
+  font-family: 'MyCustomFont';
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  margin-bottom: 0px;
 }
 
 .incomeGraph {
-    margin-top: 24px;
-    background: rgba(255, 255, 255, 1);
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 1);
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .graphHeading {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
 }
 
 .graphHeading .report {
-    padding: 10px 14px;
-    background-color: #fff;
-    font-family: "MyCustomFont";
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: rgba(99, 102, 241, 1);
-    border: 1px solid rgba(99, 102, 241, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  padding: 10px 14px;
+  background-color: #fff;
+  font-family: 'MyCustomFont';
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(99, 102, 241, 1);
+  border: 1px solid rgba(99, 102, 241, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .incomeNumber h6,
 .monthMoney h6 {
-    font-family: "MyCustomFont";
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
 }
 
 .incomeNumber p,
 .monthMoney p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
 }
 
 .incomeNumber .incomeMoney {
-    display: flex;
-    align-items: start;
+  display: flex;
+  align-items: start;
 }
 
 .incomeNumber .incomeMoney p {
-    font-family: "MyCustomFont";
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 36px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
 }
 
 .incomeNumber .incomeMoney .incomePercentage,
 .monthMoney .incomePercentage {
-    margin-left: 10px;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: rgba(2, 122, 72, 1);
-    background: rgba(236, 253, 243, 1);
-    padding: 4px 10px;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  margin-left: 10px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(2, 122, 72, 1);
+  background: rgba(236, 253, 243, 1);
+  padding: 4px 10px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 .monthIncome {
-    margin-top: 24px;
-    background: rgba(255, 255, 255, 1);
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 1);
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .monthMoney {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
 }
 
 .chartOption {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .chartOption .chartName {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .chartOption .chartName .chartColor {
-    width: 12px;
-    height: 12px;
-    margin-right: 12px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin-right: 12px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
-.privateColor{
-    background-color: rgba(99, 102, 241, 1);
+.privateColor {
+  background-color: rgba(99, 102, 241, 1);
 }
-.dedicatedColor{
-    background-color: rgba(46, 144, 250, 1);
-}
-
-.flexColor{
-    background-color: rgba(247, 144, 9, 1);
+.dedicatedColor {
+  background-color: rgba(46, 144, 250, 1);
 }
 
+.flexColor {
+  background-color: rgba(247, 144, 9, 1);
+}
 
 .chartOption .chartName p {
-    margin-bottom: 0px;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
+  margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
 }
 
 .chartOption .chartNumber p {
-    margin-bottom: 0px;
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
+  margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 .chartOption .chartNumber p span {
-    margin-bottom: 0px;
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
+  margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
-.circleChart{
-    display: flex;
-    justify-content: center;
+.circleChart {
+  display: flex;
+  justify-content: center;
 }

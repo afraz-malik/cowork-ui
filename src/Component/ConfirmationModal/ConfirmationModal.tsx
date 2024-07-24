@@ -1,18 +1,18 @@
-import React from "react";
-import { Col, Container, Modal, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react'
+import { Col, Container, Modal, Row } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faExclamation,
   faTrash,
   faXmark,
-} from "@fortawesome/free-solid-svg-icons";
-import "./ConfirmationModal.css";
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+} from '@fortawesome/free-solid-svg-icons'
+import './ConfirmationModal.css'
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
 interface AddMemberProps {
-  handleConfirmationClose: () => void;
-  ConfirmationShow: boolean;
-  afterConfirmationApi: () => void;
+  handleConfirmationClose: () => void
+  ConfirmationShow: boolean
+  afterConfirmationApi: () => void
 }
 
 const ConfirmationModal = ({
@@ -26,34 +26,34 @@ const ConfirmationModal = ({
         show={ConfirmationShow}
         onHide={handleConfirmationClose}
         centered
-        size="lg"
+        size='lg'
       >
-        <div className="addMemberForm">
-          <button className="closeModal" onClick={handleConfirmationClose}>
+        <div className='addMemberForm'>
+          <button className='closeModal' onClick={handleConfirmationClose}>
             <FontAwesomeIcon icon={faXmark} />
           </button>
           <Container>
             <Row>
               <Col md={12}>
-                <div className="ConfirmationIcon">
-                  <div className="w-full flex justify-center items-center">
-                    <div className="circle">
+                <div className='ConfirmationIcon'>
+                  <div className='w-full flex justify-center items-center'>
+                    <div className='circle'>
                       <FontAwesomeIcon icon={faExclamation} />
                     </div>
                   </div>
-                  <h4 className="modal-title w-100">Are you sure?</h4>
+                  <h4 className='modal-title w-100'>Are you sure?</h4>
                   <p>
                     Are you sure you want to continue? <br /> This process
                     cannot be undone.
                   </p>
-                  <div className="deleteBtn">
+                  <div className='deleteBtn'>
                     <button
-                      className="cancel"
+                      className='cancel'
                       onClick={handleConfirmationClose}
                     >
                       Cancel
                     </button>
-                    <button className="save" onClick={afterConfirmationApi}>
+                    <button className='save' onClick={afterConfirmationApi}>
                       Save
                     </button>
                   </div>
@@ -64,7 +64,7 @@ const ConfirmationModal = ({
         </div>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default ConfirmationModal;
+export default ConfirmationModal

@@ -1,397 +1,396 @@
 .billingList {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    height: calc(100vh - 265px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100vh - 265px);
 }
 
 .invoiceHeading {
-    margin-top: -7px;
-    margin-bottom: 25px;
+  margin-top: -7px;
+  margin-bottom: 25px;
 }
 
 .invoiceHeading .breadcrumb .breadcrumb-item {
-    padding-left: 16px;
+  padding-left: 16px;
 }
 
 .invoiceHeading .breadcrumb .breadcrumb-item,
 .invoiceHeading .breadcrumb .breadcrumb-item a {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
-    text-decoration: none;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
+  text-decoration: none;
 }
 
-.invoiceHeading .breadcrumb .breadcrumb-item::before, 
+.invoiceHeading .breadcrumb .breadcrumb-item::before,
 .invoiceHeading .breadcrumb .breadcrumb-item.active::before {
-    color: #D0D5DD;
-    width: 24px;
-    height: 24px;
-    font-size: 20px;
-    font-weight: 500;
+  color: #d0d5dd;
+  width: 24px;
+  height: 24px;
+  font-size: 20px;
+  font-weight: 500;
 }
 .invoiceHeading .breadcrumb .breadcrumb-item.active {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: var(--Primary-700, #3D3FA1);
-    font-style: normal;
-    font-weight: 800;
-    padding-left: 16px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--Primary-700, #3d3fa1);
+  font-style: normal;
+  font-weight: 800;
+  padding-left: 16px;
 }
 
 .billingList .table-responsive {
-    width: 100%;
+  width: 100%;
 }
 
 .billingList table thead tr th {
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #475467;
-    height: 56px;
-    vertical-align: middle;
-    white-space: nowrap;
-    background-color: #F4F7F8;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #475467;
+  height: 56px;
+  vertical-align: middle;
+  white-space: nowrap;
+  background-color: #f4f7f8;
 }
 
 .billingList table tbody tr td {
-    height: 72px;
-    text-align: left;
+  height: 72px;
+  text-align: left;
 }
 
 .billingList table thead tr th:nth-child(1),
 .billingList table tbody tr td:nth-child(1) {
-    width: 68px;
-    text-align: center;
-    padding: 0px !important;
-    position: relative;
-    vertical-align: middle;
+  width: 68px;
+  text-align: center;
+  padding: 0px !important;
+  position: relative;
+  vertical-align: middle;
 }
 
 .billingList table thead tr th:nth-child(2),
 .billingList table tbody tr td:nth-child(2) {
-    width: 119px;
-    padding: 0px !important;
-    position: relative;
-    vertical-align: middle;
+  width: 119px;
+  padding: 0px !important;
+  position: relative;
+  vertical-align: middle;
 }
 
 .billingList table tbody tr td:nth-child(2) a {
-    text-decoration: none;
-    color: var(--Gray-900, #101828);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 24px;
+  text-decoration: none;
+  color: var(--Gray-900, #101828);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px;
 }
 
 .billingList table thead tr th:nth-child(3),
 .billingList table tbody tr td:nth-child(3) {
-    width: 210px;
-    padding: 0px !important;
-    position: relative;
-    vertical-align: middle;
+  width: 210px;
+  padding: 0px !important;
+  position: relative;
+  vertical-align: middle;
 }
 
 .billingList table thead tr th:nth-child(4),
 .billingList table tbody tr td:nth-child(4) {
-    width: 186px;
-    padding: 0px !important;
-    position: relative;
-    vertical-align: middle;
+  width: 186px;
+  padding: 0px !important;
+  position: relative;
+  vertical-align: middle;
 }
 
 .billingList table thead tr th:nth-child(5),
 .billingList table tbody tr td:nth-child(5) {
-    width: 170px;
-    padding: 0px !important;
-    position: relative;
-    vertical-align: middle;
+  width: 170px;
+  padding: 0px !important;
+  position: relative;
+  vertical-align: middle;
 }
 
 .billingList table tbody tr td:nth-child(5) {
-    color: rgba(71, 84, 103, 0.7) !important;
+  color: rgba(71, 84, 103, 0.7) !important;
 }
 
 .billingList table thead tr th:nth-child(6),
 .billingList table tbody tr td:nth-child(6) {
-    width: 124px;
-    padding: 0px !important;
-    position: relative;
-    vertical-align: middle;
+  width: 124px;
+  padding: 0px !important;
+  position: relative;
+  vertical-align: middle;
 }
 
 .billingList table thead tr th:nth-child(7),
 .billingList table tbody tr td:nth-child(7) {
-    width: 119px;
-    padding: 0px !important;
-    position: relative;
-    vertical-align: middle;
+  width: 119px;
+  padding: 0px !important;
+  position: relative;
+  vertical-align: middle;
 }
 
 .billingList table thead tr th:nth-child(8),
 .billingList table tbody tr td:nth-child(8) {
-    width: 99px;
-    padding: 0px !important;
-    position: relative;
-    vertical-align: middle;
+  width: 99px;
+  padding: 0px !important;
+  position: relative;
+  vertical-align: middle;
 }
 
 .billingList table tbody tr td:nth-child(2) {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(16, 24, 40, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(16, 24, 40, 1);
 }
 
 .billingList table tbody tr td:nth-child(3),
 .billingList table tbody tr td:nth-child(4),
 .billingList table tbody tr td:nth-child(5),
 .billingList table tbody tr td:nth-child(7) {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
 }
 
 .billingList table tbody tr td:nth-child(3) img,
 .billingList table tbody tr td:nth-child(4) img,
 .billingList table tbody tr td:nth-child(5) img {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .billingList .status span {
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: center;
-    width: auto;
-    padding: 5px 10px;
-    margin-bottom: 0px;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  width: auto;
+  padding: 5px 10px;
+  margin-bottom: 0px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 .billingList .status .paid {
-    color: rgba(2, 122, 72, 1);
-    background: rgba(236, 253, 243, 1);
+  color: rgba(2, 122, 72, 1);
+  background: rgba(236, 253, 243, 1);
 }
 
 .billingList .status .void {
-    color: #344054;
-    background: #F2F4F7;
+  color: #344054;
+  background: #f2f4f7;
 }
 
 .billingList .status .unpaid {
-    color: #C01048;
-    background: #FFF1F3;
+  color: #c01048;
+  background: #fff1f3;
 }
 
 .billingList .status .draft {
-    color: rgba(52, 64, 84, 1);
-    background: rgba(242, 244, 247, 1);
+  color: rgba(52, 64, 84, 1);
+  background: rgba(242, 244, 247, 1);
 }
 
 .billingAction .download,
 .billingAction .download:hover {
-    background: rgb(255, 255, 255);
-    border: 1px solid rgba(99, 102, 241, 1)
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(99, 102, 241, 1);
 }
 
 .billingAction .view,
 .billingAction .view:hover {
-    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-    background: rgba(99, 102, 241, 1);
-
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  background: rgba(99, 102, 241, 1);
 }
 
 .ml-2 {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 .addMemberForm .memberSpaces .memberInfos {
-    width: calc((100% - 60px) / 2);
+  width: calc((100% - 60px) / 2);
 }
 
 .addMemberForm .memberSpaces .memberInfos .dropdown-content {
-    padding: 20px 8px;
-    height: inherit;
+  padding: 20px 8px;
+  height: inherit;
 }
 
 .addMemberForm .memberSpaces .memberInfos .dropdown-content .assignInput svg {
-    left: 20px;
+  left: 20px;
 }
 
 .addMemberForm .memberSpaces .memberInfos .dropdown-content .member-container {
-    padding-left: 10px;
-    padding-right: 8px;
+  padding-left: 10px;
+  padding-right: 8px;
 }
 
 .memberInfos {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .memberInfos p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
-    margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  margin-bottom: 0px;
 }
 
 .memberInfos span {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(152, 162, 179, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(152, 162, 179, 1);
 }
 
 .memberInfos img {
-    width: 40px;
-    height: 40px;
-    margin-right: 8px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .invoiceMemberInfo h1 {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
 }
 
 .filterDropdown button {
-    background-color: #fff;
-    padding: 0px;
-    border: none;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #fff;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    text-decoration: none;
-    margin-bottom: 0px;
-    display: flex;
-    align-items: center;
+  background-color: #fff;
+  padding: 0px;
+  border: none;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #fff;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  text-decoration: none;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
 }
 
 .filterDropdown button .filterBtn {
-    background-color: #fff;
-    padding: 12px 16px;
-    text-transform: capitalize;
+  background-color: #fff;
+  padding: 12px 16px;
+  text-transform: capitalize;
 }
 
 .filterDropdown .dropdown-toggle::after {
-    display: none;
+  display: none;
 }
 
-.filterDropdown .btn-check:checked+.btn,
+.filterDropdown .btn-check:checked + .btn,
 .filterDropdown .btn.active,
 .filterDropdown .btn.show,
 .filterDropdown .btn:first-child:active,
-.filterDropdown :not(.btn-check)+.btn:active {
-    color: transparent !important;
-    background-color: transparent !important;
-    border-color: transparent !important;
+.filterDropdown :not(.btn-check) + .btn:active {
+  color: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
 }
-.filterDropdown .btn:hover{
-    color: transparent !important;
-    background-color: transparent !important;
-    border-color: transparent !important;
+.filterDropdown .btn:hover {
+  color: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
 }
 
-.filterDropdown .dropdown-menu a{
-background-color: #fff;
-font-family: "MyCustomFont";
-font-size: 14px;
-font-weight: 600;
-line-height: 24px;
-text-align: left;
-color: rgba(52, 64, 84, 1);
+.filterDropdown .dropdown-menu a {
+  background-color: #fff;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
 }
-.filterDropdown .dropdown-menu{
-    min-width: 135px !important;
+.filterDropdown .dropdown-menu {
+  min-width: 135px !important;
 }
 
 #invoice-detail .topLine,
 #my-billing .topLine,
 #billing .topLine {
-    height: 85px;
+  height: 85px;
 }
 
 #my-billing .dropdown-menu,
 #billing .dropdown-menu {
-    /* display: flex; */
-    padding: 18px 14px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    border-radius: 12px;
-    background: var(--Base-White, #FFF);
-    box-shadow: 0px 0px 30px 0px rgba(122, 122, 122, 0.14);
-    border: none;
+  /* display: flex; */
+  padding: 18px 14px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 12px;
+  background: var(--Base-White, #fff);
+  box-shadow: 0px 0px 30px 0px rgba(122, 122, 122, 0.14);
+  border: none;
 }
 
 #my-billing .filterBtn,
 #billing .filterBtn {
-    width: 100px;
+  width: 100px;
 }
 
 #my-billing .filterBtn img,
 #billing .filterBtn img {
-    margin-left: auto;
+  margin-left: auto;
 }
-.cardNameAmount{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.cardNameAmount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.cardNameAmount .resourceInput:nth-child(1){
-    width: 79%;
+.cardNameAmount .resourceInput:nth-child(1) {
+  width: 79%;
 }
-.cardNameAmount .resourceInput:nth-child(2){
-    width: 19%;
+.cardNameAmount .resourceInput:nth-child(2) {
+  width: 19%;
 }

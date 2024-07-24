@@ -1,445 +1,442 @@
 .mainTaskContent {
-    background: #F7F8FA;
-    padding: 32px 32px 33px 32px;
-    width: 100%;
-    height: calc(100vh - 72px);
-    overflow-y: auto;
+  background: #f7f8fa;
+  padding: 32px 32px 33px 32px;
+  width: 100%;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
 }
 
 .taskTopHeading {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .taskTopHeading p {
-    font-family: "MyCustomFont";
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 1px;
-    text-align: left;
-    color: rgba(152, 162, 179, 1);
-    margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-align: left;
+  color: rgba(152, 162, 179, 1);
+  margin-bottom: 0px;
 }
 
 .taskTopHeading svg {
-    color: rgba(152, 162, 179, 1);
-    margin-right: 3px;
+  color: rgba(152, 162, 179, 1);
+  margin-right: 3px;
 }
 
 .allTaskFilter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .allTaskFilter p {
-    font-family: "MyCustomFont";
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
 }
 
 .allTaskFilter .filterBtn {
-    display: flex;
-
+  display: flex;
 }
 
 .allTaskFilter .filterBtn button {
-    padding: 10px 18px;
-    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-    background-color: #fff;
-    border: 1px solid rgba(208, 213, 221, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: rgba(52, 64, 84, 1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 153px;
-    margin-left: 10px;
+  padding: 10px 18px;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  background-color: #fff;
+  border: 1px solid rgba(208, 213, 221, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(52, 64, 84, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 153px;
+  margin-left: 10px;
 }
 
 .addTask button {
-    margin-top: 24px;
-    color: rgba(99, 102, 241, 1);
-    width: 100%;
-    padding: 18px 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    border: none;
-    box-shadow: 0px 1px 2px 0px #1018280D;
+  margin-top: 24px;
+  color: rgba(99, 102, 241, 1);
+  width: 100%;
+  padding: 18px 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  box-shadow: 0px 1px 2px 0px #1018280d;
 }
 
 .pendingList {
-    margin-top: 24px;
-    background: #F0F4F6;
-    padding: 24px 20px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 24px;
+  background: #f0f4f6;
+  padding: 24px 20px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .taskCard {
-    background-color: #fff;
-    margin-bottom: 24px;
-    padding: 24px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  background-color: #fff;
+  margin-bottom: 24px;
+  padding: 24px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .viewTask {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .taskHeading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .taskHeading div {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .taskHeading h5 {
-
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 36px;
-    text-align: left;
-    color: rgba(50, 59, 75, 1);
-    margin-bottom: 0px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  text-align: left;
+  color: rgba(50, 59, 75, 1);
+  margin-bottom: 0px;
 }
 
 .taskHeading p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 800;
-    line-height: 24px;
-    text-align: left;
-    color: var(--Typography-SubHeading, #1D2939);
-    letter-spacing: 0em;
-    margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 24px;
+  text-align: left;
+  color: var(--Typography-SubHeading, #1d2939);
+  letter-spacing: 0em;
+  margin-bottom: 0px;
 }
 
 .taskImg {
-    overflow: hidden;
-    display: flex;
-    align-items: center;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .taskImg img {
-    object-fit: cover;
-    width: 100%;
-    height: 140px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  object-fit: cover;
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .taskDate {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .taskDate p {
-    font-family: "MyCustomFont";
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: center;
-    width: fit-content;
-    padding: 2px 10px;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  font-family: 'MyCustomFont';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  width: fit-content;
+  padding: 2px 10px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 .taskDate p svg {
-    margin-right: 5px;
-    font-weight: 800;
+  margin-right: 5px;
+  font-weight: 800;
 }
 
 .taskDate .dueDate {
-    background: rgba(255, 250, 235, 1);
-    color: rgba(181, 71, 8, 1);
+  background: rgba(255, 250, 235, 1);
+  color: rgba(181, 71, 8, 1);
 }
 
 .taskDate .futureDate {
-    background: rgba(242, 244, 247, 1);
-    color: rgba(52, 64, 84, 1);
+  background: rgba(242, 244, 247, 1);
+  color: rgba(52, 64, 84, 1);
 }
 
 .taskDate .pastDate {
-    background: rgba(254, 243, 242, 1);
-    color: rgba(180, 35, 24, 1);
+  background: rgba(254, 243, 242, 1);
+  color: rgba(180, 35, 24, 1);
 }
 
 .taskMember {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .taskMember img {
-    width: 32px;
-    height: 32px;
-    margin-left: -4px;
-    overflow: hidden;
-    flex-shrink: 0;
-    object-fit: cover;
-    
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  margin-left: -4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .adminBorder {
-    border: 2px solid rgba(255, 171, 0, 1);
+  border: 2px solid rgba(255, 171, 0, 1);
 }
 
 .taskIcon .dropdown-toggle::after {
-    display: none;
+  display: none;
 }
 
 .taskIcon button,
 .taskIcon button:hover {
-    padding: 0px 5px;
-    background-color: #fff;
-    border: none;
-    color: #1d2939;
+  padding: 0px 5px;
+  background-color: #fff;
+  border: none;
+  color: #1d2939;
 }
 
 .taskIcon .btn.show {
-    background-color: #fff !important;
-    border: none !important;
-    color: #1d2939 !important;
+  background-color: #fff !important;
+  border: none !important;
+  color: #1d2939 !important;
 }
 
 .taskIcon .dropdown-menu {
-    min-width: 50px !important;
-    gap: 8px;
-    border-radius: 12px;
-    opacity: 0px;
-    border: none;
-    box-shadow: 0px 0px 30px 0px #7A7A7A24;
-    width: 100px;
-    padding-left: 6px;
-    padding-right: 6px;
+  min-width: 50px !important;
+  gap: 8px;
+  border-radius: 12px;
+  opacity: 0px;
+  border: none;
+  box-shadow: 0px 0px 30px 0px #7a7a7a24;
+  width: 100px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .taskIcon .dropdown-menu a {
-    color: rgba(52, 64, 84, 1);
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    padding: 8px 16px;
-    margin: 4px 0;
-    border-radius: 6px;
+  color: rgba(52, 64, 84, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  padding: 8px 16px;
+  margin: 4px 0;
+  border-radius: 6px;
 }
 
 .taskIcon .dropdown-menu a svg {
-    color: rgba(102, 112, 133, 1);
+  color: rgba(102, 112, 133, 1);
 }
 
 .taskDropdown .filterBtn {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    border: 1px solid rgba(208, 213, 221, 1);
-    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  border: 1px solid rgba(208, 213, 221, 1);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 }
 
 .filterDropdown.taskDropdown .dropdown-menu {
-    padding: 1rem;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0px 0px 30px 0px #7A7A7A24;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0px 0px 30px 0px #7a7a7a24;
 }
 
 .filterDropdown.taskDropdown .dropdown-item {
-    padding: .5rem .8rem;
-    border-radius: 12px;
+  padding: 0.5rem 0.8rem;
+  border-radius: 12px;
 }
 
 .filterDropdown.taskDropdown .dropdown-item:hover {
-    background-color: #E9EFF2;
+  background-color: #e9eff2;
 }
 
 .mr-2 {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .memberAddBtn button.deleteSpaces {
-    background-color: rgba(254, 243, 242, 1) !important;
-    color: rgba(180, 35, 24, 1) !important;
-    border: 1px solid rgba(180, 35, 24, 1) !important;
+  background-color: rgba(254, 243, 242, 1) !important;
+  color: rgba(180, 35, 24, 1) !important;
+  border: 1px solid rgba(180, 35, 24, 1) !important;
 }
 
-[data-rbd-drag-handle-context-id="0"] {
-    cursor: pointer !important;
+[data-rbd-drag-handle-context-id='0'] {
+  cursor: pointer !important;
 }
 
 .taskFilesView {
-    margin-top: 6px;
-    margin-left: 40px;
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    border: 1px solid #5052C9;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  margin-top: 6px;
+  margin-left: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #5052c9;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .taskFilesView .fileName {
-    width: 100%;
-    text-align: left;
-    padding: 0px 16px;
+  width: 100%;
+  text-align: left;
+  padding: 0px 16px;
 }
 
 .taskFilesView .fileName p {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
-    margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
+  margin-bottom: 0px;
 }
 
 .taskFilesView .fileName span {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(71, 84, 103, 1)
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
 }
 
 .taskFilesView .fileDelete {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 16px;
-    text-align: left;
-    color: rgba(99, 102, 241, 1);
-    cursor: pointer;
-    margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: left;
+  color: rgba(99, 102, 241, 1);
+  cursor: pointer;
+  margin-right: 1rem;
 }
 
 .taskFilesView .fileDelete img {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
-
-.descriptionTask{
-    margin-top: 35px;
-    padding-top: 35px;
-    border-top: 1px solid #F3F3F3;
+.descriptionTask {
+  margin-top: 35px;
+  padding-top: 35px;
+  border-top: 1px solid #f3f3f3;
 }
-.descriptionTask .description{
-    margin-left: 43px;
+.descriptionTask .description {
+  margin-left: 43px;
 }
-.attachmentFiles{
-    margin-top: 43px;
+.attachmentFiles {
+  margin-top: 43px;
 }
 .attachmentFiles h6,
 .descriptionTask h6 {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    text-align: left;
-    color: rgba(102, 112, 133, 1);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: left;
+  color: rgba(102, 112, 133, 1);
 }
 
 .attachmentFiles h6 img,
-.descriptionTask h6 img{
-    margin-right: 20px;
+.descriptionTask h6 img {
+  margin-right: 20px;
 }
 
 .taskOption h6 {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: rgba(152, 162, 179, 1)
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(152, 162, 179, 1);
 }
 
 .taskOption .dueDate {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: center;
-    color: rgba(52, 64, 84, 1);
-    background-color: rgba(242, 244, 247, 1);
-    padding: 4px 12px;
-    border-radius: 16px;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    -ms-border-radius: 16px;
-    -o-border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  color: rgba(52, 64, 84, 1);
+  background-color: rgba(242, 244, 247, 1);
+  padding: 4px 12px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
-.taskOption .taskMember p{
-    font-size: 14px;
-    font-weight: 800;
-    line-height: 24px;
-    text-align: center;
-    color: rgba(52, 64, 84, 1);
+.taskOption .taskMember p {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 24px;
+  text-align: center;
+  color: rgba(52, 64, 84, 1);
 }
 
-.taskOptionView{
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
+.taskOptionView {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
 }
-.editTask button{
-    background-color: #fff;
-    border: none;
+.editTask button {
+  background-color: #fff;
+  border: none;
 }

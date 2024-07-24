@@ -1,264 +1,266 @@
 .addMemberForm {
-    padding: 40px 32px;
+  padding: 40px 32px;
 }
 
 .addMemberForm .closeModal {
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    right: -20px;
-    top: -20px;
-    color: #101828;
-    background: #E2E3FF;
-    box-shadow: 0px 3px 8px 1px #64646491;
-    border: none;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  color: #101828;
+  background: #e2e3ff;
+  box-shadow: 0px 3px 8px 1px #64646491;
+  border: none;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .inputFieldSidebar {
-    border-right: 1px solid #EAECF0;
+  border-right: 1px solid #eaecf0;
 }
 
 .addMemberHeading {
-    display: flex;
-    align-items: center;
-    padding-bottom: 28px;
-    border-bottom: 1px solid #E5E7EB;
-    margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 28px;
 }
 
 .addMemberHeading p {
-    font-family: 'MyCustomFont';
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #101828;
-    margin-bottom: 0px;
-    margin-left: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #101828;
+  margin-bottom: 0px;
+  margin-left: 12px;
 }
 
 .memberInput {
-    position: relative;
+  position: relative;
 }
 
 .memberInput label {
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #344054;
-    margin-bottom: 7px;
-    margin-top: 15px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #344054;
+  margin-bottom: 7px;
+  margin-top: 15px;
 }
-.memberInput .dropdown{
-    display: block;
+.memberInput .dropdown {
+  display: block;
 }
 .memberInput input:focus {
-    border-radius: 12px;
-    border: 1px solid var(--Primary-300, #A1A3F7);
-    background: var(--Base-White, #FFF);
-    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px #F4EBFF !important;
-    align-self: stretch;
+  border-radius: 12px;
+  border: 1px solid var(--Primary-300, #a1a3f7);
+  background: var(--Base-White, #fff);
+  box-shadow:
+    0px 1px 2px 0px rgba(16, 24, 40, 0.05),
+    0px 0px 0px 4px #f4ebff !important;
+  align-self: stretch;
 }
 .memberInput input::placeholder {
-    color: var(--Gray-400, #98A2B3AA);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px;
+  color: var(--Gray-400, #98a2b3aa);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
 }
 
 .memberInput input::placeholder {
-    color: var(--Gray-400, #98A2B3AA);
-    font-weight: 400;
+  color: var(--Gray-400, #98a2b3aa);
+  font-weight: 400;
 }
 
 .memberInput input,
 .memberInput .dropdown button {
-    width: 100%;
-    border: 1px solid #D0D5DD;
-    color: #171A20;
-    box-shadow: 0px 1px 2px 0px #1018280D;
-    padding: 10px 12px 10px 12px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    font-family: 'MyCustomFont';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    position: relative;
+  width: 100%;
+  border: 1px solid #d0d5dd;
+  color: #171a20;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  padding: 10px 12px 10px 12px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  position: relative;
 }
 
 .memberInput button {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    padding: 12px 12px 11px 12px;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border: none;
-    border-left: 1px solid #D0D5DD;
-    font-family: 'MyCustomFont';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #101828;
-    background: transparent;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  padding: 12px 12px 11px 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border: none;
+  border-left: 1px solid #d0d5dd;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #101828;
+  background: transparent;
 }
 
 .memberInput span {
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    padding: 12px 12px 11px 12px;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border: none;
-    font-family: 'MyCustomFont';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #101828;
-    background: transparent;
-    z-index: 999;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  padding: 12px 12px 11px 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border: none;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #101828;
+  background: transparent;
+  z-index: 999;
 }
 
 .memberInput .form-control:focus {
-    color: none !important;
-    background-color: none !important;
-    border-color: none !important;
-    outline: 0;
-    /* box-shadow: none !important; */
+  color: none !important;
+  background-color: none !important;
+  border-color: none !important;
+  outline: 0;
+  /* box-shadow: none !important; */
 }
 
 .memberAddBtn {
-    display: flex;
-    justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
 .memberAddBtn button {
-    margin-top: 24px;
-    background: #6366F1;
-    color: #fff;
-    box-shadow: 0px 2.4000000953674316px 6px 0px #0619380F;
-    padding: 12px 50px;
-    border: none;
-    font-family: 'MyCustomFont';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: center;
-    border-radius: 12px;
+  margin-top: 24px;
+  background: #6366f1;
+  color: #fff;
+  box-shadow: 0px 2.4000000953674316px 6px 0px #0619380f;
+  padding: 12px 50px;
+  border: none;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+  border-radius: 12px;
 }
 
 .inputHeading p {
-    font-family: 'MyCustomFont';
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #101828;
-    margin-bottom: 10px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #101828;
+  margin-bottom: 10px;
 }
 
 .upload {
-    width: 80px;
-    position: relative;
-    margin: auto;
+  width: 80px;
+  position: relative;
+  margin: auto;
 }
 
 .upload img {
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    width: 80px;
-    height: 80px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  width: 80px;
+  height: 80px;
 }
 
 .upload .round {
-    position: absolute;
-    bottom: -12px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
-    line-height: 33px;
-    text-align: center;
-    border-radius: 50%;
-    overflow: hidden;
-    -webkit-transform: translate(-50%, 0);
-    -moz-transform: translate(-50%, 0);
-    -ms-transform: translate(-50%, 0);
-    -o-transform: translate(-50%, 0);
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  line-height: 33px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
 }
 
 .upload .round img {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
-.upload .round input[type="file"] {
-    position: absolute;
-    transform: scale(2);
-    opacity: 0;
-    cursor: pointer;
+.upload .round input[type='file'] {
+  position: absolute;
+  transform: scale(2);
+  opacity: 0;
+  cursor: pointer;
 }
 
-.upload input[type=file]::-webkit-file-upload-button {
-    cursor: pointer;
+.upload input[type='file']::-webkit-file-upload-button {
+  cursor: pointer;
 }
-.numberInput label{
-    font-family: 'MyCustomFont';
+.numberInput label {
+  font-family: 'MyCustomFont';
   font-size: 15px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
-  color: #1F2937;
+  color: #1f2937;
   margin-bottom: 7px;
   margin-top: 15px;
 }
 .numberInput .react-tel-input .flag-dropdown {
-    border-radius: 12px 0 0 12px;
-    -webkit-border-radius: 12px 0 0 12px;
-    -moz-border-radius: 12px 0 0 12px;
-    -ms-border-radius: 12px 0 0 12px;
-    -o-border-radius: 12px 0 0 12px;
+  border-radius: 12px 0 0 12px;
+  -webkit-border-radius: 12px 0 0 12px;
+  -moz-border-radius: 12px 0 0 12px;
+  -ms-border-radius: 12px 0 0 12px;
+  -o-border-radius: 12px 0 0 12px;
 }
 
 .numberInput .react-tel-input .form-control {
-    font-family: 'MyCustomFont';
+  font-family: 'MyCustomFont';
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
   letter-spacing: 0em;
-    color: #171A20 !important;
-    height: 48px !important;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  color: #171a20 !important;
+  height: 48px !important;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
