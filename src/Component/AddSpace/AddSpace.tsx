@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form';
-import { ToastContainer } from 'react-toastify';
 import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap';
 // import "./AddMember.css";
 import { v4 as uuidv4 } from 'uuid';
@@ -52,7 +51,6 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
                 }
                 else {
                     showNotifications('success', 'Asset Added', spaces.name + ' added successfully');
-                    // showNotifications('success', 'Assets add successfully!!');
                     setValue('name', "")
                     setValue('rate', "")
                     setValue('size', "")
@@ -68,7 +66,6 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
     return (
         <>
             <Modal show={show} onHide={handleClose} centered size="lg">
-                <ToastContainer />
 
                 <div className="addMemberForm">
                     <button className='closeModal' onClick={handleClose}>

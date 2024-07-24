@@ -159,14 +159,62 @@ const CreateInvoice = () => {
     member.name.toLowerCase().includes(searchSpaces.toLowerCase())
   )
 
-  const selectSpaces = (member: any) => {
-    setSpacesName(member.name)
-    setSpacesId(member.id)
-    setSpacesImage(member.space_image)
-    setSpacesRate(member.rate)
-    setAmount(member.rate)
-    setDiscountAmount(member.rate)
-  }
+
+    
+        invoiceAdd(invoice).then((data) => {
+            if (data.statusCode !== 201) {
+                showNotifications('error', data.message);
+            }
+            else {
+                showNotifications('success', 'Manual Invoice Created');
+                setValue('invoiceId', "")
+                setValue('notes', "");
+                if (userInfo.user.role === "admin") {
+                    return navigate("/billing");
+                }
+                else {
+                    return navigate("/my-invoice");
+                }
+            }
+        })
+
+    }
+    // member filter
+    const handleMemberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchMembers(e.target.value);
+    };
+    const filteredMembers = memberList?.filter((member: any) =>
+        member.first_name.toLowerCase().includes(searchMembers.toLowerCase()) ||
+        member.last_name.toLowerCase().includes(searchMembers.toLowerCase()) ||
+        member.email.toLowerCase().includes(searchMembers.toLowerCase())
+    );
+    const selectMember = (member: any) => {
+        setSelectName(`${member.first_name} ${member.last_name}`);
+        setSelectEmail(member.email)
+        setMemberId(member.id)
+        setMemberImage(member.member_image)
+    };
+    // spaces filter
+    const handleSpacesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchSpaces(e.target.value);
+    };
+    const filteredSpaces = spacesList?.filter((member: any) =>
+        member.name.toLowerCase().includes(searchSpaces.toLowerCase())
+    );
+
+    const selectSpaces = (member: any) => {
+        setSpacesName(member.name);
+        setSpacesId(member.id)
+        setSpacesImage(member.space_image)
+        setSpacesRate(member.rate)
+        setAmount(member.rate)
+        setDiscountAmount(member.rate)
+    };
+    
+    useEffect(() => {
+        calculateRent()
+    }, [amount])
+    
 
   useEffect(() => {
     calculateRent()
@@ -289,33 +337,23 @@ const CreateInvoice = () => {
                 </Link>
               </div>
             </div>
-            <div className='invoiceForm py-0'>
-              <Row>
-                <Col md={12}>
-                  <div className='assignName'>
-                    <div className='generateInvoice my-0'>
-                      <h5 className='mb-0'>
-                        {' '}
-                        <img src={refresh} alt='refresh' /> Create Recurring
-                        Invoice
-                      </h5>
-                      <div className='authToggle mt-0'>
-                        {authValue === true ? (
-                          <label className='switch'>
-                            <input
-                              type='checkbox'
-                              onClick={authClick}
-                              defaultChecked
-                            />
-                            <span className='slider round'></span>
-                          </label>
-                        ) : (
-                          <label className='switch'>
-                            <input type='checkbox' onClick={authClick} />
-                            <span className='slider round'></span>
-                          </label>
-                        )}
-                      </div>
+
+        </div>
+    );
+
+
+    return (
+        <div id='new-invoice'>
+            <Layout>
+                <div className='mainContent'>
+                    <div className="invoiceHeading">
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb m-0 ms-2">
+                                {/* <li className="breadcrumb-item">Finances</li> */}
+                                <li className="breadcrumb-item px-0"><Link to="/billing">Billing</Link></li>
+                                <li className="breadcrumb-item active" aria-current="page">Create New Invoice</li>
+                            </ol>
+                        </nav>
                     </div>
                     {authValue ? (
                       <>

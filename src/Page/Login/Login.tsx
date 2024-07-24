@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { loginAdmin, memberPassword } from '../../api/admin';
 import { showNotifications } from '../../CommonFunction/toaster';
-import { ToastContainer } from 'react-toastify';
 import { authenticate } from '../../api/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { singleProfile } from '../../api/settings';
@@ -118,7 +117,6 @@ const Login = () => {
 
     return (
         <div>
-            <ToastContainer />
             <div>
 
                 <section className="loginSection" style={{ background:`linear-gradient(rgba(31, 41, 55, 0.9), rgba(31, 41, 55, 0.94)), url(${profile && `${API}/${encodeURIComponent(profile.background)}`})` }}>

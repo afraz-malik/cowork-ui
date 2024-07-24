@@ -50,7 +50,7 @@ const ViewTask = ({
         setTaskImage(data.data.task_image);
         setDueDate(data.data.dueDate);
         setCreateDate(data.data.created_at);
-        setAssignedMembers(JSON.parse(data.data.assigned_member_data));
+        setAssignedMembers(data.data.assigned_member_date && JSON.parse(data.data.assigned_member_data));
         setCreatedBy(data.data.created_by_info);
         setTaskSize(data.data.image_size);
         setCreatedByRole(data.data.created_by_role);

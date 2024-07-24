@@ -410,3 +410,63 @@
 .spacesDetailsBox .assignments {
     border-top: 1px solid rgba(234, 236, 240, 1);
 }
+
+.Toastify__toast-body {
+    align-items: start;
+}
+
+.Toastify__toast--success {
+    border-radius: 12px;
+    border: 1px solid var(--Success-300, #6CE9A6);
+    background: var(--Success-25, #F6FEF9);
+}
+
+.Toastify__toast--success .main {
+    color: var(--Success-700, #027A48);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.Toastify__toast--success .sub {
+    overflow: hidden;
+    color: var(--Success-700, #027A48);
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.Toastify__toast--success .Toastify__close-button {
+    color: #12B76A;
+}
+
+.Toastify__toast--error {
+    border-radius: 12px;
+    border: 1px solid var(--Error-300, #FDA29B);
+    background: var(--Error-25, #FFFBFA);
+}
+
+.Toastify__toast--error .main {
+    color: var(--Error-700, #B42318);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.Toastify__toast--error .sub {
+    overflow: hidden;
+    color: var(--Error-700, #B42318);
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.Toastify__toast--error .Toastify__close-button {
+    color: #12B76A;
+}
