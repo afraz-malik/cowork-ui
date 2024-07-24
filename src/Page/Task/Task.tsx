@@ -46,124 +46,86 @@ interface Column {
 }
 
 const Task = () => {
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const [status, setStatus] = useState('')
+  const [deleteId, setDeleteId] = useState('')
+  const [taskId, setTaskId] = useState('')
+  const [pendingList, setPendingList] = useState([])
+  const [doingList, setDoingList] = useState([])
+  const [doneList, setDoneList] = useState([])
+  const [deleteShow, setDeleteShow] = useState(false)
+  const handleDeleteClose = () => setDeleteShow(false)
+  const [taskShow, setTaskShow] = useState(false)
+  const handleTaskClose = () => setTaskShow(false)
+  const [taskEditShow, setTaskEditShow] = useState(false)
+  const handleEditTaskClose = () => setTaskEditShow(false)
+  const [dueDate, setDueDate] = useState<any>('')
 
+  const [sort, setSort] = useState('ASC')
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const [status, setStatus] = useState("");
-    const [deleteId, setDeleteId] = useState("");
-    const [deleteTitle, setDeleteTitle] = useState("");
-    const [taskId, setTaskId] = useState("");
-    const [pendingList, setPendingList] = useState([]);
-    const [doingList, setDoingList] = useState([]);
-    const [doneList, setDoneList] = useState([]);
-    const [deleteShow, setDeleteShow] = useState(false);
-    const handleDeleteClose = () => setDeleteShow(false);
-    const [taskShow, setTaskShow] = useState(false);
-    const handleTaskClose = () => setTaskShow(false);
-    const [taskEditShow, setTaskEditShow] = useState(false);
-    const handleEditTaskClose = () => setTaskEditShow(false);
-    const [dueDate, setDueDate] = useState<any>("");
+  useEffect(() => {
+    getTaskList('PENDING', sort).then((data) => {
+      setPendingList(data)
+    })
+    getTaskList('DOING', sort).then((data) => {
+      setDoingList(data)
+    })
+    getTaskList('DONE', sort).then((data) => {
+      setDoneList(data)
+    })
+  }, [show, deleteShow, taskEditShow, sort])
 
-    const [sort, setSort] = useState("ASC");
+  const [columns, setColumns] = useState<Column[]>([])
+  useEffect(() => {
+    const initialColumns = [
+      {
+        id: 'PENDING',
+        title: 'PENDING',
+        tasks: pendingList,
+      },
+      {
+        id: 'DOING',
+        title: 'DOING',
+        tasks: doingList,
+      },
+      {
+        id: 'DONE',
+        title: 'DONE',
+        tasks: doneList,
+      },
+    ]
 
-    useEffect(() => {
-        getTaskList("PENDING", sort).then((data) => {
-            setPendingList(data)
-        });
-        getTaskList("DOING", sort).then((data) => {
-            setDoingList(data)
-        });
-        getTaskList("DONE", sort).then((data) => {
-            setDoneList(data)
-        });
-    }, [show, deleteShow, taskEditShow, sort])
+    // Set the initial columns
+    setColumns(initialColumns)
+  }, [pendingList, doingList, doneList, show, taskEditShow])
 
-    const [columns, setColumns] = useState<Column[]>([]);
-    useEffect(() => {
-        const initialColumns = [
-            {
-                id: 'PENDING',
-                title: 'PENDING',
-                tasks: pendingList,
-            },
-            {
-                id: 'DOING',
-                title: 'DOING',
-                tasks: doingList,
-            },
-            {
-                id: 'DONE',
-                title: 'DONE',
-                tasks: doneList,
-            },
-        ];
+  const addTask = (status: string) => {
+    setShow(true)
+    setStatus(status)
+  }
 
-        // Set the initial columns
-        setColumns(initialColumns);
-    }, [pendingList, doingList, doneList, show, taskEditShow]);
-
-
-    const addTask = (status: string) => {
-        setShow(true);
-        setStatus(status);
+  const onDragEnd = (result: any) => {
+    const { source, destination, draggableId } = result
+    if (!destination) return
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    ) {
+      return
     }
-
-    const onDragEnd = (result: any) => {
-        const { source, destination, draggableId } = result;
-        if (!destination) return;
-        if (
-            source.droppableId === destination.droppableId &&
-            source.index === destination.index
-        ) {
-            return;
-        }
-        const sourceColumn = columns.find(
-            (column) => column.id === source.droppableId
-        );
-        const destinationColumn = columns.find(
-            (column) => column.id === destination.droppableId
-        );
-        if (!sourceColumn || !destinationColumn || sourceColumn === destinationColumn) {
-            return;
-        }
-        const task = sourceColumn.tasks.find((task) => task.id === draggableId);
-        const newSourceTasks = [...sourceColumn.tasks];
-        newSourceTasks.splice(source.index, 1);
-        const newDestinationTasks = [...destinationColumn.tasks];
-        newDestinationTasks.splice(destination.index, 0, task as TaskInterface);
-        const newColumns = columns.map((column) => {
-            if (column.id === sourceColumn.id) {
-                return { ...column, tasks: newSourceTasks };
-            } else if (column.id === destinationColumn.id) {
-                return { ...column, tasks: newDestinationTasks };
-            } else {
-                return column;
-            }
-        });
-
-        let statusUpdate = {
-            "status": destinationColumn.id
-        }
-        updateStatus(draggableId, statusUpdate).then((data) => {
-            showNotifications('success', "Task Change Successfully !!");
-        });
-
-        setColumns(newColumns);
-    };
-
-    // delete task
-    const deleteTasks = (id: string, title: string) => {
-        setDeleteId(id);
-        setDeleteTitle(title);
-        setDeleteShow(true);
-    }
-
-    const taskRemove = () => {
-        deleteTask(deleteId).then((data) => {
-            showNotifications('success', 'Task Deleted', deleteTitle);
-            setDeleteShow(false);
-        });
+    const sourceColumn = columns.find(
+      (column) => column.id === source.droppableId
+    )
+    const destinationColumn = columns.find(
+      (column) => column.id === destination.droppableId
+    )
+    if (
+      !sourceColumn ||
+      !destinationColumn ||
+      sourceColumn === destinationColumn
+    ) {
+      return
     }
     const task = sourceColumn.tasks.find((task) => task.id === draggableId)
     const newSourceTasks = [...sourceColumn.tasks]
@@ -285,7 +247,6 @@ const Task = () => {
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('mouseup', handleMouseUp)
 
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseup', handleMouseUp)
@@ -300,76 +261,28 @@ const Task = () => {
     <>
       <div className='mainTaskContent'>
         <ToastContainer />
-
-        <div>
-
-            <div className='calenderHeading'>
-                <button className='arrowLeft' onClick={decreaseMonth} disabled={prevMonthButtonDisabled}><FontAwesomeIcon icon={faChevronLeft} /></button>
-                <span className='calenderDate'>{date.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-                <button className='arrowRight' onClick={increaseMonth} disabled={nextMonthButtonDisabled}><FontAwesomeIcon icon={faChevronRight} /></button>
-            </div>
-            <div className='calenderBtn'>
-                <button onClick={handleYesterdayClick}>Yesterday</button>
-                <button onClick={handleTodayClick}>Today</button>
-            </div>
-        </div>
-    );
-    const [dragging, setDragging] = useState(false);
-    const [mouseDown, setMouseDown] = useState(false);
-
-    useEffect(() => {
-        const handleMouseMove = () => {
-            if (mouseDown) {
-                setDragging(true);
-            }
-        };
-
-        const handleMouseUp = () => {
-            if (mouseDown && !dragging) {
-                console.log('Mouse clicked!');
-                viewTasks(taskId)
-            }
-            setMouseDown(false);
-            setDragging(false);
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseup', handleMouseUp);
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseup', handleMouseUp);
-        };
-    }, [mouseDown, dragging]);
-    const handleMouseDown = (taskId: string) => {
-        setMouseDown(true);
-        setDragging(false);
-        setTaskId(taskId);
-    };
-    return (
-        <>
-            <Layout>
-                <div className='mainTaskContent'>
-                    <Container>
-                        <Row>
-                            <Col md={12}>
-
-                                <div className="allTaskFilter">
-                                    <p className="mb-0">All Tasks</p>
-                                    <div className="d-flex">
-                                        <div className='filterDropdown taskDropdown'>
-                                            <Dropdown>
-                                                <Dropdown.Toggle>
-                                                    <button className='filterBtn'><FontAwesomeIcon icon={faEye} /> <span className='mx-2'>All Tasks</span> <FontAwesomeIcon icon={faChevronDown} /></button>
-                                                </Dropdown.Toggle>
-                                                <Dropdown.Menu>
-                                                    <Dropdown.Item>All Tasks</Dropdown.Item>
-                                                    <Dropdown.Item>Your Tasks</Dropdown.Item>
-                                                </Dropdown.Menu>
-                                            </Dropdown>
-                                        </div>
-                                        {/* <div className='filterDropdown'>
-
+        <Container>
+          <Row>
+            <Col md={12}>
+              <div className='allTaskFilter'>
+                <p className='mb-0'>All Tasks</p>
+                <div className='d-flex'>
+                  <div className='filterDropdown taskDropdown'>
+                    <Dropdown>
+                      <Dropdown.Toggle>
+                        <button className='filterBtn'>
+                          <FontAwesomeIcon icon={faEye} />{' '}
+                          <span className='mx-2'>All Tasks</span>{' '}
+                          <FontAwesomeIcon icon={faChevronDown} />
+                        </button>
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item>All Tasks</Dropdown.Item>
+                        <Dropdown.Item>Your Tasks</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
+                  {/* <div className='filterDropdown'>
                                         <DatePicker placeholderText="Select a date" onChange={dueDateChange} dateFormat="MM/dd/yyyy" customInput={<CustomDateFormatInput />} renderCustomHeader={CustomHeader} />
                                         </div> */}
                   <div
@@ -401,11 +314,9 @@ const Task = () => {
               </div>
             </Col>
           </Row>
+        </Container>
 
-        </div>
-
-        <div>
-
+        <Container>
           <Row>
             <DragDropContext onDragEnd={onDragEnd}>
               {columns &&
@@ -468,97 +379,57 @@ const Task = () => {
                                         </Dropdown.Menu>
                                       </Dropdown>
                                     </div>
+                                    {task.task_image ? (
+                                      <div className='taskImg mt-3'>
+                                        <img
+                                          src={`${API}/${task.task_image}`}
+                                          alt='task'
+                                        />
+                                      </div>
+                                    ) : (
+                                      ''
+                                    )}
 
-                                     />
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-
-                    <Container>
-                        <Row>
-                            <DragDropContext onDragEnd={onDragEnd}>
-                                {columns && columns.map((column) => (
-                                    <Col md={4}>
-                                        <div className="pendingList">
-                                            <div className="taskTopHeading">
-                                                <p>{column.title}</p>
-                                            </div>
-                                            <Droppable droppableId={column.id}>
-                                                {(provided: any) => (
-                                                    <div
-                                                        className='list-container'
-                                                        {...provided.droppableProps}
-                                                        ref={provided.innerRef}
-                                                        style={{
-                                                            overflow: "auto",
-                                                            maxHeight: 'calc(100vh - 288px)',
-                                                        }}
-                                                    >
-                                                        {column.tasks.map((task, index) => (
-                                                            <Draggable
-                                                                key={task.id}
-                                                                draggableId={task.id}
-                                                                index={index}
-
-                                                            >
-                                                                {(provided: any) => (
-                                                                    <div className="taskCard"
-                                                                        ref={provided.innerRef}
-                                                                        {...provided.draggableProps}
-                                                                        {...provided.dragHandleProps}
-                                                                        onMouseDown={() => handleMouseDown(task.id)}
-                                                                    >
-                                                                        <div className="taskHeading">
-                                                                            <p className='mb-0'>{task.title}</p>
-                                                                            <Dropdown className='taskIcon' onMouseDown={(e) => e.stopPropagation()}>
-                                                                                <Dropdown.Toggle id="dropdown-basic">
-                                                                                    <FontAwesomeIcon icon={faEllipsis} />
-                                                                                </Dropdown.Toggle>
-                                                                                <Dropdown.Menu>
-                                                                                    <Dropdown.Item onClick={() => viewTasks(task.id)}>
-                                                                                        View
-                                                                                    </Dropdown.Item>
-                                                                                    <Dropdown.Item onClick={() => EditTasks(task.id)}>
-                                                                                        Edit
-                                                                                    </Dropdown.Item>
-                                                                                    <Dropdown.Item onClick={() => deleteTasks(task.id, task.title)}>
-                                                                                        Delete
-                                                                                    </Dropdown.Item>
-                                                                                </Dropdown.Menu>
-                                                                            </Dropdown>
-                                                                        </div>
-                                                                        {task.task_image ? <div className="taskImg mt-3">
-                                                                            <img src={`${API}/${task.task_image}`} alt='task' />
-                                                                        </div> : ""}
-
-                                                                        {column?.id !== "DONE" && (
-                                                                            <div className="taskDate">
-                                                                                <p className={getDueDateStatus(task.dueDate) === "Due Yesterday" ? "pastDate" : getDueDateStatus(task.dueDate) === "Due Today" ? "dueDate" : "futureDate"}>
-                                                                                    <FontAwesomeIcon icon={faClock} />
-                                                                                    <span>{getDueDateStatus(task.dueDate)}</span>
-                                                                                </p>
-                                                                            </div>
-                                                                        )}
-                                                                        <div className="taskMember">
-                                                                            {task.assigned_members && task.assigned_members.split(',').map((filePath: any, index: number) => (
-                                                                                <div key={`taskAssign`+index}>
-                                                                                    {filePath.trim() ? <img key={index} src={`${API}/${filePath.trim()}`} alt="" />
-                                                                                        : <img className='default' src={memberIcon} alt='task' />}
-                                                                                </div>
-                                                                            ))}
-                                                                        </div>
-                                                                    </div>
-                                                                )}
-
-                                                            </Draggable>
-                                                        ))}
-                                                        {provided.placeholder}
-                                                        <div className="addTask">
-                                                            <button className='mt-0' onClick={() => addTask(column.title)}><FontAwesomeIcon icon={faPlus} className='mr-2' /> Add a Task</button>
-                                                        </div>
-                                                    </div>
-
+                                    {column?.id !== 'DONE' && (
+                                      <div className='taskDate'>
+                                        <p
+                                          className={
+                                            getDueDateStatus(task.dueDate) ===
+                                            'Due Yesterday'
+                                              ? 'pastDate'
+                                              : getDueDateStatus(
+                                                  task.dueDate
+                                                ) === 'Due Today'
+                                              ? 'dueDate'
+                                              : 'futureDate'
+                                          }
+                                        >
+                                          <FontAwesomeIcon icon={faClock} />
+                                          <span>
+                                            {getDueDateStatus(task.dueDate)}
+                                          </span>
+                                        </p>
+                                      </div>
+                                    )}
+                                    <div className='taskMember'>
+                                      {task.assigned_members &&
+                                        task.assigned_members
+                                          .split(',')
+                                          .map(
+                                            (filePath: any, index: number) => (
+                                              <div key={`taskAssign` + index}>
+                                                {filePath.trim() ? (
+                                                  <img
+                                                    key={index}
+                                                    src={`${API}/${filePath.trim()}`}
+                                                    alt=''
+                                                  />
+                                                ) : (
+                                                  <img
+                                                    className='default'
+                                                    src={memberIcon}
+                                                    alt='task'
+                                                  />
                                                 )}
                                               </div>
                                             )
@@ -589,9 +460,7 @@ const Task = () => {
                 ))}
             </DragDropContext>
           </Row>
-
-        </div>
-
+        </Container>
       </div>
       <AddTask
         show={show}
