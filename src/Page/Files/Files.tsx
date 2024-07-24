@@ -47,40 +47,36 @@ import LightBox from '../../Component/LightBox/LightBox'
 import { adminCheck } from '../../api/admin'
 
 const Files = () => {
-
-
-  const [filesList, setFilesList] = useState([]);
-  const [count, setCount] = useState(0);
-  const [filesId, setFilesId] = useState("");
-  const [deleteId, setDeleteId] = useState("");
-  const [deleteName, setDeleteName] = useState("");
-  const [lightBoxFile, setLightBoxFile] = useState("");
-  const [member, setMember] = useState([]);
-  const [favoriteList, setFavoriteList] = useState([]);
-  const [deleteShow, setDeleteShow] = useState(false);
-  const handleDeleteClose = () => setDeleteShow(false);
-  const [totalValue, setTotalValue] = useState<any>();
-  const [limitValue, setLimitValue] = useState<any>();
-  const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(10);
-  const pageCount = Math.ceil(totalValue / limitValue);
-  const [prevButton, setPrevButton] = useState<boolean>(false);
-  const [nextButton, setNextButton] = useState<boolean>(false);
-  const [pageValue, setPageValue] = useState<number>();
-  const [lightBoxShow, setLightBoxShow] = useState(false);
-  const handleLightBoxClose = () => setLightBoxShow(false);
-  const [uploadShow, setUploadShow] = useState(false);
-  const handleUploadClose = () => setUploadShow(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [shareShow, setShareShow] = useState(false);
-  const handleShareClose = () => setShareShow(false);
-  const [sharesShow, setSharesShow] = useState<any>([]);
-  const [shares, setShares] = useState<any>([]);
-  const [filterTag, setFilterTag] = useState('');
-  const [sortBy, setSortBy] = useState<string | null>(null);
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-  const [lightBoxVisible, setLightBoxVisible] = useState(false);
-
+  const [filesList, setFilesList] = useState([])
+  const [count, setCount] = useState(0)
+  const [filesId, setFilesId] = useState('')
+  const [deleteId, setDeleteId] = useState('')
+  const [lightBoxFile, setLightBoxFile] = useState('')
+  const [member, setMember] = useState([])
+  const [favoriteList, setFavoriteList] = useState([])
+  const [deleteShow, setDeleteShow] = useState(false)
+  const handleDeleteClose = () => setDeleteShow(false)
+  const [totalValue, setTotalValue] = useState<any>()
+  const [limitValue, setLimitValue] = useState<any>()
+  const [page, setPage] = useState<number>(1)
+  const [limit, setLimit] = useState<number>(10)
+  const pageCount = Math.ceil(totalValue / limitValue)
+  const [prevButton, setPrevButton] = useState<boolean>(false)
+  const [nextButton, setNextButton] = useState<boolean>(false)
+  const [pageValue, setPageValue] = useState<number>()
+  const [lightBoxShow, setLightBoxShow] = useState(false)
+  const handleLightBoxClose = () => setLightBoxShow(false)
+  const [uploadShow, setUploadShow] = useState(false)
+  const handleUploadClose = () => setUploadShow(false)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [shareShow, setShareShow] = useState(false)
+  const handleShareClose = () => setShareShow(false)
+  const [sharesShow, setSharesShow] = useState<any>([])
+  const [shares, setShares] = useState<any>([])
+  const [filterTag, setFilterTag] = useState('')
+  const [sortBy, setSortBy] = useState<string | null>(null)
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+  const [lightBoxVisible, setLightBoxVisible] = useState(false)
 
   const fileUpload = () => {
     setUploadShow(true)
@@ -136,18 +132,16 @@ const Files = () => {
   }
 
   // delete files
-
-  const fileRemove = (id: string, name: string) => {
-    setDeleteShow(true);
-    setDeleteName(name);
-    setDeleteId(id);
+  const fileRemove = (id: string) => {
+    setDeleteShow(true)
+    setDeleteId(id)
   }
   const deleteApi = () => {
     filesDelete(deleteId).then((data) => {
-      showNotifications('success', 'File Deleted', deleteName);
-      setCount(count + 1);
-      setDeleteShow(false);
-    });
+      showNotifications('success', 'Files deleted successfully')
+      setCount(count + 1)
+      setDeleteShow(false)
+    })
   }
   // download file
   const handleDownloadClick = async (fileName: string) => {
@@ -167,14 +161,12 @@ const Files = () => {
   }
 
   // favorite choose
-  const favoriteAdd = (id: string, name: string) => {
+  const favoriteAdd = (id: string) => {
     favoriteFile(id).then((data) => {
       if (data.newFavorite === true) {
-
-        showNotifications('success', 'File Added to Favorites', name);
-      }
-      else {
-        showNotifications('success', 'File Removed from Favorites', name);
+        showNotifications('success', 'Favorite add successfully')
+      } else {
+        showNotifications('error', 'Favorite remove successfully')
       }
       setCount(count + 1)
     })
@@ -273,7 +265,6 @@ const Files = () => {
     <div id='files'>
       <>
         <ToastContainer />
-      <Layout>
         <div className='mainContent'>
           <div className='files'>
             <div className='text43'>Favorites</div>
@@ -486,30 +477,42 @@ const Files = () => {
                             </button>
                           </td>
                         )}
-
-                        {file.delete ?
-                          <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
-                            +
-                          </div>
-                          : ""}
-                      </div>
-                    </td>
-                      : <td className='tableAction'><button className='btn assignBtn' onClick={() => shareModal(file.id, file.shares)}>Share</button></td>
-                    }
-                    <td className='tableAction'>
-                      <button className='btn download' onClick={() => handleDownloadClick(file.name)}><img src={download} alt="download" /></button>
-                      {file.delete ?
-                        <button className='btn delete' onClick={() => fileRemove(file.id, file.name)}><img src={deleteIcon} alt="delete" /></button>
-                        : ""}
-                    </td>
-                    <td>
-                      {file.delete ?
-                        <button className='btn start' onClick={() => favoriteAdd(file.id, file.name)}>
-                          {file.favorite === 0 ? <img src={star} alt="download" /> : <img src={markStar} alt="download" />}
-                        </button>
-                        : ""}
-                    </td>
-                  </tr>)}
+                        <td className='tableAction'>
+                          <button
+                            className='btn download'
+                            onClick={() => handleDownloadClick(file.name)}
+                          >
+                            <img src={download} alt='download' />
+                          </button>
+                          {file.delete ? (
+                            <button
+                              className='btn delete'
+                              onClick={() => fileRemove(file.id)}
+                            >
+                              <img src={deleteIcon} alt='delete' />
+                            </button>
+                          ) : (
+                            ''
+                          )}
+                        </td>
+                        <td>
+                          {file.delete ? (
+                            <button
+                              className='btn start'
+                              onClick={() => favoriteAdd(file.id)}
+                            >
+                              {file.favorite === 0 ? (
+                                <img src={star} alt='download' />
+                              ) : (
+                                <img src={markStar} alt='download' />
+                              )}
+                            </button>
+                          ) : (
+                            ''
+                          )}
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </Table>
               <Pagination
