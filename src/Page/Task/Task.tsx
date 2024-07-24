@@ -44,6 +44,7 @@ const Task = () => {
     const handleClose = () => setShow(false);
     const [status, setStatus] = useState("");
     const [deleteId, setDeleteId] = useState("");
+    const [deleteTitle, setDeleteTitle] = useState("");
     const [taskId, setTaskId] = useState("");
     const [pendingList, setPendingList] = useState([]);
     const [doingList, setDoingList] = useState([]);
@@ -144,14 +145,15 @@ const Task = () => {
     };
 
     // delete task
-    const deleteTasks = (id: string) => {
+    const deleteTasks = (id: string, title: string) => {
         setDeleteId(id);
+        setDeleteTitle(title);
         setDeleteShow(true);
     }
 
     const taskRemove = () => {
         deleteTask(deleteId).then((data) => {
-            showNotifications('success', data.message);
+            showNotifications('success', 'Task Deleted', deleteTitle);
             setDeleteShow(false);
         });
     }
@@ -232,7 +234,6 @@ const Task = () => {
         <>
             <Layout>
                 <div className='mainTaskContent'>
-                    <ToastContainer />
                     <Container>
                         <Row>
                             <Col md={12}>
@@ -319,7 +320,7 @@ const Task = () => {
                                                                                     <Dropdown.Item onClick={() => EditTasks(task.id)}>
                                                                                         Edit
                                                                                     </Dropdown.Item>
-                                                                                    <Dropdown.Item onClick={() => deleteTasks(task.id)}>
+                                                                                    <Dropdown.Item onClick={() => deleteTasks(task.id, task.title)}>
                                                                                         Delete
                                                                                     </Dropdown.Item>
                                                                                 </Dropdown.Menu>

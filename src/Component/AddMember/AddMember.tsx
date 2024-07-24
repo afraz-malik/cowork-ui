@@ -1,6 +1,5 @@
 import React, { useState, useRef,useEffect } from 'react'
 import { useForm } from 'react-hook-form';
-import { ToastContainer } from 'react-toastify';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import "./AddMember.css";
 import { memberAdd } from '../../api/member';
@@ -72,7 +71,6 @@ const AddMember = ({ show, setShow, handleClose }: AddMemberProps) => {
                 }
                 else {
                     showNotifications('success', 'Member Added', companyName + ' added successfully');
-                    // showNotifications('success', 'Member add and email send successfully');
                     setValue('firstName', "")
                     setValue('firstName', "")
                     setValue('lastName', "")
@@ -91,8 +89,6 @@ const AddMember = ({ show, setShow, handleClose }: AddMemberProps) => {
     return (
         <>
             <Modal show={show} onHide={handleClose} centered size="lg">
-                <ToastContainer />
-
                 <div className="addMemberForm">
                     <button className='closeModal' onClick={handleClose}>
                         <FontAwesomeIcon icon={faXmark} />

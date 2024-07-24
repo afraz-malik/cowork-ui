@@ -247,3 +247,18 @@
 .resourceAdd .resourceName input {
     padding-left: calc(30% + 12px);
 }
+
+#addResource .dropdown-menu {
+    padding: 16px 8px;
+    border-radius: 12px;
+}
+
+#addResource .dropdown-menu .dropdown-item {
+    padding: 8px 8px;
+    border-radius: 8px;
+    margin: 4px 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+}

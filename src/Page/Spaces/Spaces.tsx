@@ -18,7 +18,6 @@ import editPen from "../../Assets/Images/icon/edit-01.svg";
 import EditSpaces from "../../Component/ViewSpaces/EditSpaces";
 import AssignMember from "../../Component/AssignMember/AssignMember";
 import { separateComma } from "../../CommonFunction/Function";
-import { ToastContainer } from "react-toastify";
 import blankUser from "../../Assets/Images/icon/blank-profile.jpg";
 import memberAvatar from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
@@ -129,7 +128,6 @@ const Spaces = () => {
   return (
     <>
       <Layout>
-        <ToastContainer />
         <div className="mainContent">
           <div className="memberBox">
             <div className="topLine">

@@ -181,7 +181,7 @@ const EditTask = ({
         setTitle(data.data.title);
         setTaskImage(data.data.task_image);
         setDueDate(data.data.dueDate);
-        setAssignedMembers(JSON.parse(data.data.assigned_member_data));
+        setAssignedMembers(data.data.assigned_member_date && JSON.parse(data.data.assigned_member_data));
         setAssignMember(data.data.assign);
         const assignMemberArray = data.data.assign.split(",");
         setShares(assignMemberArray);

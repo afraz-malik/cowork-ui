@@ -147,7 +147,7 @@ const Announcement = () => {
         showNotifications('error', data.message);
       }
       else {
-        showNotifications('success', 'Post add successfully');
+        showNotifications('success', 'Post Submitted', post.length > 30 ? post.slice(0, 30) + '...' : post);
         setFile("");
         setPost("");
         setUploadedFiles([])
@@ -200,7 +200,7 @@ const Announcement = () => {
           showNotifications('error', data.message);
         }
         else {
-          showNotifications('success', 'Comment add successfully');
+          showNotifications('success', 'Comment Submitted', comment.length > 30 ? comment.slice(0, 30) + '...' : comment);
           setComment("");
           setPlaceholder("");
           setCount(count + 1);
@@ -280,7 +280,7 @@ const Announcement = () => {
     replyCommentReply(post_id, comment_id, reply_id);
   }
   // post like
-  const postLikes = (post_id: string) => {
+  const postLikes = (post_id: string, post: string) => {
     let postInfo = {
       "id": uuidv4(),
       "user_id": auth.user.id,
@@ -292,7 +292,7 @@ const Announcement = () => {
         showNotifications('error', data.message);
       }
       else {
-        showNotifications('success', 'post like successfully');
+        showNotifications('success', 'Post Liked', post.length > 30 ? post.slice(0, 30) + '...' : post);
         setCount(count + 1)
       }
     })
@@ -326,7 +326,7 @@ const Announcement = () => {
         showNotifications('error', data.message);
       }
       else {
-        showNotifications('success', 'Comment like successfully');
+        showNotifications('success', 'Comment Liked');
         setCount(count + 1)
       }
     })
@@ -395,7 +395,7 @@ const Announcement = () => {
   }
 
   // post archive
-  const postArchive = (postId: string) => {
+  const postArchive = (postId: string, post: string) => {
     let postArchive = {
       "archive": true
     }
@@ -404,7 +404,7 @@ const Announcement = () => {
         showNotifications('error', data.message);
       }
       else {
-        showNotifications('success', 'Post delete successfully');
+        showNotifications('success', 'Post Deleted', post.length > 30 ? post.slice(0, 30) + '...' : post);
         setCount(count + 1)
       }
     })
@@ -440,7 +440,6 @@ const Announcement = () => {
   return (
     <>
       <Layout>
-        <ToastContainer />
         <div className='mainContent'>
           <div className='d-flex justify-content-center'>
             <div className="announcementAdmin">
@@ -511,7 +510,7 @@ const Announcement = () => {
                             <img className="line-chart-up-04-icon" alt="" src={dotLine} />
                           </Dropdown.Toggle>
                           <Dropdown.Menu className='postDelete'>
-                            <Dropdown.Item className='custom-dropdown-toggle' onClick={() => postArchive(data.id)}><img className="line-chart-up-04-icon" alt="" src={trash} /> Delete Post </Dropdown.Item>
+                            <Dropdown.Item className='custom-dropdown-toggle' onClick={() => postArchive(data.id, data.post)}><img className="line-chart-up-04-icon" alt="" src={trash} /> Delete Post </Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
                       </div>
@@ -526,7 +525,7 @@ const Announcement = () => {
                     </div> : ""}
 
                     <div className="feedback">
-                      <div className="like" onClick={data.user_has_liked === null ? () => postLikes(data.id) : () => updatePostLikes(data.id, data.user_has_liked)}>
+                      <div className="like" onClick={data.user_has_liked === null ? () => postLikes(data.id, data.post) : () => updatePostLikes(data.id, data.user_has_liked)}>
                         {data.user_has_liked ? <img className="heart-icon" alt="" src={clickLove} />
                           : <img className="heart-icon" alt="" src={blankLove} />}
                         <div className="comments">{data.likes_count} {data.likes_count === 1 ? "like" : "likes"}</div>

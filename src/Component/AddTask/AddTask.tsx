@@ -230,7 +230,7 @@ const AddTask = ({ show, setShow, status, handleClose }: AddTaskProps) => {
     };
 
     taskAdd(task).then((data) => {
-      showNotifications("success", "Task add successfully!!");
+      showNotifications("success", "Task Added", title);
       setShow(false);
       setShareMember([]);
       setShares([]);

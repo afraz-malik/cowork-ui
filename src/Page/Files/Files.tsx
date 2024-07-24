@@ -40,6 +40,7 @@ const Files = () => {
   const [count, setCount] = useState(0);
   const [filesId, setFilesId] = useState("");
   const [deleteId, setDeleteId] = useState("");
+  const [deleteName, setDeleteName] = useState("");
   const [lightBoxFile, setLightBoxFile] = useState("");
   const [member, setMember] = useState([]);
   const [favoriteList, setFavoriteList] = useState([]);
@@ -126,13 +127,14 @@ const Files = () => {
   };
 
   // delete files
-  const fileRemove = (id: string) => {
+  const fileRemove = (id: string, name: string) => {
     setDeleteShow(true);
+    setDeleteName(name);
     setDeleteId(id);
   }
   const deleteApi = () => {
     filesDelete(deleteId).then((data) => {
-      showNotifications('success', 'Files deleted successfully');
+      showNotifications('success', 'File Deleted', deleteName);
       setCount(count + 1);
       setDeleteShow(false);
     });
@@ -155,13 +157,13 @@ const Files = () => {
   };
 
   // favorite choose
-  const favoriteAdd = (id: string) => {
+  const favoriteAdd = (id: string, name: string) => {
     favoriteFile(id).then((data) => {
       if (data.newFavorite === true) {
-        showNotifications('success', 'Favorite add successfully');
+        showNotifications('success', 'File Added to Favorites', name);
       }
       else {
-        showNotifications('error', 'Favorite remove successfully');
+        showNotifications('success', 'File Removed from Favorites', name);
       }
       setCount(count + 1)
     });
@@ -259,7 +261,6 @@ const Files = () => {
   return (
     <div id='files'>
       <Layout>
-        <ToastContainer />
         <div className='mainContent'>
           <div className="files">
             <div className="text43">Favorites</div>
@@ -349,12 +350,12 @@ const Files = () => {
                     <td className='tableAction'>
                       <button className='btn download' onClick={() => handleDownloadClick(file.name)}><img src={download} alt="download" /></button>
                       {file.delete ?
-                        <button className='btn delete' onClick={() => fileRemove(file.id)}><img src={deleteIcon} alt="delete" /></button>
+                        <button className='btn delete' onClick={() => fileRemove(file.id, file.name)}><img src={deleteIcon} alt="delete" /></button>
                         : ""}
                     </td>
                     <td>
                       {file.delete ?
-                        <button className='btn start' onClick={() => favoriteAdd(file.id)}>
+                        <button className='btn start' onClick={() => favoriteAdd(file.id, file.name)}>
                           {file.favorite === 0 ? <img src={star} alt="download" /> : <img src={markStar} alt="download" />}
                         </button>
                         : ""}
