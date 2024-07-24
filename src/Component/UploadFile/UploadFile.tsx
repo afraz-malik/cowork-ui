@@ -139,10 +139,10 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
         if (nickName.length > 0) {
             filesAdd(files).then((data) => {
                 if (data.statusCode !== 201) {
-                    showNotifications('error', 'SOmething wrong');
+                    showNotifications('error', 'Something wrong');
                 }
                 else {
-                    showNotifications('success', 'Files upload successfully');
+                    showNotifications('success', 'File Uploaded', uploadedFiles[0].name);
                     setUploadShow(false);
                     setUploadedFiles([]);
                     setNickName("");
@@ -169,7 +169,6 @@ const UploadFile = ({ uploadShow, setUploadShow, handleUploadClose }: UploadFile
     return (
         <>
             <Modal show={uploadShow} onHide={handleUploadClose} centered size="lg">
-                <ToastContainer />
                 <div className="addMemberForm">
                     <button className='closeModal' onClick={handleUploadClose}>
                         <FontAwesomeIcon icon={faXmark} />

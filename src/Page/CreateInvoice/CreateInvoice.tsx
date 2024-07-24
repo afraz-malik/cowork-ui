@@ -121,7 +121,7 @@ const CreateInvoice = () => {
                 showNotifications('error', data.message);
             }
             else {
-                showNotifications('success', 'INvoice add successfully');
+                showNotifications('success', 'Manual Invoice Created');
                 setValue('invoiceId', "")
                 setValue('notes', "");
                 if (userInfo.user.role === "admin") {
@@ -244,7 +244,6 @@ const CreateInvoice = () => {
     return (
         <div id='new-invoice'>
             <Layout>
-                <ToastContainer />
                 <div className='mainContent'>
                     <div className="invoiceHeading">
                         <nav aria-label="breadcrumb">

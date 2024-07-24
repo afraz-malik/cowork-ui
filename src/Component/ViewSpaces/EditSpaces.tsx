@@ -71,20 +71,19 @@ const EditSpaces = ({ spacesId, updateShow, setUpdateShow, handleUpdateClose }: 
     }
 
      // hide spaces info
-     const spacesHide = () => {
+     const spacesHide = (name: string) => {
         let spaces:any = {
             "active": false,
         }
         updateSpaces(spacesId, spaces).then((data) => {
             setUpdateShow(false);
-            showNotifications("success","Asset Deleted", ' deleted successfully');
+            showNotifications("success","Asset Deleted", name + ' deleted successfully');
         })
     }
 
   return (
     <>
      <Modal show={updateShow} onHide={handleUpdateClose} centered size="lg">
-                <ToastContainer />
 
                 <div className="addMemberForm">
                     <button className='closeModal' onClick={handleUpdateClose}>
@@ -165,7 +164,7 @@ const EditSpaces = ({ spacesId, updateShow, setUpdateShow, handleUpdateClose }: 
                             </Col>
 
                             <div className="memberAddBtn">
-                            <button type='submit' className='mr-2 deleteSpaces' onClick={spacesHide}>Delete</button>
+                            <button type='submit' className='mr-2 deleteSpaces' onClick={() => spacesHide(name)}>Delete</button>
                                 <button type='submit' className='save' onClick={spacesUpdate}>Save</button>
                             </div>
                         </Row>
