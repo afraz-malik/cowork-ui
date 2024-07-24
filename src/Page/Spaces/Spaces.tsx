@@ -8,6 +8,7 @@ import {
   faPlus,
   faSearch,
 
+
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../Component/Layout/Layout";
 import { DESKIE_API as API } from "../../config";
@@ -24,6 +25,7 @@ import memberAvatar from "../../Assets/Images/icon/memberAvatar.svg";
 import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
 import Pagination from "../../Component/Pagination/Pagination";
 import { Link, useNavigate } from "react-router-dom";
+
 
 const Spaces = () => {
   const navigate = useNavigate()
@@ -129,6 +131,7 @@ const Spaces = () => {
   return (
     <>
 
+
       <Layout>
         <div className="mainContent">
           <div className="memberBox">
@@ -153,6 +156,7 @@ const Spaces = () => {
                 <button onClick={handleShow}>
                   <FontAwesomeIcon icon={faPlus} /> Add Asset
                 </button>
+
               </div>
               <button className='filterBtn'>
                 <img className='mr-2' src={filter} alt='filter' /> Filter

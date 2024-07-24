@@ -82,6 +82,7 @@ const MyInvoice = () => {
     })
   }
 
+
   const filteredInvoices = invoiceList.filter((member: any) => {
     const fullName = `${member.member_first_name} ${member.member_last_name}`
     return (
@@ -307,6 +308,7 @@ const MyInvoice = () => {
           handleClose={handleClose}
         />
       </>
+
     </div>
   )
 }

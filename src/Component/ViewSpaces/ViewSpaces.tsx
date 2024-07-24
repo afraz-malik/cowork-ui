@@ -29,6 +29,7 @@ const ViewSpaces = () => {
     setUpdateShow(true)
   }
 
+
   return (
     <>
       <div className='mainContent'>
@@ -119,6 +120,7 @@ const ViewSpaces = () => {
               </div>
 
               {/* <div className="spacesHeadingBox">
+
                                     <h6>{spacesDetails.name}
                                         <span className='deskType'>
                                             {spacesDetails.tag === "private" ? <span className='private'>Private Office</span> : ""}
@@ -148,6 +150,7 @@ const ViewSpaces = () => {
                                         <p>{spacesDetails.notes}</p>
                                     </div>
                                 </div> */}
+
             </div>
             <div className='leftSpacesImage'>
               {spacesDetails.space_image ? (
@@ -163,6 +166,7 @@ const ViewSpaces = () => {
           </div>
         </div>
       </div>
+
       <EditSpaces
         spacesId={spacesId}
         updateShow={updateShow}

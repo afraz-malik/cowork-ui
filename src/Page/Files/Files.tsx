@@ -49,6 +49,7 @@ import { adminCheck } from '../../api/admin'
 const Files = () => {
 
 
+
   const [filesList, setFilesList] = useState([]);
   const [count, setCount] = useState(0);
   const [filesId, setFilesId] = useState("");
@@ -80,6 +81,7 @@ const Files = () => {
   const [sortBy, setSortBy] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [lightBoxVisible, setLightBoxVisible] = useState(false);
+
 
 
   const fileUpload = () => {
@@ -137,6 +139,7 @@ const Files = () => {
 
   // delete files
 
+
   const fileRemove = (id: string, name: string) => {
     setDeleteShow(true);
     setDeleteName(name);
@@ -148,6 +151,7 @@ const Files = () => {
       setCount(count + 1);
       setDeleteShow(false);
     });
+
   }
   // download file
   const handleDownloadClick = async (fileName: string) => {
@@ -171,10 +175,12 @@ const Files = () => {
     favoriteFile(id).then((data) => {
       if (data.newFavorite === true) {
 
+
         showNotifications('success', 'File Added to Favorites', name);
       }
       else {
         showNotifications('success', 'File Removed from Favorites', name);
+
       }
       setCount(count + 1)
     })
@@ -271,6 +277,7 @@ const Files = () => {
 
   return (
     <div id='files'>
+
       <>
         <ToastContainer />
       <Layout>
@@ -341,8 +348,13 @@ const Files = () => {
                 <button onClick={() => fileUpload()}>
                   <img src={upload} alt='upload' /> Upload File
                 </button>
+
               </div>
+              <button onClick={() => fileUpload()}>
+                <img src={upload} alt='upload' /> Upload File
+              </button>
             </div>
+
             <div className='filesList'>
               <Table responsive hover>
                 <thead>
@@ -558,6 +570,7 @@ const Files = () => {
           />
         )}
       </>
+
     </div>
   )
 }

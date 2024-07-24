@@ -105,6 +105,7 @@ const InvoiceDetails = () => {
 
   return (
     <div id='invoice-detail'>
+
       <>
         <ToastContainer />
         <div className='mainContent'>
@@ -438,6 +439,7 @@ const InvoiceDetails = () => {
                   )}
 
                   {/* <li>
+
                                     <span></span>
                                     <Link to="#">Invoice Edited <b>26 Apr 2024, 11:50 AM</b></Link>
                                 </li>
@@ -445,6 +447,7 @@ const InvoiceDetails = () => {
                                     <span></span>
                                     <Link to="#">Invoice Reminder Sent <b>26 Apr 2024, 11:50 AM</b></Link>
                                 </li> */}
+
                   {invoiceDetail && invoiceDetail.invoice_view ? (
                     <li>
                       <span></span>
@@ -511,6 +514,7 @@ const InvoiceDetails = () => {
           handlePaymentClose={handlePaymentClose}
         />
       </>
+
     </div>
   )
 }

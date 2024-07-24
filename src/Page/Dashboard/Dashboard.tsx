@@ -85,7 +85,9 @@ const Dashboard = () => {
   return (
     <>
       <div className='mainContent'>
+
         <div className=''>
+
           <Row>
             <Col md={4}>
               <div className='dashboardStatus'>
@@ -123,6 +125,7 @@ const Dashboard = () => {
                 </div>
                 <div className='statusContent'>
                   <p>Status Available</p>
+
                 </div>
                 <div className='statusNumber'>
                   <p>6/10</p>
@@ -132,6 +135,7 @@ const Dashboard = () => {
           </Row>
         </div>
         <div className=''>
+
           <Row>
             <Col md={8}>
               <div className='incomeGraph'>
@@ -275,7 +279,9 @@ const Dashboard = () => {
               </div>
             </Col>
           </Row>
+
         </div>
+
       </div>
     </>
   )

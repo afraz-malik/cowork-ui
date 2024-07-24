@@ -114,6 +114,7 @@ const Billing = () => {
 
   return (
     <div id='billing'>
+
       <>
         <div className='mainContent'>
           <div className='invoiceHeading'>
@@ -338,6 +339,7 @@ const Billing = () => {
           </div>
         </div>
       </>
+
     </div>
   )
 }

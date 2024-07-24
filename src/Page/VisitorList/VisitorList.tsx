@@ -137,6 +137,7 @@ const VisitorList = () => {
 
   return (
     <div id='visitor'>
+
       <>
         <ToastContainer />
         <div className='mainContent' id='visitor-log'>
@@ -166,8 +167,22 @@ const VisitorList = () => {
                     &nbsp; Download CSV
                   </button>
                 </CSVLink>
+
               </div>
+              <CSVLink
+                className='visitorDownload'
+                data={csvData}
+                headers={headers}
+                filename={'visitors.csv'}
+              >
+                <button>
+                  <img src={downloadIcon} alt='downloadIcon' />
+                  &nbsp; Download CSV
+                </button>
+              </CSVLink>
             </div>
+          </div>
+
 
             <div className='memberList visitorList'>
               <Table responsive hover>
@@ -262,6 +277,7 @@ const VisitorList = () => {
           </div>
         </div>
       </>
+
     </div>
   )
 }

@@ -120,6 +120,7 @@ const Member = () => {
 
   return (
     <div id='member'>
+
       <>
         <ToastContainer />
         <div className='mainContent'>
@@ -144,20 +145,28 @@ const Member = () => {
                 <button onClick={handleShow}>
                   <FontAwesomeIcon icon={faPlus} /> Add Member
                 </button>
+
               </div>
+              <button onClick={handleShow}>
+                <FontAwesomeIcon icon={faPlus} /> Add Member
+              </button>
             </div>
+          </div>
+
 
             <div className='memberList'>
               <Table responsive hover>
                 <thead>
                   <tr>
                     <th>
+
                       <label className='tableCheckBox'>
                         <div className='contactCheck'>
                           <input type='checkbox' name='agreement' />
                           <span className='checkmark'></span>
                         </div>
                       </label>
+
                     </th>
                     <th></th>
                     <th>
@@ -310,10 +319,26 @@ const Member = () => {
               assignShow={assignShow}
               setAssignShow={setAssignShow}
               handleAssignClose={handleAssignClose}
+
             />
           </div>
+          <AddMember show={show} setShow={setShow} handleClose={handleClose} />
+          <EditMember
+            memberId={memberId}
+            updateShow={updateShow}
+            setUpdateShow={setUpdateShow}
+            handleUpdateClose={handleUpdateClose}
+          />
+          <AssignSpaces
+            memberId={memberId}
+            assignShow={assignShow}
+            setAssignShow={setAssignShow}
+            handleAssignClose={handleAssignClose}
+          />
         </div>
+
       </>
+
     </div>
   )
 }
