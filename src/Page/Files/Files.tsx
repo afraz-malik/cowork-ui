@@ -1,53 +1,40 @@
-import React, { useState, useEffect } from 'react'
-import Layout from '../../Component/Layout/Layout'
-import './Files.css'
-import sketch from '../../Assets/Images/icon/sketch(1).png'
-import file from '../../Assets/Images/icon/file-05.png'
-import figma from '../../Assets/Images/icon/figma.png'
-import imageFile from '../../Assets/Images/icon/image-03.png'
-import upload from '../../Assets/Images/icon/upload.svg'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faArrowDown,
-  faArrowUp,
-  faPlus,
-  faSearch,
-} from '@fortawesome/free-solid-svg-icons'
-import { Dropdown, Table } from 'react-bootstrap'
-import { DESKIE_API as API } from '../../config'
-import filter from '../../Assets/Images/icon/filter-lines.svg'
-import download from '../../Assets/Images/icon/download-cloud-02.svg'
-import deleteIcon from '../../Assets/Images/icon/trash-02 (1).svg'
-import star from '../../Assets/Images/icon/star-01.svg'
-import markStar from '../../Assets/Images/icon/star-01(1).svg'
-import UploadFile from '../../Component/UploadFile/UploadFile'
-import {
-  favoriteFile,
-  filesDelete,
-  getFavoriteList,
-  getFilesList,
-} from '../../api/files'
-import {
-  convertBytesToSize,
-  separateComma,
-} from '../../CommonFunction/Function'
-import moment from 'moment'
-import imgExtension from '../../Assets/Images/icon/feature-image.svg'
-import fileExtension from '../../Assets/Images/icon/feature-file.svg'
-import videoExtension from '../../Assets/Images/icon/feature-video.svg'
-import unknownExtension from '../../Assets/Images/icon/feature-unknown.svg'
-import { showNotifications } from '../../CommonFunction/toaster'
-import { ToastContainer } from 'react-toastify'
-import { getMemberList } from '../../api/member'
-import ShareFile from '../../Component/UploadFile/ShareFile'
-import DeleteModal from '../../Component/DeleteModal/DeleteModal'
-import memberIcon from '../../Assets/Images/icon/memberAvatar.svg'
-import Pagination from '../../Component/Pagination/Pagination'
-import LightBox from '../../Component/LightBox/LightBox'
-import { adminCheck } from '../../api/admin'
+import React, { useState, useEffect } from 'react';
+import Layout from '../../Component/Layout/Layout';
+import "./Files.css";
+import sketch from "../../Assets/Images/icon/sketch(1).png";
+import file from "../../Assets/Images/icon/file-05.png";
+import figma from "../../Assets/Images/icon/figma.png";
+import imageFile from "../../Assets/Images/icon/image-03.png";
+import upload from "../../Assets/Images/icon/upload.svg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Dropdown, Table } from 'react-bootstrap';
+import { DESKIE_API as API } from '../../config';
+import filter from '../../Assets/Images/icon/filter-lines.svg';
+import download from "../../Assets/Images/icon/download-cloud-02.svg";
+import deleteIcon from "../../Assets/Images/icon/trash-02 (1).svg";
+import star from "../../Assets/Images/icon/star-01.svg";
+import markStar from "../../Assets/Images/icon/star-01(1).svg";
+import UploadFile from '../../Component/UploadFile/UploadFile';
+import { favoriteFile, filesDelete, getFavoriteList, getFilesList } from '../../api/files';
+import { convertBytesToSize, separateComma } from '../../CommonFunction/Function';
+import moment from 'moment';
+import imgExtension from "../../Assets/Images/icon/feature-image.svg";
+import fileExtension from "../../Assets/Images/icon/feature-file.svg";
+import videoExtension from "../../Assets/Images/icon/feature-video.svg";
+import unknownExtension from "../../Assets/Images/icon/feature-unknown.svg";
+import { showNotifications } from '../../CommonFunction/toaster';
+import { ToastContainer } from 'react-toastify';
+import { getMemberList } from '../../api/member';
+import ShareFile from '../../Component/UploadFile/ShareFile';
+import DeleteModal from '../../Component/DeleteModal/DeleteModal';
+import memberIcon from "../../Assets/Images/icon/memberAvatar.svg";
+import Pagination from '../../Component/Pagination/Pagination';
+import LightBox from '../../Component/LightBox/LightBox';
+import { adminCheck } from '../../api/admin';
+
 
 const Files = () => {
-
 
   const [filesList, setFilesList] = useState([]);
   const [count, setCount] = useState(0);
@@ -83,60 +70,63 @@ const Files = () => {
 
 
   const fileUpload = () => {
-    setUploadShow(true)
+    setUploadShow(true);
   }
 
   useEffect(() => {
     getFilesList(limit, page, filterTag).then((data) => {
-      setFilesList(data && data.files)
-      setTotalValue(data && data.total)
-      setLimitValue(data && data.limit)
+      setFilesList(data && data.files);
+      setTotalValue(data && data.total);
+      setLimitValue(data && data.limit);
       setPageValue(data && data.page)
-    })
+    });
 
     getMemberList(10, 1).then((data) => {
-      setMember(data.members)
+      setMember(data.members);
     })
 
     getFavoriteList().then((data) => {
-      setFavoriteList(data.favorite)
+      setFavoriteList(data.favorite);
     })
-  }, [uploadShow, count, shareShow, limit, page, filterTag])
+
+  }, [uploadShow, count, shareShow, limit, page, filterTag]);
+
+
+
 
   const getFileType = (extension: string) => {
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif']
-    const videoExtensions = ['mp4', 'avi', 'mov']
-    const documentExtensions = ['pdf', 'doc', 'docx', 'txt']
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    const videoExtensions = ['mp4', 'avi', 'mov'];
+    const documentExtensions = ['pdf', 'doc', 'docx', 'txt'];
 
     if (imageExtensions.includes(extension)) {
-      return imgExtension
+      return imgExtension;
     } else if (videoExtensions.includes(extension)) {
-      return videoExtension
+      return videoExtension;
     } else if (documentExtensions.includes(extension)) {
-      return fileExtension
+      return fileExtension;
     } else {
-      return unknownExtension
+      return unknownExtension;
     }
-  }
+  };
 
   const getFileExtension = (extension: string) => {
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif']
-    const videoExtensions = ['mp4', 'avi', 'mov']
-    const documentExtensions = ['pdf', 'doc', 'docx', 'txt']
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    const videoExtensions = ['mp4', 'avi', 'mov'];
+    const documentExtensions = ['pdf', 'doc', 'docx', 'txt'];
 
     if (imageExtensions.includes(extension)) {
-      return 'file-5 favoriteBox'
+      return 'file-5 favoriteBox';
     } else if (videoExtensions.includes(extension)) {
-      return 'file-4 favoriteBox'
+      return 'file-4 favoriteBox';
     } else if (documentExtensions.includes(extension)) {
-      return 'file-2 favoriteBox'
+      return 'file-2 favoriteBox';
     } else {
-      return 'file-3 favoriteBox'
+      return 'file-3 favoriteBox';
     }
-  }
+  };
 
   // delete files
-
   const fileRemove = (id: string, name: string) => {
     setDeleteShow(true);
     setDeleteName(name);
@@ -151,53 +141,54 @@ const Files = () => {
   }
   // download file
   const handleDownloadClick = async (fileName: string) => {
-    const imageUrl = `${API}/${fileName}`
+    const imageUrl = `${API}/${fileName}`;
     try {
-      const response = await fetch(imageUrl)
-      const blob = await response.blob()
-      const downloadLink = document.createElement('a')
-      downloadLink.href = URL.createObjectURL(blob)
-      downloadLink.download = fileName
-      document.body.appendChild(downloadLink)
-      downloadLink.click()
-      document.body.removeChild(downloadLink)
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = fileName;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
     } catch (error) {
-      console.error('Error downloading the file:', error)
+      console.error('Error downloading the file:', error);
     }
-  }
+  };
 
   // favorite choose
   const favoriteAdd = (id: string, name: string) => {
     favoriteFile(id).then((data) => {
       if (data.newFavorite === true) {
-
         showNotifications('success', 'File Added to Favorites', name);
       }
       else {
         showNotifications('success', 'File Removed from Favorites', name);
       }
       setCount(count + 1)
-    })
+    });
   }
 
   // favorite choose
   const shareUpdate = (id: string) => {
     favoriteFile(id).then((data) => {
       if (data.newFavorite === true) {
-        showNotifications('success', 'Favorite add successfully')
-      } else {
-        showNotifications('error', 'Favorite remove successfully')
+        showNotifications('success', 'Favorite add successfully');
+      }
+      else {
+        showNotifications('error', 'Favorite remove successfully');
       }
 
       setCount(count + 1)
-    })
+    });
   }
 
+
   const shareModal = (fileId: string, shareList: any) => {
-    setFilesId(fileId)
-    setShareShow(true)
-    setSharesShow(shareList)
-    setShares([])
+    setFilesId(fileId);
+    setShareShow(true);
+    setSharesShow(shareList);
+    setShares([]);
   }
 
   useEffect(() => {
@@ -216,6 +207,7 @@ const Files = () => {
     }
   }, [pageCount, page])
 
+
   const nextPage = () => {
     setPage(page + 1)
     setNextButton(true)
@@ -226,267 +218,126 @@ const Files = () => {
   }
 
   const lightBox = (fileName: string) => {
-    setLightBoxShow(true)
-    setLightBoxFile(fileName)
-    setLightBoxVisible(true)
+    setLightBoxShow(true);
+    setLightBoxFile(fileName);
+    setLightBoxVisible(true);
   }
 
-  const filteredFiles = filesList?.filter(
-    (member: any) =>
-      member.nick_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      member.extension.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const filteredFiles = filesList?.filter((member: any) =>
+    member.nick_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    member.extension.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleSort = (columnName: string) => {
     if (sortBy === columnName) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
-      setSortBy(columnName)
-      setSortOrder('asc')
+      setSortBy(columnName);
+      setSortOrder('asc');
     }
-  }
+  };
 
   const sortedFiles = [...filteredFiles].sort((a: any, b: any) => {
     if (sortBy === 'name') {
-      return (
-        a.nick_name.localeCompare(b.nick_name) * (sortOrder === 'asc' ? 1 : -1)
-      )
+      return a.nick_name.localeCompare(b.nick_name) * (sortOrder === 'asc' ? 1 : -1);
     } else if (sortBy === 'uploaded') {
-      const dateA = new Date(a.created_at)
-      const dateB = new Date(b.created_at)
-      return (
-        (dateA.getTime() - dateB.getTime()) * (sortOrder === 'asc' ? 1 : -1)
-      )
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+      return (dateA.getTime() - dateB.getTime()) * (sortOrder === 'asc' ? 1 : -1);
     } else if (sortBy === 'size') {
-      const sizeA = parseFloat(a.size.replace(/[^\d.]/g, '')) // Remove non-numeric characters and parse
-      const sizeB = parseFloat(b.size.replace(/[^\d.]/g, '')) // Remove non-numeric characters and parse
-      return (sizeA - sizeB) * (sortOrder === 'asc' ? 1 : -1)
+      const sizeA = parseFloat(a.size.replace(/[^\d.]/g, '')); // Remove non-numeric characters and parse
+      const sizeB = parseFloat(b.size.replace(/[^\d.]/g, '')); // Remove non-numeric characters and parse
+      return (sizeA - sizeB) * (sortOrder === 'asc' ? 1 : -1);
     }
-    return 0
-  })
+    return 0;
+  });
+
 
   const closeLightBox = () => {
-    setLightBoxVisible(false)
-  }
+    setLightBoxVisible(false);
+  };
+
 
   return (
     <div id='files'>
-      <>
-        <ToastContainer />
       <Layout>
         <div className='mainContent'>
-          <div className='files'>
-            <div className='text43'>Favorites</div>
-            <div className='file-2-parent'>
-              {favoriteList &&
-                favoriteList.map((favorite: any, index) => (
-                  <div
-                    key={`favorite` + index}
-                    className={getFileExtension(favorite.extension)}
-                    onClick={() => lightBox(favorite.files_upload)}
-                  >
-                    <div className='favorite'>
-                      <img src={getFileType(favorite.extension)} alt='avatar' />
-                    </div>
-                    <div className='membership-agreementpdf'>
-                      {favorite.nick_name}.{favorite.extension}
-                    </div>
+          <div className="files">
+            <div className="text43">Favorites</div>
+            <div className="file-2-parent">
+              {favoriteList && favoriteList.map((favorite: any, index) =>
+                <div key={`favorite`+index} className={getFileExtension(favorite.extension)} onClick={() => lightBox(favorite.files_upload)}>
+                  <div className='favorite'>
+                    <img src={getFileType(favorite.extension)} alt="avatar" />
                   </div>
-                ))}
+                  <div className="membership-agreementpdf">
+                    {favorite.nick_name}.{favorite.extension}
+                  </div>
+                </div>)}
             </div>
           </div>
-          <div className='filesTable'>
-            <div className='topLine'>
+          <div className="filesTable">
+            <div className="topLine">
               <div className='tableHeading'>
                 <h6>All Files</h6>
               </div>
               <div className='memberSearch'>
                 <div className='searchInput'>
-                  <input
-                    type='text'
-                    placeholder='Search files'
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className='form-control'
-                  />
+                  <input type="text" placeholder='Search files' onChange={(e) => setSearchTerm(e.target.value)} className='form-control' />
                   <FontAwesomeIcon icon={faSearch} />
                 </div>
 
                 <div className='filterDropdown taskDropdown'>
                   <Dropdown>
                     <Dropdown.Toggle>
-                      <button className='filterBtn'>
-                        <img className='mr-2' src={filter} alt='filter' />
-                        {filterTag === 'created'
-                          ? 'My Files'
-                          : filterTag === 'member'
-                          ? 'Shared With Me'
-                          : filterTag === 'all'
-                          ? 'All Files'
-                          : 'Filters'}
-                      </button>
+                      <button className='filterBtn'><img className='mr-2' src={filter} alt='filter' />{filterTag === "created" ? "My Files" : filterTag === "member" ? "Shared With Me" : filterTag === "all" ? "All Files" : "Filters"}</button>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className='px-1'>
-                      <Dropdown.Item onClick={() => setFilterTag('all')}>
-                        All Files
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setFilterTag('created')}>
-                        My Files
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setFilterTag('member')}>
-                        Shared With Me
-                      </Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('all')}>All Files</Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('created')}>My Files</Dropdown.Item>
+                      <Dropdown.Item onClick={() => setFilterTag('member')}>Shared With Me</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
-                <button onClick={() => fileUpload()}>
-                  <img src={upload} alt='upload' /> Upload File
-                </button>
+                <button onClick={() => fileUpload()}><img src={upload} alt='upload' /> Upload File</button>
               </div>
             </div>
-            <div className='filesList'>
+            <div className="filesList">
               <Table responsive hover>
                 <thead>
                   <tr>
-                    <th>
-                      <label className='tableCheckBox'>
-                        <div className='contactCheck'>
-                          <input type='checkbox' name='agreement' />
-                          <span className='checkmark'></span>
-                        </div>
-                      </label>
-                    </th>
+                    <th><label className="tableCheckBox">
+                      <div className="contactCheck">
+                        <input type="checkbox" name="agreement" />
+                        <span className="checkmark"></span></div>
+                    </label></th>
                     <th></th>
-                    <th onClick={() => handleSort('name')}>
-                      Name{' '}
-                      {sortBy === 'name' ? (
-                        <>
-                          {sortOrder === 'asc' ? (
-                            <FontAwesomeIcon icon={faArrowUp} />
-                          ) : (
-                            <FontAwesomeIcon icon={faArrowDown} />
-                          )}
-                        </>
-                      ) : (
-                        ''
-                      )}
-                    </th>
-                    <th onClick={() => handleSort('uploaded')}>
-                      Uploaded{' '}
-                      {sortBy === 'uploaded' ? (
-                        <>
-                          {sortOrder === 'asc' ? (
-                            <FontAwesomeIcon icon={faArrowUp} />
-                          ) : (
-                            <FontAwesomeIcon icon={faArrowDown} />
-                          )}
-                        </>
-                      ) : (
-                        ''
-                      )}
-                    </th>
-                    <th onClick={() => handleSort('size')}>
-                      Size{' '}
-                      {sortBy === 'size' ? (
-                        <>
-                          {sortOrder === 'asc' ? (
-                            <FontAwesomeIcon icon={faArrowUp} />
-                          ) : (
-                            <FontAwesomeIcon icon={faArrowDown} />
-                          )}
-                        </>
-                      ) : (
-                        ''
-                      )}
-                    </th>
+                    <th onClick={() => handleSort('name')}>Name {sortBy === "name" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : ""}</th>
+                    <th onClick={() => handleSort('uploaded')}>Uploaded {sortBy === "uploaded" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : ""}</th>
+                    <th onClick={() => handleSort('size')}>Size {sortBy === "size" ? <>{sortOrder === "asc" ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}</> : ""}</th>
                     <th>Sharing</th>
                     <th>Actions</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {sortedFiles &&
-                    sortedFiles.map((file: any, index) => (
-                      <tr key={`sortedFile` + index}>
-                        <td>
-                          <label className='tableCheckBox'>
-                            <div className='contactCheck'>
-                              <input type='checkbox' name='agreement' />
-                              <span className='checkmark'></span>
-                            </div>
-                          </label>
-                        </td>
-                        <td>
-                          <img
-                            className={
-                              getFileExtension(file.extension) + ' mx-auto'
-                            }
-                            style={{ width: '40px' }}
-                            src={getFileType(file.extension)}
-                            alt='avatar'
-                          />
-                        </td>
-                        <td
-                          onClick={() => lightBox(file.files_upload)}
-                          style={{ cursor: 'pointer', fontWeight: '800' }}
-                        >
-                          {file.nick_name.length <= 23
-                            ? file.nick_name
-                            : file.nick_name.substring(0, 20) + '...'}
-                          .{file.extension}
-                        </td>
-                        <td>
-                          {moment(file.created_at).format('MMMM D, YYYY')}
-                        </td>
-                        <td>{convertBytesToSize(file.size)}</td>
-                        {file.sharesList ? (
-                          <td>
-                            <div className='avatars2'>
-                              {file.sharesList.map((share: any, i: number) => (
-                                <div key={`shareList` + i}>
-                                  {share.image === 'imageNull' ? (
-                                    <img
-                                      className='avatar-icon36 default'
-                                      alt=''
-                                      src={memberIcon}
-                                    />
-                                  ) : (
-                                    <img
-                                      className={`${
-                                        share.type === 'admin'
-                                          ? 'admin avatar-icon36'
-                                          : 'avatar-icon36'
-                                      }`}
-                                      alt=''
-                                      src={`${API}/${share.image}`}
-                                    />
-                                  )}
-                                </div>
-                              ))}
-                              {file.delete ? (
-                                <div
-                                  className='avatar2'
-                                  onClick={() =>
-                                    shareModal(file.id, file.shares)
-                                  }
-                                >
-                                  +
-                                </div>
-                              ) : (
-                                ''
-                              )}
-                            </div>
-                          </td>
-                        ) : (
-                          <td className='tableAction'>
-                            <button
-                              className='btn assignBtn'
-                              onClick={() => shareModal(file.id, file.shares)}
-                            >
-                              Share
-                            </button>
-                          </td>
+                  {sortedFiles && sortedFiles.map((file: any, index) => <tr key={`sortedFile`+index}>
+                    <td><label className="tableCheckBox">
+                      <div className="contactCheck">
+                        <input type="checkbox" name="agreement" />
+                        <span className="checkmark"></span></div>
+                    </label></td>
+                    <td><img className={getFileExtension(file.extension) + " mx-auto"} style={{ width: "40px" }} src={getFileType(file.extension)} alt="avatar" /></td>
+                    <td onClick={() => lightBox(file.files_upload)} style={{ cursor: "pointer", fontWeight: "800" }}>{file.nick_name.length <= 23 ? file.nick_name : file.nick_name.substring(0, 20) + '...'}.{file.extension}</td>
+                    <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
+                    <td>{convertBytesToSize(file.size)}</td>
+                    {file.sharesList ? <td>
+                      <div className="avatars2">
+                        {file.sharesList.map((share: any,i:number) =>
+                          <div key={`shareList`+i}>{share.image === "imageNull" ? <img className="avatar-icon36 default" alt="" src={memberIcon} />
+                            : <img className={`${share.type === 'admin' ? 'admin avatar-icon36' : 'avatar-icon36'}`} alt="" src={`${API}/${share.image}`} />
+                          }</div>
                         )}
-
                         {file.delete ?
                           <div className="avatar2" onClick={() => shareModal(file.id, file.shares)}>
                             +
@@ -512,52 +363,15 @@ const Files = () => {
                   </tr>)}
                 </tbody>
               </Table>
-              <Pagination
-                page={page}
-                paginationTitle='items'
-                setPage={setPage}
-                limit={limit}
-                setLimit={setLimit}
-                prevButton={prevButton}
-                nextButton={nextButton}
-                pageValue={pageValue}
-                totalValue={totalValue}
-                prevPage={prevPage}
-                nextPage={nextPage}
-                allRequestList={filesList}
-              />
+              <Pagination page={page} paginationTitle="items" setPage={setPage} limit={limit} setLimit={setLimit} prevButton={prevButton} nextButton={nextButton} pageValue={pageValue} totalValue={totalValue} prevPage={prevPage} nextPage={nextPage} allRequestList={filesList} />
             </div>
           </div>
         </div>
-        <UploadFile
-          uploadShow={uploadShow}
-          setUploadShow={setUploadShow}
-          handleUploadClose={handleUploadClose}
-        />
-        <ShareFile
-          shares={shares}
-          setShares={setShares}
-          sharesShow={sharesShow}
-          setSharesShow={setSharesShow}
-          filesId={filesId}
-          shareShow={shareShow}
-          setShareShow={setShareShow}
-          handleShareClose={handleShareClose}
-        />
-        <DeleteModal
-          deleteShow={deleteShow}
-          deleteApi={deleteApi}
-          handleDeleteClose={handleDeleteClose}
-        />
-        {lightBoxVisible && (
-          <LightBox
-            lightBoxFile={lightBoxFile}
-            lightBoxShow={lightBoxShow}
-            setLightBoxShow={setLightBoxShow}
-            handleLightBoxClose={closeLightBox}
-          />
-        )}
-      </>
+        <UploadFile uploadShow={uploadShow} setUploadShow={setUploadShow} handleUploadClose={handleUploadClose} />
+        <ShareFile shares={shares} setShares={setShares} sharesShow={sharesShow} setSharesShow={setSharesShow} filesId={filesId} shareShow={shareShow} setShareShow={setShareShow} handleShareClose={handleShareClose} />
+        <DeleteModal deleteShow={deleteShow} deleteApi={deleteApi} handleDeleteClose={handleDeleteClose} />
+        {lightBoxVisible && <LightBox lightBoxFile={lightBoxFile} lightBoxShow={lightBoxShow} setLightBoxShow={setLightBoxShow} handleLightBoxClose={closeLightBox} />}
+      </Layout>
     </div>
   )
 }
