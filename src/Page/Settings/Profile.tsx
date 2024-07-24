@@ -375,7 +375,7 @@ const Profile = ({ settingTab }: ProfileProps) => {
               </div>
             </div>
           </div>
-          <div className='socialProfile profile-sec'>
+          <div className='socialProfile '>
             <p>Social Profiles</p>
             <div className='rightSideSetting col-8'>
               <div className='companyInput facebook'>
