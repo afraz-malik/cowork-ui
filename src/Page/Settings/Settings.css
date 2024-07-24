@@ -1,424 +1,428 @@
 .settingPage {
-    background-color: #fff;
-    padding: 32px 32px 30px 32px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  background-color: #fff;
+  padding: 32px 32px 30px 32px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .companyOptions {
-    display: flex;
-    margin-bottom: 24px;
+  display: flex;
+  margin-bottom: 24px;
 }
 
 .companyOptions button {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
-    padding: 10px 16px;
-    background-color: #fff;
-    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  padding: 10px 16px;
+  background-color: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 }
 
 .companyOptions button.activeBtn {
-    background-color: rgba(249, 250, 251, 1);
+  background-color: rgba(249, 250, 251, 1);
 }
 
 .companyOptions button:nth-child(1) {
-    border-top: 1px solid rgba(208, 213, 221, 1);
-    border-right: 1px solid rgba(208, 213, 221, 1);
-    border-left: 1px solid rgba(208, 213, 221, 1);
-    border-bottom: 1px solid rgba(208, 213, 221, 1);
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+  border-top: 1px solid rgba(208, 213, 221, 1);
+  border-right: 1px solid rgba(208, 213, 221, 1);
+  border-left: 1px solid rgba(208, 213, 221, 1);
+  border-bottom: 1px solid rgba(208, 213, 221, 1);
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
 
 .companyOptions button:nth-child(2),
 .companyOptions button:nth-child(3),
 .companyOptions button:nth-child(4),
 .companyOptions button:nth-child(5) {
-    border-top: 1px solid rgba(208, 213, 221, 1);
-    border-right: 1px solid rgba(208, 213, 221, 1);
-    border-left: none;
-    border-bottom: 1px solid rgba(208, 213, 221, 1);
+  border-top: 1px solid rgba(208, 213, 221, 1);
+  border-right: 1px solid rgba(208, 213, 221, 1);
+  border-left: none;
+  border-bottom: 1px solid rgba(208, 213, 221, 1);
 }
 
 .companyOptions button:nth-child(5) {
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .companyProfile {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(234, 236, 240, 1);
-    padding-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
+  padding-bottom: 24px;
+}
+.profile-sec {
+  flex-direction: column;
 }
 
 .rightSideSetting {
-    width: 750px;
+  width: 750px;
 }
 
 .rightFileSetting {
-    width: 750px;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .profileHeading h6 {
-    font-family: "MyCustomFont";
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
+  font-family: 'MyCustomFont';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
 }
 
 .profileHeading p {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(71, 84, 103, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(71, 84, 103, 1);
 }
 
 .profileSave .cancel {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    padding: 12px 16px;
-    width: 120px;
-    margin-right: 8px;
-    color: rgba(99, 102, 241, 1);
-    border: 1px solid rgba(99, 102, 241, 1);
-    background-color: #fff;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 12px 16px;
+  width: 120px;
+  margin-right: 8px;
+  color: rgba(99, 102, 241, 1);
+  border: 1px solid rgba(99, 102, 241, 1);
+  background-color: #fff;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .profileSave .save {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    padding: 12px 16px;
-    width: 120px;
-    margin-right: 8px;
-    background-color: rgba(99, 102, 241, 1);
-    border: 1px solid rgba(99, 102, 241, 1);
-    color: white;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 12px 16px;
+  width: 120px;
+  margin-right: 8px;
+  background-color: rgba(99, 102, 241, 1);
+  border: 1px solid rgba(99, 102, 241, 1);
+  color: white;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .companyName {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0px;
-    border-bottom: 1px solid rgba(234, 236, 240, 1);
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0px;
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
 }
 
-.companyName p,.contactDetails p ,.socialProfile p{
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
+.companyName p,
+.contactDetails p,
+.socialProfile p {
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
 }
 
 .contactDetails {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    padding: 20px 0px;
-    border-bottom: 1px solid rgba(234, 236, 240, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 20px 0px;
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
 }
 
 .companyInput {
-    position: relative;
+  position: relative;
 }
 
 .companyInput input::placeholder {
-    color: #98A2B3AA;
+  color: #98a2b3aa;
 }
 
 .companyInput input {
-    width: 100%;
-    border: 1px solid #D0D5DD;
-    color: #171A20;
-    box-shadow: 0px 1px 2px 0px #1018280D;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-right: 12px;
-    padding-left: 250px !important;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    font-family: 'MyCustomFont';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    position: relative;
+  width: 100%;
+  border: 1px solid #d0d5dd;
+  color: #171a20;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 12px;
+  padding-left: 250px !important;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  position: relative;
 }
-.companyInput.profileName input{
-    padding-left: 120px;
-    margin-top: 15px;
+.companyInput.profileName input {
+  padding-left: 120px;
+  margin-top: 15px;
 }
-.companyInput.profileEmail input{
-    padding-left: 145px;
-    margin-top: 15px;
+.companyInput.profileEmail input {
+  padding-left: 145px;
+  margin-top: 15px;
 }
 
 .companyInput.email input {
-    padding-left: 75px;
+  padding-left: 75px;
 }
 
 .companyInput.phone input {
-    padding-left: 150px;
+  padding-left: 150px;
 }
 
 .companyInput.facebook input {
-    padding-left: 200px;
+  padding-left: 200px;
 }
 
 .companyInput.instagram input {
-    padding-left: 201px;
+  padding-left: 201px;
 }
 
 .companyInput.linkedin input {
-    padding-left: 258px;
+  padding-left: 258px;
 }
 
 .companyInput.address textarea::placeholder {
-    color: #98A2B3AA;
+  color: #98a2b3aa;
 }
 
 .companyInput.address textarea {
-    padding-left: 250px;
-    border-radius: 12px;
+  padding-left: 250px;
+  border-radius: 12px;
 }
 
 .companyInput span {
-    width: 240px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    padding: 12px 12px 11px 12px;
-    border: none;
-    font-family: 'MyCustomFont';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #475467;
-    /* color: #101828; */
-    background: transparent;
-    z-index: 1;
-    border-right: 1px solid #D0D5DD;
+  width: 240px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  padding: 12px 12px 11px 12px;
+  border: none;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #475467;
+  /* color: #101828; */
+  background: transparent;
+  z-index: 1;
+  border-right: 1px solid #d0d5dd;
 }
 
 .socialProfile {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 24px;
 }
 
 .logoImageBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 27px;
-    margin-right: 24px;
-    width: 230px;
-    height: 103px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 27px;
+  margin-right: 24px;
+  width: 230px;
+  height: 103px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .logoImageBox .changeLogo,
 .backgroundImageBox .changeLogo {
-    margin-right: 15px;
-    max-width: 152px;
-    max-height: 48px;
+  margin-right: 15px;
+  max-width: 152px;
+  max-height: 48px;
 }
 
-.iconImageBox{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 27px;
-    margin-right: 24px;
-    width: 150px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+.iconImageBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 27px;
+  margin-right: 24px;
+  width: 150px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
-.iconImageBox .changeLogo{
-    max-width: 68px;
-    max-height: 68px;
-    margin-right: 15px;
+.iconImageBox .changeLogo {
+  max-width: 68px;
+  max-height: 68px;
+  margin-right: 15px;
 }
 
 .backgroundImageBox .changeBack {
-    margin-right: 15px;
-    max-width: 115px;
-    max-height: 82px;
+  margin-right: 15px;
+  max-width: 115px;
+  max-height: 82px;
 }
 
 .backgroundImageBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 27px 10px 10px;
-    margin-right: 24px;
-    width: 196px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 27px 10px 10px;
+  margin-right: 24px;
+  width: 196px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .settingCustom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 0px;
-    border-bottom: 1px solid rgba(234, 236, 240, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0px;
+  border-bottom: 1px solid rgba(234, 236, 240, 1);
 }
 
 .dashboardInfos {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .dashboardInfos img {
-    width: 42px;
-    height: 42px;
-    margin-right: 16px;
+  width: 42px;
+  height: 42px;
+  margin-right: 16px;
 }
 
 .dashboardInfos p {
-    font-family: "MyCustomFont";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(29, 41, 57, 1);
-    margin-bottom: 0px;
+  font-family: 'MyCustomFont';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(29, 41, 57, 1);
+  margin-bottom: 0px;
 }
 
 .dashboardInfos span {
-    font-family: "MyCustomFont";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(52, 64, 84, 1);
+  font-family: 'MyCustomFont';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(52, 64, 84, 1);
 }
 
 .react-tel-input .country-list {
-    z-index: 9999 !important;
+  z-index: 9999 !important;
 }
 
 .phoneInput {
-    display: flex;
-    position: relative;
+  display: flex;
+  position: relative;
 }
 
 #settings .phoneInput label {
-    width: 240px;
-    color: #475467;
+  width: 240px;
+  color: #475467;
 }
 
 .phoneInput label {
-    white-space: nowrap;
-    font-family: 'MyCustomFont';
-    padding: 12px 12px 11px 12px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #101828;
-    background: transparent;
-    z-index: 1;
-    border: 1px solid #D0D5DD;
-    border-right: none;
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
+  white-space: nowrap;
+  font-family: 'MyCustomFont';
+  padding: 12px 12px 11px 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #101828;
+  background: transparent;
+  z-index: 1;
+  border: 1px solid #d0d5dd;
+  border-right: none;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 .react-tel-input .form-control {
-    height: 53px !important;
-    width: 100% !important;
-    font-family: 'MyCustomFont' !important;
+  height: 53px !important;
+  width: 100% !important;
+  font-family: 'MyCustomFont' !important;
 }
-.profileImageBox{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-right: 24px;
-    width: 165px;
-    border: 1px solid rgba(234, 236, 240, 1);
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+.profileImageBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-right: 24px;
+  width: 165px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
-.profileImageBox .changeLogo{
-    margin-right: 15px;
-    object-fit: cover;
-    width: 82px;
-    height: 82px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+.profileImageBox .changeLogo {
+  margin-right: 15px;
+  object-fit: cover;
+  width: 82px;
+  height: 82px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
-.profileImageBox .trash{
-    margin-right: 5px;
+.profileImageBox .trash {
+  margin-right: 5px;
 }
 /* .changeLogo,
 .backgroundImageBox .changeLogo {
@@ -427,25 +431,25 @@
     height: 50px;
 } */
 
-.liteIcon{
-    background-color: #fff;
+.liteIcon {
+  background-color: #fff;
 }
-.darkIcon{
-    background-color: rgba(31, 41, 55, 1);
+.darkIcon {
+  background-color: rgba(31, 41, 55, 1);
 }
 
 #settings .memberInput input::placeholder {
-    color: #98A2B3AA;
+  color: #98a2b3aa;
 }
 
 #settings .react-tel-input .form-control {
-    border-radius: 12px;
+  border-radius: 12px;
 }
 
 #settings .react-tel-input .form-control::placeholder {
-    color: #98A2B3AA;
+  color: #98a2b3aa;
 }
 
 #settings .contactDetails .rightSideSetting .phoneInput .react-tel-input {
-    width: calc(100% - 240px);
+  width: calc(100% - 240px);
 }
