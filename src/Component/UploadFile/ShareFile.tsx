@@ -112,13 +112,16 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesS
     const updateShares = () => {
         if (shares) {
             const ids = shares.map((obj: any) => obj.id);
+
             const share = `${ids}`;
             shareUpdate(filesId, { share }).then((data) => {
                 if (data.statusCode !== 200) {
                     showNotifications('error', data.message);
                 }
                 else {
-                    showNotifications('success', 'Share added successfully');
+                    const subMessage = shares[0].first_name + ' ' + shares[0].last_name + (shares.length > 1 ? ', ' + shares[1].first_name + ' ' + shares[1].last_name : '') + (shares.length > 2 ? ' and ' + (shares.length - 2) + ' more' : '')
+                    
+                    showNotifications('success', 'File Shared', subMessage);
                     setShareShow(false);
                     setShares([]);
                     setSearchTerm("");
@@ -127,7 +130,6 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesS
         }
 
     }
-
 
     useEffect(() => {
 
@@ -151,7 +153,6 @@ const ShareFile = ({ filesId, shareShow, setShareShow, handleShareClose, sharesS
     return (
         <>
             <Modal show={shareShow} onHide={handleShareClose} centered size="lg">
-                <ToastContainer />
                 <div className="addMemberForm">
                     <button className='closeModal' onClick={handleShareClose}>
                         <FontAwesomeIcon icon={faXmark} />

@@ -24,6 +24,7 @@ const Layout = ({ children, ...props }: Props) => {
         <div style={{ width: '100%' }}>
           <Header onValueChange={handleValueChange} />
           <div {...props}>
+
             <Outlet />
           </div>
         </div>

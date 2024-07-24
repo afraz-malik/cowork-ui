@@ -121,12 +121,14 @@ const Announcement = () => {
           setUserImage(data.data.data.member_image)
         } else {
           setUserImage(data.data.data.avatar)
+
         }
         setFirstName(data.data.data.first_name)
         setLastName(data.data.data.last_name)
         if (data.data.data.role === 'user') {
           setRole(data.data.data.id)
         }
+
         setUserRole(data.data.data.role)
         setUserId(data.data.data.id)
       }
@@ -151,11 +153,14 @@ const Announcement = () => {
     }
     postAdd(postInfo).then((data) => {
       if (data.statusCode !== 201) {
-        showNotifications('error', data.message)
-      } else {
-        showNotifications('success', 'Post add successfully')
-        setFile('')
-        setPost('')
+
+        showNotifications('error', data.message);
+      }
+      else {
+        showNotifications('success', 'Post Submitted', post.length > 30 ? post.slice(0, 30) + '...' : post);
+        setFile("");
+        setPost("");
+
         setUploadedFiles([])
         setCount(count + 1)
       }
@@ -203,15 +208,18 @@ const Announcement = () => {
     if (comment.length || commentFile.name.length) {
       postComment(postInfo).then((data) => {
         if (data.statusCode !== 201) {
-          showNotifications('error', data.message)
-        } else {
-          showNotifications('success', 'Comment add successfully')
-          setComment('')
-          setPlaceholder('')
-          setCount(count + 1)
-          setCommentFileId('')
-          setCommentFile('')
-          setUploadedCommentFiles([])
+
+          showNotifications('error', data.message);
+        }
+        else {
+          showNotifications('success', 'Comment Submitted', comment.length > 30 ? comment.slice(0, 30) + '...' : comment);
+          setComment("");
+          setPlaceholder("");
+          setCount(count + 1);
+          setCommentFileId("");
+          setCommentFile("");
+          setUploadedCommentFiles([]);
+
         }
       })
     }
@@ -291,7 +299,7 @@ const Announcement = () => {
     replyCommentReply(post_id, comment_id, reply_id)
   }
   // post like
-  const postLikes = (post_id: string) => {
+  const postLikes = (post_id: string, post: string) => {
     let postInfo = {
       id: uuidv4(),
       user_id: auth.user.id,
@@ -300,9 +308,12 @@ const Announcement = () => {
     }
     likesPost(postInfo).then((data) => {
       if (data.statusCode !== 201) {
-        showNotifications('error', data.message)
-      } else {
-        showNotifications('success', 'post like successfully')
+
+        showNotifications('error', data.message);
+      }
+      else {
+        showNotifications('success', 'Post Liked', post.length > 30 ? post.slice(0, 30) + '...' : post);
+
         setCount(count + 1)
       }
     })
@@ -332,9 +343,12 @@ const Announcement = () => {
     }
     commentLike(postInfo).then((data) => {
       if (data.statusCode !== 201) {
-        showNotifications('error', data.message)
-      } else {
-        showNotifications('success', 'Comment like successfully')
+
+        showNotifications('error', data.message);
+      }
+      else {
+        showNotifications('success', 'Comment Liked');
+
         setCount(count + 1)
       }
     })
@@ -405,15 +419,19 @@ const Announcement = () => {
   }
 
   // post archive
-  const postArchive = (postId: string) => {
+  const postArchive = (postId: string, post: string) => {
     let postArchive = {
       archive: true,
     }
     deletePost(postId, postArchive).then((data) => {
       if (data.statusCode !== 200) {
-        showNotifications('error', data.message)
-      } else {
-        showNotifications('success', 'Post delete successfully')
+
+
+        showNotifications('error', data.message);
+      }
+      else {
+        showNotifications('success', 'Post Deleted', post.length > 30 ? post.slice(0, 30) + '...' : post);
+
         setCount(count + 1)
       }
     })
@@ -448,29 +466,21 @@ const Announcement = () => {
   return (
     <>
       <ToastContainer />
-      <div className='mainContent'>
-        <div className='d-flex justify-content-center'>
-          <div className='announcementAdmin'>
-            {/* post upload */}
-            <div className='new-post'>
-              <div className='frame-div'>
-                {userImage && userImage.length ? (
-                  <img
-                    src={`${API}/${userImage}`}
-                    className='avatar-icon'
-                    style={{ objectFit: 'cover' }}
-                    alt='logo'
-                  />
-                ) : (
-                  <img
-                    src={avatar}
-                    className='avatar-icon default'
-                    alt='bell'
-                    style={{ objectFit: 'cover' }}
-                  />
-                )}
-                <div className='input-with-label3'>
-                  {/* <div className="postEmoji">
+
+
+      
+        <div className='mainContent'>
+          <div className='d-flex justify-content-center'>
+            <div className="announcementAdmin">
+              {/* post upload */}
+              <div className="new-post">
+                <div className="frame-div">
+                  {userImage && userImage.length ? <img src={`${API}/${userImage}`} className="avatar-icon" style={{ objectFit: "cover" }} alt="logo" />
+                    : <img src={avatar} className="avatar-icon default" alt="bell" style={{ objectFit: "cover" }} />
+                  }
+                  <div className="input-with-label3">
+                    {/* <div className="postEmoji">
+
                       <img className="heart-icon" alt="emoji" src={emojiIcon} />
                     </div> */}
                   <div className='input3'>
@@ -629,23 +639,16 @@ const Announcement = () => {
                             />
                           </Dropdown.Toggle>
                           <Dropdown.Menu className='postDelete'>
-                            <Dropdown.Item
-                              className='custom-dropdown-toggle'
-                              onClick={() => postArchive(data.id)}
-                            >
-                              <img
-                                className='line-chart-up-04-icon'
-                                alt=''
-                                src={trash}
-                              />{' '}
-                              Delete Post{' '}
-                            </Dropdown.Item>
+
+                            <Dropdown.Item className='custom-dropdown-toggle' onClick={() => postArchive(data.id, data.post)}><img className="line-chart-up-04-icon" alt="" src={trash} /> Delete Post </Dropdown.Item>
+
                           </Dropdown.Menu>
                         </Dropdown>
                       </div>
                     </div>
 
                     <div className='the-modern-workplace'>{data.post}</div>
+
 
                     {data.post_image ? (
                       <div className='images'>
@@ -660,25 +663,13 @@ const Announcement = () => {
                       ''
                     )}
 
-                    <div className='feedback'>
-                      <div
-                        className='like'
-                        onClick={
-                          data.user_has_liked === null
-                            ? () => postLikes(data.id)
-                            : () =>
-                                updatePostLikes(data.id, data.user_has_liked)
-                        }
-                      >
-                        {data.user_has_liked ? (
-                          <img className='heart-icon' alt='' src={clickLove} />
-                        ) : (
-                          <img className='heart-icon' alt='' src={blankLove} />
-                        )}
-                        <div className='comments'>
-                          {data.likes_count}{' '}
-                          {data.likes_count === 1 ? 'like' : 'likes'}
-                        </div>
+
+                    <div className="feedback">
+                      <div className="like" onClick={data.user_has_liked === null ? () => postLikes(data.id, data.post) : () => updatePostLikes(data.id, data.user_has_liked)}>
+                        {data.user_has_liked ? <img className="heart-icon" alt="" src={clickLove} />
+                          : <img className="heart-icon" alt="" src={blankLove} />}
+                        <div className="comments">{data.likes_count} {data.likes_count === 1 ? "like" : "likes"}</div>
+
                       </div>
                       <div className='feedback-child' />
                       <div className='like'>

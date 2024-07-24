@@ -7,23 +7,25 @@ import {
   faArrowRight,
   faPlus,
   faSearch,
-} from '@fortawesome/free-solid-svg-icons'
-import Layout from '../../Component/Layout/Layout'
-import { DESKIE_API as API } from '../../config'
-import { faEye } from '@fortawesome/free-regular-svg-icons'
-import AddSpace from '../../Component/AddSpace/AddSpace'
-import filter from '../../Assets/Images/icon/filter-lines.svg'
-import { getSpacesList } from '../../api/spaces'
-import editPen from '../../Assets/Images/icon/edit-01.svg'
-import EditSpaces from '../../Component/ViewSpaces/EditSpaces'
-import AssignMember from '../../Component/AssignMember/AssignMember'
-import { separateComma } from '../../CommonFunction/Function'
-import { ToastContainer } from 'react-toastify'
-import blankUser from '../../Assets/Images/icon/blank-profile.jpg'
-import memberAvatar from '../../Assets/Images/icon/memberAvatar.svg'
-import spaceAvatar from '../../Assets/Images/icon/spaceAvatar.png'
-import Pagination from '../../Component/Pagination/Pagination'
-import { Link, useNavigate } from 'react-router-dom'
+
+
+} from "@fortawesome/free-solid-svg-icons";
+import Layout from "../../Component/Layout/Layout";
+import { DESKIE_API as API } from "../../config";
+import { faEye } from "@fortawesome/free-regular-svg-icons";
+import AddSpace from "../../Component/AddSpace/AddSpace";
+import filter from "../../Assets/Images/icon/filter-lines.svg";
+import { getSpacesList } from "../../api/spaces";
+import editPen from "../../Assets/Images/icon/edit-01.svg";
+import EditSpaces from "../../Component/ViewSpaces/EditSpaces";
+import AssignMember from "../../Component/AssignMember/AssignMember";
+import { separateComma } from "../../CommonFunction/Function";
+import blankUser from "../../Assets/Images/icon/blank-profile.jpg";
+import memberAvatar from "../../Assets/Images/icon/memberAvatar.svg";
+import spaceAvatar from "../../Assets/Images/icon/spaceAvatar.png";
+import Pagination from "../../Component/Pagination/Pagination";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Spaces = () => {
   const navigate = useNavigate()
@@ -128,23 +130,33 @@ const Spaces = () => {
 
   return (
     <>
-      <ToastContainer />
-      <div className='mainContent'>
-        <div className='memberBox'>
-          <div className='topLine'>
-            <div className='tableHeading'>
-              <h6>All Assets</h6>
-            </div>
-            <div className='memberSearch'>
-              <div className='searchInput'>
-                <input
-                  type='text'
-                  placeholder='Search assets'
-                  value={keywords}
-                  onChange={handleInputChange}
-                  className='form-control'
-                />
-                <FontAwesomeIcon icon={faSearch} />
+
+
+      <Layout>
+        <div className="mainContent">
+          <div className="memberBox">
+            <div className="topLine">
+              <div className="tableHeading">
+                <h6>All Assets</h6>
+              </div>
+              <div className="memberSearch">
+                <div className="searchInput">
+                  <input
+                    type="text"
+                    placeholder="Search assets"
+                    value={keywords}
+                    onChange={handleInputChange}
+                    className="form-control"
+                  />
+                  <FontAwesomeIcon icon={faSearch} />
+                </div>
+                <button className="filterBtn">
+                  <img className="mr-2" src={filter} alt="filter" /> Filter
+                </button>
+                <button onClick={handleShow}>
+                  <FontAwesomeIcon icon={faPlus} /> Add Asset
+                </button>
+
               </div>
               <button className='filterBtn'>
                 <img className='mr-2' src={filter} alt='filter' /> Filter
