@@ -6,11 +6,13 @@ import Profile from './Profile'
 import Account from './Account'
 import Finance from './Finance'
 import Users from './Users'
+import Membership from './Membership'
 
 const Settings = () => {
   const [companyProfile, setCompanyProfile] = useState(false)
   const [companyFinance, setCompanyFinance] = useState(false)
   const [companyCustomization, setCompanyCustomization] = useState(false)
+  const [memberShip,setMemberShip] = useState(false)
   const [companyAccount, setCompanyAccount] = useState(true)
   const [companyUsers, setCompanyUsers] = useState(false)
 
@@ -20,6 +22,7 @@ const Settings = () => {
         setCompanyProfile(true)
         setCompanyFinance(false)
         setCompanyAccount(false)
+        setMemberShip(false)
         setCompanyUsers(false)
         setCompanyCustomization(false)
         break
@@ -27,6 +30,7 @@ const Settings = () => {
         setCompanyProfile(false)
         setCompanyFinance(true)
         setCompanyAccount(false)
+        setMemberShip(false)
         setCompanyUsers(false)
         setCompanyCustomization(false)
         break
@@ -36,12 +40,14 @@ const Settings = () => {
         setCompanyAccount(true)
         setCompanyUsers(false)
         setCompanyCustomization(false)
+        setMemberShip(false)
         break
       case 'users':
         setCompanyProfile(false)
         setCompanyFinance(false)
         setCompanyAccount(false)
         setCompanyUsers(true)
+        setMemberShip(false)
         setCompanyCustomization(false)
         break
       case 'custom':
@@ -49,12 +55,23 @@ const Settings = () => {
         setCompanyFinance(false)
         setCompanyAccount(false)
         setCompanyUsers(false)
+        setMemberShip(false)
         setCompanyCustomization(true)
         break
+        case 'member':
+        setCompanyProfile(false)
+        setCompanyFinance(false)
+        setCompanyAccount(false)
+        setCompanyUsers(false)
+        setMemberShip(true)
+        setCompanyCustomization(false)
+        break
+        
       default:
         setCompanyProfile(false)
         setCompanyFinance(false)
         setCompanyAccount(false)
+        setMemberShip(false)
         setCompanyUsers(false)
         setCompanyCustomization(false)
     }
@@ -68,6 +85,9 @@ const Settings = () => {
         {companyFinance ? <Finance settingTab={settingTab} /> : ''}
         {companyUsers ? <Users settingTab={settingTab} /> : ''}
         {companyCustomization ? <Customization settingTab={settingTab} /> : ''}
+        {memberShip ? <Membership settingTab={settingTab} /> : ''}
+
+
       </Layout>
     </div>
   )

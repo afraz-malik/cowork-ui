@@ -96,14 +96,14 @@ const Resources = () => {
                         {filterTag === 'all'
                           ? 'My Types'
                           : filterTag === 'workspace'
-                            ? 'Workspace'
-                            : filterTag === 'meeting'
-                              ? 'Meeting Spaces'
-                              : filterTag === 'equipment'
-                                ? 'Equipment'
-                                : filterTag === 'other'
-                                  ? 'Other'
-                                  : 'Filters'}
+                          ? 'Workspace'
+                          : filterTag === 'meeting'
+                          ? 'Meeting Spaces'
+                          : filterTag === 'equipment'
+                          ? 'Equipment'
+                          : filterTag === 'other'
+                          ? 'Other'
+                          : 'Filters'}
                       </button>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -255,7 +255,7 @@ const Resources = () => {
               </h6>
             </div>
             {bookingResult &&
-              bookingResult.map((resource, i) => (
+              bookingResult?.map((resource, i) => (
                 <div key={`resource` + i} className='bookingPerson'>
                   <img src={`${API}/${resource.resource_image}`} alt='edit' />
                   <div>
