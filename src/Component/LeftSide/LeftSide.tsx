@@ -45,11 +45,7 @@ const LeftSide = ({ collapsed, setCollapsed }: CollapseProps) => {
         <div className='sidebarBox'>
           <div>
             <div className='sidebarLogo'>
-              {darkIconImage ? (
-                <img src={`${API}/${darkIconImage}`} alt='admin' />
-              ) : (
-                <img src={sidebarLogo} alt='admin' />
-              )}
+              <img src={`${API}/${darkIconImage}`} alt='admin' />
             </div>
             <div className='sidebarMenu' style={{ padding: '0px 15px' }}>
               {userAuth && userAuth.user.role === 'admin' ? (
