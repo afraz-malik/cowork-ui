@@ -1,5 +1,4 @@
 import React, { useState, useEffect, forwardRef } from 'react'
-import Layout from '../../Component/Layout/Layout'
 import './Task.css'
 import { Col, Container, Dropdown, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -261,245 +260,234 @@ const Task = () => {
   }
   return (
     <>
-      <Layout>
-        <div className='mainTaskContent'>
-          <Container>
-            <Row>
-              <Col md={12}>
-                <div className='allTaskFilter'>
-                  <p className='mb-0'>All Tasks</p>
-                  <div className='d-flex'>
-                    <div className='filterDropdown taskDropdown'>
-                      <Dropdown>
-                        <Dropdown.Toggle>
-                          <button className='filterBtn'>
-                            <FontAwesomeIcon icon={faEye} />{' '}
-                            <span className='mx-2'>All Tasks</span>{' '}
-                            <FontAwesomeIcon icon={faChevronDown} />
-                          </button>
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item>All Tasks</Dropdown.Item>
-                          <Dropdown.Item>Your Tasks</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </div>
-                    {/* <div className='filterDropdown'>
+      <div className='mainTaskContent'>
+        <Container>
+          <Row>
+            <Col md={12}>
+              <div className='allTaskFilter'>
+                <p className='mb-0'>All Tasks</p>
+                <div className='d-flex'>
+                  <div className='filterDropdown taskDropdown'>
+                    <Dropdown>
+                      <Dropdown.Toggle>
+                        <button className='filterBtn'>
+                          <FontAwesomeIcon icon={faEye} />{' '}
+                          <span className='mx-2'>All Tasks</span>{' '}
+                          <FontAwesomeIcon icon={faChevronDown} />
+                        </button>
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item>All Tasks</Dropdown.Item>
+                        <Dropdown.Item>Your Tasks</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
+                  {/* <div className='filterDropdown'>
                                         <DatePicker placeholderText="Select a date" onChange={dueDateChange} dateFormat="MM/dd/yyyy" customInput={<CustomDateFormatInput />} renderCustomHeader={CustomHeader} />
                                         </div> */}
-                    <div
-                      className='filterDropdown taskDropdown'
-                      style={{ marginLeft: '1.5rem' }}
-                    >
-                      <Dropdown>
-                        <Dropdown.Toggle>
-                          <button className='filterBtn'>
-                            <img
-                              src={arrow}
-                              alt='arrow'
-                              style={{ marginRight: '7px' }}
-                            />{' '}
-                            Due Date
-                          </button>
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item onClick={() => setSort('ASC')}>
-                            Due Date (Ascending)
-                          </Dropdown.Item>
-                          <Dropdown.Item onClick={() => setSort('DESC')}>
-                            Due Date (Descending)
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </div>
+                  <div
+                    className='filterDropdown taskDropdown'
+                    style={{ marginLeft: '1.5rem' }}
+                  >
+                    <Dropdown>
+                      <Dropdown.Toggle>
+                        <button className='filterBtn'>
+                          <img
+                            src={arrow}
+                            alt='arrow'
+                            style={{ marginRight: '7px' }}
+                          />{' '}
+                          Due Date
+                        </button>
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => setSort('ASC')}>
+                          Due Date (Ascending)
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => setSort('DESC')}>
+                          Due Date (Descending)
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </div>
                 </div>
-              </Col>
-            </Row>
-          </Container>
+              </div>
+            </Col>
+          </Row>
+        </Container>
 
-          <Container>
-            <Row>
-              <DragDropContext onDragEnd={onDragEnd}>
-                {columns &&
-                  columns.map((column) => (
-                    <Col md={4}>
-                      <div className='pendingList'>
-                        <div className='taskTopHeading'>
-                          <p>{column.title}</p>
-                        </div>
-                        <Droppable droppableId={column.id}>
-                          {(provided: any) => (
-                            <div
-                              className='list-container'
-                              {...provided.droppableProps}
-                              ref={provided.innerRef}
-                              style={{
-                                overflow: 'auto',
-                                maxHeight: 'calc(100vh - 288px)',
-                              }}
-                            >
-                              {column.tasks.map((task, index) => (
-                                <Draggable
-                                  key={task.id}
-                                  draggableId={task.id}
-                                  index={index}
-                                >
-                                  {(provided: any) => (
-                                    <div
-                                      className='taskCard'
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                      onMouseDown={() =>
-                                        handleMouseDown(task.id)
-                                      }
-                                    >
-                                      <div className='taskHeading'>
-                                        <p className='mb-0'>{task.title}</p>
-                                        <Dropdown
-                                          className='taskIcon'
-                                          onMouseDown={(e) =>
-                                            e.stopPropagation()
-                                          }
-                                        >
-                                          <Dropdown.Toggle id='dropdown-basic'>
-                                            <FontAwesomeIcon
-                                              icon={faEllipsis}
-                                            />
-                                          </Dropdown.Toggle>
-                                          <Dropdown.Menu>
-                                            <Dropdown.Item
-                                              onClick={() => viewTasks(task.id)}
-                                            >
-                                              View
-                                            </Dropdown.Item>
-                                            <Dropdown.Item
-                                              onClick={() => EditTasks(task.id)}
-                                            >
-                                              Edit
-                                            </Dropdown.Item>
-                                            <Dropdown.Item
-                                              onClick={() =>
-                                                deleteTasks(task.id, task.title)
-                                              }
-                                            >
-                                              Delete
-                                            </Dropdown.Item>
-                                          </Dropdown.Menu>
-                                        </Dropdown>
-                                      </div>
-                                      {task.task_image ? (
-                                        <div className='taskImg mt-3'>
-                                          <img
-                                            src={`${API}/${task.task_image}`}
-                                            alt='task'
-                                          />
-                                        </div>
-                                      ) : (
-                                        ''
-                                      )}
-
-                                      {column?.id !== 'DONE' && (
-                                        <div className='taskDate'>
-                                          <p
-                                            className={
-                                              getDueDateStatus(task.dueDate) ===
-                                              'Due Yesterday'
-                                                ? 'pastDate'
-                                                : getDueDateStatus(
-                                                      task.dueDate
-                                                    ) === 'Due Today'
-                                                  ? 'dueDate'
-                                                  : 'futureDate'
+        <Container>
+          <Row>
+            <DragDropContext onDragEnd={onDragEnd}>
+              {columns &&
+                columns.map((column) => (
+                  <Col md={4}>
+                    <div className='pendingList'>
+                      <div className='taskTopHeading'>
+                        <p>{column.title}</p>
+                      </div>
+                      <Droppable droppableId={column.id}>
+                        {(provided: any) => (
+                          <div
+                            className='list-container'
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                            style={{
+                              overflow: 'auto',
+                              maxHeight: 'calc(100vh - 288px)',
+                            }}
+                          >
+                            {column.tasks.map((task, index) => (
+                              <Draggable
+                                key={task.id}
+                                draggableId={task.id}
+                                index={index}
+                              >
+                                {(provided: any) => (
+                                  <div
+                                    className='taskCard'
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    onMouseDown={() => handleMouseDown(task.id)}
+                                  >
+                                    <div className='taskHeading'>
+                                      <p className='mb-0'>{task.title}</p>
+                                      <Dropdown
+                                        className='taskIcon'
+                                        onMouseDown={(e) => e.stopPropagation()}
+                                      >
+                                        <Dropdown.Toggle id='dropdown-basic'>
+                                          <FontAwesomeIcon icon={faEllipsis} />
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                          <Dropdown.Item
+                                            onClick={() => viewTasks(task.id)}
+                                          >
+                                            View
+                                          </Dropdown.Item>
+                                          <Dropdown.Item
+                                            onClick={() => EditTasks(task.id)}
+                                          >
+                                            Edit
+                                          </Dropdown.Item>
+                                          <Dropdown.Item
+                                            onClick={() =>
+                                              deleteTasks(task.id, task.title)
                                             }
                                           >
-                                            <FontAwesomeIcon icon={faClock} />
-                                            <span>
-                                              {getDueDateStatus(task.dueDate)}
-                                            </span>
-                                          </p>
-                                        </div>
-                                      )}
-                                      <div className='taskMember'>
-                                        {task.assigned_members &&
-                                          task.assigned_members
-                                            .split(',')
-                                            .map(
-                                              (
-                                                filePath: any,
-                                                index: number
-                                              ) => (
-                                                <div key={`taskAssign` + index}>
-                                                  {filePath.trim() ? (
-                                                    <img
-                                                      key={index}
-                                                      src={`${API}/${filePath.trim()}`}
-                                                      alt=''
-                                                    />
-                                                  ) : (
-                                                    <img
-                                                      className='default'
-                                                      src={memberIcon}
-                                                      alt='task'
-                                                    />
-                                                  )}
-                                                </div>
-                                              )
-                                            )}
-                                      </div>
+                                            Delete
+                                          </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                      </Dropdown>
                                     </div>
-                                  )}
-                                </Draggable>
-                              ))}
-                              {provided.placeholder}
-                              <div className='addTask'>
-                                <button
-                                  className='mt-0'
-                                  onClick={() => addTask(column.title)}
-                                >
-                                  <FontAwesomeIcon
-                                    icon={faPlus}
-                                    className='mr-2'
-                                  />{' '}
-                                  Add a Task
-                                </button>
-                              </div>
+                                    {task.task_image ? (
+                                      <div className='taskImg mt-3'>
+                                        <img
+                                          src={`${API}/${task.task_image}`}
+                                          alt='task'
+                                        />
+                                      </div>
+                                    ) : (
+                                      ''
+                                    )}
+
+                                    {column?.id !== 'DONE' && (
+                                      <div className='taskDate'>
+                                        <p
+                                          className={
+                                            getDueDateStatus(task.dueDate) ===
+                                            'Due Yesterday'
+                                              ? 'pastDate'
+                                              : getDueDateStatus(
+                                                  task.dueDate
+                                                ) === 'Due Today'
+                                              ? 'dueDate'
+                                              : 'futureDate'
+                                          }
+                                        >
+                                          <FontAwesomeIcon icon={faClock} />
+                                          <span>
+                                            {getDueDateStatus(task.dueDate)}
+                                          </span>
+                                        </p>
+                                      </div>
+                                    )}
+                                    <div className='taskMember'>
+                                      {task.assigned_members &&
+                                        task.assigned_members
+                                          .split(',')
+                                          .map(
+                                            (filePath: any, index: number) => (
+                                              <div key={`taskAssign` + index}>
+                                                {filePath.trim() ? (
+                                                  <img
+                                                    key={index}
+                                                    src={`${API}/${filePath.trim()}`}
+                                                    alt=''
+                                                  />
+                                                ) : (
+                                                  <img
+                                                    className='default'
+                                                    src={memberIcon}
+                                                    alt='task'
+                                                  />
+                                                )}
+                                              </div>
+                                            )
+                                          )}
+                                    </div>
+                                  </div>
+                                )}
+                              </Draggable>
+                            ))}
+                            {provided.placeholder}
+                            <div className='addTask'>
+                              <button
+                                className='mt-0'
+                                onClick={() => addTask(column.title)}
+                              >
+                                <FontAwesomeIcon
+                                  icon={faPlus}
+                                  className='mr-2'
+                                />{' '}
+                                Add a Task
+                              </button>
                             </div>
-                          )}
-                        </Droppable>
-                      </div>
-                    </Col>
-                  ))}
-              </DragDropContext>
-            </Row>
-          </Container>
-        </div>
-        <AddTask
-          show={show}
-          status={status}
-          setShow={setShow}
-          handleClose={handleClose}
-        />
-        <ViewTask
-          taskShow={taskShow}
-          setTaskShow={setTaskShow}
-          setTaskEditShow={setTaskEditShow}
-          taskId={taskId}
-          handleTaskClose={handleTaskClose}
-        />
-        <DeleteModal
-          deleteShow={deleteShow}
-          deleteApi={taskRemove}
-          handleDeleteClose={handleDeleteClose}
-        />
-        <EditTask
-          taskEditShow={taskEditShow}
-          setTaskEditShow={setTaskEditShow}
-          taskId={taskId}
-          handleEditTaskClose={handleEditTaskClose}
-        />
-      </Layout>
+                          </div>
+                        )}
+                      </Droppable>
+                    </div>
+                  </Col>
+                ))}
+            </DragDropContext>
+          </Row>
+        </Container>
+      </div>
+      <AddTask
+        show={show}
+        status={status}
+        setShow={setShow}
+        handleClose={handleClose}
+      />
+      <ViewTask
+        taskShow={taskShow}
+        setTaskShow={setTaskShow}
+        setTaskEditShow={setTaskEditShow}
+        taskId={taskId}
+        handleTaskClose={handleTaskClose}
+      />
+      <DeleteModal
+        deleteShow={deleteShow}
+        deleteApi={taskRemove}
+        handleDeleteClose={handleDeleteClose}
+      />
+      <EditTask
+        taskEditShow={taskEditShow}
+        setTaskEditShow={setTaskEditShow}
+        taskId={taskId}
+        handleEditTaskClose={handleEditTaskClose}
+      />
     </>
   )
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Layout from '../../../Component/Layout/Layout'
 import './MyHome.css'
 import assetsIcon from '../../../Assets/Images/icon/assignmentIcon.svg'
 import ticketIcon from '../../../Assets/Images/icon/ticketIcon.svg'
@@ -38,7 +37,7 @@ const MyHome = () => {
   }, [])
 
   return (
-    <Layout>
+    <>
       <div className='mainContent' id='my-home'>
         <div className='memberHome'>
           {/* <h5>Welcome Back, <span>{firstName} {lastName}</span></h5> */}
@@ -225,7 +224,7 @@ const MyHome = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 

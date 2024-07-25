@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Layout from '../../Component/Layout/Layout'
 import './Announcement.css'
 import postLogo from '../../Assets/Images/icon/adminIcon.svg'
 import blankLove from '../../Assets/Images/post/heart.svg'
@@ -463,777 +462,789 @@ const Announcement = () => {
 
   return (
     <>
-      <Layout>
-        <div className='mainContent'>
-          <div className='d-flex justify-content-center'>
-            <div className='announcementAdmin'>
-              {/* post upload */}
-              <div className='new-post'>
-                <div className='frame-div'>
-                  {userImage && userImage.length ? (
-                    <img
-                      src={`${API}/${userImage}`}
-                      className='avatar-icon'
-                      style={{ objectFit: 'cover' }}
-                      alt='logo'
-                    />
-                  ) : (
-                    <img
-                      src={avatar}
-                      className='avatar-icon default'
-                      alt='bell'
-                      style={{ objectFit: 'cover' }}
-                    />
-                  )}
-                  <div className='input-with-label3'>
-                    {/* <div className="postEmoji">
+      <div className='mainContent'>
+        <div className='d-flex justify-content-center'>
+          <div className='announcementAdmin'>
+            {/* post upload */}
+            <div className='new-post'>
+              <div className='frame-div'>
+                {userImage && userImage.length ? (
+                  <img
+                    src={`${API}/${userImage}`}
+                    className='avatar-icon'
+                    style={{ objectFit: 'cover' }}
+                    alt='logo'
+                  />
+                ) : (
+                  <img
+                    src={avatar}
+                    className='avatar-icon default'
+                    alt='bell'
+                    style={{ objectFit: 'cover' }}
+                  />
+                )}
+                <div className='input-with-label3'>
+                  {/* <div className="postEmoji">
                       <img className="heart-icon" alt="emoji" src={emojiIcon} />
                     </div> */}
-                    <div className='input3'>
-                      <textarea
-                        id='postTextarea'
-                        value={post}
-                        onChange={(e) => {
-                          setPost(e.target.value)
-                          autoResize()
-                        }}
-                        placeholder='Write a new post'
-                        rows={3}
-                      />
-                    </div>
-                    <div className='image' onClick={uploadFiles}>
-                      <img
-                        className='heart-icon'
-                        alt='upload'
-                        src={uploadIcon}
-                      />
-                    </div>
+                  <div className='input3'>
+                    <textarea
+                      id='postTextarea'
+                      value={post}
+                      onChange={(e) => {
+                        setPost(e.target.value)
+                        autoResize()
+                      }}
+                      placeholder='Write a new post'
+                      rows={3}
+                    />
+                  </div>
+                  <div className='image' onClick={uploadFiles}>
+                    <img className='heart-icon' alt='upload' src={uploadIcon} />
                   </div>
                 </div>
-                <div className='d-flex justify-content-end w-100'>
-                  <div className='postIconImage'>
-                    <Dropdown>
-                      <Dropdown.Toggle id='dropdown-basic'>
-                        {userRole === 'admin' ? (
-                          <>
-                            {selectedState ? `${selectedState} ` : 'Posting As'}{' '}
-                            <img src={arrow} alt='arrow' />
-                          </>
-                        ) : (
-                          <>
-                            {firstName} {lastName} (You)
-                          </>
-                        )}
-                      </Dropdown.Toggle>
+              </div>
+              <div className='d-flex justify-content-end w-100'>
+                <div className='postIconImage'>
+                  <Dropdown>
+                    <Dropdown.Toggle id='dropdown-basic'>
                       {userRole === 'admin' ? (
                         <>
-                          <Dropdown.Menu className='postingAs'>
+                          {selectedState ? `${selectedState} ` : 'Posting As'}{' '}
+                          <img src={arrow} alt='arrow' />
+                        </>
+                      ) : (
+                        <>
+                          {firstName} {lastName} (You)
+                        </>
+                      )}
+                    </Dropdown.Toggle>
+                    {userRole === 'admin' ? (
+                      <>
+                        <Dropdown.Menu className='postingAs'>
+                          <Dropdown.Item
+                            className='admin'
+                            onClick={() =>
+                              handleStateSelect(
+                                userId,
+                                `${firstName} ${lastName}`
+                              )
+                            }
+                          >
+                            {userImage && userImage.length ? (
+                              <img
+                                src={`${API}/${userImage}`}
+                                style={{ objectFit: 'cover' }}
+                                alt='logo'
+                              />
+                            ) : (
+                              <img
+                                src={avatar}
+                                className='default'
+                                alt='bell'
+                                style={{ objectFit: 'cover' }}
+                              />
+                            )}{' '}
+                            {firstName} {lastName}
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() =>
+                              handleStateSelect('company', `${companyName}`)
+                            }
+                          >
+                            <img
+                              alt=''
+                              src={`${API}/${
+                                darkIconImage ? darkIconImage : postLogo
+                              }`}
+                            />{' '}
+                            {companyName}
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </Dropdown>
+                  <button
+                    type='submit'
+                    className='btn btn-info'
+                    onClick={addPost}
+                  >
+                    <img src={publish} alt='publish' /> Publish
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* post list */}
+            {postList &&
+              postList.map((data: any, i) => (
+                <div key={`post` + i} className='post-parent'>
+                  <div className='post'>
+                    <div className='user'>
+                      <div className='postLogo'>
+                        {data.userInfo ? (
+                          data.userInfo.member_image ? (
+                            <img
+                              className=''
+                              alt='post'
+                              style={{
+                                width: '36px',
+                                height: '36px',
+                                borderRadius: '50%',
+                                objectFit: 'cover',
+                              }}
+                              src={`${API}/${data.userInfo.member_image}`}
+                            />
+                          ) : (
+                            <img
+                              src={avatar}
+                              className='avatar-icon default'
+                              alt='bell'
+                              style={{ objectFit: 'cover' }}
+                            />
+                          )
+                        ) : (
+                          <img
+                            className='vector-icon'
+                            alt=''
+                            src={`${API}/${
+                              darkIconImage ? darkIconImage : postLogo
+                            }`}
+                          />
+                        )}
+                      </div>
+                      <div className='beehive-coworking-parent'>
+                        <div className='elviro-anasta'>
+                          {data.userInfo ? (
+                            <>
+                              {data.userInfo.first_name}{' '}
+                              {data.userInfo.last_name}
+                            </>
+                          ) : (
+                            `${companyName}`
+                          )}
+                        </div>
+                        <div className='mins-ago'>
+                          {getTimeDifferenceString(data.created_at)}
+                        </div>
+                      </div>
+                      <div className='trashPost'>
+                        <Dropdown>
+                          <Dropdown.Toggle
+                            id='dropdown-basic'
+                            className='custom-dropdown-toggle'
+                          >
+                            <img
+                              className='line-chart-up-04-icon'
+                              alt=''
+                              src={dotLine}
+                            />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className='postDelete'>
                             <Dropdown.Item
-                              className='admin'
-                              onClick={() =>
-                                handleStateSelect(
-                                  userId,
-                                  `${firstName} ${lastName}`
-                                )
-                              }
+                              className='custom-dropdown-toggle'
+                              onClick={() => postArchive(data.id, data.post)}
                             >
-                              {userImage && userImage.length ? (
+                              <img
+                                className='line-chart-up-04-icon'
+                                alt=''
+                                src={trash}
+                              />{' '}
+                              Delete Post{' '}
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                    </div>
+
+                    <div className='the-modern-workplace'>{data.post}</div>
+
+                    {data.post_image ? (
+                      <div className='images'>
+                        <img
+                          src={`${API}/${data.post_image}`}
+                          onClick={() => lightBox(data.post_image)}
+                          className='wtqzczkosgc-1-icon'
+                          alt='post'
+                        />
+                      </div>
+                    ) : (
+                      ''
+                    )}
+
+                    <div className='feedback'>
+                      <div
+                        className='like'
+                        onClick={
+                          data.user_has_liked === null
+                            ? () => postLikes(data.id, data.post)
+                            : () =>
+                                updatePostLikes(data.id, data.user_has_liked)
+                        }
+                      >
+                        {data.user_has_liked ? (
+                          <img className='heart-icon' alt='' src={clickLove} />
+                        ) : (
+                          <img className='heart-icon' alt='' src={blankLove} />
+                        )}
+                        <div className='comments'>
+                          {data.likes_count}{' '}
+                          {data.likes_count === 1 ? 'like' : 'likes'}
+                        </div>
+                      </div>
+                      <div className='feedback-child' />
+                      <div className='like'>
+                        <img className='heart-icon' alt='' src={message} />
+                        <div className='comments'>
+                          {data.commentCount}{' '}
+                          {data.commentCount === 1 ? 'Comment' : 'Comments'}
+                        </div>
+                      </div>
+                    </div>
+                    {/* previous comment */}
+                    {data.comments &&
+                      data.comments.map((comment: any, j: number) => (
+                        <div key={`comment` + j} className='commentShow'>
+                          <div className='comment'>
+                            <div className='commentImg'>
+                              {comment.avatar ? (
                                 <img
-                                  src={`${API}/${userImage}`}
+                                  src={`${API}/${comment.avatar}`}
+                                  className='avatar-icon'
                                   style={{ objectFit: 'cover' }}
                                   alt='logo'
                                 />
                               ) : (
                                 <img
                                   src={avatar}
-                                  className='default'
+                                  className='avatar-icon default'
                                   alt='bell'
                                   style={{ objectFit: 'cover' }}
                                 />
-                              )}{' '}
-                              {firstName} {lastName}
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              onClick={() =>
-                                handleStateSelect('company', `${companyName}`)
-                              }
-                            >
-                              <img
-                                alt=''
-                                src={`${API}/${darkIconImage ? darkIconImage : postLogo}`}
-                              />{' '}
-                              {companyName}
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                    </Dropdown>
-                    <button
-                      type='submit'
-                      className='btn btn-info'
-                      onClick={addPost}
-                    >
-                      <img src={publish} alt='publish' /> Publish
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* post list */}
-              {postList &&
-                postList.map((data: any, i) => (
-                  <div key={`post` + i} className='post-parent'>
-                    <div className='post'>
-                      <div className='user'>
-                        <div className='postLogo'>
-                          {data.userInfo ? (
-                            data.userInfo.member_image ? (
-                              <img
-                                className=''
-                                alt='post'
-                                style={{
-                                  width: '36px',
-                                  height: '36px',
-                                  borderRadius: '50%',
-                                  objectFit: 'cover',
-                                }}
-                                src={`${API}/${data.userInfo.member_image}`}
-                              />
-                            ) : (
-                              <img
-                                src={avatar}
-                                className='avatar-icon default'
-                                alt='bell'
-                                style={{ objectFit: 'cover' }}
-                              />
-                            )
-                          ) : (
-                            <img
-                              className='vector-icon'
-                              alt=''
-                              src={`${API}/${darkIconImage ? darkIconImage : postLogo}`}
-                            />
-                          )}
-                        </div>
-                        <div className='beehive-coworking-parent'>
-                          <div className='elviro-anasta'>
-                            {data.userInfo ? (
-                              <>
-                                {data.userInfo.first_name}{' '}
-                                {data.userInfo.last_name}
-                              </>
-                            ) : (
-                              `${companyName}`
-                            )}
-                          </div>
-                          <div className='mins-ago'>
-                            {getTimeDifferenceString(data.created_at)}
-                          </div>
-                        </div>
-                        <div className='trashPost'>
-                          <Dropdown>
-                            <Dropdown.Toggle
-                              id='dropdown-basic'
-                              className='custom-dropdown-toggle'
-                            >
-                              <img
-                                className='line-chart-up-04-icon'
-                                alt=''
-                                src={dotLine}
-                              />
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className='postDelete'>
-                              <Dropdown.Item
-                                className='custom-dropdown-toggle'
-                                onClick={() => postArchive(data.id, data.post)}
-                              >
-                                <img
-                                  className='line-chart-up-04-icon'
-                                  alt=''
-                                  src={trash}
-                                />{' '}
-                                Delete Post{' '}
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </div>
-                      </div>
-
-                      <div className='the-modern-workplace'>{data.post}</div>
-
-                      {data.post_image ? (
-                        <div className='images'>
-                          <img
-                            src={`${API}/${data.post_image}`}
-                            onClick={() => lightBox(data.post_image)}
-                            className='wtqzczkosgc-1-icon'
-                            alt='post'
-                          />
-                        </div>
-                      ) : (
-                        ''
-                      )}
-
-                      <div className='feedback'>
-                        <div
-                          className='like'
-                          onClick={
-                            data.user_has_liked === null
-                              ? () => postLikes(data.id, data.post)
-                              : () =>
-                                  updatePostLikes(data.id, data.user_has_liked)
-                          }
-                        >
-                          {data.user_has_liked ? (
-                            <img
-                              className='heart-icon'
-                              alt=''
-                              src={clickLove}
-                            />
-                          ) : (
-                            <img
-                              className='heart-icon'
-                              alt=''
-                              src={blankLove}
-                            />
-                          )}
-                          <div className='comments'>
-                            {data.likes_count}{' '}
-                            {data.likes_count === 1 ? 'like' : 'likes'}
-                          </div>
-                        </div>
-                        <div className='feedback-child' />
-                        <div className='like'>
-                          <img className='heart-icon' alt='' src={message} />
-                          <div className='comments'>
-                            {data.commentCount}{' '}
-                            {data.commentCount === 1 ? 'Comment' : 'Comments'}
-                          </div>
-                        </div>
-                      </div>
-                      {/* previous comment */}
-                      {data.comments &&
-                        data.comments.map((comment: any, j: number) => (
-                          <div key={`comment` + j} className='commentShow'>
-                            <div className='comment'>
-                              <div className='commentImg'>
-                                {comment.avatar ? (
-                                  <img
-                                    src={`${API}/${comment.avatar}`}
-                                    className='avatar-icon'
-                                    style={{ objectFit: 'cover' }}
-                                    alt='logo'
-                                  />
-                                ) : (
-                                  <img
-                                    src={avatar}
-                                    className='avatar-icon default'
-                                    alt='bell'
-                                    style={{ objectFit: 'cover' }}
-                                  />
-                                )}
-                              </div>
-                              <div className='commentText'>
-                                <h6>
-                                  {comment.first_name}{' '}
-                                  <span>
-                                    {getTimeDifferenceString(
-                                      comment.created_at
-                                    )}
-                                  </span>
-                                </h6>
-                                <p
-                                  dangerouslySetInnerHTML={{
-                                    __html: comment.comment,
-                                  }}
-                                />
-                                {comment.comment_image ? (
-                                  <img
-                                    src={`${API}/${comment.comment_image}`}
-                                    width='150px'
-                                    height='120px'
-                                    style={{ borderRadius: '25px' }}
-                                    alt='comment'
-                                  />
-                                ) : (
-                                  ''
-                                )}
-                              </div>
-                              <div className='newComment'>
-                                <button
-                                  className='px-3'
-                                  onClick={() => setReplyAdd(comment.id)}
-                                >
-                                  Reply
-                                </button>
-                                <button
-                                  style={{
-                                    paddingLeft: '16px',
-                                    paddingRight: '0',
-                                  }}
-                                  onClick={
-                                    comment.user_has_liked === null
-                                      ? () => commentLikes(comment.id)
-                                      : () =>
-                                          updateCommentLikes(
-                                            comment.id,
-                                            comment.user_has_liked
-                                          )
-                                  }
-                                >
-                                  {comment.user_has_liked ? (
-                                    <img
-                                      className='heart-icon'
-                                      alt=''
-                                      src={clickLove}
-                                    />
-                                  ) : (
-                                    <img
-                                      className='heart-icon'
-                                      alt=''
-                                      src={blankLove}
-                                    />
-                                  )}{' '}
-                                  <br />
-                                  {comment.likes_count}
-                                </button>
-                              </div>
+                              )}
                             </div>
-                            {comment.commentReply &&
-                              comment.commentReply.map(
-                                (reply: any, k: number) => (
-                                  <div key={`commentReply` + k}>
-                                    <div className='commentReply'>
-                                      <div className='commentImg'>
-                                        {/* {reply.id} */}
-                                        {reply.avatar ? (
+                            <div className='commentText'>
+                              <h6>
+                                {comment.first_name}{' '}
+                                <span>
+                                  {getTimeDifferenceString(comment.created_at)}
+                                </span>
+                              </h6>
+                              <p
+                                dangerouslySetInnerHTML={{
+                                  __html: comment.comment,
+                                }}
+                              />
+                              {comment.comment_image ? (
+                                <img
+                                  src={`${API}/${comment.comment_image}`}
+                                  width='150px'
+                                  height='120px'
+                                  style={{ borderRadius: '25px' }}
+                                  alt='comment'
+                                />
+                              ) : (
+                                ''
+                              )}
+                            </div>
+                            <div className='newComment'>
+                              <button
+                                className='px-3'
+                                onClick={() => setReplyAdd(comment.id)}
+                              >
+                                Reply
+                              </button>
+                              <button
+                                style={{
+                                  paddingLeft: '16px',
+                                  paddingRight: '0',
+                                }}
+                                onClick={
+                                  comment.user_has_liked === null
+                                    ? () => commentLikes(comment.id)
+                                    : () =>
+                                        updateCommentLikes(
+                                          comment.id,
+                                          comment.user_has_liked
+                                        )
+                                }
+                              >
+                                {comment.user_has_liked ? (
+                                  <img
+                                    className='heart-icon'
+                                    alt=''
+                                    src={clickLove}
+                                  />
+                                ) : (
+                                  <img
+                                    className='heart-icon'
+                                    alt=''
+                                    src={blankLove}
+                                  />
+                                )}{' '}
+                                <br />
+                                {comment.likes_count}
+                              </button>
+                            </div>
+                          </div>
+                          {comment.commentReply &&
+                            comment.commentReply.map(
+                              (reply: any, k: number) => (
+                                <div key={`commentReply` + k}>
+                                  <div className='commentReply'>
+                                    <div className='commentImg'>
+                                      {/* {reply.id} */}
+                                      {reply.avatar ? (
+                                        <img
+                                          src={`${API}/${reply.avatar}`}
+                                          className='avatar-icon'
+                                          style={{ objectFit: 'cover' }}
+                                          alt='logo'
+                                        />
+                                      ) : (
+                                        <img
+                                          src={avatar}
+                                          className='avatar-icon default'
+                                          alt='bell'
+                                          style={{ objectFit: 'cover' }}
+                                        />
+                                      )}
+                                    </div>
+                                    <div className='commentText'>
+                                      <h6>
+                                        {reply.first_name}{' '}
+                                        <span>
+                                          {getTimeDifferenceString(
+                                            reply.created_at
+                                          )}
+                                        </span>
+                                      </h6>
+                                      <p
+                                        dangerouslySetInnerHTML={{
+                                          __html: reply.comment,
+                                        }}
+                                      />
+                                      {reply.comment_image ? (
+                                        <img
+                                          src={`${API}/${reply.comment_image}`}
+                                          width='150px'
+                                          height='120px'
+                                          style={{ borderRadius: '25px' }}
+                                          alt='comment'
+                                        />
+                                      ) : (
+                                        ''
+                                      )}
+                                    </div>
+                                    <div className='newComment'>
+                                      <button
+                                        className='px-3'
+                                        onClick={() =>
+                                          setReplyCommentAdd(reply.id)
+                                        }
+                                      >
+                                        Reply
+                                      </button>
+                                      <button
+                                        style={{
+                                          paddingLeft: '16px',
+                                          paddingRight: '0',
+                                        }}
+                                        onClick={
+                                          reply.user_has_liked === null
+                                            ? () => commentReplyLikes(reply.id)
+                                            : () =>
+                                                updateCommentReplyLikes(
+                                                  reply.id,
+                                                  reply.user_has_liked
+                                                )
+                                        }
+                                      >
+                                        {reply.user_has_liked ? (
                                           <img
-                                            src={`${API}/${reply.avatar}`}
-                                            className='avatar-icon'
-                                            style={{ objectFit: 'cover' }}
-                                            alt='logo'
+                                            className='heart-icon'
+                                            alt=''
+                                            src={clickLove}
                                           />
                                         ) : (
                                           <img
-                                            src={avatar}
-                                            className='avatar-icon default'
-                                            alt='bell'
-                                            style={{ objectFit: 'cover' }}
+                                            className='heart-icon'
+                                            alt=''
+                                            src={blankLove}
                                           />
-                                        )}
-                                      </div>
-                                      <div className='commentText'>
-                                        <h6>
-                                          {reply.first_name}{' '}
-                                          <span>
-                                            {getTimeDifferenceString(
-                                              reply.created_at
+                                        )}{' '}
+                                        <br />
+                                        {reply.likes_count}
+                                      </button>
+                                    </div>
+                                  </div>
+
+                                  {/* comment comment */}
+                                  {reply.replyCommentComment &&
+                                    reply.replyCommentComment.map(
+                                      (nestedReply: any, l: number) => (
+                                        <div
+                                          key={`lastComment` + l}
+                                          className='commentReply'
+                                          style={{ marginLeft: '68px' }}
+                                        >
+                                          <div className='commentImg'>
+                                            {/* {reply.id} */}
+                                            {nestedReply.avatar ? (
+                                              <img
+                                                src={`${API}/${nestedReply.avatar}`}
+                                                className='avatar-icon'
+                                                style={{ objectFit: 'cover' }}
+                                                alt='logo'
+                                              />
+                                            ) : (
+                                              <img
+                                                src={avatar}
+                                                className='avatar-icon default'
+                                                alt='bell'
+                                                style={{ objectFit: 'cover' }}
+                                              />
                                             )}
-                                          </span>
-                                        </h6>
-                                        <p
-                                          dangerouslySetInnerHTML={{
-                                            __html: reply.comment,
-                                          }}
+                                          </div>
+                                          <div className='commentText'>
+                                            <h6>
+                                              {nestedReply.first_name}{' '}
+                                              <span>
+                                                {getTimeDifferenceString(
+                                                  nestedReply.created_at
+                                                )}
+                                              </span>
+                                            </h6>
+                                            <p
+                                              dangerouslySetInnerHTML={{
+                                                __html: nestedReply.comment,
+                                              }}
+                                            />
+                                            {nestedReply.comment_image ? (
+                                              <img
+                                                src={`${API}/${nestedReply.comment_image}`}
+                                                width='150px'
+                                                height='120px'
+                                                style={{
+                                                  borderRadius: '25px',
+                                                }}
+                                                alt='comment'
+                                              />
+                                            ) : (
+                                              ''
+                                            )}
+                                          </div>
+                                        </div>
+                                      )
+                                    )}
+                                  {/* comment comment reply */}
+                                  {reply.id === replyCommentAdd ? (
+                                    <div
+                                      className='avatar-parent'
+                                      style={{ paddingLeft: '68px' }}
+                                    >
+                                      {userImage && userImage.length ? (
+                                        <img
+                                          src={`${API}/${userImage}`}
+                                          className='avatar-icon'
+                                          style={{ objectFit: 'cover' }}
+                                          alt='logo'
                                         />
-                                        {reply.comment_image ? (
-                                          <img
-                                            src={`${API}/${reply.comment_image}`}
-                                            width='150px'
-                                            height='120px'
-                                            style={{ borderRadius: '25px' }}
-                                            alt='comment'
-                                          />
+                                      ) : (
+                                        <img
+                                          src={avatar}
+                                          className='avatar-icon default'
+                                          alt='bell'
+                                          style={{ objectFit: 'cover' }}
+                                        />
+                                      )}
+                                      <div className='commentInput'>
+                                        <InputEmoji
+                                          value={placeholder}
+                                          onFocus={handleInputFocus}
+                                          onChange={(e) => setCommentNext(e)}
+                                          cleanOnEnter={true}
+                                          onEnter={(text: any) =>
+                                            handleCommentReplyEnter(
+                                              data.id,
+                                              comment.id,
+                                              reply.id
+                                            )
+                                          }
+                                          shouldReturn={true}
+                                          shouldConvertEmojiToImage={true}
+                                        />
+                                        {doubleReplyFileId[reply.id] ? (
+                                          <div className='commentImg'>
+                                            <p>
+                                              {doubleReplyFileId[reply.id] &&
+                                                `${doubleReplyFileId[
+                                                  reply.id
+                                                ].slice(
+                                                  0,
+                                                  5
+                                                )}${doubleReplyFileId[
+                                                  reply.id
+                                                ].substring(
+                                                  doubleReplyFileId[
+                                                    reply.id
+                                                  ].lastIndexOf('.')
+                                                )}`}
+                                            </p>
+                                            <img
+                                              src={trashBlack}
+                                              alt='trash'
+                                              onClick={() => {
+                                                setDoubleReplyFile('')
+                                                setDoubleReplyFileId('')
+                                                setUploadedDoubleFiles([])
+                                              }}
+                                            />
+                                          </div>
                                         ) : (
                                           ''
                                         )}
-                                      </div>
-                                      <div className='newComment'>
-                                        <button
-                                          className='px-3'
-                                          onClick={() =>
-                                            setReplyCommentAdd(reply.id)
-                                          }
-                                        >
-                                          Reply
-                                        </button>
-                                        <button
-                                          style={{
-                                            paddingLeft: '16px',
-                                            paddingRight: '0',
+                                        <img
+                                          src={uploadIcon}
+                                          onClick={() => {
+                                            setUploadId(reply.id)
+                                            setUploadDoubleShow(true)
                                           }}
-                                          onClick={
-                                            reply.user_has_liked === null
-                                              ? () =>
-                                                  commentReplyLikes(reply.id)
-                                              : () =>
-                                                  updateCommentReplyLikes(
-                                                    reply.id,
-                                                    reply.user_has_liked
-                                                  )
+                                          alt='upload'
+                                        />
+                                        &nbsp;
+                                        <img
+                                          onClick={() =>
+                                            replyCommentReply(
+                                              data.id,
+                                              comment.id,
+                                              reply.id
+                                            )
                                           }
-                                        >
-                                          {reply.user_has_liked ? (
-                                            <img
-                                              className='heart-icon'
-                                              alt=''
-                                              src={clickLove}
-                                            />
-                                          ) : (
-                                            <img
-                                              className='heart-icon'
-                                              alt=''
-                                              src={blankLove}
-                                            />
-                                          )}{' '}
-                                          <br />
-                                          {reply.likes_count}
-                                        </button>
+                                          src={commentMessage}
+                                          alt='comment'
+                                        />
                                       </div>
-                                    </div>
-
-                                    {/* comment comment */}
-                                    {reply.replyCommentComment &&
-                                      reply.replyCommentComment.map(
-                                        (nestedReply: any, l: number) => (
-                                          <div
-                                            key={`lastComment` + l}
-                                            className='commentReply'
-                                            style={{ marginLeft: '68px' }}
-                                          >
-                                            <div className='commentImg'>
-                                              {/* {reply.id} */}
-                                              {nestedReply.avatar ? (
-                                                <img
-                                                  src={`${API}/${nestedReply.avatar}`}
-                                                  className='avatar-icon'
-                                                  style={{ objectFit: 'cover' }}
-                                                  alt='logo'
-                                                />
-                                              ) : (
-                                                <img
-                                                  src={avatar}
-                                                  className='avatar-icon default'
-                                                  alt='bell'
-                                                  style={{ objectFit: 'cover' }}
-                                                />
-                                              )}
-                                            </div>
-                                            <div className='commentText'>
-                                              <h6>
-                                                {nestedReply.first_name}{' '}
-                                                <span>
-                                                  {getTimeDifferenceString(
-                                                    nestedReply.created_at
-                                                  )}
-                                                </span>
-                                              </h6>
-                                              <p
-                                                dangerouslySetInnerHTML={{
-                                                  __html: nestedReply.comment,
-                                                }}
-                                              />
-                                              {nestedReply.comment_image ? (
-                                                <img
-                                                  src={`${API}/${nestedReply.comment_image}`}
-                                                  width='150px'
-                                                  height='120px'
-                                                  style={{
-                                                    borderRadius: '25px',
-                                                  }}
-                                                  alt='comment'
-                                                />
-                                              ) : (
-                                                ''
-                                              )}
-                                            </div>
-                                          </div>
-                                        )
-                                      )}
-                                    {/* comment comment reply */}
-                                    {reply.id === replyCommentAdd ? (
-                                      <div
-                                        className='avatar-parent'
-                                        style={{ paddingLeft: '68px' }}
-                                      >
-                                        {userImage && userImage.length ? (
-                                          <img
-                                            src={`${API}/${userImage}`}
-                                            className='avatar-icon'
-                                            style={{ objectFit: 'cover' }}
-                                            alt='logo'
-                                          />
-                                        ) : (
-                                          <img
-                                            src={avatar}
-                                            className='avatar-icon default'
-                                            alt='bell'
-                                            style={{ objectFit: 'cover' }}
-                                          />
-                                        )}
-                                        <div className='commentInput'>
-                                          <InputEmoji
-                                            value={placeholder}
-                                            onFocus={handleInputFocus}
-                                            onChange={(e) => setCommentNext(e)}
-                                            cleanOnEnter={true}
-                                            onEnter={(text: any) =>
-                                              handleCommentReplyEnter(
-                                                data.id,
-                                                comment.id,
-                                                reply.id
-                                              )
-                                            }
-                                            shouldReturn={true}
-                                            shouldConvertEmojiToImage={true}
-                                          />
-                                          {doubleReplyFileId[reply.id] ? (
-                                            <div className='commentImg'>
-                                              <p>
-                                                {doubleReplyFileId[reply.id] &&
-                                                  `${doubleReplyFileId[reply.id].slice(0, 5)}${doubleReplyFileId[reply.id].substring(doubleReplyFileId[reply.id].lastIndexOf('.'))}`}
-                                              </p>
-                                              <img
-                                                src={trashBlack}
-                                                alt='trash'
-                                                onClick={() => {
-                                                  setDoubleReplyFile('')
-                                                  setDoubleReplyFileId('')
-                                                  setUploadedDoubleFiles([])
-                                                }}
-                                              />
-                                            </div>
-                                          ) : (
-                                            ''
-                                          )}
-                                          <img
-                                            src={uploadIcon}
-                                            onClick={() => {
-                                              setUploadId(reply.id)
-                                              setUploadDoubleShow(true)
-                                            }}
-                                            alt='upload'
-                                          />
-                                          &nbsp;
-                                          <img
-                                            onClick={() =>
-                                              replyCommentReply(
-                                                data.id,
-                                                comment.id,
-                                                reply.id
-                                              )
-                                            }
-                                            src={commentMessage}
-                                            alt='comment'
-                                          />
-                                        </div>
-                                      </div>
-                                    ) : (
-                                      ''
-                                    )}
-                                  </div>
-                                )
-                              )}
-
-                            {/* reply comment */}
-                            {comment.id === replyAdd ? (
-                              <div className='avatar-parent'>
-                                {userImage && userImage.length ? (
-                                  <img
-                                    src={`${API}/${userImage}`}
-                                    className='avatar-icon'
-                                    style={{ objectFit: 'cover' }}
-                                    alt='logo'
-                                  />
-                                ) : (
-                                  <img
-                                    src={avatar}
-                                    className='avatar-icon default'
-                                    alt='bell'
-                                    style={{ objectFit: 'cover' }}
-                                  />
-                                )}
-                                <div className='commentInput'>
-                                  <InputEmoji
-                                    value={placeholder}
-                                    onFocus={handleInputFocus}
-                                    onChange={(e) => setCommentReply(e)}
-                                    cleanOnEnter={true}
-                                    onEnter={(text: any) =>
-                                      handleCommentEnter(data.id, comment.id)
-                                    }
-                                    shouldReturn={true}
-                                    shouldConvertEmojiToImage={true}
-                                  />
-                                  {commentReplyFileId[comment.id] ? (
-                                    <div className='commentImg'>
-                                      <p>
-                                        {commentReplyFileId[comment.id] &&
-                                          `${commentReplyFileId[comment.id].slice(0, 5)}${commentReplyFileId[comment.id].substring(commentReplyFileId[comment.id].lastIndexOf('.'))}`}
-                                      </p>
-                                      <img
-                                        src={trashBlack}
-                                        alt='trash'
-                                        onClick={() => {
-                                          setCommentReplyFile('')
-                                          setCommentReplyFileId('')
-                                          setUploadedReplyFiles([])
-                                        }}
-                                      />
                                     </div>
                                   ) : (
                                     ''
                                   )}
-                                  <img
-                                    src={uploadIcon}
-                                    onClick={() => {
-                                      setUploadId(comment.id)
-                                      setUploadReplyShow(true)
-                                    }}
-                                    alt='upload'
-                                  />
-                                  &nbsp;
-                                  <img
-                                    onClick={() =>
-                                      replyCommentPost(data.id, comment.id)
-                                    }
-                                    src={commentMessage}
-                                    alt='comment'
-                                  />
                                 </div>
-                              </div>
-                            ) : (
-                              ''
+                              )
                             )}
-                            {/* reply comment */}
-                          </div>
-                        ))}
-                      {/* previous comment */}
-                      {/* comment */}
-                      <div className='avatar-parent'>
-                        {userImage && userImage.length ? (
-                          <img
-                            src={`${API}/${userImage}`}
-                            className='avatar-icon'
-                            style={{ objectFit: 'cover' }}
-                            alt='logo'
-                          />
-                        ) : (
-                          <img
-                            src={avatar}
-                            className='avatar-icon default'
-                            alt='bell'
-                            style={{ objectFit: 'cover' }}
-                          />
-                        )}
-                        <div className='commentInput'>
-                          {/* <CustomEmojiButton /> */}
-                          <InputEmoji
-                            value={placeholder}
-                            onFocus={handleInputFocus}
-                            onChange={(e) => setComment(e)}
-                            cleanOnEnter={true}
-                            onEnter={(text: any) => handleEnter(text, data.id)}
-                            shouldReturn={true}
-                            shouldConvertEmojiToImage={true}
-                            buttonElement={emojiButtonElement}
-                          />
-                          {commentFileId[data.id] ? (
-                            <div className='commentImg'>
-                              <p>
-                                {commentFileId[data.id] &&
-                                  `${commentFileId[data.id].slice(0, 5)}${commentFileId[data.id].substring(commentFileId[data.id].lastIndexOf('.'))}`}
-                              </p>
-                              <img
-                                src={trashBlack}
-                                alt='trash'
-                                onClick={() => {
-                                  setCommentFile('')
-                                  setCommentFileId('')
-                                  setUploadedCommentFiles([])
-                                }}
-                              />
+
+                          {/* reply comment */}
+                          {comment.id === replyAdd ? (
+                            <div className='avatar-parent'>
+                              {userImage && userImage.length ? (
+                                <img
+                                  src={`${API}/${userImage}`}
+                                  className='avatar-icon'
+                                  style={{ objectFit: 'cover' }}
+                                  alt='logo'
+                                />
+                              ) : (
+                                <img
+                                  src={avatar}
+                                  className='avatar-icon default'
+                                  alt='bell'
+                                  style={{ objectFit: 'cover' }}
+                                />
+                              )}
+                              <div className='commentInput'>
+                                <InputEmoji
+                                  value={placeholder}
+                                  onFocus={handleInputFocus}
+                                  onChange={(e) => setCommentReply(e)}
+                                  cleanOnEnter={true}
+                                  onEnter={(text: any) =>
+                                    handleCommentEnter(data.id, comment.id)
+                                  }
+                                  shouldReturn={true}
+                                  shouldConvertEmojiToImage={true}
+                                />
+                                {commentReplyFileId[comment.id] ? (
+                                  <div className='commentImg'>
+                                    <p>
+                                      {commentReplyFileId[comment.id] &&
+                                        `${commentReplyFileId[comment.id].slice(
+                                          0,
+                                          5
+                                        )}${commentReplyFileId[
+                                          comment.id
+                                        ].substring(
+                                          commentReplyFileId[
+                                            comment.id
+                                          ].lastIndexOf('.')
+                                        )}`}
+                                    </p>
+                                    <img
+                                      src={trashBlack}
+                                      alt='trash'
+                                      onClick={() => {
+                                        setCommentReplyFile('')
+                                        setCommentReplyFileId('')
+                                        setUploadedReplyFiles([])
+                                      }}
+                                    />
+                                  </div>
+                                ) : (
+                                  ''
+                                )}
+                                <img
+                                  src={uploadIcon}
+                                  onClick={() => {
+                                    setUploadId(comment.id)
+                                    setUploadReplyShow(true)
+                                  }}
+                                  alt='upload'
+                                />
+                                &nbsp;
+                                <img
+                                  onClick={() =>
+                                    replyCommentPost(data.id, comment.id)
+                                  }
+                                  src={commentMessage}
+                                  alt='comment'
+                                />
+                              </div>
                             </div>
                           ) : (
                             ''
                           )}
-                          <img
-                            src={uploadIcon}
-                            onClick={() => {
-                              setUploadId(data.id)
-                              setUploadCommentShow(true)
-                            }}
-                            alt='upload'
-                          />
-                          &nbsp;
-                          <img
-                            onClick={() => commentPost(data.id)}
-                            src={commentMessage}
-                            alt='comment'
-                          />
+                          {/* reply comment */}
                         </div>
+                      ))}
+                    {/* previous comment */}
+                    {/* comment */}
+                    <div className='avatar-parent'>
+                      {userImage && userImage.length ? (
+                        <img
+                          src={`${API}/${userImage}`}
+                          className='avatar-icon'
+                          style={{ objectFit: 'cover' }}
+                          alt='logo'
+                        />
+                      ) : (
+                        <img
+                          src={avatar}
+                          className='avatar-icon default'
+                          alt='bell'
+                          style={{ objectFit: 'cover' }}
+                        />
+                      )}
+                      <div className='commentInput'>
+                        {/* <CustomEmojiButton /> */}
+                        <InputEmoji
+                          value={placeholder}
+                          onFocus={handleInputFocus}
+                          onChange={(e) => setComment(e)}
+                          cleanOnEnter={true}
+                          onEnter={(text: any) => handleEnter(text, data.id)}
+                          shouldReturn={true}
+                          shouldConvertEmojiToImage={true}
+                          buttonElement={emojiButtonElement}
+                        />
+                        {commentFileId[data.id] ? (
+                          <div className='commentImg'>
+                            <p>
+                              {commentFileId[data.id] &&
+                                `${commentFileId[data.id].slice(
+                                  0,
+                                  5
+                                )}${commentFileId[data.id].substring(
+                                  commentFileId[data.id].lastIndexOf('.')
+                                )}`}
+                            </p>
+                            <img
+                              src={trashBlack}
+                              alt='trash'
+                              onClick={() => {
+                                setCommentFile('')
+                                setCommentFileId('')
+                                setUploadedCommentFiles([])
+                              }}
+                            />
+                          </div>
+                        ) : (
+                          ''
+                        )}
+                        <img
+                          src={uploadIcon}
+                          onClick={() => {
+                            setUploadId(data.id)
+                            setUploadCommentShow(true)
+                          }}
+                          alt='upload'
+                        />
+                        &nbsp;
+                        <img
+                          onClick={() => commentPost(data.id)}
+                          src={commentMessage}
+                          alt='comment'
+                        />
                       </div>
-                      {/* comment */}
                     </div>
+                    {/* comment */}
                   </div>
-                ))}
-            </div>
+                </div>
+              ))}
           </div>
         </div>
-        {/* post */}
-        <UploadFile
-          setFile={setFile}
-          uploadedFiles={uploadedFiles}
-          setUploadedFiles={setUploadedFiles}
-          uploadShow={uploadShow}
-          setUploadShow={setUploadShow}
-          handleUploadClose={handleUploadClose}
-        />
-        {/* comment */}
-        <UploadFile
-          id={uploadId}
-          setCommentFileId={setCommentFileId}
-          setFile={setCommentFile}
-          uploadedFiles={uploadedCommentFiles}
-          setUploadedFiles={setUploadedCommentFiles}
-          uploadShow={uploadCommentShow}
-          setUploadShow={setUploadCommentShow}
-          handleUploadClose={handleUploadCommentClose}
-        />
-        {/* comment reply */}
-        <UploadFile
-          id={uploadId}
-          setCommentFileId={setCommentReplyFileId}
-          setFile={setCommentReplyFile}
-          uploadedFiles={uploadedReplyFiles}
-          setUploadedFiles={setUploadedReplyFiles}
-          uploadShow={uploadReplyShow}
-          setUploadShow={setUploadReplyShow}
-          handleUploadClose={handleUploadReplyClose}
-        />
-        {/* comment reply reply */}
-        <UploadFile
-          id={uploadId}
-          setCommentFileId={setDoubleReplyFileId}
-          setFile={setDoubleReplyFile}
-          uploadedFiles={uploadedDoubleFiles}
-          setUploadedFiles={setUploadedDoubleFiles}
-          uploadShow={uploadDoubleShow}
-          setUploadShow={setUploadDoubleShow}
-          handleUploadClose={handleUploadDoubleClose}
-        />
+      </div>
+      {/* post */}
+      <UploadFile
+        setFile={setFile}
+        uploadedFiles={uploadedFiles}
+        setUploadedFiles={setUploadedFiles}
+        uploadShow={uploadShow}
+        setUploadShow={setUploadShow}
+        handleUploadClose={handleUploadClose}
+      />
+      {/* comment */}
+      <UploadFile
+        id={uploadId}
+        setCommentFileId={setCommentFileId}
+        setFile={setCommentFile}
+        uploadedFiles={uploadedCommentFiles}
+        setUploadedFiles={setUploadedCommentFiles}
+        uploadShow={uploadCommentShow}
+        setUploadShow={setUploadCommentShow}
+        handleUploadClose={handleUploadCommentClose}
+      />
+      {/* comment reply */}
+      <UploadFile
+        id={uploadId}
+        setCommentFileId={setCommentReplyFileId}
+        setFile={setCommentReplyFile}
+        uploadedFiles={uploadedReplyFiles}
+        setUploadedFiles={setUploadedReplyFiles}
+        uploadShow={uploadReplyShow}
+        setUploadShow={setUploadReplyShow}
+        handleUploadClose={handleUploadReplyClose}
+      />
+      {/* comment reply reply */}
+      <UploadFile
+        id={uploadId}
+        setCommentFileId={setDoubleReplyFileId}
+        setFile={setDoubleReplyFile}
+        uploadedFiles={uploadedDoubleFiles}
+        setUploadedFiles={setUploadedDoubleFiles}
+        uploadShow={uploadDoubleShow}
+        setUploadShow={setUploadDoubleShow}
+        handleUploadClose={handleUploadDoubleClose}
+      />
 
-        {lightBoxVisible && (
-          <LightBox
-            lightBoxFile={lightBoxFile}
-            lightBoxShow={lightBoxShow}
-            setLightBoxShow={setLightBoxShow}
-            handleLightBoxClose={closeLightBox}
-          />
-        )}
-      </Layout>
+      {lightBoxVisible && (
+        <LightBox
+          lightBoxFile={lightBoxFile}
+          lightBoxShow={lightBoxShow}
+          setLightBoxShow={setLightBoxShow}
+          handleLightBoxClose={closeLightBox}
+        />
+      )}
     </>
   )
 }

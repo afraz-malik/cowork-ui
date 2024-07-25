@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Layout from '../../../Component/Layout/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Dropdown, Table } from 'react-bootstrap'
@@ -157,217 +156,211 @@ const MyFiles = () => {
   }
   return (
     <>
-      <Layout>
-        <ToastContainer />
-        <div className='mainContent'>
-          <div className='myFilesTable'>
-            <div className='topLine'>
-              <div className='tableHeading'>
-                <h6>All Files</h6>
-              </div>
-              <div className='memberSearch'>
-                <div className='searchInput'>
-                  <input
-                    type='text'
-                    placeholder='Search files'
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className='form-control'
-                  />
-                  <FontAwesomeIcon icon={faSearch} />
-                </div>
-                <div className='filterDropdown taskDropdown'>
-                  <Dropdown>
-                    <Dropdown.Toggle>
-                      <button className='filterBtn'>
-                        <img className='mr-2' src={filter} alt='filter' />
-                        {filterTag === 'created'
-                          ? 'My Files'
-                          : filterTag === 'member'
-                            ? 'Shared With Me'
-                            : filterTag === 'all'
-                              ? 'All Files'
-                              : 'Filters'}
-                      </button>
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => setFilterTag('all')}>
-                        All Files
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setFilterTag('created')}>
-                        My Files
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setFilterTag('member')}>
-                        Shared With Me
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
-                {/* <button className='filterBtn'><img src={filter} alt='filter' /> Filter</button> */}
-                <button onClick={() => fileUpload()}>
-                  <FontAwesomeIcon icon={faPlus} /> Upload File
-                </button>
-              </div>
+      <ToastContainer />
+      <div className='mainContent'>
+        <div className='myFilesTable'>
+          <div className='topLine'>
+            <div className='tableHeading'>
+              <h6>All Files</h6>
             </div>
-            <div className='filesList myFilesList'>
-              <Table responsive hover>
-                <thead>
-                  <tr>
-                    <th>
-                      <label className='tableCheckBox'>
-                        <div className='contactCheck'>
-                          <input type='checkbox' name='agreement' />
-                          <span className='checkmark'></span>
-                        </div>
-                      </label>
-                    </th>
-                    <th>
-                      Name <FontAwesomeIcon icon={faArrowUp} />
-                    </th>
-                    <th>
-                      Uploaded <FontAwesomeIcon icon={faArrowUp} />
-                    </th>
-                    <th>
-                      Size <FontAwesomeIcon icon={faArrowUp} />
-                    </th>
-                    <th>Sharing</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredFiles &&
-                    filteredFiles.map((file: any, index) => (
-                      <tr key={`myFiles` + index}>
-                        <td>
-                          <label className='tableCheckBox'>
-                            <div className='contactCheck'>
-                              <input type='checkbox' name='agreement' />
-                              <span className='checkmark'></span>
-                            </div>
-                          </label>
-                        </td>
-                        <td
-                          onClick={() => lightBox(file.files_upload)}
-                          style={{ cursor: 'pointer' }}
-                        >
-                          <img src={getFileType(file.extension)} alt='avatar' />{' '}
-                          {file.nick_name}.{file.extension}
-                        </td>
-                        <td>
-                          {moment(file.created_at).format('MMMM D, YYYY')}
-                        </td>
-                        <td>{convertBytesToSize(file.size)}</td>
-                        {file.sharesList.length ? (
-                          <td>
-                            <div className='avatars2'>
-                              {file.sharesList.map((share: any, i: number) => (
-                                <div key={`myShare` + i}>
-                                  {share.image === 'imageNull' ? (
-                                    <img
-                                      className='avatar-icon36 default'
-                                      alt=''
-                                      src={memberIcon}
-                                    />
-                                  ) : (
-                                    <img
-                                      className='avatar-icon36'
-                                      alt=''
-                                      src={`${API}/${share.image}`}
-                                    />
-                                  )}
-                                </div>
-                              ))}
-                              {file.delete ? (
-                                <div
-                                  className='avatar2'
-                                  onClick={() =>
-                                    shareModal(file.id, file.shares)
-                                  }
-                                >
-                                  +
-                                </div>
-                              ) : (
-                                ''
-                              )}
-                            </div>
-                          </td>
-                        ) : (
-                          <td className='tableAction'>
-                            <button
-                              className='btn assignBtn'
-                              onClick={() => shareModal(file.id, file.shares)}
-                            >
-                              Share
-                            </button>
-                          </td>
-                        )}
-                        <td className='tableAction'>
-                          <button
-                            className='btn download'
-                            onClick={() => handleDownloadClick(file.name)}
-                          >
-                            <img src={download} alt='download' />
-                          </button>
-                          {file.delete ? (
-                            <button
-                              className='btn delete'
-                              onClick={() => fileRemove(file.id)}
-                            >
-                              <img src={deleteIcon} alt='delete' />
-                            </button>
-                          ) : (
-                            ''
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </Table>
-              <Pagination
-                page={page}
-                paginationTitle='files'
-                setPage={setPage}
-                limit={limit}
-                setLimit={setLimit}
-                prevButton={prevButton}
-                nextButton={nextButton}
-                pageValue={pageValue}
-                totalValue={totalValue}
-                prevPage={prevPage}
-                nextPage={nextPage}
-                allRequestList={filesList}
-              />
+            <div className='memberSearch'>
+              <div className='searchInput'>
+                <input
+                  type='text'
+                  placeholder='Search files'
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className='form-control'
+                />
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+              <div className='filterDropdown taskDropdown'>
+                <Dropdown>
+                  <Dropdown.Toggle>
+                    <button className='filterBtn'>
+                      <img className='mr-2' src={filter} alt='filter' />
+                      {filterTag === 'created'
+                        ? 'My Files'
+                        : filterTag === 'member'
+                        ? 'Shared With Me'
+                        : filterTag === 'all'
+                        ? 'All Files'
+                        : 'Filters'}
+                    </button>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={() => setFilterTag('all')}>
+                      All Files
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilterTag('created')}>
+                      My Files
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilterTag('member')}>
+                      Shared With Me
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+              {/* <button className='filterBtn'><img src={filter} alt='filter' /> Filter</button> */}
+              <button onClick={() => fileUpload()}>
+                <FontAwesomeIcon icon={faPlus} /> Upload File
+              </button>
             </div>
           </div>
+          <div className='filesList myFilesList'>
+            <Table responsive hover>
+              <thead>
+                <tr>
+                  <th>
+                    <label className='tableCheckBox'>
+                      <div className='contactCheck'>
+                        <input type='checkbox' name='agreement' />
+                        <span className='checkmark'></span>
+                      </div>
+                    </label>
+                  </th>
+                  <th>
+                    Name <FontAwesomeIcon icon={faArrowUp} />
+                  </th>
+                  <th>
+                    Uploaded <FontAwesomeIcon icon={faArrowUp} />
+                  </th>
+                  <th>
+                    Size <FontAwesomeIcon icon={faArrowUp} />
+                  </th>
+                  <th>Sharing</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredFiles &&
+                  filteredFiles.map((file: any, index) => (
+                    <tr key={`myFiles` + index}>
+                      <td>
+                        <label className='tableCheckBox'>
+                          <div className='contactCheck'>
+                            <input type='checkbox' name='agreement' />
+                            <span className='checkmark'></span>
+                          </div>
+                        </label>
+                      </td>
+                      <td
+                        onClick={() => lightBox(file.files_upload)}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <img src={getFileType(file.extension)} alt='avatar' />{' '}
+                        {file.nick_name}.{file.extension}
+                      </td>
+                      <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
+                      <td>{convertBytesToSize(file.size)}</td>
+                      {file.sharesList.length ? (
+                        <td>
+                          <div className='avatars2'>
+                            {file.sharesList.map((share: any, i: number) => (
+                              <div key={`myShare` + i}>
+                                {share.image === 'imageNull' ? (
+                                  <img
+                                    className='avatar-icon36 default'
+                                    alt=''
+                                    src={memberIcon}
+                                  />
+                                ) : (
+                                  <img
+                                    className='avatar-icon36'
+                                    alt=''
+                                    src={`${API}/${share.image}`}
+                                  />
+                                )}
+                              </div>
+                            ))}
+                            {file.delete ? (
+                              <div
+                                className='avatar2'
+                                onClick={() => shareModal(file.id, file.shares)}
+                              >
+                                +
+                              </div>
+                            ) : (
+                              ''
+                            )}
+                          </div>
+                        </td>
+                      ) : (
+                        <td className='tableAction'>
+                          <button
+                            className='btn assignBtn'
+                            onClick={() => shareModal(file.id, file.shares)}
+                          >
+                            Share
+                          </button>
+                        </td>
+                      )}
+                      <td className='tableAction'>
+                        <button
+                          className='btn download'
+                          onClick={() => handleDownloadClick(file.name)}
+                        >
+                          <img src={download} alt='download' />
+                        </button>
+                        {file.delete ? (
+                          <button
+                            className='btn delete'
+                            onClick={() => fileRemove(file.id)}
+                          >
+                            <img src={deleteIcon} alt='delete' />
+                          </button>
+                        ) : (
+                          ''
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+            <Pagination
+              page={page}
+              paginationTitle='files'
+              setPage={setPage}
+              limit={limit}
+              setLimit={setLimit}
+              prevButton={prevButton}
+              nextButton={nextButton}
+              pageValue={pageValue}
+              totalValue={totalValue}
+              prevPage={prevPage}
+              nextPage={nextPage}
+              allRequestList={filesList}
+            />
+          </div>
         </div>
-        <UploadFile
-          uploadShow={uploadShow}
-          setUploadShow={setUploadShow}
-          handleUploadClose={handleUploadClose}
+      </div>
+      <UploadFile
+        uploadShow={uploadShow}
+        setUploadShow={setUploadShow}
+        handleUploadClose={handleUploadClose}
+      />
+      <ShareFile
+        shares={shares}
+        setShares={setShares}
+        sharesShow={sharesShow}
+        setSharesShow={setSharesShow}
+        filesId={filesId}
+        shareShow={shareShow}
+        setShareShow={setShareShow}
+        handleShareClose={handleShareClose}
+      />
+      <DeleteModal
+        deleteShow={deleteShow}
+        deleteApi={deleteApi}
+        handleDeleteClose={handleDeleteClose}
+      />
+      {lightBoxVisible && (
+        <LightBox
+          lightBoxFile={lightBoxFile}
+          lightBoxShow={lightBoxShow}
+          setLightBoxShow={setLightBoxShow}
+          handleLightBoxClose={closeLightBox}
         />
-        <ShareFile
-          shares={shares}
-          setShares={setShares}
-          sharesShow={sharesShow}
-          setSharesShow={setSharesShow}
-          filesId={filesId}
-          shareShow={shareShow}
-          setShareShow={setShareShow}
-          handleShareClose={handleShareClose}
-        />
-        <DeleteModal
-          deleteShow={deleteShow}
-          deleteApi={deleteApi}
-          handleDeleteClose={handleDeleteClose}
-        />
-        {lightBoxVisible && (
-          <LightBox
-            lightBoxFile={lightBoxFile}
-            lightBoxShow={lightBoxShow}
-            setLightBoxShow={setLightBoxShow}
-            handleLightBoxClose={closeLightBox}
-          />
-        )}
-      </Layout>
+      )}
     </>
   )
 }

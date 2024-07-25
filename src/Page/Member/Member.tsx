@@ -11,7 +11,6 @@ import {
   faPlus,
   faSearch,
 } from '@fortawesome/free-solid-svg-icons'
-import Layout from '../../Component/Layout/Layout'
 import { DESKIE_API as API } from '../../config'
 import { faEye } from '@fortawesome/free-regular-svg-icons'
 import ViewMember from '../../Component/ViewMember/ViewMember'
@@ -120,200 +119,194 @@ const Member = () => {
 
   return (
     <div id='member'>
-      <Layout>
-        <ToastContainer />
-        <div className='mainContent'>
-          <div className='memberBox'>
-            <div className='topLine'>
-              <div className='tableHeading'>
-                <h6>
-                  <FontAwesomeIcon icon={faArrowLeft} />
-                  All Members
-                </h6>
-              </div>
-              <div className='memberSearch'>
-                <div className='searchInput'>
-                  <input
-                    type='text'
-                    placeholder='Search members'
-                    onChange={handleInputChange}
-                    className='form-control'
-                  />
-                  <FontAwesomeIcon icon={faSearch} />
-                </div>
-                <button onClick={handleShow}>
-                  <FontAwesomeIcon icon={faPlus} /> Add Member
-                </button>
-              </div>
+      <ToastContainer />
+      <div className='mainContent'>
+        <div className='memberBox'>
+          <div className='topLine'>
+            <div className='tableHeading'>
+              <h6>
+                <FontAwesomeIcon icon={faArrowLeft} />
+                All Members
+              </h6>
             </div>
+            <div className='memberSearch'>
+              <div className='searchInput'>
+                <input
+                  type='text'
+                  placeholder='Search members'
+                  onChange={handleInputChange}
+                  className='form-control'
+                />
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+              <button onClick={handleShow}>
+                <FontAwesomeIcon icon={faPlus} /> Add Member
+              </button>
+            </div>
+          </div>
 
-            <div className='memberList'>
-              <Table responsive hover>
-                <thead>
-                  <tr>
-                    <th>
+          <div className='memberList'>
+            <Table responsive hover>
+              <thead>
+                <tr>
+                  <th>
+                    <label className='tableCheckBox'>
+                      <div className='contactCheck'>
+                        <input type='checkbox' name='agreement' />
+                        <span className='checkmark'></span>
+                      </div>
+                    </label>
+                  </th>
+                  <th></th>
+                  <th>
+                    Name <FontAwesomeIcon icon={faArrowUp} />
+                  </th>
+                  <th>Email Address</th>
+                  <th>Phone Number</th>
+                  <th className='text-center'>Assignment</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredMembers.map((data: any, index) => (
+                  <tr key={`refer` + index}>
+                    <td>
                       <label className='tableCheckBox'>
                         <div className='contactCheck'>
                           <input type='checkbox' name='agreement' />
                           <span className='checkmark'></span>
                         </div>
                       </label>
-                    </th>
-                    <th></th>
-                    <th>
-                      Name <FontAwesomeIcon icon={faArrowUp} />
-                    </th>
-                    <th>Email Address</th>
-                    <th>Phone Number</th>
-                    <th className='text-center'>Assignment</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredMembers.map((data: any, index) => (
-                    <tr key={`refer` + index}>
-                      <td>
-                        <label className='tableCheckBox'>
-                          <div className='contactCheck'>
-                            <input type='checkbox' name='agreement' />
-                            <span className='checkmark'></span>
+                    </td>
+                    <td
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => memberView(data.id)}
+                    >
+                      {data.member_image ? (
+                        <>
+                          <img
+                            src={`${API}/${data.member_image}`}
+                            alt='avatar'
+                            style={{
+                              borderRadius: '50%',
+                              objectFit: 'cover',
+                            }}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <img
+                            className='default'
+                            src={memberAvatar}
+                            alt='avatar'
+                            style={{ borderRadius: '50%' }}
+                          />{' '}
+                        </>
+                      )}
+                    </td>
+                    <td className='tableLink'>
+                      <Link className='tableImage' to={`${data.id}`}>
+                        {data.first_name} {data.last_name}
+                      </Link>
+                    </td>
+                    <td>{data.email}</td>
+                    <td className='memberPhone'>
+                      <PhoneInput
+                        country={'us'}
+                        inputProps={{ readOnly: true }}
+                        disableCountryCode={false}
+                        value={data.phone_number}
+                      />
+                    </td>
+                    <td className='tableAction text-center'>
+                      {data.space_images ? (
+                        <>
+                          <div className='memberSpacesList'>
+                            {data.space_images &&
+                              separateComma(data.space_images).map(
+                                (member: any, i: number) => (
+                                  <div key={`spaceImage` + i}>
+                                    {member === 'imgNull' ? (
+                                      <img
+                                        className='avatar-icon36'
+                                        alt=''
+                                        src={spaceAvatar}
+                                      />
+                                    ) : (
+                                      <img
+                                        className='avatar-icon36'
+                                        alt=''
+                                        src={`${API}/${member}`}
+                                      />
+                                    )}
+                                  </div>
+                                )
+                              )}
+                            <div
+                              className='plusMember'
+                              onClick={() => assignMembers(data.id)}
+                            >
+                              <FontAwesomeIcon icon={faPlus} />
+                            </div>
                           </div>
-                        </label>
-                      </td>
-                      <td
-                        style={{ cursor: 'pointer' }}
+                        </>
+                      ) : (
+                        <button
+                          className='btn assign'
+                          onClick={() => assignMembers(data.id)}
+                        >
+                          Assign
+                        </button>
+                      )}
+                    </td>
+                    <td className='tableAction'>
+                      <button
+                        className='btn view'
                         onClick={() => memberView(data.id)}
                       >
-                        {data.member_image ? (
-                          <>
-                            <img
-                              src={`${API}/${data.member_image}`}
-                              alt='avatar'
-                              style={{
-                                borderRadius: '50%',
-                                objectFit: 'cover',
-                              }}
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <img
-                              className='default'
-                              src={memberAvatar}
-                              alt='avatar'
-                              style={{ borderRadius: '50%' }}
-                            />{' '}
-                          </>
-                        )}
-                      </td>
-                      <td className='tableLink'>
-                        <Link className='tableImage' to={`${data.id}`}>
-                          {data.first_name} {data.last_name}
-                        </Link>
-                      </td>
-                      <td>{data.email}</td>
-                      <td className='memberPhone'>
-                        <PhoneInput
-                          country={'us'}
-                          inputProps={{ readOnly: true }}
-                          disableCountryCode={false}
-                          value={data.phone_number}
-                        />
-                      </td>
-                      <td className='tableAction text-center'>
-                        {data.space_images ? (
-                          <>
-                            <div className='memberSpacesList'>
-                              {data.space_images &&
-                                separateComma(data.space_images).map(
-                                  (member: any, i: number) => (
-                                    <div key={`spaceImage` + i}>
-                                      {member === 'imgNull' ? (
-                                        <img
-                                          className='avatar-icon36'
-                                          alt=''
-                                          src={spaceAvatar}
-                                        />
-                                      ) : (
-                                        <img
-                                          className='avatar-icon36'
-                                          alt=''
-                                          src={`${API}/${member}`}
-                                        />
-                                      )}
-                                    </div>
-                                  )
-                                )}
-                              <div
-                                className='plusMember'
-                                onClick={() => assignMembers(data.id)}
-                              >
-                                <FontAwesomeIcon icon={faPlus} />
-                              </div>
-                            </div>
-                          </>
-                        ) : (
-                          <button
-                            className='btn assign'
-                            onClick={() => assignMembers(data.id)}
-                          >
-                            Assign
-                          </button>
-                        )}
-                      </td>
-                      <td className='tableAction'>
-                        <button
-                          className='btn view'
-                          onClick={() => memberView(data.id)}
-                        >
-                          <FontAwesomeIcon icon={faEye} />
-                        </button>
-                        <button
-                          className='btn edit'
-                          onClick={() => memberUpdate(data.id)}
-                        >
-                          <img src={editPen} alt='edit' />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-              <Pagination
-                page={page}
-                paginationTitle='items'
-                setPage={setPage}
-                limit={limit}
-                setLimit={setLimit}
-                prevButton={prevButton}
-                nextButton={nextButton}
-                pageValue={pageValue}
-                totalValue={totalValue}
-                prevPage={prevPage}
-                nextPage={nextPage}
-                allRequestList={member}
-              />
-            </div>
-            <AddMember
-              show={show}
-              setShow={setShow}
-              handleClose={handleClose}
-            />
-            <EditMember
-              memberId={memberId}
-              updateShow={updateShow}
-              setUpdateShow={setUpdateShow}
-              handleUpdateClose={handleUpdateClose}
-            />
-            <AssignSpaces
-              memberId={memberId}
-              assignShow={assignShow}
-              setAssignShow={setAssignShow}
-              handleAssignClose={handleAssignClose}
+                        <FontAwesomeIcon icon={faEye} />
+                      </button>
+                      <button
+                        className='btn edit'
+                        onClick={() => memberUpdate(data.id)}
+                      >
+                        <img src={editPen} alt='edit' />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+            <Pagination
+              page={page}
+              paginationTitle='items'
+              setPage={setPage}
+              limit={limit}
+              setLimit={setLimit}
+              prevButton={prevButton}
+              nextButton={nextButton}
+              pageValue={pageValue}
+              totalValue={totalValue}
+              prevPage={prevPage}
+              nextPage={nextPage}
+              allRequestList={member}
             />
           </div>
+          <AddMember show={show} setShow={setShow} handleClose={handleClose} />
+          <EditMember
+            memberId={memberId}
+            updateShow={updateShow}
+            setUpdateShow={setUpdateShow}
+            handleUpdateClose={handleUpdateClose}
+          />
+          <AssignSpaces
+            memberId={memberId}
+            assignShow={assignShow}
+            setAssignShow={setAssignShow}
+            handleAssignClose={handleAssignClose}
+          />
         </div>
-      </Layout>
+      </div>
     </div>
   )
 }

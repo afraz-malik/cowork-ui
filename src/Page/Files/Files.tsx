@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Layout from '../../Component/Layout/Layout'
 import './Files.css'
 import sketch from '../../Assets/Images/icon/sketch(1).png'
 import file from '../../Assets/Images/icon/file-05.png'
@@ -265,299 +264,297 @@ const Files = () => {
 
   return (
     <div id='files'>
-      <Layout>
-        <div className='mainContent'>
-          <div className='files'>
-            <div className='text43'>Favorites</div>
-            <div className='file-2-parent'>
-              {favoriteList &&
-                favoriteList.map((favorite: any, index) => (
-                  <div
-                    key={`favorite` + index}
-                    className={getFileExtension(favorite.extension)}
-                    onClick={() => lightBox(favorite.files_upload)}
-                  >
-                    <div className='favorite'>
-                      <img src={getFileType(favorite.extension)} alt='avatar' />
-                    </div>
-                    <div className='membership-agreementpdf'>
-                      {favorite.nick_name}.{favorite.extension}
-                    </div>
+      <div className='mainContent'>
+        <div className='files'>
+          <div className='text43'>Favorites</div>
+          <div className='file-2-parent'>
+            {favoriteList &&
+              favoriteList.map((favorite: any, index) => (
+                <div
+                  key={`favorite` + index}
+                  className={getFileExtension(favorite.extension)}
+                  onClick={() => lightBox(favorite.files_upload)}
+                >
+                  <div className='favorite'>
+                    <img src={getFileType(favorite.extension)} alt='avatar' />
                   </div>
-                ))}
-            </div>
-          </div>
-          <div className='filesTable'>
-            <div className='topLine'>
-              <div className='tableHeading'>
-                <h6>All Files</h6>
-              </div>
-              <div className='memberSearch'>
-                <div className='searchInput'>
-                  <input
-                    type='text'
-                    placeholder='Search files'
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className='form-control'
-                  />
-                  <FontAwesomeIcon icon={faSearch} />
+                  <div className='membership-agreementpdf'>
+                    {favorite.nick_name}.{favorite.extension}
+                  </div>
                 </div>
-
-                <div className='filterDropdown taskDropdown'>
-                  <Dropdown>
-                    <Dropdown.Toggle>
-                      <button className='filterBtn'>
-                        <img className='mr-2' src={filter} alt='filter' />
-                        {filterTag === 'created'
-                          ? 'My Files'
-                          : filterTag === 'member'
-                            ? 'Shared With Me'
-                            : filterTag === 'all'
-                              ? 'All Files'
-                              : 'Filters'}
-                      </button>
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu className='px-1'>
-                      <Dropdown.Item onClick={() => setFilterTag('all')}>
-                        All Files
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setFilterTag('created')}>
-                        My Files
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setFilterTag('member')}>
-                        Shared With Me
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
-                <button onClick={() => fileUpload()}>
-                  <img src={upload} alt='upload' /> Upload File
-                </button>
-              </div>
-            </div>
-            <div className='filesList'>
-              <Table responsive hover>
-                <thead>
-                  <tr>
-                    <th>
-                      <label className='tableCheckBox'>
-                        <div className='contactCheck'>
-                          <input type='checkbox' name='agreement' />
-                          <span className='checkmark'></span>
-                        </div>
-                      </label>
-                    </th>
-                    <th></th>
-                    <th onClick={() => handleSort('name')}>
-                      Name{' '}
-                      {sortBy === 'name' ? (
-                        <>
-                          {sortOrder === 'asc' ? (
-                            <FontAwesomeIcon icon={faArrowUp} />
-                          ) : (
-                            <FontAwesomeIcon icon={faArrowDown} />
-                          )}
-                        </>
-                      ) : (
-                        ''
-                      )}
-                    </th>
-                    <th onClick={() => handleSort('uploaded')}>
-                      Uploaded{' '}
-                      {sortBy === 'uploaded' ? (
-                        <>
-                          {sortOrder === 'asc' ? (
-                            <FontAwesomeIcon icon={faArrowUp} />
-                          ) : (
-                            <FontAwesomeIcon icon={faArrowDown} />
-                          )}
-                        </>
-                      ) : (
-                        ''
-                      )}
-                    </th>
-                    <th onClick={() => handleSort('size')}>
-                      Size{' '}
-                      {sortBy === 'size' ? (
-                        <>
-                          {sortOrder === 'asc' ? (
-                            <FontAwesomeIcon icon={faArrowUp} />
-                          ) : (
-                            <FontAwesomeIcon icon={faArrowDown} />
-                          )}
-                        </>
-                      ) : (
-                        ''
-                      )}
-                    </th>
-                    <th>Sharing</th>
-                    <th>Actions</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sortedFiles &&
-                    sortedFiles.map((file: any, index) => (
-                      <tr key={`sortedFile` + index}>
-                        <td>
-                          <label className='tableCheckBox'>
-                            <div className='contactCheck'>
-                              <input type='checkbox' name='agreement' />
-                              <span className='checkmark'></span>
-                            </div>
-                          </label>
-                        </td>
-                        <td>
-                          <img
-                            className={
-                              getFileExtension(file.extension) + ' mx-auto'
-                            }
-                            style={{ width: '40px' }}
-                            src={getFileType(file.extension)}
-                            alt='avatar'
-                          />
-                        </td>
-                        <td
-                          onClick={() => lightBox(file.files_upload)}
-                          style={{ cursor: 'pointer', fontWeight: '800' }}
-                        >
-                          {file.nick_name.length <= 23
-                            ? file.nick_name
-                            : file.nick_name.substring(0, 20) + '...'}
-                          .{file.extension}
-                        </td>
-                        <td>
-                          {moment(file.created_at).format('MMMM D, YYYY')}
-                        </td>
-                        <td>{convertBytesToSize(file.size)}</td>
-                        {file.sharesList ? (
-                          <td>
-                            <div className='avatars2'>
-                              {file.sharesList.map((share: any, i: number) => (
-                                <div key={`shareList` + i}>
-                                  {share.image === 'imageNull' ? (
-                                    <img
-                                      className='avatar-icon36 default'
-                                      alt=''
-                                      src={memberIcon}
-                                    />
-                                  ) : (
-                                    <img
-                                      className={`${share.type === 'admin' ? 'admin avatar-icon36' : 'avatar-icon36'}`}
-                                      alt=''
-                                      src={`${API}/${share.image}`}
-                                    />
-                                  )}
-                                </div>
-                              ))}
-                              {file.delete ? (
-                                <div
-                                  className='avatar2'
-                                  onClick={() =>
-                                    shareModal(file.id, file.shares)
-                                  }
-                                >
-                                  +
-                                </div>
-                              ) : (
-                                ''
-                              )}
-                            </div>
-                          </td>
-                        ) : (
-                          <td className='tableAction'>
-                            <button
-                              className='btn assignBtn'
-                              onClick={() => shareModal(file.id, file.shares)}
-                            >
-                              Share
-                            </button>
-                          </td>
-                        )}
-                        <td className='tableAction'>
-                          <button
-                            className='btn download'
-                            onClick={() => handleDownloadClick(file.name)}
-                          >
-                            <img src={download} alt='download' />
-                          </button>
-                          {file.delete ? (
-                            <button
-                              className='btn delete'
-                              onClick={() => fileRemove(file.id, file.name)}
-                            >
-                              <img src={deleteIcon} alt='delete' />
-                            </button>
-                          ) : (
-                            ''
-                          )}
-                        </td>
-                        <td>
-                          {file.delete ? (
-                            <button
-                              className='btn start'
-                              onClick={() => favoriteAdd(file.id, file.name)}
-                            >
-                              {file.favorite === 0 ? (
-                                <img src={star} alt='download' />
-                              ) : (
-                                <img src={markStar} alt='download' />
-                              )}
-                            </button>
-                          ) : (
-                            ''
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </Table>
-              <Pagination
-                page={page}
-                paginationTitle='items'
-                setPage={setPage}
-                limit={limit}
-                setLimit={setLimit}
-                prevButton={prevButton}
-                nextButton={nextButton}
-                pageValue={pageValue}
-                totalValue={totalValue}
-                prevPage={prevPage}
-                nextPage={nextPage}
-                allRequestList={filesList}
-              />
-            </div>
+              ))}
           </div>
         </div>
-        <UploadFile
-          uploadShow={uploadShow}
-          setUploadShow={setUploadShow}
-          handleUploadClose={handleUploadClose}
+        <div className='filesTable'>
+          <div className='topLine'>
+            <div className='tableHeading'>
+              <h6>All Files</h6>
+            </div>
+            <div className='memberSearch'>
+              <div className='searchInput'>
+                <input
+                  type='text'
+                  placeholder='Search files'
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className='form-control'
+                />
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+
+              <div className='filterDropdown taskDropdown'>
+                <Dropdown>
+                  <Dropdown.Toggle>
+                    <button className='filterBtn'>
+                      <img className='mr-2' src={filter} alt='filter' />
+                      {filterTag === 'created'
+                        ? 'My Files'
+                        : filterTag === 'member'
+                        ? 'Shared With Me'
+                        : filterTag === 'all'
+                        ? 'All Files'
+                        : 'Filters'}
+                    </button>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className='px-1'>
+                    <Dropdown.Item onClick={() => setFilterTag('all')}>
+                      All Files
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilterTag('created')}>
+                      My Files
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilterTag('member')}>
+                      Shared With Me
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+              <button onClick={() => fileUpload()}>
+                <img src={upload} alt='upload' /> Upload File
+              </button>
+            </div>
+          </div>
+          <div className='filesList'>
+            <Table responsive hover>
+              <thead>
+                <tr>
+                  <th>
+                    <label className='tableCheckBox'>
+                      <div className='contactCheck'>
+                        <input type='checkbox' name='agreement' />
+                        <span className='checkmark'></span>
+                      </div>
+                    </label>
+                  </th>
+                  <th></th>
+                  <th onClick={() => handleSort('name')}>
+                    Name{' '}
+                    {sortBy === 'name' ? (
+                      <>
+                        {sortOrder === 'asc' ? (
+                          <FontAwesomeIcon icon={faArrowUp} />
+                        ) : (
+                          <FontAwesomeIcon icon={faArrowDown} />
+                        )}
+                      </>
+                    ) : (
+                      ''
+                    )}
+                  </th>
+                  <th onClick={() => handleSort('uploaded')}>
+                    Uploaded{' '}
+                    {sortBy === 'uploaded' ? (
+                      <>
+                        {sortOrder === 'asc' ? (
+                          <FontAwesomeIcon icon={faArrowUp} />
+                        ) : (
+                          <FontAwesomeIcon icon={faArrowDown} />
+                        )}
+                      </>
+                    ) : (
+                      ''
+                    )}
+                  </th>
+                  <th onClick={() => handleSort('size')}>
+                    Size{' '}
+                    {sortBy === 'size' ? (
+                      <>
+                        {sortOrder === 'asc' ? (
+                          <FontAwesomeIcon icon={faArrowUp} />
+                        ) : (
+                          <FontAwesomeIcon icon={faArrowDown} />
+                        )}
+                      </>
+                    ) : (
+                      ''
+                    )}
+                  </th>
+                  <th>Sharing</th>
+                  <th>Actions</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedFiles &&
+                  sortedFiles.map((file: any, index) => (
+                    <tr key={`sortedFile` + index}>
+                      <td>
+                        <label className='tableCheckBox'>
+                          <div className='contactCheck'>
+                            <input type='checkbox' name='agreement' />
+                            <span className='checkmark'></span>
+                          </div>
+                        </label>
+                      </td>
+                      <td>
+                        <img
+                          className={
+                            getFileExtension(file.extension) + ' mx-auto'
+                          }
+                          style={{ width: '40px' }}
+                          src={getFileType(file.extension)}
+                          alt='avatar'
+                        />
+                      </td>
+                      <td
+                        onClick={() => lightBox(file.files_upload)}
+                        style={{ cursor: 'pointer', fontWeight: '800' }}
+                      >
+                        {file.nick_name.length <= 23
+                          ? file.nick_name
+                          : file.nick_name.substring(0, 20) + '...'}
+                        .{file.extension}
+                      </td>
+                      <td>{moment(file.created_at).format('MMMM D, YYYY')}</td>
+                      <td>{convertBytesToSize(file.size)}</td>
+                      {file.sharesList ? (
+                        <td>
+                          <div className='avatars2'>
+                            {file.sharesList.map((share: any, i: number) => (
+                              <div key={`shareList` + i}>
+                                {share.image === 'imageNull' ? (
+                                  <img
+                                    className='avatar-icon36 default'
+                                    alt=''
+                                    src={memberIcon}
+                                  />
+                                ) : (
+                                  <img
+                                    className={`${
+                                      share.type === 'admin'
+                                        ? 'admin avatar-icon36'
+                                        : 'avatar-icon36'
+                                    }`}
+                                    alt=''
+                                    src={`${API}/${share.image}`}
+                                  />
+                                )}
+                              </div>
+                            ))}
+                            {file.delete ? (
+                              <div
+                                className='avatar2'
+                                onClick={() => shareModal(file.id, file.shares)}
+                              >
+                                +
+                              </div>
+                            ) : (
+                              ''
+                            )}
+                          </div>
+                        </td>
+                      ) : (
+                        <td className='tableAction'>
+                          <button
+                            className='btn assignBtn'
+                            onClick={() => shareModal(file.id, file.shares)}
+                          >
+                            Share
+                          </button>
+                        </td>
+                      )}
+                      <td className='tableAction'>
+                        <button
+                          className='btn download'
+                          onClick={() => handleDownloadClick(file.name)}
+                        >
+                          <img src={download} alt='download' />
+                        </button>
+                        {file.delete ? (
+                          <button
+                            className='btn delete'
+                            onClick={() => fileRemove(file.id, file.name)}
+                          >
+                            <img src={deleteIcon} alt='delete' />
+                          </button>
+                        ) : (
+                          ''
+                        )}
+                      </td>
+                      <td>
+                        {file.delete ? (
+                          <button
+                            className='btn start'
+                            onClick={() => favoriteAdd(file.id, file.name)}
+                          >
+                            {file.favorite === 0 ? (
+                              <img src={star} alt='download' />
+                            ) : (
+                              <img src={markStar} alt='download' />
+                            )}
+                          </button>
+                        ) : (
+                          ''
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+            <Pagination
+              page={page}
+              paginationTitle='items'
+              setPage={setPage}
+              limit={limit}
+              setLimit={setLimit}
+              prevButton={prevButton}
+              nextButton={nextButton}
+              pageValue={pageValue}
+              totalValue={totalValue}
+              prevPage={prevPage}
+              nextPage={nextPage}
+              allRequestList={filesList}
+            />
+          </div>
+        </div>
+      </div>
+      <UploadFile
+        uploadShow={uploadShow}
+        setUploadShow={setUploadShow}
+        handleUploadClose={handleUploadClose}
+      />
+      <ShareFile
+        shares={shares}
+        setShares={setShares}
+        sharesShow={sharesShow}
+        setSharesShow={setSharesShow}
+        filesId={filesId}
+        shareShow={shareShow}
+        setShareShow={setShareShow}
+        handleShareClose={handleShareClose}
+      />
+      <DeleteModal
+        deleteShow={deleteShow}
+        deleteApi={deleteApi}
+        handleDeleteClose={handleDeleteClose}
+      />
+      {lightBoxVisible && (
+        <LightBox
+          lightBoxFile={lightBoxFile}
+          lightBoxShow={lightBoxShow}
+          setLightBoxShow={setLightBoxShow}
+          handleLightBoxClose={closeLightBox}
         />
-        <ShareFile
-          shares={shares}
-          setShares={setShares}
-          sharesShow={sharesShow}
-          setSharesShow={setSharesShow}
-          filesId={filesId}
-          shareShow={shareShow}
-          setShareShow={setShareShow}
-          handleShareClose={handleShareClose}
-        />
-        <DeleteModal
-          deleteShow={deleteShow}
-          deleteApi={deleteApi}
-          handleDeleteClose={handleDeleteClose}
-        />
-        {lightBoxVisible && (
-          <LightBox
-            lightBoxFile={lightBoxFile}
-            lightBoxShow={lightBoxShow}
-            setLightBoxShow={setLightBoxShow}
-            handleLightBoxClose={closeLightBox}
-          />
-        )}
-      </Layout>
+      )}
     </div>
   )
 }

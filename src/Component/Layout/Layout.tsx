@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect } from 'react'
 import Header from '../LeftSide/Header'
 import LeftSide from '../LeftSide/LeftSide'
+import { Outlet } from 'react-router-dom'
 
 interface Props {
   children?: ReactNode
@@ -22,7 +23,9 @@ const Layout = ({ children, ...props }: Props) => {
         </div>
         <div style={{ width: '100%' }}>
           <Header onValueChange={handleValueChange} />
-          <div {...props}>{children}</div>
+          <div {...props}>
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

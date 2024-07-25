@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { resourceBook, singleResource } from '../../api/resource'
-import Layout from '../Layout/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons'
 import penIcon from '../../Assets/Images/icon/pencil-01.svg'
@@ -44,7 +43,7 @@ const ViewResource = () => {
   }
 
   return (
-    <Layout>
+    <>
       <ToastContainer />
       <div className='mainContent'>
         <div className='invoiceHeading'>
@@ -207,7 +206,7 @@ const ViewResource = () => {
         setEditShow={setEditShow}
         handleEditClose={handleEditClose}
       />
-    </Layout>
+    </>
   )
 }
 

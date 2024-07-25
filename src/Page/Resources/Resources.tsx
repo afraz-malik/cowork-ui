@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Layout from '../../Component/Layout/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faEye } from '@fortawesome/free-regular-svg-icons'
@@ -79,7 +78,7 @@ const Resources = () => {
   }
 
   return (
-    <Layout>
+    <>
       <div className='mainContent' id='resources'>
         <div className='resourcesPage'>
           <div className='memberBox'>
@@ -289,7 +288,7 @@ const Resources = () => {
           handleEditClose={handleEditClose}
         />
       </div>
-    </Layout>
+    </>
   )
 }
 

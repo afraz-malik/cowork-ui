@@ -11,7 +11,6 @@ import {
   faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons'
 import { Col, Container, Dropdown, Row } from 'react-bootstrap'
-import Layout from '../../Component/Layout/Layout'
 import DatePicker from 'react-datepicker'
 import calenderIcon from '../../Assets/Images/icon/calendar.svg'
 import { v4 as uuidv4 } from 'uuid'
@@ -265,249 +264,184 @@ const CreateInvoice = () => {
 
   return (
     <div id='new-invoice'>
-      <Layout>
-        <div className='mainContent'>
-          <div className='invoiceHeading'>
-            <nav aria-label='breadcrumb'>
-              <ol className='breadcrumb m-0 ms-2'>
-                {/* <li className="breadcrumb-item">Finances</li> */}
-                <li className='breadcrumb-item px-0'>
-                  <Link to='/billing'>Billing</Link>
-                </li>
-                <li className='breadcrumb-item active' aria-current='page'>
-                  Create New Invoice
-                </li>
-              </ol>
-            </nav>
+      <div className='mainContent'>
+        <div className='invoiceHeading'>
+          <nav aria-label='breadcrumb'>
+            <ol className='breadcrumb m-0 ms-2'>
+              {/* <li className="breadcrumb-item">Finances</li> */}
+              <li className='breadcrumb-item px-0'>
+                <Link to='/billing'>Billing</Link>
+              </li>
+              <li className='breadcrumb-item active' aria-current='page'>
+                Create New Invoice
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div className='createInvoice'>
+          <div className='topLine'>
+            <div className='tableHeading'>
+              <Link className='breadLink' to='/billing'>
+                <FontAwesomeIcon icon={faArrowLeft} /> Create Manual Invoice
+              </Link>
+            </div>
           </div>
-          <div className='createInvoice'>
-            <div className='topLine'>
-              <div className='tableHeading'>
-                <Link className='breadLink' to='/billing'>
-                  <FontAwesomeIcon icon={faArrowLeft} /> Create Manual Invoice
-                </Link>
-              </div>
-            </div>
-            <div className='invoiceForm py-0'>
-              <Row>
-                <Col md={12}>
-                  <div className='assignName'>
-                    <div className='generateInvoice my-0'>
-                      <h5 className='mb-0'>
-                        {' '}
-                        <img src={refresh} alt='refresh' /> Create Recurring
-                        Invoice
-                      </h5>
-                      <div className='authToggle mt-0'>
-                        {authValue === true ? (
-                          <label className='switch'>
-                            <input
-                              type='checkbox'
-                              onClick={authClick}
-                              defaultChecked
-                            />
-                            <span className='slider round'></span>
-                          </label>
-                        ) : (
-                          <label className='switch'>
-                            <input type='checkbox' onClick={authClick} />
-                            <span className='slider round'></span>
-                          </label>
-                        )}
-                      </div>
+          <div className='invoiceForm py-0'>
+            <Row>
+              <Col md={12}>
+                <div className='assignName'>
+                  <div className='generateInvoice my-0'>
+                    <h5 className='mb-0'>
+                      {' '}
+                      <img src={refresh} alt='refresh' /> Create Recurring
+                      Invoice
+                    </h5>
+                    <div className='authToggle mt-0'>
+                      {authValue === true ? (
+                        <label className='switch'>
+                          <input
+                            type='checkbox'
+                            onClick={authClick}
+                            defaultChecked
+                          />
+                          <span className='slider round'></span>
+                        </label>
+                      ) : (
+                        <label className='switch'>
+                          <input type='checkbox' onClick={authClick} />
+                          <span className='slider round'></span>
+                        </label>
+                      )}
                     </div>
-                    {authValue ? (
-                      <>
-                        <div className='generateInvoice mb-0'>
-                          <h6>Renewal Amount</h6>
-                          <div className='memberInput amount'>
-                            <span>$</span>
-                            <input
-                              type='text'
-                              placeholder='Rate'
-                              value={discountAmount}
-                              onChange={(e) =>
-                                setDiscountAmount(e.target.value)
-                              }
-                              className='form-control'
-                            />
-                            <button
-                              className='calculate'
-                              onClick={calculateRent}
-                            >
-                              Calculate Pro-Rated Rent
-                            </button>
-                          </div>
-                        </div>
-                        <div className='generateInvoice mb-0'>
-                          <h6>Renewal Date</h6>
-                          <div className='calenderInput'>
-                            <div className='dueDateFormat'>
-                              <DateCalender
-                                dueDate={renewalDate}
-                                dueDateChange={dueDateChange}
-                                setDueDate={setRenewalDate}
-                              />
-                              {/* <DatePicker selected={renewalDate} placeholderText="Select a date" onChange={dueDateChange} dateFormat="MM/dd/yyyy" customInput={<CustomDatePickerInput />} renderCustomHeader={CustomHeader} /> */}
-                            </div>
-                          </div>
-                        </div>
-                        <div className='generateInvoice mb-0'>
-                          <h6>Renewal Frequency</h6>
-                          <div className='memberInput'>
-                            <Dropdown onSelect={handleSelect}>
-                              <Dropdown.Toggle
-                                variant=''
-                                className='custom-toggle'
-                              >
-                                {frequency === 'daily'
-                                  ? 'Daily'
-                                  : frequency === 'weekly'
-                                    ? 'Weekly'
-                                    : frequency === 'monthly'
-                                      ? 'Monthly'
-                                      : 'Choose type'}
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu>
-                                <Dropdown.Item eventKey='daily'>
-                                  Daily
-                                </Dropdown.Item>
-                                <Dropdown.Item eventKey='weekly'>
-                                  Weekly
-                                </Dropdown.Item>
-                                <Dropdown.Item eventKey='monthly'>
-                                  Monthly
-                                </Dropdown.Item>
-                              </Dropdown.Menu>
-                            </Dropdown>
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
                   </div>
-                </Col>
-              </Row>
-            </div>
-            <div className='invoiceForm'>
-              <Row>
-                <Col md={6}>
-                  <div className='memberInput'>
-                    <label>Invoice ID</label>
-                    <input
-                      type='text'
-                      value={invoiceId}
-                      onChange={(e) => setInvoiceId(e.target.value)}
-                      placeholder='Invoice ID'
-                      className='form-control'
-                      required
-                    />
-                  </div>
-                </Col>
-
-                <Col md={6}>
-                  <div className='calenderInput'>
-                    <label>Due Date</label>
-                    {dueDate && dueDate ? (
-                      <div className='dueDateFormat'>
-                        <DateCalender
-                          dueDate={dueDate}
-                          dueDateChange={dueDateChange}
-                          setDueDate={setDueDate}
-                        />
-                      </div>
-                    ) : (
-                      <div className='dueDateFormat'>
-                        <DatePicker
-                          placeholderText='Select a date'
-                          onChange={dueDateChange}
-                          dateFormat='MM/dd/yyyy'
-                          customInput={<CustomDateFormatInput />}
-                          renderCustomHeader={CustomHeader}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </Col>
-
-                <Col md={4}>
-                  <div className='invoiceInput'>
-                    <label>Member</label>
-                  </div>
-                  <div className='memberInfos invoiceDrop'>
-                    <div className='dropdown' style={{ width: '100%' }}>
-                      <div
-                        onClick={(e) => {
-                          setIsActive(!isActive)
-                        }}
-                        className='dropdown-btn'
-                      >
-                        <div className='d-flex tableImage'>
-                          {selectEmail.length ? (
-                            <>
-                              {memberImage ? (
-                                <img
-                                  src={`${API}/${memberImage}`}
-                                  alt='avatar'
-                                  style={{ objectFit: 'cover' }}
-                                />
-                              ) : (
-                                <img
-                                  className='default'
-                                  src={memberIcon}
-                                  alt='avatar'
-                                />
-                              )}
-                              <div>
-                                <p>
-                                  {selectName.length > 40
-                                    ? selectName.substring(0, 40) + '...'
-                                    : selectName}
-                                </p>
-                                <span>
-                                  {selectEmail.length > 40
-                                    ? selectEmail.substring(0, 40) + '...'
-                                    : selectEmail}
-                                </span>
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              <div>
-                                <p className='place'>Choose Member</p>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                        <span>
-                          <FontAwesomeIcon icon={faChevronDown} />
-                        </span>
-                      </div>
-                      <div
-                        className='dropdown-content'
-                        style={{ display: isActive ? 'block' : 'none' }}
-                      >
-                        <div className='assignInput'>
-                          <FontAwesomeIcon icon={faSearch} />
+                  {authValue ? (
+                    <>
+                      <div className='generateInvoice mb-0'>
+                        <h6>Renewal Amount</h6>
+                        <div className='memberInput amount'>
+                          <span>$</span>
                           <input
                             type='text'
-                            placeholder='Search member'
-                            onChange={handleMemberChange}
+                            placeholder='Rate'
+                            value={discountAmount}
+                            onChange={(e) => setDiscountAmount(e.target.value)}
                             className='form-control'
                           />
+                          <button className='calculate' onClick={calculateRent}>
+                            Calculate Pro-Rated Rent
+                          </button>
                         </div>
-                        {filteredMembers.map((data: any, index: number) => (
-                          <div
-                            onClick={(e) => {
-                              setIsActive(!isActive)
-                              selectMember(data)
-                            }}
-                            className='item tableImage'
-                          >
-                            {data.member_image ? (
+                      </div>
+                      <div className='generateInvoice mb-0'>
+                        <h6>Renewal Date</h6>
+                        <div className='calenderInput'>
+                          <div className='dueDateFormat'>
+                            <DateCalender
+                              dueDate={renewalDate}
+                              dueDateChange={dueDateChange}
+                              setDueDate={setRenewalDate}
+                            />
+                            {/* <DatePicker selected={renewalDate} placeholderText="Select a date" onChange={dueDateChange} dateFormat="MM/dd/yyyy" customInput={<CustomDatePickerInput />} renderCustomHeader={CustomHeader} /> */}
+                          </div>
+                        </div>
+                      </div>
+                      <div className='generateInvoice mb-0'>
+                        <h6>Renewal Frequency</h6>
+                        <div className='memberInput'>
+                          <Dropdown onSelect={handleSelect}>
+                            <Dropdown.Toggle
+                              variant=''
+                              className='custom-toggle'
+                            >
+                              {frequency === 'daily'
+                                ? 'Daily'
+                                : frequency === 'weekly'
+                                ? 'Weekly'
+                                : frequency === 'monthly'
+                                ? 'Monthly'
+                                : 'Choose type'}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item eventKey='daily'>
+                                Daily
+                              </Dropdown.Item>
+                              <Dropdown.Item eventKey='weekly'>
+                                Weekly
+                              </Dropdown.Item>
+                              <Dropdown.Item eventKey='monthly'>
+                                Monthly
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </Col>
+            </Row>
+          </div>
+          <div className='invoiceForm'>
+            <Row>
+              <Col md={6}>
+                <div className='memberInput'>
+                  <label>Invoice ID</label>
+                  <input
+                    type='text'
+                    value={invoiceId}
+                    onChange={(e) => setInvoiceId(e.target.value)}
+                    placeholder='Invoice ID'
+                    className='form-control'
+                    required
+                  />
+                </div>
+              </Col>
+
+              <Col md={6}>
+                <div className='calenderInput'>
+                  <label>Due Date</label>
+                  {dueDate && dueDate ? (
+                    <div className='dueDateFormat'>
+                      <DateCalender
+                        dueDate={dueDate}
+                        dueDateChange={dueDateChange}
+                        setDueDate={setDueDate}
+                      />
+                    </div>
+                  ) : (
+                    <div className='dueDateFormat'>
+                      <DatePicker
+                        placeholderText='Select a date'
+                        onChange={dueDateChange}
+                        dateFormat='MM/dd/yyyy'
+                        customInput={<CustomDateFormatInput />}
+                        renderCustomHeader={CustomHeader}
+                      />
+                    </div>
+                  )}
+                </div>
+              </Col>
+
+              <Col md={4}>
+                <div className='invoiceInput'>
+                  <label>Member</label>
+                </div>
+                <div className='memberInfos invoiceDrop'>
+                  <div className='dropdown' style={{ width: '100%' }}>
+                    <div
+                      onClick={(e) => {
+                        setIsActive(!isActive)
+                      }}
+                      className='dropdown-btn'
+                    >
+                      <div className='d-flex tableImage'>
+                        {selectEmail.length ? (
+                          <>
+                            {memberImage ? (
                               <img
-                                src={`${API}/${data.member_image}`}
+                                src={`${API}/${memberImage}`}
                                 alt='avatar'
                                 style={{ objectFit: 'cover' }}
                               />
@@ -518,144 +452,199 @@ const CreateInvoice = () => {
                                 alt='avatar'
                               />
                             )}
-                            <p>
-                              {data.first_name} {data.last_name}
-                            </p>
-                          </div>
-                        ))}
+                            <div>
+                              <p>
+                                {selectName.length > 40
+                                  ? selectName.substring(0, 40) + '...'
+                                  : selectName}
+                              </p>
+                              <span>
+                                {selectEmail.length > 40
+                                  ? selectEmail.substring(0, 40) + '...'
+                                  : selectEmail}
+                              </span>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div>
+                              <p className='place'>Choose Member</p>
+                            </div>
+                          </>
+                        )}
                       </div>
+                      <span>
+                        <FontAwesomeIcon icon={faChevronDown} />
+                      </span>
+                    </div>
+                    <div
+                      className='dropdown-content'
+                      style={{ display: isActive ? 'block' : 'none' }}
+                    >
+                      <div className='assignInput'>
+                        <FontAwesomeIcon icon={faSearch} />
+                        <input
+                          type='text'
+                          placeholder='Search member'
+                          onChange={handleMemberChange}
+                          className='form-control'
+                        />
+                      </div>
+                      {filteredMembers.map((data: any, index: number) => (
+                        <div
+                          onClick={(e) => {
+                            setIsActive(!isActive)
+                            selectMember(data)
+                          }}
+                          className='item tableImage'
+                        >
+                          {data.member_image ? (
+                            <img
+                              src={`${API}/${data.member_image}`}
+                              alt='avatar'
+                              style={{ objectFit: 'cover' }}
+                            />
+                          ) : (
+                            <img
+                              className='default'
+                              src={memberIcon}
+                              alt='avatar'
+                            />
+                          )}
+                          <p>
+                            {data.first_name} {data.last_name}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </Col>
-                <Col md={4}>
-                  <div className='memberInput'>
-                    <label>Item</label>
-                  </div>
-                  <div className='memberInfos invoiceDrop'>
-                    <div className='dropdown' style={{ width: '100%' }}>
-                      <div
-                        onClick={(e) => {
-                          setSpaceActive(!spaceActive)
-                        }}
-                        className='dropdown-btn'
-                      >
-                        <div className='d-flex tableImage'>
-                          {spacesName.length ? (
-                            <>
-                              {spacesImage ? (
-                                <img
-                                  src={`${API}/${spacesImage}`}
-                                  alt='avatar'
-                                  style={{ objectFit: 'cover' }}
-                                />
-                              ) : (
-                                <img src={spaceIcon} alt='avatar' />
-                              )}
-                              <div>
-                                <p>
-                                  {spacesName.length > 40
-                                    ? spacesName.substring(0, 40) + '...'
-                                    : spacesName}
-                                </p>
-                                <span>${spacesRate}</span>
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              <div>
-                                <p className='place'>Choose Item</p>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                        <span>
-                          <FontAwesomeIcon icon={faChevronDown} />
-                        </span>
-                      </div>
-                      <div
-                        className='dropdown-content'
-                        style={{ display: spaceActive ? 'block' : 'none' }}
-                      >
-                        <div className='assignInput'>
-                          <FontAwesomeIcon icon={faSearch} />
-                          <input
-                            type='text'
-                            placeholder='Search member'
-                            onChange={handleSpacesChange}
-                            className='form-control'
-                          />
-                        </div>
-                        {filteredSpaces.map((data: any, index: number) => (
-                          <div
-                            onClick={(e) => {
-                              setSpaceActive(!spaceActive)
-                              selectSpaces(data)
-                            }}
-                            className='item tableImage'
-                          >
-                            {data.space_image ? (
+                </div>
+              </Col>
+              <Col md={4}>
+                <div className='memberInput'>
+                  <label>Item</label>
+                </div>
+                <div className='memberInfos invoiceDrop'>
+                  <div className='dropdown' style={{ width: '100%' }}>
+                    <div
+                      onClick={(e) => {
+                        setSpaceActive(!spaceActive)
+                      }}
+                      className='dropdown-btn'
+                    >
+                      <div className='d-flex tableImage'>
+                        {spacesName.length ? (
+                          <>
+                            {spacesImage ? (
                               <img
-                                src={`${API}/${data.space_image}`}
+                                src={`${API}/${spacesImage}`}
                                 alt='avatar'
                                 style={{ objectFit: 'cover' }}
                               />
                             ) : (
                               <img src={spaceIcon} alt='avatar' />
                             )}
-                            <p>{data.name}</p>
-                          </div>
-                        ))}
+                            <div>
+                              <p>
+                                {spacesName.length > 40
+                                  ? spacesName.substring(0, 40) + '...'
+                                  : spacesName}
+                              </p>
+                              <span>${spacesRate}</span>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div>
+                              <p className='place'>Choose Item</p>
+                            </div>
+                          </>
+                        )}
                       </div>
+                      <span>
+                        <FontAwesomeIcon icon={faChevronDown} />
+                      </span>
+                    </div>
+                    <div
+                      className='dropdown-content'
+                      style={{ display: spaceActive ? 'block' : 'none' }}
+                    >
+                      <div className='assignInput'>
+                        <FontAwesomeIcon icon={faSearch} />
+                        <input
+                          type='text'
+                          placeholder='Search member'
+                          onChange={handleSpacesChange}
+                          className='form-control'
+                        />
+                      </div>
+                      {filteredSpaces.map((data: any, index: number) => (
+                        <div
+                          onClick={(e) => {
+                            setSpaceActive(!spaceActive)
+                            selectSpaces(data)
+                          }}
+                          className='item tableImage'
+                        >
+                          {data.space_image ? (
+                            <img
+                              src={`${API}/${data.space_image}`}
+                              alt='avatar'
+                              style={{ objectFit: 'cover' }}
+                            />
+                          ) : (
+                            <img src={spaceIcon} alt='avatar' />
+                          )}
+                          <p>{data.name}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </Col>
+                </div>
+              </Col>
 
-                <Col md={4}>
-                  <div className='memberInput'>
-                    <label>Amount</label>
-                    <input
-                      type='text'
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      placeholder='Amount'
-                      className='form-control'
-                      required
-                    />
-                  </div>
-                </Col>
+              <Col md={4}>
+                <div className='memberInput'>
+                  <label>Amount</label>
+                  <input
+                    type='text'
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder='Amount'
+                    className='form-control'
+                    required
+                  />
+                </div>
+              </Col>
 
-                <Col md={12}>
-                  <div className='memberInput'>
-                    <label>Note</label>
-                    <textarea
-                      placeholder='Enter a note...'
-                      value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
-                      className='form-control'
-                      rows={5}
-                      required
-                    />
-                  </div>
-                </Col>
-                <Col md={12} className='d-flex justify-content-end'></Col>
-              </Row>
-            </div>
-            <div className='invoiceSave'>
-              <button
-                className='invoiceBtn active'
-                type='submit'
-                onClick={saveInvoice}
-              >
-                <FontAwesomeIcon
-                  icon={faPlus}
-                  style={{ marginRight: '12px' }}
-                />{' '}
-                Create Invoice
-              </button>
-            </div>
+              <Col md={12}>
+                <div className='memberInput'>
+                  <label>Note</label>
+                  <textarea
+                    placeholder='Enter a note...'
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    className='form-control'
+                    rows={5}
+                    required
+                  />
+                </div>
+              </Col>
+              <Col md={12} className='d-flex justify-content-end'></Col>
+            </Row>
+          </div>
+          <div className='invoiceSave'>
+            <button
+              className='invoiceBtn active'
+              type='submit'
+              onClick={saveInvoice}
+            >
+              <FontAwesomeIcon icon={faPlus} style={{ marginRight: '12px' }} />{' '}
+              Create Invoice
+            </button>
           </div>
         </div>
-      </Layout>
+      </div>
     </div>
   )
 }

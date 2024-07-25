@@ -164,7 +164,7 @@ const Spaces = () => {
   }
   return (
     <>
-      <Layout>
+      <>
         <div className='mainContent'>
           <div className='memberBox'>
             <div className='topLine'>
@@ -509,7 +509,7 @@ const Spaces = () => {
             />
           </div>
         </div>
-      </Layout>
+      </>
     </>
   )
 }

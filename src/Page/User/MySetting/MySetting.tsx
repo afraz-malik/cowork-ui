@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Layout from '../../../Component/Layout/Layout'
 import MyAccount from './MyAccount'
 import './MySetting.css'
 
@@ -24,17 +23,15 @@ const MySetting = () => {
 
   return (
     <>
-      <Layout>
-        {companyAccount ? <MyAccount settingTab={settingTab} /> : ''}
+      {companyAccount ? <MyAccount settingTab={settingTab} /> : ''}
 
-        {/*
+      {/*
                     {companyProfile ? <Profile settingTab={settingTab} /> : ""}
                     {companyAccount ? <Account settingTab={settingTab} /> : ""}
                     {companyFinance ? <Finance settingTab={settingTab} /> : ""}
                     {companyUsers ? <Users settingTab={settingTab} /> : ""}
                     {companyCustomization ? <Customization settingTab={settingTab} /> : ""}
                 */}
-      </Layout>
     </>
   )
 }
