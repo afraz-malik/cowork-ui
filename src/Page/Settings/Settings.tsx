@@ -79,13 +79,11 @@ const Settings = () => {
 
   return (
     <div id='settings'>
-      <Layout>
-        {companyProfile ? <Profile settingTab={settingTab} /> : ''}
-        {companyAccount ? <Account settingTab={settingTab} /> : ''}
-        {companyFinance ? <Finance settingTab={settingTab} /> : ''}
-        {companyUsers ? <Users settingTab={settingTab} /> : ''}
-        {companyCustomization ? <Customization settingTab={settingTab} /> : ''}
-      </Layout>
+      {companyProfile ? <Profile settingTab={settingTab} /> : ''}
+      {companyAccount ? <Account settingTab={settingTab} /> : ''}
+      {companyFinance ? <Finance settingTab={settingTab} /> : ''}
+      {companyUsers ? <Users settingTab={settingTab} /> : ''}
+      {companyCustomization ? <Customization settingTab={settingTab} /> : ''}
     </div>
   )
 }
