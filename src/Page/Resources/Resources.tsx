@@ -254,7 +254,7 @@ const Resources = () => {
               </h6>
             </div>
             {bookingResult &&
-              bookingResult.map((resource, i) => (
+              bookingResult?.map((resource, i) => (
                 <div key={`resource` + i} className='bookingPerson'>
                   <img src={`${API}/${resource.resource_image}`} alt='edit' />
                   <div>

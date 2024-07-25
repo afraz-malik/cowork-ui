@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-#addResource .profileImageUpload .profileImgView {
+.profileImageUpload .profileImgView {
   padding: 24px 72px;
 }
 

@@ -36,7 +36,6 @@ const Spaces = () => {
   const [spaceId, setSpaceId] = useState('')
   const [updateShow, setUpdateShow] = useState(false)
   const handleUpdateClose = () => setUpdateShow(false)
-
   const [totalValue, setTotalValue] = useState<any>()
   const [limitValue, setLimitValue] = useState<any>()
   const [page, setPage] = useState(1)
@@ -46,7 +45,10 @@ const Spaces = () => {
   const [prevButton, setPrevButton] = useState<boolean>(false)
   const [nextButton, setNextButton] = useState<boolean>(false)
   const [pageValue, setPageValue] = useState<number>()
-
+  const [showFilter, setShowFilters] = useState(false)
+  const [filterTag, setFilterTag] = useState<any>([])
+  const [rate, setRate] = useState({ min: '', max: '' })
+  const [key, setKey] = useState(1)
   useEffect(() => {
     getSpacesList(limit, page, keywords).then((data) => {
       if (data.statusCode !== 200) {
@@ -84,6 +86,18 @@ const Spaces = () => {
     }
   }, [pageCount, page])
 
+  const handleFilterTagChange = (tag: any) => {
+    setFilterTag((prevTags: any) =>
+      prevTags.includes(tag)
+        ? prevTags.filter((t: any) => t !== tag)
+        : [...prevTags, tag]
+    )
+  }
+
+  const handleRateChange = (e: any) => {
+    const { name, value } = e.target
+    setRate((prevRate: any) => ({ ...prevRate, [name]: value }))
+  }
   const showResult = (value: number) => {
     setPage(1)
     setLimit(value)
@@ -124,24 +138,176 @@ const Spaces = () => {
     setPage(page - 1)
   }
 
+  const handleToggle = (isOpen: any) => {
+    setShowFilters(isOpen)
+  }
+
+  const handleClick = (e: any) => {
+    // Prevent closing dropdown on input interactions
+    e.stopPropagation()
+  }
+
+  const handleShowFilter = () => {
+    // Close the dropdown when clicking the Show Filter button
+    setShowFilters(false)
+  }
+  useEffect(() => {
+    // This useEffect will run whenever the filterTag state changes
+    console.log('Filter tags updated:', filterTag)
+    setKey(key + 1)
+    // Any additional logic to handle filterTag changes can be placed here
+  }, [filterTag])
+
+  const removeFilterTag = (tag: any) => {
+    setFilterTag(filterTag.filter((t: any) => t !== tag))
+  }
   return (
     <>
-      <div className='mainContent'>
-        <div className='memberBox'>
-          <div className='topLine'>
-            <div className='tableHeading'>
-              <h6>All Assets</h6>
-            </div>
-            <div className='memberSearch'>
-              <div className='searchInput'>
-                <input
-                  type='text'
-                  placeholder='Search assets'
-                  value={keywords}
-                  onChange={handleInputChange}
-                  className='form-control'
-                />
-                <FontAwesomeIcon icon={faSearch} />
+
+        <div className='mainContent'>
+          <div className='memberBox'>
+            <div className='topLine'>
+              <div className='tableHeading'>
+                <h6>All Assets</h6>
+              </div>
+              <div className='memberSearch'>
+                <div className='searchInput'>
+                  <input
+                    type='text'
+                    placeholder='Search assets'
+                    value={keywords}
+                    onChange={handleInputChange}
+                    className='form-control'
+                  />
+                  <FontAwesomeIcon icon={faSearch} />
+                </div>
+                <div className='filterDropdown taskDropdown spacesDropDown'>
+                  <Dropdown key={key} show={showFilter} onToggle={handleToggle}>
+                    <Dropdown.Toggle>
+                      <button className='filterBtn'>
+                        <img className='mr-2' src={filter} alt='filter' />
+                        Filters
+                      </button>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Header>
+                        <span className='filter-assest-page'>Filter</span>
+                      </Dropdown.Header>
+
+                      <Dropdown.Header
+                        color='#98A2B3'
+                        style={{ fontWeight: 500 }}
+                      >
+                        Type
+                      </Dropdown.Header>
+                      <Dropdown.Item onClick={handleClick}>
+                        <label>
+                          <input
+                            type='checkbox'
+                            checked={filterTag.includes('private')}
+                            onChange={() => handleFilterTagChange('private')}
+                          />
+                          Private Office
+                        </label>
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={handleClick}>
+                        <label>
+                          <input
+                            type='checkbox'
+                            checked={filterTag.includes('desk')}
+                            onChange={() => handleFilterTagChange('desk')}
+                          />
+                          Dedicated Desk
+                        </label>
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={handleClick}>
+                        <label>
+                          <input
+                            type='checkbox'
+                            checked={filterTag.includes('govt')}
+                            onChange={() => handleFilterTagChange('govt')}
+                          />
+                          Govt Office
+                        </label>
+                      </Dropdown.Item>
+
+                      <Dropdown.Header style={{ fontWeight: 500 }}>
+                        Status
+                      </Dropdown.Header>
+                      <Dropdown.Item onClick={handleClick}>
+                        <label>
+                          <input
+                            type='checkbox'
+                            checked={filterTag.includes('available')}
+                            onChange={() => handleFilterTagChange('available')}
+                          />
+                          Available
+                        </label>
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={handleClick}>
+                        <label>
+                          <input
+                            type='checkbox'
+                            checked={filterTag.includes('unavailable')}
+                            onChange={() =>
+                              handleFilterTagChange('unavailable')
+                            }
+                          />
+                          Unavailable
+                        </label>
+                      </Dropdown.Item>
+
+                      <Dropdown.Header
+                        color='#98A2B3'
+                        style={{ fontWeight: 500 }}
+                      >
+                        Rate
+                      </Dropdown.Header>
+                      <Dropdown.Item onClick={handleClick}>
+                        <div className='memberInput rate spacesFilter'>
+                          <span>$</span>
+                          <input
+                            type='number'
+                            name='min'
+                            value={rate.min}
+                            onChange={handleRateChange}
+                            placeholder='Min'
+                            className='form-control'
+                          />
+                          <button className='rateButton'>USD</button>
+                        </div>
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={handleClick}>
+                        <div className='memberInput rate spacesFilter'>
+                          <span>$</span>
+                          <input
+                            type='number'
+                            name='max'
+                            value={rate.max}
+                            onChange={handleRateChange}
+                            placeholder='Max'
+                            className='form-control'
+                          />
+                          <button className='rateButton'>USD</button>
+                        </div>
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        as='button'
+                        className='button mt-2 showFilter'
+                        onClick={handleShowFilter}
+                      >
+                        Show Filter
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+
+                {/* <button className='filterBtn'>
+                  <img className='mr-2' src={filter} alt='filter' /> Filter
+                </button> */}
+                <button onClick={handleShow}>
+                  <FontAwesomeIcon icon={faPlus} /> Add Asset
+                </button>
               </div>
               <button className='filterBtn'>
                 <img className='mr-2' src={filter} alt='filter' /> Filter
@@ -150,38 +316,84 @@ const Spaces = () => {
                 <FontAwesomeIcon icon={faPlus} /> Add Asset
               </button>
             </div>
-          </div>
 
-          <div className='spaceList'>
-            <Table responsive hover>
-              <thead>
-                <tr>
-                  <th>
-                    <label className='tableCheckBox'>
-                      <div className='contactCheck'>
-                        <input type='checkbox' name='agreement' />
-                        <span className='checkmark'></span>
-                      </div>
-                    </label>
-                  </th>
-                  <th></th>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Rate</th>
-                  <th>Status</th>
-                  <th>Assignment</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredSpaces &&
-                  filteredSpaces.map((data: any, index) => (
-                    <tr key={`refer` + index}>
-                      <td>
-                        <label className='tableCheckBox'>
-                          <div className='contactCheck'>
-                            <input type='checkbox' name='agreement' />
-                            <span className='checkmark'></span>
+            {!showFilter && (filterTag.length > 0 || rate.max || rate.max) && (
+              <div className='filter-tags-container'>
+                <span>Show Filter</span>
+                {filterTag.map((tag: any) => (
+                  <div
+                    key={tag}
+                    className={`filter-tag ${tag
+                      .toLowerCase()
+                      .replace(' ', '-')}`}
+                  >
+                    {tag}
+                    <span
+                      className='remove-tag'
+                      onClick={() => removeFilterTag(tag)}
+                    >
+                      &times;
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className='spaceList'>
+              <Table responsive hover>
+                <thead>
+                  <tr>
+                    <th>
+                      <label className='tableCheckBox'>
+                        <div className='contactCheck'>
+                          <input type='checkbox' name='agreement' />
+                          <span className='checkmark'></span>
+                        </div>
+                      </label>
+                    </th>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Rate</th>
+                    <th>Status</th>
+                    <th>Assignment</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredSpaces &&
+                    filteredSpaces.map((data: any, index) => (
+                      <tr key={`refer` + index}>
+                        <td>
+                          <label className='tableCheckBox'>
+                            <div className='contactCheck'>
+                              <input type='checkbox' name='agreement' />
+                              <span className='checkmark'></span>
+                            </div>
+                          </label>
+                        </td>
+                        <td>
+                          <div
+                            className='tableImage justify-content-center'
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => spacesView(data.id)}
+                          >
+                            {data.space_image ? (
+                              <img
+                                src={`${API}/${data.space_image}`}
+                                alt='avatar'
+                                style={{
+                                  objectFit: 'cover',
+                                  borderRadius: '50%',
+                                }}
+                              />
+                            ) : (
+                              <img
+                                src={spaceAvatar}
+                                alt='avatar'
+                                style={{ borderRadius: '50%' }}
+                              />
+                            )}{' '}
+
                           </div>
                         </label>
                       </td>

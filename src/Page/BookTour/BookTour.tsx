@@ -145,7 +145,6 @@ const BookTour = () => {
 
   return (
     <section className='bookTour'>
-      <ToastContainer />
       <div className='signUpBox'>
         <div className='logo mb-4'>
           {profile && profile.company_logo_dark ? (
@@ -249,12 +248,12 @@ const BookTour = () => {
               <div className='selectTime mb-3'>
                 <div className='selectedDate'>
                   <img src={calenderActiveIcon} alt='calender' />
-                  <div className='dateTime mb-0'>
+                  <div className='dateTime mb-0' style={{marginLeft: '1rem'}}>
                     <div>
                       <p>{selectDay}</p>
                       <p>{selectDate}</p>
                     </div>
-                    <div>
+                    <div style={{marginLeft: 'auto'}}>
                       <p>{selectTime}</p>
                     </div>
                   </div>

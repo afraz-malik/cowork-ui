@@ -159,9 +159,12 @@ const Profile = ({ settingTab }: ProfileProps) => {
             <button className='activeBtn' onClick={() => settingTab('profile')}>
               Company Profile
             </button>
-            <button onClick={() => settingTab('finance')}>Finances</button>
+            <button onClick={() => settingTab('finance')}>Finance</button>
             <button onClick={() => settingTab('users')}>Users</button>
             <button onClick={() => settingTab('custom')}>Customization</button>
+            <button onClick={() => settingTab('member')}>
+              MemberShip Agreement
+            </button>
           </div>
           <div className='companyProfile pb-0'>
             <div className='profileHeading'>

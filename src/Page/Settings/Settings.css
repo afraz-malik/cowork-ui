@@ -42,14 +42,16 @@
 .companyOptions button:nth-child(2),
 .companyOptions button:nth-child(3),
 .companyOptions button:nth-child(4),
-.companyOptions button:nth-child(5) {
+.companyOptions button:nth-child(5),
+.companyOptions button:nth-child(6)
+ {
   border-top: 1px solid rgba(208, 213, 221, 1);
   border-right: 1px solid rgba(208, 213, 221, 1);
   border-left: none;
   border-bottom: 1px solid rgba(208, 213, 221, 1);
 }
 
-.companyOptions button:nth-child(5) {
+.companyOptions button:nth-child(6) {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 }
@@ -134,7 +136,12 @@
   display: flex;
   justify-content: space-between;
   padding: 20px 0px;
-  border-bottom: 1px solid rgba(234, 236, 240, 1);
+  /* border-bottom: 1px solid rgba(234, 236, 240, 1); */
+}
+
+.settingSecondInput {
+  display: flex;
+  justify-content: end;
 }
 
 .companyName p,
