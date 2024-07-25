@@ -75,14 +75,14 @@ const Visitor = () => {
         setVisitorInfo(false)
         setSuccessCheck(true)
         setTimeout(() => {
-          window.location.reload();
-        }, 10000);
+          window.location.reload()
+        }, 10000)
       }
     })
   }
 
   const finish = () => {
-    window.location.reload();
+    window.location.reload()
   }
 
   return (
@@ -122,7 +122,7 @@ const Visitor = () => {
             <QRCode
               size={256}
               style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-              value={`${API}/visitor`}
+              value={`${window.location.protocol}//${window.location.hostname}/visitor`}
               viewBox={`0 0 256 256`}
             />
           </div>
