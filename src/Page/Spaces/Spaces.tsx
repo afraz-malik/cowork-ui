@@ -8,7 +8,6 @@ import {
   faPlus,
   faSearch,
 } from '@fortawesome/free-solid-svg-icons'
-import Layout from '../../Component/Layout/Layout'
 import { DESKIE_API as API } from '../../config'
 import { faEye } from '@fortawesome/free-regular-svg-icons'
 import AddSpace from '../../Component/AddSpace/AddSpace'
@@ -127,211 +126,209 @@ const Spaces = () => {
 
   return (
     <>
-      <Layout>
-        <div className='mainContent'>
-          <div className='memberBox'>
-            <div className='topLine'>
-              <div className='tableHeading'>
-                <h6>All Assets</h6>
-              </div>
-              <div className='memberSearch'>
-                <div className='searchInput'>
-                  <input
-                    type='text'
-                    placeholder='Search assets'
-                    value={keywords}
-                    onChange={handleInputChange}
-                    className='form-control'
-                  />
-                  <FontAwesomeIcon icon={faSearch} />
-                </div>
-                <button className='filterBtn'>
-                  <img className='mr-2' src={filter} alt='filter' /> Filter
-                </button>
-                <button onClick={handleShow}>
-                  <FontAwesomeIcon icon={faPlus} /> Add Asset
-                </button>
-              </div>
+      <div className='mainContent'>
+        <div className='memberBox'>
+          <div className='topLine'>
+            <div className='tableHeading'>
+              <h6>All Assets</h6>
             </div>
+            <div className='memberSearch'>
+              <div className='searchInput'>
+                <input
+                  type='text'
+                  placeholder='Search assets'
+                  value={keywords}
+                  onChange={handleInputChange}
+                  className='form-control'
+                />
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+              <button className='filterBtn'>
+                <img className='mr-2' src={filter} alt='filter' /> Filter
+              </button>
+              <button onClick={handleShow}>
+                <FontAwesomeIcon icon={faPlus} /> Add Asset
+              </button>
+            </div>
+          </div>
 
-            <div className='spaceList'>
-              <Table responsive hover>
-                <thead>
-                  <tr>
-                    <th>
-                      <label className='tableCheckBox'>
-                        <div className='contactCheck'>
-                          <input type='checkbox' name='agreement' />
-                          <span className='checkmark'></span>
-                        </div>
-                      </label>
-                    </th>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Rate</th>
-                    <th>Status</th>
-                    <th>Assignment</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredSpaces &&
-                    filteredSpaces.map((data: any, index) => (
-                      <tr key={`refer` + index}>
-                        <td>
-                          <label className='tableCheckBox'>
-                            <div className='contactCheck'>
-                              <input type='checkbox' name='agreement' />
-                              <span className='checkmark'></span>
-                            </div>
-                          </label>
-                        </td>
-                        <td>
-                          <div
-                            className='tableImage justify-content-center'
-                            style={{ cursor: 'pointer' }}
-                            onClick={() => spacesView(data.id)}
-                          >
-                            {data.space_image ? (
-                              <img
-                                src={`${API}/${data.space_image}`}
-                                alt='avatar'
-                                style={{
-                                  objectFit: 'cover',
-                                  borderRadius: '50%',
-                                }}
-                              />
-                            ) : (
-                              <img
-                                src={spaceAvatar}
-                                alt='avatar'
-                                style={{ borderRadius: '50%' }}
-                              />
-                            )}{' '}
+          <div className='spaceList'>
+            <Table responsive hover>
+              <thead>
+                <tr>
+                  <th>
+                    <label className='tableCheckBox'>
+                      <div className='contactCheck'>
+                        <input type='checkbox' name='agreement' />
+                        <span className='checkmark'></span>
+                      </div>
+                    </label>
+                  </th>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Rate</th>
+                  <th>Status</th>
+                  <th>Assignment</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredSpaces &&
+                  filteredSpaces.map((data: any, index) => (
+                    <tr key={`refer` + index}>
+                      <td>
+                        <label className='tableCheckBox'>
+                          <div className='contactCheck'>
+                            <input type='checkbox' name='agreement' />
+                            <span className='checkmark'></span>
                           </div>
-                        </td>
-                        <td className='tableLink'>
-                          <Link to={`${data.id}`}>{data.name}</Link>
-                        </td>
-                        <td className='deskType'>
-                          {data.tag === 'private' ? (
-                            <span className='private'>Private Office</span>
+                        </label>
+                      </td>
+                      <td>
+                        <div
+                          className='tableImage justify-content-center'
+                          style={{ cursor: 'pointer' }}
+                          onClick={() => spacesView(data.id)}
+                        >
+                          {data.space_image ? (
+                            <img
+                              src={`${API}/${data.space_image}`}
+                              alt='avatar'
+                              style={{
+                                objectFit: 'cover',
+                                borderRadius: '50%',
+                              }}
+                            />
                           ) : (
-                            ''
-                          )}
-                          {data.tag === 'dedicated' ? (
-                            <span className='dedicated'>Dedicated Desk</span>
-                          ) : (
-                            ''
-                          )}
-                          {data.tag === 'flex' ? (
-                            <span className='flex'>Flex</span>
-                          ) : (
-                            ''
-                          )}
-                        </td>
-                        <td className='rate'>
-                          ${data.rate} <small>/mo</small>
-                        </td>
-                        <td className='status'>
-                          {data.member_images ? (
-                            <span className='unavailable'>Unavailable</span>
-                          ) : (
-                            <span className='available'>Available</span>
-                          )}
-                        </td>
-                        <td className='tableAction'>
-                          {data.member_images ? (
-                            <>
-                              <div className='memberSpacesList'>
-                                {data.member_images &&
-                                  separateComma(data.member_images).map(
-                                    (member: any, i: number) => (
-                                      <div key={`memberImage` + i}>
-                                        {member === 'imgNull' ? (
-                                          <img
-                                            className='avatar-icon36 default'
-                                            alt=''
-                                            src={memberAvatar}
-                                          />
-                                        ) : (
-                                          <img
-                                            className='avatar-icon36'
-                                            alt=''
-                                            src={`${API}/${member}`}
-                                          />
-                                        )}
-                                      </div>
-                                    )
-                                  )}
-                                <div
-                                  className='plusMember'
-                                  onClick={() => assignMembers(data.id)}
-                                >
-                                  <FontAwesomeIcon icon={faPlus} />
-                                </div>
+                            <img
+                              src={spaceAvatar}
+                              alt='avatar'
+                              style={{ borderRadius: '50%' }}
+                            />
+                          )}{' '}
+                        </div>
+                      </td>
+                      <td className='tableLink'>
+                        <Link to={`${data.id}`}>{data.name}</Link>
+                      </td>
+                      <td className='deskType'>
+                        {data.tag === 'private' ? (
+                          <span className='private'>Private Office</span>
+                        ) : (
+                          ''
+                        )}
+                        {data.tag === 'dedicated' ? (
+                          <span className='dedicated'>Dedicated Desk</span>
+                        ) : (
+                          ''
+                        )}
+                        {data.tag === 'flex' ? (
+                          <span className='flex'>Flex</span>
+                        ) : (
+                          ''
+                        )}
+                      </td>
+                      <td className='rate'>
+                        ${data.rate} <small>/mo</small>
+                      </td>
+                      <td className='status'>
+                        {data.member_images ? (
+                          <span className='unavailable'>Unavailable</span>
+                        ) : (
+                          <span className='available'>Available</span>
+                        )}
+                      </td>
+                      <td className='tableAction'>
+                        {data.member_images ? (
+                          <>
+                            <div className='memberSpacesList'>
+                              {data.member_images &&
+                                separateComma(data.member_images).map(
+                                  (member: any, i: number) => (
+                                    <div key={`memberImage` + i}>
+                                      {member === 'imgNull' ? (
+                                        <img
+                                          className='avatar-icon36 default'
+                                          alt=''
+                                          src={memberAvatar}
+                                        />
+                                      ) : (
+                                        <img
+                                          className='avatar-icon36'
+                                          alt=''
+                                          src={`${API}/${member}`}
+                                        />
+                                      )}
+                                    </div>
+                                  )
+                                )}
+                              <div
+                                className='plusMember'
+                                onClick={() => assignMembers(data.id)}
+                              >
+                                <FontAwesomeIcon icon={faPlus} />
                               </div>
-                            </>
-                          ) : (
-                            <button
-                              className='btn assign'
-                              onClick={() => assignMembers(data.id)}
-                            >
-                              Assign
-                            </button>
-                          )}
-                        </td>
-                        <td className='tableAction'>
+                            </div>
+                          </>
+                        ) : (
                           <button
-                            className='btn view'
-                            onClick={() => spacesView(data.id)}
+                            className='btn assign'
+                            onClick={() => assignMembers(data.id)}
                           >
-                            <FontAwesomeIcon icon={faEye} />
+                            Assign
                           </button>
-                          <button
-                            className='btn edit'
-                            onClick={() => spacesUpdate(data.id)}
-                          >
-                            <img src={editPen} alt='edit' />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </Table>
-              <Pagination
-                page={page}
-                paginationTitle='items'
-                setPage={setPage}
-                limit={limit}
-                setLimit={setLimit}
-                prevButton={prevButton}
-                nextButton={nextButton}
-                pageValue={pageValue}
-                totalValue={totalValue}
-                prevPage={prevPage}
-                nextPage={nextPage}
-                allRequestList={spaces}
-              />
-            </div>
-
-            <AddSpace show={show} setShow={setShow} handleClose={handleClose} />
-            <EditSpaces
-              spacesId={spacesId}
-              updateShow={updateShow}
-              setUpdateShow={setUpdateShow}
-              handleUpdateClose={handleUpdateClose}
-            />
-            <AssignMember
-              spaceId={spaceId}
-              assignShow={assignShow}
-              setAssignShow={setAssignShow}
-              handleAssignClose={handleAssignClose}
+                        )}
+                      </td>
+                      <td className='tableAction'>
+                        <button
+                          className='btn view'
+                          onClick={() => spacesView(data.id)}
+                        >
+                          <FontAwesomeIcon icon={faEye} />
+                        </button>
+                        <button
+                          className='btn edit'
+                          onClick={() => spacesUpdate(data.id)}
+                        >
+                          <img src={editPen} alt='edit' />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+            <Pagination
+              page={page}
+              paginationTitle='items'
+              setPage={setPage}
+              limit={limit}
+              setLimit={setLimit}
+              prevButton={prevButton}
+              nextButton={nextButton}
+              pageValue={pageValue}
+              totalValue={totalValue}
+              prevPage={prevPage}
+              nextPage={nextPage}
+              allRequestList={spaces}
             />
           </div>
+
+          <AddSpace show={show} setShow={setShow} handleClose={handleClose} />
+          <EditSpaces
+            spacesId={spacesId}
+            updateShow={updateShow}
+            setUpdateShow={setUpdateShow}
+            handleUpdateClose={handleUpdateClose}
+          />
+          <AssignMember
+            spaceId={spaceId}
+            assignShow={assignShow}
+            setAssignShow={setAssignShow}
+            handleAssignClose={handleAssignClose}
+          />
         </div>
-      </Layout>
+      </div>
     </>
   )
 }

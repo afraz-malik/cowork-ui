@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Pagination from '../../Component/Pagination/Pagination'
-import Layout from './../../Component/Layout/Layout'
 import { Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp, faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -137,131 +136,129 @@ const VisitorList = () => {
 
   return (
     <div id='visitor'>
-      <Layout>
-        <ToastContainer />
-        <div className='mainContent' id='visitor-log'>
-          <div className='memberBox border-0'>
-            <div className='topLine'>
-              <div className='tableHeading'>
-                <h6>All Visitors</h6>
-              </div>
-              <div className='memberSearch'>
-                <div className='searchInput'>
-                  <input
-                    type='text'
-                    placeholder='Search visitors'
-                    onChange={handleInputChange}
-                    className='form-control'
-                  />
-                  <FontAwesomeIcon icon={faSearch} />
-                </div>
-                <CSVLink
-                  className='visitorDownload'
-                  data={csvData}
-                  headers={headers}
-                  filename={'visitors.csv'}
-                >
-                  <button>
-                    <img src={downloadIcon} alt='downloadIcon' />
-                    &nbsp; Download CSV
-                  </button>
-                </CSVLink>
-              </div>
+      <ToastContainer />
+      <div className='mainContent' id='visitor-log'>
+        <div className='memberBox border-0'>
+          <div className='topLine'>
+            <div className='tableHeading'>
+              <h6>All Visitors</h6>
             </div>
-
-            <div className='memberList visitorList'>
-              <Table responsive hover>
-                <thead>
-                  <tr>
-                    <th>
-                      <label className='tableCheckBox'>
-                        <div className='contactCheck'>
-                          <input type='checkbox' name='agreement' />
-                          <span className='checkmark'></span>
-                        </div>
-                      </label>
-                    </th>
-                    <th>
-                      Name <FontAwesomeIcon icon={faArrowUp} />
-                    </th>
-                    <th>Email Address</th>
-                    <th>Time / Date</th>
-                    <th>Reason</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredVisitor &&
-                    filteredVisitor.map((visitor: any, index: number) => (
-                      <tr key={`refer` + index}>
-                        <td>
-                          <label className='tableCheckBox'>
-                            <div className='contactCheck d-flex'>
-                              <input type='checkbox' name='agreement' />
-                              <span className='checkmark'></span>
-                            </div>
-                          </label>
-                        </td>
-                        <td className='tableAction'>{visitor.name}</td>
-                        <td className='tableAction'>{visitor.email}</td>
-                        <td className='tableAction'>
-                          <span style={{ marginBottom: '1rem' }}>
-                            {visitor.create_at_date}
-                          </span>
-                          <br />
-                          {visitor.create_at_time}
-                        </td>
-                        <td className='tableAction reason'>
-                          {visitor.reason}
-                          {visitor.member_name ? (
-                            <>
-                              <br />
-                              <Link to={`/visitor/${visitor.member_id}`}>
-                                ({visitor.member_name})
-                              </Link>
-                            </>
-                          ) : (
-                            ''
-                          )}
-                          {visitor.admin_name ? (
-                            <>
-                              <br />
-                              <Link to='/settings'>({visitor.admin_name})</Link>
-                            </>
-                          ) : (
-                            ''
-                          )}
-                        </td>
-                        <td className='tableAction'>
-                          <button
-                            className='btn removeVisitor'
-                            onClick={() => deleteVisitor(visitor.id)}
-                          >
-                            <img src={trashIcon} alt='trash' />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </Table>
-              <Pagination
-                page={page}
-                paginationTitle='items'
-                setPage={setPage}
-                limit={limit}
-                setLimit={setLimit}
-                prevButton={prevButton}
-                nextButton={nextButton}
-                pageValue={pageValue}
-                totalValue={totalValue}
-                prevPage={prevPage}
-                nextPage={nextPage}
-                allRequestList={visitorList}
-              />
+            <div className='memberSearch'>
+              <div className='searchInput'>
+                <input
+                  type='text'
+                  placeholder='Search visitors'
+                  onChange={handleInputChange}
+                  className='form-control'
+                />
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+              <CSVLink
+                className='visitorDownload'
+                data={csvData}
+                headers={headers}
+                filename={'visitors.csv'}
+              >
+                <button>
+                  <img src={downloadIcon} alt='downloadIcon' />
+                  &nbsp; Download CSV
+                </button>
+              </CSVLink>
             </div>
           </div>
+
+          <div className='memberList visitorList'>
+            <Table responsive hover>
+              <thead>
+                <tr>
+                  <th>
+                    <label className='tableCheckBox'>
+                      <div className='contactCheck'>
+                        <input type='checkbox' name='agreement' />
+                        <span className='checkmark'></span>
+                      </div>
+                    </label>
+                  </th>
+                  <th>
+                    Name <FontAwesomeIcon icon={faArrowUp} />
+                  </th>
+                  <th>Email Address</th>
+                  <th>Time / Date</th>
+                  <th>Reason</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredVisitor &&
+                  filteredVisitor.map((visitor: any, index: number) => (
+                    <tr key={`refer` + index}>
+                      <td>
+                        <label className='tableCheckBox'>
+                          <div className='contactCheck d-flex'>
+                            <input type='checkbox' name='agreement' />
+                            <span className='checkmark'></span>
+                          </div>
+                        </label>
+                      </td>
+                      <td className='tableAction'>{visitor.name}</td>
+                      <td className='tableAction'>{visitor.email}</td>
+                      <td className='tableAction'>
+                        <span style={{ marginBottom: '1rem' }}>
+                          {visitor.create_at_date}
+                        </span>
+                        <br />
+                        {visitor.create_at_time}
+                      </td>
+                      <td className='tableAction reason'>
+                        {visitor.reason}
+                        {visitor.member_name ? (
+                          <>
+                            <br />
+                            <Link to={`/visitor/${visitor.member_id}`}>
+                              ({visitor.member_name})
+                            </Link>
+                          </>
+                        ) : (
+                          ''
+                        )}
+                        {visitor.admin_name ? (
+                          <>
+                            <br />
+                            <Link to='/settings'>({visitor.admin_name})</Link>
+                          </>
+                        ) : (
+                          ''
+                        )}
+                      </td>
+                      <td className='tableAction'>
+                        <button
+                          className='btn removeVisitor'
+                          onClick={() => deleteVisitor(visitor.id)}
+                        >
+                          <img src={trashIcon} alt='trash' />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+            <Pagination
+              page={page}
+              paginationTitle='items'
+              setPage={setPage}
+              limit={limit}
+              setLimit={setLimit}
+              prevButton={prevButton}
+              nextButton={nextButton}
+              pageValue={pageValue}
+              totalValue={totalValue}
+              prevPage={prevPage}
+              nextPage={nextPage}
+              allRequestList={visitorList}
+            />
+          </div>
         </div>
-      </Layout>
+      </div>
     </div>
   )
 }

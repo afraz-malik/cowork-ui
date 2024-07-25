@@ -6,7 +6,6 @@ import React, {
   useCallback,
 } from 'react'
 import './Messenger.css'
-import Layout from '../../Component/Layout/Layout'
 import avatar from '../../Assets/Images/icon/blank-profile.jpg'
 import assign from '../../Assets/Images/icon/memberAvatar.svg'
 import emoji from '../../Assets/Images/icon/send.svg'
@@ -302,7 +301,7 @@ const Messenger = () => {
   }, [])
 
   return (
-    <Layout>
+    <>
       <div className='mainContent'>
         <div className='chat'>
           <div className='contacts'>
@@ -579,7 +578,7 @@ const Messenger = () => {
         setUploadShow={setUploadShow}
         handleUploadClose={handleUploadClose}
       />
-    </Layout>
+    </>
   )
 }
 

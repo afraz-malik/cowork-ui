@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { resourceBook, singleResource } from '../../api/resource'
-import Layout from '../Layout/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import spaceIcon from '../../Assets/Images/icon/spaceAvatar.png'
@@ -32,7 +31,7 @@ const MemberResource = () => {
     }
   }, [paymentShow])
   return (
-    <Layout>
+    <>
       <div className='mainContent'>
         <div className='resourcesMember memberResources'>
           <div className='memberBox'>
@@ -145,7 +144,7 @@ const MemberResource = () => {
           handlePaymentClose={handlePaymentClose}
         />
       </div>
-    </Layout>
+    </>
   )
 }
 

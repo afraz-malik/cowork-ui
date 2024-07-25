@@ -8,7 +8,6 @@ import memberBlank from '../../Assets/Images/icon/memberAvatar.png'
 import spacesBlank from '../../Assets/Images/icon/spaceAvatar.png'
 import more from '../../Assets/Images/icon/dots-vertical.svg'
 import { Link, useParams } from 'react-router-dom'
-import Layout from '../Layout/Layout'
 import penIcon from '../../Assets/Images/icon/pencil-01.svg'
 import EditMember from './EditMember'
 import memberAvatar from '../../Assets/Images/icon/memberLargeIcon.png'
@@ -45,7 +44,7 @@ const VisitorMember = () => {
   }
 
   return (
-    <Layout>
+    <>
       <div className='mainContent'>
         <div className='invoiceHeading'>
           <nav aria-label='breadcrumb'>
@@ -338,7 +337,7 @@ const VisitorMember = () => {
         setUpdateShow={setUpdateShow}
         handleUpdateClose={handleUpdateClose}
       />
-    </Layout>
+    </>
   )
 }
 
