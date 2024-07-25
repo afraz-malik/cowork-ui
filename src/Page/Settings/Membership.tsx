@@ -12,12 +12,13 @@ import { ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import memberIcon from '../../Assets/Images/icon/memberLargeIcon.png'
 import ConfirmationModal from '../../Component/ConfirmationModal/ConfirmationModal'
+import ReactQuill from 'react-quill'
 
 interface AccountProps {
   settingTab: (type: string) => void
 }
 
-const Account = ({ settingTab }: AccountProps) => {
+const Membership = ({ settingTab }: AccountProps) => {
   const navigate = useNavigate()
   const [imageLogo, setImageLogo] = useState('')
   const [logoFile, setLogoFile] = useState('')
@@ -30,6 +31,7 @@ const Account = ({ settingTab }: AccountProps) => {
   const [adminId, setAdminId] = useState('')
   const [emptyImg, setEmptyImg] = useState('')
   const [confirmationShow, setConfirmationShow] = useState(false)
+  const [content, setContent] = useState('')
 
   const handlePhoneChange = (value: string) => {
     setPhoneNumber(value)
@@ -81,6 +83,82 @@ const Account = ({ settingTab }: AccountProps) => {
     setUserImage('')
     setImageLogo('logo')
   }
+  var modules: any = {
+    toolbar: [
+      [{ size: ['small', false, 'large', 'huge'] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link'],
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' },
+        { align: [] },
+      ],
+      [
+        {
+          color: [
+            '#000000',
+            '#e60000',
+            '#ff9900',
+            '#ffff00',
+            '#008a00',
+            '#0066cc',
+            '#9933ff',
+            '#ffffff',
+            '#facccc',
+            '#ffebcc',
+            '#ffffcc',
+            '#cce8cc',
+            '#cce0f5',
+            '#ebd6ff',
+            '#bbbbbb',
+            '#f06666',
+            '#ffc266',
+            '#ffff66',
+            '#66b966',
+            '#66a3e0',
+            '#c285ff',
+            '#888888',
+            '#a10000',
+            '#b26b00',
+            '#b2b200',
+            '#006100',
+            '#0047b2',
+            '#6b24b2',
+            '#444444',
+            '#5c0000',
+            '#663d00',
+            '#666600',
+            '#003700',
+            '#002966',
+            '#3d1466',
+            'custom-color',
+          ],
+        },
+      ],
+    ],
+  }
+  var formats: any = [
+    'header',
+    'height',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'color',
+    'bullet',
+    'indent',
+    'link',
+    'align',
+    'size',
+  ]
+  const handleProcedureContentChange = (content: string) => {
+    setContent(content)
+  }
 
   return (
     <>
@@ -88,7 +166,7 @@ const Account = ({ settingTab }: AccountProps) => {
         <ToastContainer />
         <div className='settingPage'>
           <div className='companyOptions'>
-            <button className='activeBtn' onClick={() => settingTab('account')}>
+            <button onClick={() => settingTab('account')}>
               Personal Profile
             </button>
             <button onClick={() => settingTab('profile')}>
@@ -97,14 +175,16 @@ const Account = ({ settingTab }: AccountProps) => {
             <button onClick={() => settingTab('finance')}>Finance</button>
             <button onClick={() => settingTab('users')}>Users</button>
             <button onClick={() => settingTab('custom')}>Customization</button>
-            <button onClick={() => settingTab('member')}>
+            <button className='activeBtn' onClick={() => settingTab('member')}>
               MemberShip Agreement
             </button>
           </div>
           <div className='companyProfile'>
             <div className='profileHeading'>
-              <h6>Edit Personal Profile</h6>
-              <p>Update your personal profile here.</p>
+              <h6>Membership Agreement</h6>
+              <p>
+                This is the document your members will agree to when signing up
+              </p>
             </div>
             <div className='profileSave'>
               <button className='cancel'>Cancel</button>
@@ -116,7 +196,7 @@ const Account = ({ settingTab }: AccountProps) => {
               </button>
             </div>
           </div>
-          <div className='companyName'>
+          {/* <div className='companyName'>
             <p>Profile Picture</p>
             <div className='rightFileSetting'>
               <div className='profileImageBox'>
@@ -166,8 +246,8 @@ const Account = ({ settingTab }: AccountProps) => {
                 <input type='file' onChange={onFileLogoDrop} />
               </div>
             </div>
-          </div>
-          <div className='contactDetails border-bottom-0 pb-0'>
+          </div> */}
+          {/* <div className='contactDetails border-bottom-0 pb-0'>
             <p>Contact Details</p>
             <div className='rightSideSetting'>
               <div className='companyInput profileName'>
@@ -210,6 +290,16 @@ const Account = ({ settingTab }: AccountProps) => {
                 />
               </div>
             </div>
+          </div> */}
+          <div>
+            <ReactQuill
+              theme='snow'
+              modules={modules}
+              formats={formats}
+              placeholder='Enter a description...'
+              onChange={handleProcedureContentChange}
+              value={content}
+            />
           </div>
         </div>
       </div>
@@ -222,4 +312,4 @@ const Account = ({ settingTab }: AccountProps) => {
   )
 }
 
-export default Account
+export default Membership

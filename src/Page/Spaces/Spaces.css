@@ -466,3 +466,143 @@
 .Toastify__toast--error .Toastify__close-button {
   color: #12b76a;
 }
+.filter-assest-page {
+  color: #344054;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.filterDropdown.spacesDropDown .dropdown-menu {
+  width: 18rem;
+}
+.spacesDropDown .rateButton {
+  top: 8px;
+  right: 20px;
+  padding-left: 10px;
+  border-left: 1px solid #98a2b3;
+  font-size: 16px !important;
+  font-weight: 200;
+  height: 2rem !important;
+  color: black !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.spacesDropDown .spacesFilter input {
+  background-color: white !important;
+  border: 1px solid #98a2b3;
+}
+.dropdown-menu .dropdown-header {
+  padding: 8px 20px;
+}
+
+.dropdown-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 20px;
+}
+
+.dropdown-menu .dropdown-item label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.dropdown-menu .dropdown-item input[type='checkbox'] {
+  margin: 0;
+  cursor: pointer;
+}
+
+.dropdown-menu .dropdown-item.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu .dropdown-item.button:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.filterDropdown.spacesDropDown .dropdown-item:hover {
+  background-color: #e9eff2;
+}
+
+.filterDropdown.spacesDropDown .dropdown-item:nth-last-child(-n + 3):hover {
+  background-color: transparent; /* or the original background color */
+}
+
+.filterDropdown.spacesDropDown .dropdown-item:last-of-type:hover {
+  background-color: #e9eff2 !important;
+}
+
+.mainContent .filter-tags-container {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.mainContent .filter-tags-container span {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.mainContent .filter-tag {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.mainContent .filter-tag.private {
+  background-color: #e6f7ff;
+  color: #0056b3;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.mainContent .filter-tag.desk {
+  background-color: #ecffe6;
+  color: #27b300;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.mainContent .filter-tag.govt {
+  background-color: #a498ec;
+  color: #0018b3;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.mainContent .filter-tag.available {
+  background-color: #e6ffe6;
+  color: #005600;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.mainContent .filter-tag.unavailable {
+  background-color: #fca6b0;
+  color: #005600;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.mainContent .filter-tag .remove-tag {
+  margin-left: 10px;
+  cursor: pointer;
+}

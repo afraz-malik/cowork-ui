@@ -160,7 +160,7 @@ const EditSpaces = ({
                         className='form-control'
                       />
                     </div>
-                    <div className='memberInput rate'>
+                    <div className='memberInput rate spaces'>
                       <span>$</span>
                       <label>Rate</label>
                       <input
