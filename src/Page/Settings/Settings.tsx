@@ -84,6 +84,7 @@ const Settings = () => {
       {companyFinance ? <Finance settingTab={settingTab} /> : ''}
       {companyUsers ? <Users settingTab={settingTab} /> : ''}
       {companyCustomization ? <Customization settingTab={settingTab} /> : ''}
+      {memberShip ? <Membership settingTab={settingTab} /> : ''}
     </div>
   )
 }
