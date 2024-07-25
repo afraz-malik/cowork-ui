@@ -143,8 +143,8 @@ const EditResource = ({
                       {file && file.length > 0 ? (
                         <img
                           src={file}
-                          width='100px'
-                          height='100px'
+                          width='120px'
+                          height='120px'
                           alt='shop'
                         />
                       ) : (
@@ -152,10 +152,9 @@ const EditResource = ({
                           {memberImage ? (
                             <div
                               style={{
-                                width: '80px',
-                                height: '80px',
+                                width: '120px',
+                                height: '120px',
                                 overflow: 'hidden',
-                                borderRadius: '50%',
                               }}
                             >
                               <img
@@ -171,8 +170,8 @@ const EditResource = ({
                           ) : (
                             <img
                               src={memberIcon}
-                              width='100px'
-                              height='100px'
+                              width='120px'
+                              height='120px'
                               alt='shop'
                             />
                           )}

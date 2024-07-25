@@ -74,9 +74,17 @@ const Visitor = () => {
         showNotifications('success', data.message)
         setVisitorInfo(false)
         setSuccessCheck(true)
+        setTimeout(() => {
+          window.location.reload();
+        }, 10000);
       }
     })
   }
+
+  const finish = () => {
+    window.location.reload();
+  }
+
   return (
     <section className='visitorSection'>
       <ToastContainer />
@@ -118,6 +126,7 @@ const Visitor = () => {
               viewBox={`0 0 256 256`}
             />
           </div>
+
           <div className='orLine'>
             <h2>
               <span>or</span>
@@ -227,7 +236,7 @@ const Visitor = () => {
             <img className='mb-4' src={checkIcon} alt='check' />
             <h5>Welcome, {name}!</h5>
             <h4>{roleItem} has been notified that you’re here.</h4>
-            <button className='tapNext mt-4' onClick={saveVisitor}>
+            <button className='tapNext mt-4' onClick={finish}>
               Finish
             </button>
           </div>
