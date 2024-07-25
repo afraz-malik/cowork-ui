@@ -581,9 +581,9 @@
   font-weight: 500;
 }
 
-.mainContent .filter-tag.govt {
-  background-color: #a498ec;
-  color: #0018b3;
+.mainContent .filter-tag.flex {
+  background-color: #fffaeb;
+  color: #b54708;
   text-transform: capitalize;
   font-weight: 500;
 }

@@ -225,10 +225,10 @@ const Spaces = () => {
                         <label>
                           <input
                             type='checkbox'
-                            checked={filterTag.includes('govt')}
-                            onChange={() => handleFilterTagChange('govt')}
+                            checked={filterTag.includes('flex')}
+                            onChange={() => handleFilterTagChange('flex')}
                           />
-                          Govt Office
+                          Flex
                         </label>
                       </Dropdown.Item>
 
