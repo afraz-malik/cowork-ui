@@ -110,8 +110,6 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
         size='xl'
         id='addResource'
       >
-        <ToastContainer />
-
         <div className='addMemberForm'>
           <button className='closeModal' onClick={handleClose}>
             <FontAwesomeIcon icon={faXmark} />
