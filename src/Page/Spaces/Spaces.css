@@ -574,19 +574,26 @@
   font-weight: 500;
 }
 
-.mainContent .filter-tag.desk {
+.mainContent .filter-tag.dedicated {
   background-color: #ecffe6;
   color: #27b300;
   text-transform: capitalize;
   font-weight: 500;
 }
 
-.mainContent .filter-tag.govt {
+.mainContent .filter-tag.flex {
   background-color: #a498ec;
   color: #0018b3;
   text-transform: capitalize;
   font-weight: 500;
 }
+
+.mainContent .filter-tag.rate {
+  background-color: #ebff87;
+  color: #7c8036;
+  font-weight: 500;
+}
+
 
 .mainContent .filter-tag.available {
   background-color: #e6ffe6;
