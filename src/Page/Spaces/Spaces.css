@@ -211,6 +211,11 @@
 .deskType .flex {
   color: #b54708;
   background: #fffaeb;
+  float: left;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .memberSearch .filterBtn {
@@ -574,7 +579,7 @@
   font-weight: 500;
 }
 
-.mainContent .filter-tag.desk {
+.mainContent .filter-tag.dedicated {
   background-color: #ecffe6;
   color: #27b300;
   text-transform: capitalize;
@@ -585,6 +590,12 @@
   background-color: #fffaeb;
   color: #b54708;
   text-transform: capitalize;
+  font-weight: 500;
+}
+
+.mainContent .filter-tag.rate {
+  background-color: #ebff87;
+  color: #7c8036;
   font-weight: 500;
 }
 

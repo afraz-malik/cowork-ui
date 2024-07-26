@@ -14,10 +14,24 @@ export const spacesAdd = async (body = {}) => {
 export const getSpacesList = async (
   limit: number,
   page: number,
-  keywords?: string
+  keywords?: string,
+  filterTag?: any,
+  rate?: { max: string; min: string },
+  status?: any,
+  sortOrder?: string,
+  sortColumn?: string
 ) => {
-  return get(`/spacesList?limit=${limit}&&page=${page}&&keyword=${keywords}`)
+  // Serialize filterTag and rate
+  return post(
+    `/spacesList?limit=${limit}&page=${page}&keyword=${keywords}&&sortBy=${sortColumn}&&sortOrder=${sortOrder}`,
+    {
+      filterTag: filterTag,
+      rate: rate,
+      status: status,
+    }
+  )
 }
+
 // single spaces
 export const singleSpaces = async (id: string) => {
   return get(`/spacesSingle/${id}`)

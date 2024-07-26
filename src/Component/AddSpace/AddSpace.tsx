@@ -33,40 +33,72 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
       setSelectedTag(eventKey)
     }
   }
-
   let onSubmit = () => {
     if (form.current) {
-      const spaces: any = new FormData(form.current)
+      const spaces = new FormData(form.current)
       spaces.append('id', uuidv4())
       spaces.append('space_image', imageKey)
       spaces.append('tag', selectedTag)
-      spaces.append('active', true)
-      spacesAdd(spaces).then((data) => {
-        if (data.statusCode !== 201) {
-          showNotifications('error', 'Wrong information')
-        } else {
-          showNotifications(
-            'success',
-            'Asset Added',
-            spaces.name + ' added successfully'
-          )
+      spaces.append('active', String(true))
+      spacesAdd(spaces)
+        .then((data) => {
+          if (data.statusCode !== 201) {
+            showNotifications('error', 'Wrong information')
+          } else {
+            showNotifications(
+              'success',
+              'Asset Added',
+              `${spaces.get('name')} added successfully`
+            )
+          }
+        })
+        .catch(() => {
+          showNotifications('error', 'An error occurred')
+        })
+        .finally(() => {
+          // Reset the form and other states here
           setValue('name', '')
           setValue('rate', '')
           setValue('size', '')
           setValue('tag', '')
           setValue('notes', '')
-          setValue('notes', '')
           setFile('')
-        }
-        setShow(false)
-      })
+          setShow(false)
+        })
     }
   }
+
   return (
     <>
-      <Modal show={show} onHide={handleClose} centered size='lg'>
+      <Modal
+        show={show}
+        onHide={() => {
+          handleClose()
+          setValue('name', '')
+          setValue('rate', '')
+          setValue('size', '')
+          setValue('tag', '')
+          setValue('notes', '')
+          setFile('')
+          setImageKey('')
+        }}
+        centered
+        size='lg'
+      >
         <div className='addMemberForm'>
-          <button className='closeModal' onClick={handleClose}>
+          <button
+            className='closeModal'
+            onClick={() => {
+              handleClose()
+              setValue('name', '')
+              setValue('rate', '')
+              setValue('size', '')
+              setValue('tag', '')
+              setValue('notes', '')
+              setFile('')
+              setImageKey('')
+            }}
+          >
             <FontAwesomeIcon icon={faXmark} />
           </button>
           <Container className='px-0'>
@@ -149,10 +181,10 @@ const AddSpace = ({ show, setShow, handleClose }: AddSpacesProps) => {
                             {selectedTag === 'private'
                               ? 'Private Office'
                               : selectedTag === 'dedicated'
-                                ? 'Dedicated Desk'
-                                : selectedTag === 'flex'
-                                  ? 'Flex'
-                                  : 'Choose tag (type)'}
+                              ? 'Dedicated Desk'
+                              : selectedTag === 'flex'
+                              ? 'Flex'
+                              : 'Choose tag (type)'}
                           </Dropdown.Toggle>
                           <Dropdown.Menu>
                             <Dropdown.Item eventKey='private'>
