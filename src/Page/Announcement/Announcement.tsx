@@ -553,11 +553,13 @@ const Announcement = () => {
                             }
                           >
                             <img
+                              style={{ backgroundColor: '#374151' }}
                               alt=''
                               src={`${API}/${
                                 darkIconImage ? darkIconImage : postLogo
                               }`}
-                            />{' '}
+                            />
+
                             {companyName}
                           </Dropdown.Item>
                         </Dropdown.Menu>

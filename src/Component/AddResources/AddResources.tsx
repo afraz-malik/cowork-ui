@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Col, Container, Dropdown, Modal, Row } from 'react-bootstrap'
 import { ToastContainer } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,7 +14,7 @@ import './AddResources.css'
 import { v4 as uuidv4 } from 'uuid'
 import { resourceAdd } from '../../api/resource'
 import { showNotifications } from '../../CommonFunction/toaster'
-
+import heic2any from 'heic2any'
 interface AddResourcesProps {
   handleClose: () => void
   show: boolean
@@ -24,7 +24,7 @@ interface AddResourcesProps {
 const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
   const [imageLogo, setImageLogo] = useState('')
   const [logoFile, setLogoFile] = useState('')
-  const [uploadedLogo, setUploadedLogo] = useState('')
+  const [uploadedLogo, setUploadedLogo] = useState<any>('')
   const [userImage, setUserImage] = useState('')
   const [name, setName] = useState('')
   const [selectedType, setSelectedType] = useState('')
@@ -43,11 +43,42 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
   const publicClick = () => {
     setPublicValue(!publicValue)
   }
-
+  useEffect(() => {
+    return () => {
+      if (logoFile) {
+        URL.revokeObjectURL(logoFile)
+      }
+    }
+  }, [logoFile])
   const wrapperRef = useRef<HTMLInputElement>(null)
-  function onFileLogoDrop(event: any) {
-    setLogoFile(URL.createObjectURL(event.target.files[0]))
-    setUploadedLogo(event.target.files[0])
+  async function onFileLogoDrop(event: any) {
+    const file = event.target.files[0]
+    if (file) {
+      const fileName = file.name.toLowerCase()
+
+      if (fileName.endsWith('.heic')) {
+        try {
+          const result = await heic2any({ blob: file })
+          const convertedBlob = Array.isArray(result) ? result[0] : result
+          const imageUrl = URL.createObjectURL(convertedBlob)
+          const convertedFile = new File(
+            [convertedBlob],
+            file.name.replace('.heic', '.png'),
+            {
+              type: 'image/png',
+            }
+          )
+          setLogoFile(imageUrl)
+          setUploadedLogo(convertedFile)
+        } catch (error) {
+          console.error('Conversion failed:', error)
+        }
+      } else {
+        const imageUrl = URL.createObjectURL(file)
+        setLogoFile(imageUrl)
+        setUploadedLogo(event.target.files[0])
+      }
+    }
   }
   const removeImage = () => {
     setLogoFile('')
@@ -169,7 +200,11 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
                             onClick={removeImage}
                           />
                         </div>
-                        <input type='file' onChange={onFileLogoDrop} />
+                        <input
+                          type='file'
+                          accept='.jpg,.jpeg,.png,.heic'
+                          onChange={onFileLogoDrop}
+                        />
                       </div>
 
                       <img
@@ -305,8 +340,8 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
                                   {memberTime === 'hour'
                                     ? 'Per Hour'
                                     : memberTime === 'day'
-                                      ? 'Per Day'
-                                      : 'Choose time'}{' '}
+                                    ? 'Per Day'
+                                    : 'Choose time'}{' '}
                                   <FontAwesomeIcon icon={faSortDown} />
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
@@ -369,8 +404,8 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
                                   {publicTime === 'hour'
                                     ? 'Per Hour'
                                     : publicTime === 'day'
-                                      ? 'Per Day'
-                                      : 'Choose time'}{' '}
+                                    ? 'Per Day'
+                                    : 'Choose time'}{' '}
                                   <FontAwesomeIcon icon={faSortDown} />
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>

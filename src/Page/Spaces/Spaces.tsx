@@ -48,10 +48,27 @@ const Spaces = () => {
   const [pageValue, setPageValue] = useState<number>()
   const [showFilter, setShowFilters] = useState(false)
   const [filterTag, setFilterTag] = useState<any>([])
+  const [status, setstatus] = useState<any>([])
   const [rate, setRate] = useState({ min: '', max: '' })
   const [key, setKey] = useState(1)
+  const [sortColumn, setSortColumn] = useState('created_at')
+  const [sortOrder, setSortOrder] = useState('DESC')
+
+  const onSort = (column: string) => {
+    setSortColumn(column)
+    setSortOrder((prevOrder) => (prevOrder === 'ASC' ? 'DESC' : 'ASC'))
+  }
   useEffect(() => {
-    getSpacesList(limit, page, keywords).then((data) => {
+    getSpacesList(
+      limit,
+      page,
+      keywords,
+      filterTag,
+      rate,
+      status,
+      sortOrder,
+      sortColumn
+    ).then((data) => {
       if (data.statusCode !== 200) {
       } else {
         setSpaces(data && data.spaces)
@@ -69,6 +86,11 @@ const Spaces = () => {
     updateShow,
     assignShow,
     keywords,
+    filterTag,
+    status,
+    rate,
+    sortOrder,
+    sortColumn,
   ])
 
   useEffect(() => {
@@ -89,6 +111,13 @@ const Spaces = () => {
 
   const handleFilterTagChange = (tag: any) => {
     setFilterTag((prevTags: any) =>
+      prevTags.includes(tag)
+        ? prevTags.filter((t: any) => t !== tag)
+        : [...prevTags, tag]
+    )
+  }
+  const handleStatusChange = (tag: any) => {
+    setstatus((prevTags: any) =>
       prevTags.includes(tag)
         ? prevTags.filter((t: any) => t !== tag)
         : [...prevTags, tag]
@@ -120,10 +149,6 @@ const Spaces = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeywords(e.target.value)
   }
-
-  const filteredSpaces = spaces?.filter((member: any) =>
-    member.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
 
   const assignMembers = (spacesId: string) => {
     setAssignShow(true)
@@ -160,7 +185,11 @@ const Spaces = () => {
   }, [filterTag])
 
   const removeFilterTag = (tag: any) => {
-    setFilterTag(filterTag.filter((t: any) => t !== tag))
+    if (tag === 'available' || tag === 'unavailable') {
+      setstatus(status.filter((t: any) => t !== tag))
+    } else {
+      setFilterTag(filterTag.filter((t: any) => t !== tag))
+    }
   }
   return (
     <>
@@ -215,8 +244,8 @@ const Spaces = () => {
                         <label>
                           <input
                             type='checkbox'
-                            checked={filterTag.includes('desk')}
-                            onChange={() => handleFilterTagChange('desk')}
+                            checked={filterTag.includes('dedicated')}
+                            onChange={() => handleFilterTagChange('dedicated')}
                           />
                           Dedicated Desk
                         </label>
@@ -239,8 +268,8 @@ const Spaces = () => {
                         <label>
                           <input
                             type='checkbox'
-                            checked={filterTag.includes('available')}
-                            onChange={() => handleFilterTagChange('available')}
+                            checked={status.includes('available')}
+                            onChange={() => handleStatusChange('available')}
                           />
                           Available
                         </label>
@@ -249,10 +278,8 @@ const Spaces = () => {
                         <label>
                           <input
                             type='checkbox'
-                            checked={filterTag.includes('unavailable')}
-                            onChange={() =>
-                              handleFilterTagChange('unavailable')
-                            }
+                            checked={status.includes('unavailable')}
+                            onChange={() => handleStatusChange('unavailable')}
                           />
                           Unavailable
                         </label>
@@ -311,27 +338,69 @@ const Spaces = () => {
                 </button>
               </div>
             </div>
-            {!showFilter && (filterTag.length > 0 || rate.max || rate.max) && (
-              <div className='filter-tags-container'>
-                <span>Show Filter</span>
-                {filterTag.map((tag: any) => (
-                  <div
-                    key={tag}
-                    className={`filter-tag ${tag
-                      .toLowerCase()
-                      .replace(' ', '-')}`}
-                  >
-                    {tag}
-                    <span
-                      className='remove-tag'
-                      onClick={() => removeFilterTag(tag)}
+            {!showFilter &&
+              (filterTag.length > 0 ||
+                rate.max ||
+                rate.max ||
+                status.length > 0) && (
+                <div className='filter-tags-container'>
+                  <span>Show Filter</span>
+                  {filterTag.map((tag: any) => (
+                    <div
+                      key={tag}
+                      className={`filter-tag ${tag
+                        .toLowerCase()
+                        .replace(' ', '-')}`}
                     >
-                      &times;
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
+                      {tag}
+                      <span
+                        className='remove-tag'
+                        onClick={() => removeFilterTag(tag)}
+                      >
+                        &times;
+                      </span>
+                    </div>
+                  ))}
+                  {status.map((tag: any) => (
+                    <div
+                      key={tag}
+                      className={`filter-tag ${tag
+                        .toLowerCase()
+                        .replace(' ', '-')}`}
+                    >
+                      {tag}
+                      <span
+                        className='remove-tag'
+                        onClick={() => removeFilterTag(tag)}
+                      >
+                        &times;
+                      </span>
+                    </div>
+                  ))}
+                  {rate.min && (
+                    <div className={`filter-tag rate`}>
+                      {rate.min && `Min: $${rate.min}/mo`}
+                      <span
+                        className='remove-tag'
+                        onClick={() => setRate({ ...rate, min: '' })}
+                      >
+                        &times;
+                      </span>
+                    </div>
+                  )}
+                  {rate.max && (
+                    <div className={`filter-tag rate`}>
+                      {rate.max && `Max: $${rate.max}/mo`}
+                      <span
+                        className='remove-tag'
+                        onClick={() => setRate({ ...rate, max: '' })}
+                      >
+                        &times;
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
             <div className='spaceList'>
               <Table responsive hover>
                 <thead>
@@ -345,17 +414,41 @@ const Spaces = () => {
                       </label>
                     </th>
                     <th></th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Rate</th>
-                    <th>Status</th>
+                    <th
+                      onClick={() => onSort('name')}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Name
+                      <SortIcon />
+                    </th>
+                    <th
+                      onClick={() => onSort('tag')}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Type
+                      <SortIcon />
+                    </th>
+                    <th
+                      onClick={() => onSort('rate')}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Rate
+                      <SortIcon />
+                    </th>
+                    <th
+                      onClick={() => onSort('member_images')}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Status
+                      <SortIcon />
+                    </th>
                     <th>Assignment</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredSpaces &&
-                    filteredSpaces.map((data: any, index) => (
+                  {spaces &&
+                    spaces.map((data: any, index) => (
                       <tr key={`refer` + index}>
                         <td>
                           <label className='tableCheckBox'>
@@ -392,7 +485,16 @@ const Spaces = () => {
                         <td className='tableLink'>
                           <Link to={`${data.id}`}>{data.name}</Link>
                         </td>
-                        <td className='deskType'>
+                        <td
+                          className='deskType'
+                          style={
+                            {
+                              // display: 'flex',
+                              // alignItems: 'center',
+                              // justifyContent: 'start',
+                            }
+                          }
+                        >
                           {data.tag === 'private' ? (
                             <span className='private'>Private Office</span>
                           ) : (
@@ -514,4 +616,18 @@ const Spaces = () => {
   )
 }
 
+const SortIcon = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='11'
+      height='11'
+      fill='#475467'
+      style={{ marginLeft: '2px' }}
+      viewBox='0 0 320 512'
+    >
+      <path d='M137.4 41.4c12.5-12.5 32.8-12.5 45.3 0l128 128c9.2 9.2 11.9 22.9 6.9 34.9s-16.6 19.8-29.6 19.8L32 224c-12.9 0-24.6-7.8-29.6-19.8s-2.2-25.7 6.9-34.9l128-128zm0 429.3l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8l256 0c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128c-12.5 12.5-32.8 12.5-45.3 0z' />
+    </svg>
+  )
+}
 export default Spaces
