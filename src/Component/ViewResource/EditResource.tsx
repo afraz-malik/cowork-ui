@@ -7,7 +7,7 @@ import { faSortDown } from '@fortawesome/free-solid-svg-icons'
 import resourceIcon from '../../Assets/Images/icon/resourceIcon.svg'
 import changeLogo from '../../Assets/Images/icon/adminUser.png'
 import { DESKIE_API as API } from '../../config'
-import memberIcon from '../../Assets/Images/icon/memberLargeIcon.png'
+import memberIcon from '../../Assets/Images/icon/addresources.svg'
 import uploadIcon from '../../Assets/Images/icon/delete_svg.svg'
 import deleteIcon from '../../Assets/Images/icon/upload_svg.svg'
 import { resourceUpdate } from '../../api/resource'
@@ -143,6 +143,7 @@ const EditResource = ({
                       {file && file.length > 0 ? (
                         <img
                           src={file}
+                          style={{objectFit: 'cover'}}
                           width='120px'
                           height='120px'
                           alt='shop'
@@ -155,6 +156,7 @@ const EditResource = ({
                                 width: '120px',
                                 height: '120px',
                                 overflow: 'hidden',
+                                objectFit: 'cover'
                               }}
                             >
                               <img
@@ -170,6 +172,7 @@ const EditResource = ({
                           ) : (
                             <img
                               src={memberIcon}
+                              style={{objectFit: 'cover'}}
                               width='120px'
                               height='120px'
                               alt='shop'

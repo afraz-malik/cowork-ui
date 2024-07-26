@@ -54,7 +54,8 @@ const ResourceDetails = ({ tabChoose, resourceDetail }: tabMemberProps) => {
             </div>
             <div>
               <h6>Rate</h6>
-              <p className='mb-0 mt-4'>{resourceDetail.member_rate}</p>
+              <p className='mb-0 mt-4'>Members: ${resourceDetail.member_rate}</p>
+              <p className='mb-0 mt-4'>Guests: ${resourceDetail.public_rate}</p>
             </div>
           </div>
           <div className='rightResource'>

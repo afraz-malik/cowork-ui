@@ -28,6 +28,12 @@
   text-align: center;
   border-bottom: 1px solid rgba(208, 213, 221, 1);
 }
+.profileImageUpload .profileImgView img.changeLogo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
 .profileImageUpload .profileImgView img {
   max-width: 120px;
   max-height: 120px;
