@@ -54,15 +54,16 @@
 }
 
 .bookTour .bookCalender .selectBook .selectDate {
-  width: 57%;
+  width: 400px;
   border-right: 1px solid rgba(234, 236, 240, 1);
   margin-right: 24px;
+  margin-left: 24px;
   padding-right: 24px;
   height: 100%;
 }
 
 .bookTour .bookCalender .selectBook .selectTime {
-  width: 43%;
+  width: 400px;
 }
 
 .bookTour .bookCalender .selectBook .selectDate h6,
@@ -295,4 +296,39 @@
 
 .bookTour .selected-date .fc-scrollgrid-sync-inner a {
   color: #ffffff;
+}
+
+.bookTour .fc .fc-daygrid-day-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookTour .fc .fc-daygrid-day-top {
+  margin-top: 0;
+}
+
+.bookTour .tourView .fc .fc-toolbar.fc-header-toolbar {
+  width: 351px !important;
+}
+
+.bookTour .fc .fc-scrollgrid {
+  width: inherit !important;
+}
+
+.bookTour .fc thead .fc-scrollgrid-section table {
+  height: 20px !important;
+}
+
+.bookTour .fc .fc-scrollgrid-section table {
+  width: 351px !important;
+  height: 301px !important;
+}
+
+.bookTour .fc .fc-daygrid-body {
+  width: inherit !important;
+}
+
+.bookTour .fc .fc-view-harness {
+  height: 335px !important;
 }

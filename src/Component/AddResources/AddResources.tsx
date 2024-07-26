@@ -84,7 +84,7 @@ const AddResources = ({ show, setShow, handleClose }: AddResourcesProps) => {
     setLogoFile('')
     setUploadedLogo('')
     setUserImage('')
-    setImageLogo('logo')
+    setImageLogo('')
   }
 
   const handleSelect = (eventKey: string | null) => {
