@@ -257,7 +257,7 @@ const Spaces = () => {
                             checked={filterTag.includes('flex')}
                             onChange={() => handleFilterTagChange('flex')}
                           />
-                          Govt Office
+                          Flex
                         </label>
                       </Dropdown.Item>
 
