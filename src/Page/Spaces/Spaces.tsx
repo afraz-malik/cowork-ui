@@ -485,7 +485,16 @@ const Spaces = () => {
                         <td className='tableLink'>
                           <Link to={`${data.id}`}>{data.name}</Link>
                         </td>
-                        <td className='deskType'>
+                        <td
+                          className='deskType'
+                          style={
+                            {
+                              // display: 'flex',
+                              // alignItems: 'center',
+                              // justifyContent: 'start',
+                            }
+                          }
+                        >
                           {data.tag === 'private' ? (
                             <span className='private'>Private Office</span>
                           ) : (
