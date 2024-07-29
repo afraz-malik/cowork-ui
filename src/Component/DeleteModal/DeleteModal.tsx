@@ -10,11 +10,13 @@ import './DeleteModal.css'
 interface AddMemberProps {
   handleDeleteClose: () => void
   deleteShow: boolean
+  disabledModal?: boolean
   deleteApi: () => void
 }
 
 const DeleteModal = ({
   deleteShow,
+  disabledModal,
   handleDeleteClose,
   deleteApi,
 }: AddMemberProps) => {
@@ -37,15 +39,21 @@ const DeleteModal = ({
                 <div className='deleteIcon'>
                   <img src={trash} alt='trash' />
                   <h4 className='modal-title w-100'>
-                    Are you sure you want to delete this file?
+                    {`Are you sure you want to ${
+                      disabledModal
+                        ? 'disable the member?'
+                        : 'delete this file?'
+                    } `}
                   </h4>
-                  <p>Deleted files cannot be recovered!</p>
+                  <p>{`${
+                    disabledModal ? 'Disabled member' : 'Deleted files'
+                  } cannot be recovered!`}</p>
                   <div className='deleteBtn'>
                     <button className='cancel' onClick={handleDeleteClose}>
                       Cancel
                     </button>
                     <button className='delete' onClick={deleteApi}>
-                      Yes, Delete
+                      Yes, {`${disabledModal ? 'Disabled' : 'Delete'}`}
                     </button>
                   </div>
                 </div>

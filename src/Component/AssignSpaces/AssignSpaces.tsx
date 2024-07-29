@@ -97,11 +97,13 @@ const AssignSpaces = ({
   )
 
   useEffect(() => {
-    singleMember(memberId).then((data) => {
-      setName(data.data && data.data.first_name)
-      setEmail(data.data && data.data.email)
-      setSpaceImage(data.data && data.data.member_image)
-    })
+    if (memberId) {
+      singleMember(memberId).then((data) => {
+        setName(data.data && data.data.first_name)
+        setEmail(data.data && data.data.email)
+        setSpaceImage(data.data && data.data.member_image)
+      })
+    }
   }, [memberId])
 
   const authClick = () => {

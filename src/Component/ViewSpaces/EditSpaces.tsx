@@ -44,14 +44,16 @@ const EditSpaces = ({
   }
 
   useEffect(() => {
-    singleSpaces(spacesId).then((data) => {
-      setName(data.data && data.data.name)
-      setNotes(data.data && data.data.notes)
-      setRate(data.data && data.data.rate)
-      setSize(data.data && data.data.size)
-      setSpaceImage(data.data && data.data.space_image)
-      setTag(data.data && data.data.tag)
-    })
+    if (spacesId) {
+      singleSpaces(spacesId).then((data) => {
+        setName(data.data && data.data.name)
+        setNotes(data.data && data.data.notes)
+        setRate(data.data && data.data.rate)
+        setSize(data.data && data.data.size)
+        setSpaceImage(data.data && data.data.space_image)
+        setTag(data.data && data.data.tag)
+      })
+    }
   }, [spacesId])
 
   // update spaces info
@@ -192,10 +194,10 @@ const EditSpaces = ({
                           {tag === 'private'
                             ? 'Private Office'
                             : tag === 'dedicated'
-                              ? 'Dedicated Desk'
-                              : tag === 'flex'
-                                ? 'Flex'
-                                : ''}
+                            ? 'Dedicated Desk'
+                            : tag === 'flex'
+                            ? 'Flex'
+                            : ''}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                           <Dropdown.Item eventKey='private'>

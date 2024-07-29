@@ -550,6 +550,7 @@ const Files = () => {
       {lightBoxVisible && (
         <LightBox
           lightBoxFile={lightBoxFile}
+          handleDownloadClick={handleDownloadClick}
           lightBoxShow={lightBoxShow}
           setLightBoxShow={setLightBoxShow}
           handleLightBoxClose={closeLightBox}

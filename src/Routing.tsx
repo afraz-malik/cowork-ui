@@ -1,4 +1,3 @@
-import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './Page/Login/Login'
 import Member from './Page/Member/Member'

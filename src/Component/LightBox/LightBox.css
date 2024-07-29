@@ -101,3 +101,48 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
+
+.lightbox-error {
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px 70px 20px 70px;
+  background-color: #4c494c;
+}
+
+.lightbox-error p {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 24px;
+  color: #cbcacb;
+}
+
+.lightbox-error-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.download-button,
+.connect-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.download-button {
+  background-color: #4285f4;
+  color: white;
+}
+
+.connect-button {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.download-button i,
+.connect-button i {
+  margin-right: 5px;
+}

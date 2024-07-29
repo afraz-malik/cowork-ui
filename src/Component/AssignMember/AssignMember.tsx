@@ -72,27 +72,33 @@ const AssignMember = ({
   )
 
   useEffect(() => {
-    singleSpaces(spaceId).then((data) => {
-      setName(data.data && data.data.name)
-      setRate(data.data && data.data.rate)
-      setAmount(data.data && data.data.rate)
-      setDiscountAmount(data.data && data.data.rate)
-      setSpaceImage(data.data && data.data.space_image)
-      const today = new Date()
-      const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 0)
-      const daysRemaining = lastDayOfMonth.getDate() - today.getDate()
-      const daysInMonth = new Date(
-        new Date().getFullYear(),
-        new Date().getMonth() + 1,
-        0
-      ).getDate()
-      const rentForCurrentMonth = (
-        (parseInt(data.data && data.data.rate) / daysInMonth) *
-        daysRemaining
-      ).toFixed(2)
-      setDiscountAmount(rentForCurrentMonth.toString())
-      setRenewalDate(lastDayOfMonth)
-    })
+    if (spaceId) {
+      singleSpaces(spaceId).then((data) => {
+        setName(data.data && data.data.name)
+        setRate(data.data && data.data.rate)
+        setAmount(data.data && data.data.rate)
+        setDiscountAmount(data.data && data.data.rate)
+        setSpaceImage(data.data && data.data.space_image)
+        const today = new Date()
+        const lastDayOfMonth = new Date(
+          today.getFullYear(),
+          today.getMonth(),
+          0
+        )
+        const daysRemaining = lastDayOfMonth.getDate() - today.getDate()
+        const daysInMonth = new Date(
+          new Date().getFullYear(),
+          new Date().getMonth() + 1,
+          0
+        ).getDate()
+        const rentForCurrentMonth = (
+          (parseInt(data.data && data.data.rate) / daysInMonth) *
+          daysRemaining
+        ).toFixed(2)
+        setDiscountAmount(rentForCurrentMonth.toString())
+        setRenewalDate(lastDayOfMonth)
+      })
+    }
   }, [spaceId])
 
   const authClick = () => {

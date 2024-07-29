@@ -18,6 +18,10 @@ export const getMemberList = async (limit: number, page: number) => {
 export const singleMember = async (id: string) => {
   return get(`/memberSingle/${id}`)
 }
+// disable Memver 
+export const disableMember = async (id: string) => {
+  return put(`/disableMember/${id}`)
+}
 // update member info
 // export const updateMember = async (id:string, body = {}) => {
 //     return put(`/editMember/${id}`, body);

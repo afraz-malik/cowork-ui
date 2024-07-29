@@ -16,18 +16,16 @@ const Login = () => {
   const [profile, setProfile] = useState<any>()
   const [passwordUpdate, setPasswordUpdate] = useState(false)
   const [togglePassword, setTogglePassword] = useState(false)
-  const [toggleType, setToggleType] = useState('password')
+
   const [userEmail, setUserEmail] = useState('')
   const { register, handleSubmit, setValue } = useForm()
 
   const showPass = () => {
-    setTogglePassword(!togglePassword)
-    setToggleType('password')
+    setTogglePassword((prev) => !prev)
   }
 
   const hidePass = () => {
-    setTogglePassword(!togglePassword)
-    setToggleType('')
+    setTogglePassword((prev) => !prev)
   }
 
   let onSubmit = (user: any) => {
@@ -88,7 +86,7 @@ const Login = () => {
             <div className='loginInput'>
               <label htmlFor='password'>Password</label>
               <input
-                type={toggleType}
+                type={togglePassword ? 'text' : 'password'}
                 {...register('password', { required: true })}
                 placeholder='Password'
               />
@@ -129,7 +127,9 @@ const Login = () => {
         <section
           className='loginSection'
           style={{
-            background: `linear-gradient(rgba(31, 41, 55, 0.9), rgba(31, 41, 55, 0.94)), url(${profile && `${API}/${encodeURIComponent(profile.background)}`})`,
+            background: `linear-gradient(rgba(31, 41, 55, 0.9), rgba(31, 41, 55, 0.94)), url(${
+              profile && `${API}/${encodeURIComponent(profile.background)}`
+            })`,
           }}
         >
           {LoginForm()}
