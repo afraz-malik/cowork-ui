@@ -1,20 +1,27 @@
 import { DESKIE_API as API } from '../config'
+import { logout } from './auth';
+
+const handleResponse = async (response: Response) => {
+  if (response.status === 401) {
+    await logout();
+    window.location.href = '/'; 
+  }
+  return response.json();
+};
 
 export const post = (url: string, body: any = {}) => {
-  const token = JSON.parse(localStorage.getItem('company') || '{}')
-  const { jwt } = token
+  const jwttoken = JSON.parse(localStorage.getItem('company') || '{}')
+  const { token } = jwttoken
   return fetch(`${API}${url}`, {
     method: 'POST',
-    headers: {
+    headers: {  
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: jwt ? `Bearer ${jwt.toString()}` : '',
+      Authorization: token ? `Bearer ${token.toString()}` : '',
     },
     body: JSON.stringify(body),
   })
-    .then((res) => {
-      return res.json()
-    })
+    .then(handleResponse)
     .catch((err) => {
       return err
     })
@@ -22,8 +29,8 @@ export const post = (url: string, body: any = {}) => {
 
 // GET request
 export const get = (url: string) => {
-  const jwt = JSON.parse(localStorage.getItem('company') || '{}')
-  const { token } = jwt
+  const jwttoken = JSON.parse(localStorage.getItem('company') || '{}')
+  const { token } = jwttoken
   return fetch(`${API}${url}`, {
     method: 'GET',
     headers: {
@@ -32,9 +39,7 @@ export const get = (url: string) => {
       Authorization: token ? `Bearer ${token.toString()}` : '',
     },
   })
-    .then((res) => {
-      return res.json()
-    })
+    .then(handleResponse)
     .catch((err) => {
       return err
     })
@@ -42,8 +47,8 @@ export const get = (url: string) => {
 
 // PUT request
 export const put = (url: string, body: any = {}) => {
-  const jwt = JSON.parse(localStorage.getItem('company') || '{}')
-  const { token } = jwt
+  const jwttoken = JSON.parse(localStorage.getItem('company') || '{}')
+  const { token } = jwttoken
   return fetch(`${API}${url}`, {
     method: 'PUT',
     headers: {
@@ -53,9 +58,7 @@ export const put = (url: string, body: any = {}) => {
     },
     body: JSON.stringify(body),
   })
-    .then((res) => {
-      return res.json()
-    })
+    .then(handleResponse)
     .catch((err) => {
       return err
     })
@@ -63,20 +66,18 @@ export const put = (url: string, body: any = {}) => {
 
 // PATCH request
 export const patch = (url: string, body: any = {}) => {
-  const token = JSON.parse(localStorage.getItem('company') || '{}')
-  const { jwt } = token
+  const jwttoken = JSON.parse(localStorage.getItem('company') || '{}')
+  const { token } = jwttoken
   return fetch(`${API}${url}`, {
     method: 'PATCH',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: jwt ? `Bearer ${jwt.toString()}` : '',
+      Authorization: token ? `Bearer ${token.toString()}` : '',
     },
     body: JSON.stringify(body),
   })
-    .then((res) => {
-      return res.json()
-    })
+    .then(handleResponse)
     .catch((err) => {
       return err
     })
@@ -84,20 +85,18 @@ export const patch = (url: string, body: any = {}) => {
 
 // DELETE request
 export const del = (url: string, body: any = {}) => {
-  const token = JSON.parse(localStorage.getItem('company') || '{}')
-  const { jwt } = token
+  const jwttoken = JSON.parse(localStorage.getItem('company') || '{}')
+  const { token } = jwttoken
   return fetch(`${API}${url}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: jwt ? `Bearer ${jwt.toString()}` : '',
+      Authorization: token ? `Bearer ${token.toString()}` : '',
     },
     body: JSON.stringify(body),
   })
-    .then((res) => {
-      return res.json()
-    })
+    .then(handleResponse)
     .catch((err) => {
       return err
     })
@@ -113,9 +112,7 @@ export const getJwt = (url: string, token: string) => {
       Authorization: token ? `Bearer ${token.toString()}` : '',
     },
   })
-    .then((res) => {
-      return res.json()
-    })
+    .then(handleResponse)
     .catch((err) => {
       return err
     })

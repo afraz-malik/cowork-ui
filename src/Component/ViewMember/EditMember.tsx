@@ -46,17 +46,19 @@ const EditMember = ({
   }
 
   useEffect(() => {
-    singleMember(memberId).then((data) => {
-      setFirstName(data.data && data.data.first_name)
-      setLastName(data.data && data.data.last_name)
-      setPhoneNumber(data.data && data.data.phone_number)
-      setEmail(data.data && data.data.email)
-      setBusinessName(data.data && data.data.business_name)
-      setBusinessEmail(data.data && data.data.business_email)
-      setBusinessPhone(data.data && data.data.business_phone)
-      setNotes(data.data && data.data.notes)
-      setMemberImage(data.data && data.data.member_image)
-    })
+    if (memberId) {
+      singleMember(memberId).then((data) => {
+        setFirstName(data.data && data.data.first_name)
+        setLastName(data.data && data.data.last_name)
+        setPhoneNumber(data.data && data.data.phone_number)
+        setEmail(data.data && data.data.email)
+        setBusinessName(data.data && data.data.business_name)
+        setBusinessEmail(data.data && data.data.business_email)
+        setBusinessPhone(data.data && data.data.business_phone)
+        setNotes(data.data && data.data.notes)
+        setMemberImage(data.data && data.data.member_image)
+      })
+    }
   }, [memberId])
 
   // update member info

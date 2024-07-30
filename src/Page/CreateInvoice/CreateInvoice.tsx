@@ -25,7 +25,6 @@ import { DESKIE_API as API } from '../../config'
 import memberIcon from '../../Assets/Images/icon/memberAvatar.svg'
 import spaceIcon from '../../Assets/Images/icon/spaceAvatar.png'
 import refresh from '../../Assets/Images/icon/refresh.svg'
-import { CustomHeader } from '../../CommonFunction/Function'
 import DateCalender from '../../Component/DateCalender/DateCalender'
 
 const CreateInvoice = () => {

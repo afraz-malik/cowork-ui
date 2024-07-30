@@ -2,24 +2,33 @@ import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { singleMember, memberSpaces, memberInvoice } from '../../api/member'
+import {
+  singleMember,
+  memberSpaces,
+  memberInvoice,
+  disableMember,
+} from '../../api/member'
 import { DESKIE_API as API } from '../../config'
 import memberBlank from '../../Assets/Images/icon/memberAvatar.svg'
 import spacesBlank from '../../Assets/Images/icon/spaceAvatar.png'
 import more from '../../Assets/Images/icon/dots-vertical.svg'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import penIcon from '../../Assets/Images/icon/pencil-01.svg'
 import EditMember from './EditMember'
 import memberAvatar from '../../Assets/Images/icon/memberLargeIcon.png'
 import spacesIcon from '../../Assets/Images/icon/spaceAvatar.png'
 import PhoneInput from 'react-phone-input-2'
+import DeleteModal from '../DeleteModal/DeleteModal'
+import { showNotifications } from '../../CommonFunction/toaster'
+import { toast } from 'react-toastify'
 
 const ViewMember = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
   const [memberDetails, setMemberDetails] = useState<any>({})
   const [spacesList, setSpacesList] = useState<any>([])
   const [invoiceList, setInvoiceList] = useState<any>([])
-
+  const [deleteShow, setDeleteShow] = useState(false)
   const [memberId, setMemberId] = useState('')
   const [updateShow, setUpdateShow] = useState(false)
   const handleUpdateClose = () => setUpdateShow(false)
@@ -42,6 +51,14 @@ const ViewMember = () => {
   const memberUpdate = (memberId: string) => {
     setMemberId(memberId)
     setUpdateShow(true)
+  }
+
+  // hide member info
+  const memberdisable = () => {
+    disableMember(memberId).then((data) => {
+      setDeleteShow(false)
+      navigate('/member')
+    })
   }
 
   return (
@@ -97,17 +114,12 @@ const ViewMember = () => {
               ) : (
                 <span className='invite'>Invitation Pending</span>
               )}
-
-              <button
-                className='edit py-2'
-                onClick={() => memberUpdate(memberDetails.id)}
-              >
-                <img src={penIcon} alt='edit' /> Edit Member
-              </button>
-
               <button
                 className='edit disableBtn'
-                //   onClick={() => memberUpdate(memberDetails.id)}
+                onClick={() => {
+                  setMemberId(memberDetails.id)
+                  setDeleteShow(true)
+                }}
               >
                 Disable Member
               </button>
@@ -377,6 +389,12 @@ const ViewMember = () => {
         updateShow={updateShow}
         setUpdateShow={setUpdateShow}
         handleUpdateClose={handleUpdateClose}
+      />
+      <DeleteModal
+        deleteShow={deleteShow}
+        disabledModal={true}
+        deleteApi={memberdisable}
+        handleDeleteClose={() => setDeleteShow(false)}
       />
     </div>
   )
